@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
-using TrackIT.Security;
+//using TrackIT.Security;
 using TrackIT.Common;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
@@ -20,7 +20,7 @@ using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 using System.Text;
 using TrackIT.WebApp.Common;
-using System.Data.SqlClient;
+
 using Microsoft.ApplicationBlocks.Data;
 //using TrackIT.BusinessObjects;
 using TrackIT.WebApp.TrackITEnum;
@@ -28,7 +28,7 @@ using System.Net.Mail;
 
 namespace TrackIT.WebApp
 {
-    public class UserBO : TrackITAbstractDAL
+    public class UserBO : TrackITAbstractType
     {
 
         public Guid? UsersID { get; set; }

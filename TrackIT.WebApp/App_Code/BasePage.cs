@@ -24,7 +24,7 @@ using TrackIT.WebApp.Common;
 using TrackIT.WebApp.TrackITEnum;
 
 using TrackIT.Common;
-using TrackIT.Security;
+//using TrackIT.Security;
 
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Common;
@@ -34,7 +34,7 @@ using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
 namespace TrackIT.WebApp
 {
-    public class UserAccessBO : TrackITAbstractDAL
+    public class UserAccessBO : TrackITAbstractType
     {
         public Guid? UsersAccessID { get; set; }
         public Guid? UsersID { get; set; }

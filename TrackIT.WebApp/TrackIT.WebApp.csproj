@@ -1724,10 +1724,6 @@
       <Project>{44bd4170-2452-43c3-ad10-00dffe135987}</Project>
       <Name>Fintek.SqlHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SecurityCommon\CtrlA.Security\TrackIT.Security.csproj">
-      <Project>{107ec864-3d05-410c-8189-bd27f3923030}</Project>
-      <Name>TrackIT.Security</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SecurityCommon\TrackIT.Common\TrackIT.Common.csproj">
       <Project>{b166994c-5d85-4ba5-8fe9-13fe589f92f8}</Project>
       <Name>TrackIT.Common</Name>
