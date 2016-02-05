@@ -42,11 +42,11 @@ namespace TrackIT.WebApp.Security
         //RoleBO objRoleBO;
         //RoleAccessBO objRoleAccess;
         public string XMLData { get; set; }
-        int intCurrentPageIndex;
+        
         WebDataGrid lwdg_RoleMasterGrid;
         DBHelper.DBConnect ldbh_QueryExecutors = new DBHelper.DBConnect();
          
-        private string istr_getroles = "Security_GetRoleDetails";
+       
         #endregion
 
         #region "Events"
