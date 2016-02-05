@@ -70,8 +70,8 @@
                                  <a href="#" onclick="show();"></a></span>
                     </div>
 
-                    <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource" EnableStylesExport="false" Format="PDF" />
-                    <ig:WebExcelExporter runat="server" ID="WebExcelExporter" ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource" EnableStylesExport="false" />
+                    <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource"  Format="PDF" />
+                    <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource"/>
 
                     <h1>
                         <i class="menu-icon fa fa-lg fa-fw fa-user"></i>

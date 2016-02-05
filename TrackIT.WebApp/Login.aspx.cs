@@ -183,7 +183,8 @@ namespace TrackIT.WebApp
               
                
                 DataSet  lds_Result = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, GET_LOGIN_DETAILS, objParams);
-                
+                if(lds_Result.Tables[0].Rows.Count>0)
+                { 
                     if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Users_ID"].ToString()))
                         objUser.UsersID = new Guid(lds_Result.Tables[0].Rows[0]["Users_ID"].ToString());
                     else
@@ -203,15 +204,6 @@ namespace TrackIT.WebApp
                     else
                         objUser.RoleID = null;
 
-                    //  if (!string.IsNullOrEmpty(dataReader["Firm_ID"].ToString()))
-                    //    objUser.FirmID = new Guid(dataReader["Firm_ID"].ToString());
-                    // else
-                    //     objUser.FirmID = null;
-
-                    //if (!string.IsNullOrEmpty(dataReader["Firm_Code"].ToString()))
-                    //    objUser.FirmCode = dataReader["Firm_Code"].ToString();
-                    //else
-                    //    objUser.FirmCode = null;
 
                     if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Email_ID"].ToString()))
                         objUser.EmailID = lds_Result.Tables[0].Rows[0]["Email_ID"].ToString();
@@ -249,12 +241,8 @@ namespace TrackIT.WebApp
                         SetSessionValue(SessionItems.User_Name, objUser.LoginUserName);
                         SetSessionValue(SessionItems.User_Type, objUser.UserType);
                         SetSessionValue(SessionItems.Super_User, objUser.IsSuperUser);
-                       // SetSessionValue(SessionItems.Firm_ID, objResult.FirmID);
-                       // SetSessionValue(SessionItems.Firm_Code, objResult.FirmCode);
-                       // SetSessionValue(SessionItems.ImageNameForPaySlip, sCtrlAImage);
-                       // SetSessionValue(SessionItems.CurrentCountry, sCurrentCountry);
+                     
                         SetSessionValue(SessionItems.loggedin_User_ID, objResult.logged_in_UserID);
-                       // SetSessionValue(SessionItems.Department_Code, objUser.DepartmentCode);
                         SetSessionValue(SessionItems.Role_ID, objUser.RoleID);
                         SetSessionValue(SessionItems.User_Display_Name, objUser.DisplayName);
                         SetSessionValue(SessionItems.Role_Name, objUser.RoleName);
@@ -272,20 +260,9 @@ namespace TrackIT.WebApp
                         System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_7 - " + objUser.LoginSessionID);
 
                         objUser.LoginType = "L";
-                        //Unit Testing ID - Login_CS_8  
-                    //    System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_8 - " + objUser.LoginType);
-                    //    SqlParameter[] objParams_logindetails = { 
-                    //    new SqlParameter ("@SessionID",  objUser.LoginSessionID),
-                    //    new SqlParameter ("@UserID", objUser.UsersID),
-                    //    new SqlParameter ("@Type", objUser.LoginType)
-                    //};
-                    //    objUser.dsResult = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, INSERT_LOGIN_DETAILS, objParams);
+                       
 
-               
-
-                        //UserBLL.InsertLoginDetails(objResult);
-
-                        if (objResult.IsFirstLogin == 1)
+                        if (objUser.IsFirstLogin == 1)
                             Response.Redirect("~/My_Profile.aspx?New=1", false);
                         else
                             Response.Redirect("~/Home.aspx", false);
@@ -308,9 +285,17 @@ namespace TrackIT.WebApp
                     System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "EnterError();", true);
                     txtUsername.Text = string.Empty;
                     txtPassword.Text = string.Empty;
-                    //mdpForgetPW.Hide();
                 }
             }
+                else
+                {
+
+                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "EnterError();", true);
+                    txtUsername.Text = string.Empty;
+                    txtPassword.Text = string.Empty;
+                }
+            }
+           
             catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, Log_Only_Policy);
@@ -332,90 +317,7 @@ namespace TrackIT.WebApp
         /// <param name="e"></param>
         protected void btnSavePW_Click(object sender, EventArgs e)
         {
-            //// FS_ID 4.2.1.1
-
-            ////Unit Testing ID - Login_CS_10
-            //System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_10 - btnSavePW_Click Method Execution");
-            //reqInvalidUserName.Visible = false;
-            //try
-            //{
-            //    if (objUser == null) objUser = new UserBO(this.ConnectionString);
-            //    objResult = new UserBO(this.ConnectionString);
-
-            //    if (!string.IsNullOrEmpty(txtForgetUserName.Text))
-            //        objUser.UserName = (txtForgetUserName.Text);
-            //    //FS_ID 4.2.2.6
-
-            //    //Unit Testing ID - Login_CS_19
-            //    System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_19 - " + objResult.UserName);
-
-            //    objUser.Password = null;
-
-            //    objResult = UserBLL.GetChangePasswordDetails(objUser);
-            //    string User_Mail_ID = objResult.EmailID;
-            //    string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            //    string path = HttpContext.Current.Request.Url.AbsolutePath;
-            //    string username = objUser.UserName;
-            //    if (objResult.UsersID != null || objResult.EmailID != null)
-            //    {
-            //        //FS_ID 4.2.2.4
-
-            //        //Unit Testing ID - Login_CS_11
-            //        System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_11 - " + objResult.UsersID);
-
-            //        MailMessage msg = new MailMessage();
-            //        msg.From = new MailAddress("fintekdemo@gmail.com");
-            //        msg.To.Add(new MailAddress(User_Mail_ID));
-            //        var Generated_Password = GeneratePassword(8).ToString().Trim();
-            //        msg.Body = "Welcome To Ctrl A...Your Username is : " + username + " Your Password is : " + Generated_Password + "               You can Login into CtrlA by using this Link" + url;
-
-            //        //"Welcome To Ctrl A...Your Password is : " + GeneratePassword(8);
-            //        Session["msg_body"] = Generated_Password;
-            //        //msg.Body.Replace("Welcome To Ctrl A...Your Password is : ", ""); ;
-            //        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));//465,25-gmail
-            //        System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("fintekdemo@gmail.com", "ABC123456789");
-            //        smtpClient.Credentials = credentials;
-            //        smtpClient.EnableSsl = true;
-            //        smtpClient.Send(msg);
-            //        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "sentmail();", true);
-
-
-            //        string PassWord = Generated_Password;
-            //        objUser.Password = Crypto.CreateHash(PassWord);
-            //        objUser.CreatedBy = objResult.UsersID;
-            //        objUser.IsFirstLogin = 1;
-            //        objResult = UserBLL.ChangePassword(objUser);
-            //        //FS_ID 4.2.2.5
-
-            //        //Unit Testing ID - Login_CS_18
-            //        System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_18 - Session is cleared");
-
-
-            //        Session.Clear();
-
-            //        // Response.Redirect("~/Login.aspx", false);
-            //    }
-            //    else
-            //    {
-            //        //FS_ID 4.2.2.1
-
-            //        //Unit Testing ID - Login_CS_12
-            //        System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_12 - " + objResult.UsersID);
-            //        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "styleload();", true);
-            //        //mdpForgetPW.Show();
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-            //    Response.Write(ex.Message.ToString());
-            //}
-            //finally
-            //{
-            //    if (objUser != null) objUser = null;
-            //    if (objResult != null) objResult = null;
-            //}
+         
 
         }
         #endregion

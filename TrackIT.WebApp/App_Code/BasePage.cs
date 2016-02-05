@@ -66,8 +66,7 @@ namespace TrackIT.WebApp
         public const string APPROVED = "APPROVED";
         public const string PENDING = "PENDING";
         public const string GENERATED = "GENERATED";
-        public const string WORKFLOWNOTMAPPED = "WORKFLOWNOTMAPPED";
-        public const string APPLICATIONTYPEEXIST = "APPLICATIONTYPEEXIST";
+      
 
         public string GET_USER_ACCESS = "Security_GetUserAccess";
         public string GET_MODULE_ACCESS_RIGHTS = "Security_GetModuleAccessRights";
@@ -86,9 +85,7 @@ namespace TrackIT.WebApp
         public string Log_Only_Policy_Global = "Log_Only_Policy";
         public string Rethrow_Policy_Global = "Rethrow_Policy";
 
-        public const string Employment_Type_Guid = "367C7E48-966D-4624-A8DB-D6EACC2C305F";
-        public const string Designation_Guid = "E02E14CE-1C6D-4371-B2EC-4D9AE2618FFC";
-        public const string Action_Type_Guid = "3B970E23-B871-4387-8AEA-306EAB734D74";
+     
 
         public const string Email_FromMailAddress = "fintekdemo@gmail.com";
         public const string Email_CredentialEmailID = "fintekdemo@gmail.com";
@@ -140,9 +137,9 @@ namespace TrackIT.WebApp
 
         #region "Protected Variables"
                 
-        protected string sParameterName = "STAFF";
-        protected string sCtrlAImage = ConfigurationManager.AppSettings["CtrlAIMAGE"];
-        protected string sCurrentCountry = ConfigurationManager.AppSettings["CURRENTCOUNTRY"];
+        //protected string sParameterName = "STAFF";
+        //protected string sCtrlAImage = ConfigurationManager.AppSettings["CtrlAIMAGE"];
+        //protected string sCurrentCountry = ConfigurationManager.AppSettings["CURRENTCOUNTRY"];
 
         #endregion
 
@@ -288,23 +285,23 @@ namespace TrackIT.WebApp
             set { _sConnectionString = value; }
         }
 
-        public string CtrlAImage
-        {
-            get { return _sCtrlAImage; }
-            set { _sCtrlAImage = value; }
-        }
+        //public string CtrlAImage
+        //{
+        //    get { return _sCtrlAImage; }
+        //    set { _sCtrlAImage = value; }
+        //}
 
-        public string CurrentCountry
-        {
-            get { return _sCurrentCountry; }
-            set { _sCurrentCountry = value; }
-        }
+        //public string CurrentCountry
+        //{
+        //    get { return _sCurrentCountry; }
+        //    set { _sCurrentCountry = value; }
+        //}
 
-        public string DepartmentCode
-        {
-            get { return _sDepartmentCode; }
-            set { _sDepartmentCode = value; }
-        }
+        //public string DepartmentCode
+        //{
+        //    get { return _sDepartmentCode; }
+        //    set { _sDepartmentCode = value; }
+        //}
 
        
 
@@ -350,7 +347,6 @@ namespace TrackIT.WebApp
                     if (GetSessionValue(SessionItems.User_ID) != null)
                     {
                         _guidLoggedInUserID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.User_ID).ToString());
-                       // _guidLoggedInFirmID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.Firm_ID).ToString());
                         _guidLoggedInUserRoleID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.Role_ID).ToString());
 
                         if (GetSessionValue(SessionItems.loggedin_User_ID) != null)
@@ -359,12 +355,7 @@ namespace TrackIT.WebApp
                         _sModuleID = StringFunctions.ToString(GetSessionValue(SessionItems.Module_ID)).Trim();
                         _sLeftNode = StringFunctions.ToString(GetSessionValue(SessionItems.Left_Node)).Trim();
                         _sScreenID = StringFunctions.ToString(GetSessionValue(SessionItems.Screen_ID)).Trim();
-                       // _sCurrencyCode = StringFunctions.ToString(GetSessionValue(SessionItems.CurrencyCode)).Trim();
                         _isSuperUser = StringFunctions.ToString(GetSessionValue(SessionItems.Super_User)).Trim();
-                        //_sCurrentPageIndex = StringFunctions.ToString(GetSessionValue(SessionItems.Current_Page_Index)).Trim();
-                        //_sCtrlAImage = StringFunctions.ToString(GetSessionValue(SessionItems.ImageNameForPaySlip)).Trim();
-                        //_sCurrentCountry = StringFunctions.ToString(GetSessionValue(SessionItems.CurrentCountry)).Trim();
-                       // _sDepartmentCode = StringFunctions.ToString(GetSessionValue(SessionItems.Department_Code)).Trim();
                         _sLoggedInUserDisplayName = StringFunctions.ToString(GetSessionValue(SessionItems.User_Display_Name)).Trim();
                         _sLoggedInUserRoleName = StringFunctions.ToString(GetSessionValue(SessionItems.Role_Name)).Trim();
                         _sLoggedInUserRoleType = StringFunctions.ToString(GetSessionValue(SessionItems.Role_Type)).Trim();

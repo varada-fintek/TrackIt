@@ -8,22 +8,19 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Data.SqlClient;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
-using System.Text;
-
-//using TrackIT.BusinessObjects;
-using TrackIT.WebApp.Common;
-
-using TrackIT.WebApp.TrackITEnum;
-using TrackIT.Common;
-
 using Infragistics.Web.UI.GridControls;
 using Infragistics.Web.UI;
 using Infragistics.Documents.Excel;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using System.Text;
+using TrackIT.WebApp.Common;
+using TrackIT.WebApp.TrackITEnum;
+using TrackIT.Common;
+
 
 namespace TrackIT.WebApp.Setup
 {
@@ -733,8 +730,6 @@ namespace TrackIT.WebApp.Setup
 
             DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
             lwdg_UserMasterGrid.DataSource = ldt_ExcelExp;
-            TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_UserMasterGrid);
-            lwdg_UserMasterGrid.HeaderCaptionCssClass = "table";
             lwdg_UserMasterGrid.DataBind();
             WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
             WebExcelExporter.Export(lwdg_UserMasterGrid); 
@@ -751,10 +746,6 @@ namespace TrackIT.WebApp.Setup
             System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_27 ExportPdf");
             DataTable ldt_PdfExp = (DataTable)ViewState["export"];
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_UserMasterGrid);
-            lwdg_UserMasterGrid.HeaderCaptionCssClass = "igg_Header";
-            lwdg_UserMasterGrid.BorderStyle = BorderStyle.Solid;
-            lwdg_UserMasterGrid.BorderWidth = 2;
-            lwdg_UserMasterGrid.ItemCssClass = "igg_HeaderCaption igg_Header";
             lwdg_UserMasterGrid.DataSource = ldt_PdfExp;
             lwdg_UserMasterGrid.DataBind();
             WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;

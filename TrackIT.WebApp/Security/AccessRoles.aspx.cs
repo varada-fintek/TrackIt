@@ -81,10 +81,7 @@ namespace TrackIT.WebApp.Security
                             hdnIndex.Value = "1";
                         }
                     }
-                    else if (!string.IsNullOrEmpty(CurrentPageIndex.ToString().Trim()))
-                    {
-                        hdnIndex.Value = this.CurrentPageIndex.ToString();
-                    }
+                   
                     GetRoleDetails();
                     ClearControls();
                 }
