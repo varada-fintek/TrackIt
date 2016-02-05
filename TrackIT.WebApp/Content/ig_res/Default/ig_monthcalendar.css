@@ -1,0 +1,192 @@
+.igmc_Control
+{
+	background-color:white;
+	font-family: Segoe UI, Verdana, Arial, Georgia, Sans-Serif;
+	border:solid 1px #B1B1B1;
+	margin:0px;
+	padding:0px;
+	width: 225px;
+	height: 200px;
+	border-collapse: separate;
+}
+
+.igmc_DOW
+{
+	background:#EAEAEA;
+	font-size: 11px;
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	height: 30px;
+	text-align:center;
+	border-bottom:none;
+	color:#666666;
+}
+
+.igmc_Header
+{
+	background:#888888;
+	border-bottom-width:0px;
+	height: 30px;
+}
+
+.igmc_NextPrev
+{
+	font-size: 0.8em;
+	margin:0px;
+	padding:0px 8px;
+	color:White;
+}
+
+.igmc_HoverNextPrev
+{
+	cursor:pointer;
+	color:#3bb7eb;
+}
+
+.igmc_PressedNextPrev
+{
+}
+
+.igmc_Footer
+{
+	background:#888888;
+	color:White;
+	font-size:11px;
+	text-align:center;
+	height: 30px;
+}
+
+.igmc_HoverFooter
+{
+	color:White;
+	background:#888888;
+}
+
+.igmc_PressedFooter
+{
+	background:#888888;
+}
+
+.igmc_MonthYear
+{
+	font-size:12px;
+	padding:0px 2px;
+	color: #FFFFFF;
+    line-height:30px;
+}
+
+.igmc_HoverMonthYear
+{
+	cursor:pointer;
+	color:#FFFFFF;	
+}
+
+.igmc_PressedMonthYear
+{
+	color:White;
+}
+
+.igmc_OtherMonthDay
+{
+	background-image:none;
+	color:#999999;
+}
+
+.igmc_Day.igmc_OtherMonthDay
+{
+	background-image:none;
+	color: #a4a4a4;
+	font-size:12px;
+	font-weight:normal;
+}
+
+.igmc_Day
+{
+	background-color:transparent;
+	font-size:12px;
+	text-align:center;
+	border:solid 1px #FFFFFF;	
+	color: #444444;
+	
+}
+
+.igmc_SelectedDay
+{
+	background:#9ECBD6;
+	border:1px solid #4897AA;
+}
+
+.igmc_FocusDay, .igmc_OtherMonthDay.igmc_FocusDay
+{
+	background:#FFFFFF;
+	border:1px solid #4897AA;
+}
+
+.igmc_HoverDay, .igmc_HoverDay.igmc_TodayDay
+{
+	background:#cccccc;
+	border:1px solid #999999;
+}
+
+.igmc_OtherMonthDay.igmc_HoverDay
+{
+	background:#cccccc;
+	border:1px solid #999999;
+}
+
+.igmc_DisabledDay
+{
+	color:#000EEE;
+}
+
+.igmc_TodayDay
+{
+	color:#4897AA;		
+}
+
+.igmc_WeekNumber
+{
+	background-color:transparent;
+	font-weight:bold;
+	color:#21272d;
+}
+
+.igmc_WeekendDay
+{
+    background-color:#f9f9f9;
+	border: 1px solid #f9f9f9;
+}
+
+/* CSS classes for Month and Year selection Popup in header */
+.igmc_List
+{
+	background-color: #fff;
+	border:1px solid #bbb;
+}
+
+.igmc_Item
+{
+	background-color:#fff;
+	font-size: 1em;
+	text-align: center;
+	border:1px solid White;
+    color:#444444;
+}
+
+.igmc_SelectedItem
+{
+	border:1px solid #4897AA;
+	background: #9ECBD6;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+.igmc_HoverItem
+{
+	background:#CCCCCC;
+	border:1px solid #999999;
+	color:#444444;
+	font-weight: bold;
+	cursor:pointer;
+}

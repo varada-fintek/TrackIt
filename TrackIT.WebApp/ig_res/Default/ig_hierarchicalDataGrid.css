@@ -1,0 +1,238 @@
+
+.ighg_Control
+{
+}
+
+
+.ighg_ExpandButton
+{
+	padding-left:5px;
+	cursor:pointer;
+}
+
+
+.ighg_ExpansionColumnHeader
+{
+    width: 25px;
+	background-color: transparent;
+	border-color: #777777 #777777 #777777 #888888;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.ighg_ExpansionColumn
+{
+	padding:0px !important;
+	width: 25px;
+}
+
+tbody.igg_Item > tr:hover > .ighg_ExpandableArea,
+tbody.igg_Item > tr:hover > .ighg_GroupIndentCell
+{
+    background-color: #FFFFFF;
+}
+
+.ighg_ExpansionColumnFooter
+{
+	width: 25px;
+}
+
+
+.ighg_GroupArea
+{
+	background-color:#FFFFFF;
+	border-bottom:solid 1px #EEEEEE;
+	padding:10px;
+	color:#444444;
+}
+
+/* START -- GroupBy CSS Classes */
+.ighg_GroupIndentHeaderCell
+{
+    background-color: transparent;
+	border-color: #777777 #777777 #777777 #888888;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.ighg_GroupedColumn
+{
+	color: #FFFFFF;
+    background: #888888;
+	padding:3px 5px 0px 10px;
+	display: inline-block;
+	height: 16px;
+}
+
+
+.ighg_GroupedColumnRightEdge
+{   
+    background-color: #888888;
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_GroupedColumnRightEdgeBg.png);
+	padding-top:3px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_GroupedColumnRightEdgeEnd
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_GroupedColumnRightEdgeEndBg.gif);
+	padding-top:3px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+.ighg_GroupedBand
+{
+	background:#666666;
+	padding:3px 0px 0px 10px;
+	display: inline-block;
+	height: 16px;
+    color: #FFFFFF;
+}
+
+
+.ighg_GroupedBandRightEdge
+{
+	background:#666666;
+	padding:3px 0px 0px 0px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_ColumnGroupingTopDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_TopDragIndicator.gif);
+	width: 5px;
+	height: 3px;
+	z-index: 100;
+}
+
+
+.ighg_ColumnGroupingMiddleDragIndicator
+{
+	background-repeat:repeat-y;
+	background-position:center ;
+	background-image: url(images/ighg_MiddleDragIndicator.gif);
+	width: 3px;
+}
+
+
+.ighg_ColumnGroupingBottomDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_BottomDragIndicator.gif);
+	width: 5px;
+	height: 3px;
+	position: absolute;
+	z-index: 100;
+}
+
+
+.ighg_GroupedColumnLeftEdge
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_GroupedColumnLeftEdgeBg.gif);
+	padding-top:3px;
+	display: inline-block;
+	width: 9px;
+	height: 16px;
+}
+
+
+/********************/
+/**  Cell Merging  **/
+/********************/
+/*Any future change please port it to WDG*/
+
+tbody>tr>td.ighg_MergedCellVisible
+{
+    color: #444444;
+}
+
+tbody>tr>td.ighg_MergedCell /*tbody>tr>td.ighg_MergedCellAlt*/
+{
+    color: #FFF;
+    background-color: #FFF;
+   
+    border-top-color: transparent;
+    border-left: 1px solid #DCDCDC;
+    border-right: 1px solid #DCDCDC;
+}
+
+tbody>tr>td.ighg_MergedCellTop /*tbody>tr>td.ighg_MergedCellAltTop*/
+{
+    color: #444444;
+    border-top: 1px solid #DCDCDC;
+    border-bottom: 1px solid  transparent;
+}
+tbody > tr > td.ighg_MergedCellBottom {
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+
+tbody>tr>td.ighg_MergedCell.igg_SelectedCell /*tbody>tr>td.ighg_MergedCellAlt.igg_SelectedCell*/
+{
+    color: #444444;
+    background-color: #3AB4E8;
+    
+    border-left: 1px dotted #FFF;
+    border-right: 1px dotted #FFF;
+}
+
+tbody>tr>td.ighg_MergedCellTop.igg_SelectedCell /*tbody>tr>td.ighg_MergedCellAltTop.igg_SelectedCell*/
+{
+    color: #444444;
+}
+
+tbody>tr>td.ighg_MergedCellExpanded
+{
+    color: #444444;
+}	
+
+tbody > tr.igg_UpdatedRow td.ighg_MergedCell
+{
+    color: #666666;
+    font-style: italic;
+}
+
+tbody > tr.igg_UpdatedRow td.ighg_MergedCellTop.igg_SelectedCell
+{
+    color: #444444;
+    font-style: italic;
+}
+
+tbody > tr.igg_UpdatedRow td.ighg_MergedCellTop
+{
+    color: #666666;
+    font-style: italic;
+}
+
+tbody > tr.igg_UpdatedRow td.ighg_MergedCellTop.igg_SelectedCell
+{
+    color: #444444;
+    font-style: italic;
+}
+
+tbody>tr>td.ighg_MergedCellVisible
+{
+    color: #444444;
+}
+
+tbody>tr>td.igg_ActiveCell
+{
+    color: #444444;
+}
+
+
+
+
+
+

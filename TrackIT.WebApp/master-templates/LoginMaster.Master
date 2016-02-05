@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LoginMaster.master.cs" Inherits="TrackIT.WebApp.master_templates.LoginMaster" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>TrackIT</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <link href="../stylesheets/CtrlA.css"  rel="stylesheet" type="text/css" />    
+    <script language="javascript" type="text/javascript" src="../javascript/Common.js"></script>
+    <link id="lkShortCutIcon" runat="server" rel="shortcut icon" href="~/images/logo.ico" type="image/x-icon" />
+    <link id="lkFavIcon" runat="server" rel="icon" href="~/images/logo.ico" type="image/ico" />
+    <link href="../Content//css/photon-min-part2.css" rel="stylesheet" />
+    <link href="../Content//css/photon-min.css" rel="stylesheet" />
+    <style type="text/css">
+        .text-danger {
+            color: red;
+        }
+    </style>
+     <script type="text/javascript" src="../Content//js/jQuery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript"  src="../Content//js/pace/pace.min.js"></script>
+    <script type="text/javascript"  src="../Content//js/Bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript"  src="../Content//js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/placeholders/placeholders.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/jquery.knob/jquery.knob.js"></script>
+    <script  type="text/javascript" src="../Content//js/owl-carousel/owl.carousel.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/d3/d3.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/moment/moment.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/xcharts/xcharts.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/skycons/skycons.js"></script>
+    <script  type="text/javascript" src="../Content//js/clndr/clndr.min.js"></script>
+    <script  type="text/javascript" src="../Content//js/nav.js"></script>
+    <script  type="text/javascript" src="../Content//js/custom.js"></script>
+    <script type="text/javascript"  src="../Content//js/dashboard-demo.js"></script>
+    <script type="text/javascript"  src="../Content//js/inbox-demo.js"></script>
+    <script type="text/javascript"  src="../Content//js/datepicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript"  src="../Content//js/datetimepicker/jquery.datetimepicker.js"></script>
+    <link href="../Content//Wizard/select2.css" rel="stylesheet" />
+    <script type="text/javascript"  src="../Content//Wizard/select2.js"></script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager AllowCustomErrorsRedirect="true" EnablePartialRendering="true" ID="sm" runat="server"></asp:ScriptManager>
+        <table cellpadding="0" cellspacing="0" align="center" class="LoginMainTable">
+    <tr>
+    	<td align="center" valign="top">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                
+            </asp:ContentPlaceHolder>
+            <div class="LoginNoteTableHolder" align="center">
+   	 	        <%--<p class="LoginNote">Welcome to Ctrl+A. </p>--%>
+   		        <%--<p class="LoginNote"><b>"Please enter your username & login password to access this application"</b></p>--%>
+           </div>
+        </td>        
+    </tr>
+    </table>    
+    </form>
+</body>
+</html>

@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="btnSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="CalendarAlt" xml:space="preserve">
+    <value>Click to show Calendar</value>
+  </data>
+  <data name="gridDelete" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="gridDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="gridEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="AlreadyExistMsg" xml:space="preserve">
+    <value>Record Already Exists !!!</value>
+  </data>
+  <data name="sEditAlert" xml:space="preserve">
+    <value>You are not allowed to edit the Predefined Data</value>
+  </data>
+  <data name="sDeleteAlert" xml:space="preserve">
+    <value>You are not allowed to delete the Predefined Data</value>
+  </data>
+  <data name="ConcurrencyMsg" xml:space="preserve">
+    <value>The details have been updated / deleted by another User. Please review the page.</value>
+  </data>
+  <data name="DeleteRecord" xml:space="preserve">
+    <value>Are you sure want to delete the record ?</value>
+  </data>
+  <data name="DeleteMsg" xml:space="preserve">
+    <value>Record Deleted Successfully !!!</value>
+  </data>
+  <data name="NoRecordMsg" xml:space="preserve">
+    <value>No Records Found !!!</value>
+  </data>
+  <data name="NoRecordSearch" xml:space="preserve">
+    <value>No records found for your search criteria.</value>
+  </data>
+  <data name="gridAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="gridView" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="SaveMsg" xml:space="preserve">
+    <value>Record Saved Successfully !!!</value>
+  </data>
+  <data name="btnSearchClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="btnUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnAssign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="btnPreview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="CalendarAlt1" xml:space="preserve">
+    <value>Click to show Calendar</value>
+  </data>
+  <data name="btnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="btnConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="btnGenerate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="btnApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="btnReject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="btnApprove" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="Alertzerovalue" xml:space="preserve">
+    <value>Zero value should not be allowed.</value>
+  </data>
+  <data name="gridSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="gridAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="gridName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="gridNRICNumber" xml:space="preserve">
+    <value>NRIC Number</value>
+  </data>
+  <data name="gridProgramme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="gvRemarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="gvSubject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="lblAddressLine1" xml:space="preserve">
+    <value>Address Line1</value>
+  </data>
+  <data name="lblAddressLine2" xml:space="preserve">
+    <value>Address Line2</value>
+  </data>
+  <data name="lblAddressLine3" xml:space="preserve">
+    <value>Address Line3</value>
+  </data>
+  <data name="lblBumiputera" xml:space="preserve">
+    <value>Bumiputera</value>
+  </data>
+  <data name="lblCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="lblCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="lblDateofBirth" xml:space="preserve">
+    <value>Date of Birth</value>
+  </data>
+  <data name="lblEMailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="lblFaxNo" xml:space="preserve">
+    <value>Fax No</value>
+  </data>
+  <data name="lblFemale" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="lblGender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="lblGrade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="lblHandPhone" xml:space="preserve">
+    <value>Hand Phone</value>
+  </data>
+  <data name="lblIntake" xml:space="preserve">
+    <value>Intake</value>
+  </data>
+  <data name="lblInternational" xml:space="preserve">
+    <value>International</value>
+  </data>
+  <data name="lblLocalForeign" xml:space="preserve">
+    <value>Malaysian/International</value>
+  </data>
+  <data name="lblMalaysian" xml:space="preserve">
+    <value>Malaysian</value>
+  </data>
+  <data name="lblMale" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lblNRICNumber" xml:space="preserve">
+    <value>NRIC Number</value>
+  </data>
+  <data name="lblOthers" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="lblPassportNo" xml:space="preserve">
+    <value>Passport Number</value>
+  </data>
+  <data name="lblPostCode" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="lblProgramme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="lblState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="lblStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="lblSubject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="lblTelephoneNo" xml:space="preserve">
+    <value>Telephone No</value>
+  </data>
+  <data name="lblTelephoneNoHome" xml:space="preserve">
+    <value>Telephone(Home)</value>
+  </data>
+  <data name="lblTelephoneNoOffice" xml:space="preserve">
+    <value>Telephone(Office)</value>
+  </data>
+  <data name="lblTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="rfvAddress1" xml:space="preserve">
+    <value>Please enter the Address1</value>
+  </data>
+  <data name="rfvAddress2" xml:space="preserve">
+    <value>Please enter the Address2</value>
+  </data>
+  <data name="rfvAmount" xml:space="preserve">
+    <value>Please enter the Amount</value>
+  </data>
+  <data name="rfvCity" xml:space="preserve">
+    <value>Please enter the City</value>
+  </data>
+  <data name="rfvCountry" xml:space="preserve">
+    <value>Please select the Country</value>
+  </data>
+  <data name="rfvDateofBirth" xml:space="preserve">
+    <value>Please enter the Date of Birth</value>
+  </data>
+  <data name="rfvIntake" xml:space="preserve">
+    <value>Please select the Intake</value>
+  </data>
+  <data name="rfvNRICNumber" xml:space="preserve">
+    <value>Please enter the NRIC Number</value>
+  </data>
+  <data name="rfvPostCode" xml:space="preserve">
+    <value>Please enter the Postcode</value>
+  </data>
+  <data name="rfvProgramme" xml:space="preserve">
+    <value>Please select the Programme</value>
+  </data>
+  <data name="rfvState" xml:space="preserve">
+    <value>Please select the State</value>
+  </data>
+  <data name="revEMailAddress" xml:space="preserve">
+    <value>Please enter the valid Email Address !</value>
+  </data>
+  <data name="lblMaritalStatus" xml:space="preserve">
+    <value>Marital Status</value>
+  </data>
+  <data name="lblStudentName" xml:space="preserve">
+    <value>Student Name</value>
+  </data>
+  <data name="rfvHandPhone" xml:space="preserve">
+    <value>Please enter the Hand Phone</value>
+  </data>
+  <data name="gvContactNumber" xml:space="preserve">
+    <value>Contact No.</value>
+  </data>
+  <data name="gvICPassportNo" xml:space="preserve">
+    <value>IC/Passport No.</value>
+  </data>
+  <data name="gvIntake" xml:space="preserve">
+    <value>Intake</value>
+  </data>
+  <data name="gvName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="gvProgramme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="gvStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="lblContactNo" xml:space="preserve">
+    <value>Contact No.</value>
+  </data>
+  <data name="lblRemarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="gridStudentID" xml:space="preserve">
+    <value>Student ID</value>
+  </data>
+  <data name="gridStudentName" xml:space="preserve">
+    <value>Student Name</value>
+  </data>
+  <data name="lblSemester" xml:space="preserve">
+    <value>Semester</value>
+  </data>
+  <data name="lblStudentID" xml:space="preserve">
+    <value>Student ID</value>
+  </data>
+  <data name="lblYear" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="lblReason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="gridCohort" xml:space="preserve">
+    <value>Cohort</value>
+  </data>
+  <data name="lblCohort" xml:space="preserve">
+    <value>Cohort</value>
+  </data>
+  <data name="lblStaffName" xml:space="preserve">
+    <value>Staff Name</value>
+  </data>
+  <data name="rfvCohort" xml:space="preserve">
+    <value>Please select the Cohort</value>
+  </data>
+  <data name="rfvStaffName" xml:space="preserve">
+    <value>Please select the Staff Name</value>
+  </data>
+  <data name="ReportErrorMsg" xml:space="preserve">
+    <value>Error occured while generating the Report. Please try again !!!</value>
+  </data>
+  <data name="lblActualAmount" xml:space="preserve">
+    <value>Actual Amount</value>
+  </data>
+  <data name="lblNetAmount" xml:space="preserve">
+    <value>Net Fees Amount</value>
+  </data>
+  <data name="lblBalance" xml:space="preserve">
+    <value>Balance Amount</value>
+  </data>
+  <data name="lblCurrentAmount" xml:space="preserve">
+    <value>Fees Amount</value>
+  </data>
+  <data name="lblDiscount" xml:space="preserve">
+    <value>Discount Amount</value>
+  </data>
+  <data name="lblCurrentScheme" xml:space="preserve">
+    <value>Current Scheme</value>
+  </data>
+  <data name="lblPaid" xml:space="preserve">
+    <value>Paid Amount</value>
+  </data>
+  <data name="lblRefund" xml:space="preserve">
+    <value>Refund Amount</value>
+  </data>
+  <data name="mevNRICNumber" xml:space="preserve">
+    <value>Invalid NRIC Number</value>
+  </data>
+  <data name="gvAttended" xml:space="preserve">
+    <value>Attended</value>
+  </data>
+  <data name="lblScholar" xml:space="preserve">
+    <value>Scholarship</value>
+  </data>
+  <data name="lblTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="gridAdmin" xml:space="preserve">
+    <value>System Administrator</value>
+  </data>
+  <data name="msgWarningImageType" xml:space="preserve">
+    <value>Please upload "JPG" or "GIF" or "JPEG" or "PNG" extension files only</value>
+  </data>
+  <data name="msgWarningImagePDFWordType" xml:space="preserve">
+    <value>Please upload "JPG" or "GIF" or "JPEG" or "PNG" or "PDF" or "doc" or "docx" extension files only</value>
+  </data>
+  <data name="lblPropertyHeader" xml:space="preserve">
+    <value>Property Values</value>
+  </data>
+  <data name="gvActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="WorkflowNotMappingMsg" xml:space="preserve">
+    <value>Workflow Not Mapping for this Application</value>
+  </data>
+  <data name="gridDataPoints" xml:space="preserve">
+    <value>Data Points</value>
+  </data>
+  <data name="gvenddate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="gvstartdate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="lblActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="gridEditView" xml:space="preserve">
+    <value>Edit / View</value>
+  </data>
+  <data name="lblSearchHeader" xml:space="preserve">
+    <value>Search Firm</value>
+  </data>
+  <data name="AppIconimagePath" xml:space="preserve">
+    <value>~/Files/App-Images</value>
+  </data>
+  <data name="NoimagePath" xml:space="preserve">
+    <value>~/images/user_icon.png</value>
+  </data>
+  <data name="TempAppIconimagePath" xml:space="preserve">
+    <value>~/Files/Temp_App-Images</value>
+  </data>
+  <data name="TempUserImagePath" xml:space="preserve">
+    <value>~/Files/Temp_UserImages</value>
+  </data>
+  <data name="UserImagePath" xml:space="preserve">
+    <value>~/Files/UserImages</value>
+  </data>
+  <data name="NoAppImagePath" xml:space="preserve">
+    <value>~/images/NoAppImage.gif</value>
+  </data>
+  <data name="ApplicationTypeExistMsg" xml:space="preserve">
+    <value> - Application Type Already Exists for </value>
+  </data>
+</root>

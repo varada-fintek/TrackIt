@@ -1,0 +1,42 @@
+.igpnl_Control
+{
+	border:solid 1px #B1B1B1;
+}
+
+
+.igpnl_Panel
+{
+	background-color:White;
+	cursor:default;
+}
+
+
+.igpnl_HeaderExpanded
+{
+    background: #888888;
+	font-size:xx-small;
+	font-family: 'Segoe UI',verdana,sans-serif;
+	padding-top:3px;
+	padding-bottom:3px;
+	cursor:pointer;
+	color:White;
+}
+
+
+.igpnl_HeaderCollapsed
+{
+}
+
+
+.igpnl_HeaderHover
+{
+	background: #666666;
+	color:White;
+}
+
+
+.igpnl_GroupBoxControl
+{
+}
+
+

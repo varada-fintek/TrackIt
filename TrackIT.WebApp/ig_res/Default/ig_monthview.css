@@ -1,0 +1,272 @@
+.igmv_Control
+{
+	overflow: auto;
+	position: relative;
+	font-family:'Segoe UI',verdana,sans-serif;
+	font-weight:normal;
+	border:1px solid #B1B1B1;
+}
+
+
+.igmv_CaptionHeader
+{
+	background-color:#EEEEEE;
+	border-width:1px 0;
+	border-bottom: 1px solid #B1B1B1;
+	border-top: 1px solid #B1B1B1;
+	font-size: 18px;
+	color:#444444;
+	text-align:left;
+	height:36px;
+}
+
+
+.igmv_DayHeader
+{
+	background-color: #888888;
+	font-size:13px;
+	border:solid 1px #777777;
+	border-right:none;
+	border-bottom:none;
+	cursor:default;
+	color:#FFF;
+	text-align:left;
+	height: 1%;
+	padding:3px;
+}
+
+
+.igmv_Day
+{
+	border:solid 1px #E2E2E2;
+	border-bottom-width:0px;
+	border-right-width:0px;
+	overflow: hidden;
+	cursor:pointer;
+	color: #444444;
+	vertical-align: top;
+}
+
+
+.igmv_Appointment
+{
+	background-color:#FFFFFF;
+	border:1px solid #E2E2E2;
+	color:#444444;
+	font-size:12px;
+	margin: 3px 3px 0 3px;
+	padding:3px;
+	cursor: pointer;
+	text-align:left;
+	overflow: hidden;
+}
+
+.igmv_FadedAppointment
+{
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+.igmv_AllDayEvent
+{
+	background-color:#FFFFFF;
+	border:1px solid #E2E2E2;
+	color:#444444;
+	font-size:12px;
+	margin: 3px 3px 0 3px;
+	padding:3px;
+	cursor: pointer;
+	text-align:left;
+	overflow: hidden;
+}
+
+
+.igmv_NavigationButton
+{
+	background-color:Transparent;
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	width: 20px;
+	cursor:pointer;
+}
+
+
+.igmv_WeekNumber
+{
+	background:#EEEEEE;
+	font-size:13px;
+	border: 1px solid #BEBEBE;
+	border-right-width:0px;
+	border-left-width:0px;
+	width: 20px;
+	text-align:center;
+}
+
+
+.igmv_CompressedDay
+{
+	border-left:solid 1px #E2E2E2;
+	vertical-align:top;
+}
+
+
+tr.igmv_CaptionHeader td.igmv_WeekNumber
+{
+	background: #EEEEEE;
+	border-top:none;
+	border-bottom:none;
+	text-align: left;
+}
+
+.igmv_MonthDayOfWeekHeader.igmv_WeekNumber
+{
+	border-left-width:0px;
+}
+
+
+.igmv_MonthDayOfWeekHeader
+{
+	background-color:#CCCCCC;
+	font-size:13px;
+	border-top:1px solid #BEBEBE;
+	border-bottom:1px solid #BEBEBE;
+	color:#444444;
+	text-align:left;
+	height: 1%;
+	padding:3px;
+}
+
+
+.igmv_OtherMonthDayHeader
+{
+	background: #A3A3A3;
+	font-size:13px;
+	border:1px solid #989898;
+	border-right-width:0px;
+	color: #D1D1D1;
+	text-align: left;
+	height: 1%;
+	padding:3px;
+}
+
+
+.igmv_OtherMonthDay
+{
+	background-color: #EEEEEE;
+	border:solid 1px #DADADA;
+	border-bottom-width:0px;
+	border-right-width:0px;
+	cursor:pointer;
+	color: #444444;
+	vertical-align: top;
+}
+
+
+.igmv_OtherCompressedDay
+{
+	background-color:#EEEEEE;
+	border-left:solid 1px #DADADA;
+	vertical-align:top;
+}
+
+
+.igmv_TodayHeader
+{
+	background-color:#4897AA;
+	border:1px solid #777777;
+	font-size:13px;
+	color:#FFFFFF;
+}
+
+
+.igmv_Today
+{
+}
+
+
+.igmv_SelectedAppointment
+{
+	border:solid 1px #F77E11;
+}
+
+
+.igmv_ActiveDayHeader
+{
+
+}
+
+
+.igmv_ActiveDay
+{
+    background-color:#DBECF0;	
+	border:1px solid #4897AA;
+}
+
+
+.igmv_NavigationButtonPrev
+{
+	margin-left: 3px;
+}
+
+
+.igmv_Control table
+{
+	border-collapse:Collapse;
+}
+
+
+.igmv_NavigationButtonNext
+{
+	margin-right: 3px;
+}
+
+.igmv_ResourceButton
+{
+	background: #EEEEEE;
+	padding: 4px;
+	font-size: 12px;
+	font-family:'Segoe UI',verdana,sans-serif;
+	font-weight:normal;
+	color: #333333;
+	border-width: 0;
+    border-top:2px solid transparent;
+}
+
+.igmv_ResourceButton:focus, .igmv_ResourceButtonActive
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igmv_ResourceButton:hover
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igmv_MultiDayEventArrowLeft
+{
+      background-image: url(images/igws_arrowLeft.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}
+
+.igmv_MultiDayEventArrowRight
+{
+      background-image: url(images/igws_arrowRight.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}

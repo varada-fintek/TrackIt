@@ -1,0 +1,10 @@
+https://fintek.sharepoint.com/_layouts/15/start.aspx#/Lists/CTRLA/AllItems.aspx
+
+http://www.mikesdotnetting.com/article/109/asp-net-mvc-entity-framework-one-to-many-and-many-to-many-inserts
+
+
+http://www.infragistics.com/samples/aspnet/drop-down/multi-selection
+
+http://help.infragistics.com/Help/Doc/ASPNET/2011.1/CLR4.0/html/WebDropDown_Create_a_Multi_Column_WebDropDown_using_Templates.html
+
+http://www.codeproject.com/Articles/5347/DataCalendar

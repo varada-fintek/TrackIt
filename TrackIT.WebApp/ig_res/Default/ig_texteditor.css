@@ -1,0 +1,128 @@
+.igte_EditWithButtons
+{
+	background-color:White;
+	font-size:12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	border:solid 1px #CCCCCC;
+	height: 24px;
+	width: 130px;
+	outline: 0;
+}
+
+
+.igte_Edit
+{
+	background-color:White;
+	font-size:13px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	border:solid 1px #CCCCCC;
+	outline: 0;
+	color:#333333;
+}
+
+
+.igte_EditInContainer
+{
+	background-color:Transparent;
+	font-size:12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	border-width:0px;
+	outline: 0;
+	color:#333333;
+}
+
+
+.igte_TextArea
+{
+	background-color:White;
+	font-size:13px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	border:solid 1px #CCCCCC;
+	outline: 0;
+	resize: none;
+	color:#333333;
+}
+
+
+.igte_ButtonSize
+{
+	width: 22px;
+	height: 22px;
+}
+
+
+.igte_Button
+{
+	background-color:#4F4F4F;
+	border-style:none;
+	line-height: normal;
+	cursor:pointer;
+	color:White;
+}
+
+
+.igte_Inner
+{
+	border-width:0px;
+}
+
+
+.igte_ButtonImg
+{
+}
+
+
+.igte_Focus {
+    background-color: White;
+}
+
+.igte_ButtonFocus
+{
+}
+
+
+.igte_InnerFocus
+{
+}
+
+
+.igte_ButtonHover
+{
+	background-color:#2686AE;
+}
+
+
+.igte_NullText
+{
+	color:#999999;
+}
+
+
+.igte_Hover
+{
+}
+
+
+.igte_InnerHover
+{
+}
+
+
+.igte_ButtonPressed
+{
+	background-color:#3BB7EB;
+}
+
+
+.igte_ButtonDisabled
+{
+	background-color:#A1A1A1;
+}
+
+
+.igte_Edit::-ms-clear, .igte_EditInContainer::-ms-clear
+{
+	display: none;
+}
+
+

@@ -1,0 +1,141 @@
+.igws_R1
+{
+	background-color: #C8E0E5;
+}
+    .igws_R1 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #4897AA;
+    }
+
+    .igmv_ResourceButton.igws_R1:hover,
+    .igdv_ResourceButton.igws_R1:hover,
+    .igwv_ResourceButton.igws_R1:hover {
+        border-top:2px solid #4897AA;
+    }
+
+.igws_R2
+{
+	background-color: #D9E7D7;
+}
+    .igws_R2 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #81AE7A;
+    }
+
+    .igmv_ResourceButton.igws_R2:hover,
+    .igdv_ResourceButton.igws_R2:hover,
+    .igwv_ResourceButton.igws_R2:hover {
+        border-top:2px solid #81AE7A;
+    }
+
+.igws_R3
+{
+	background-color: #FDE5CD;
+}
+    .igws_R3 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #FAA958;
+    }
+    .igmv_ResourceButton.igws_R3:hover,
+    .igdv_ResourceButton.igws_R3:hover,
+    .igwv_ResourceButton.igws_R3:hover {
+        border-top:2px solid #FAA958;
+    }
+
+.igws_R4
+{
+	background-color: #E4D8EC;
+}
+    .igws_R4 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #A77DBF;
+    }
+    .igmv_ResourceButton.igws_R4:hover,
+    .igdv_ResourceButton.igws_R4:hover,
+    .igwv_ResourceButton.igws_R4:hover {
+        border-top:2px solid #A77DBF;
+    }
+
+.igws_R5
+{
+	background-color: #FFD7D1;
+}
+    .igws_R5 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #FF7968;
+    }
+    .igmv_ResourceButton.igws_R5:hover,
+    .igdv_ResourceButton.igws_R5:hover,
+    .igwv_ResourceButton.igws_R5:hover {
+        border-top:2px solid #FF7968;
+    }
+
+.igws_R6
+{
+	background-color: #E4ECC7;
+}
+    .igws_R6 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #A5C047;
+    }
+    .igmv_ResourceButton.igws_R6:hover,
+    .igdv_ResourceButton.igws_R6:hover,
+    .igwv_ResourceButton.igws_R6:hover {
+        border-top:2px solid #A5C047;
+    }
+
+.igws_R7
+{
+	background-color: #D4E1EF;
+}
+    .igws_R7 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #507BAB;
+    }
+    .igmv_ResourceButton.igws_R7:hover,
+    .igdv_ResourceButton.igws_R7:hover,
+    .igwv_ResourceButton.igws_R7:hover {
+        border-top:2px solid #507BAB;
+    }
+
+.igws_R8
+{
+	background-color: #F5E0B7;
+}
+    .igws_R8 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #DE9712;
+    }
+    .igmv_ResourceButton.igws_R8:hover,
+    .igdv_ResourceButton.igws_R8:hover,
+    .igwv_ResourceButton.igws_R8:hover {
+        border-top:2px solid #DE9712;
+    }
+
+.igws_R9
+{
+	background-color: #D0E6DB;
+}
+    .igws_R9 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #447B60;
+    }
+    .igmv_ResourceButton.igws_R9:hover,
+    .igdv_ResourceButton.igws_R9:hover,
+    .igwv_ResourceButton.igws_R9:hover {
+        border-top:2px solid #447B60;
+    }
+
+.igws_R10
+{
+	background-color: #CBCCDF;
+}
+    .igws_R10 .igdv_ActivityEdgeBusy
+    {
+	    background-color: #545794;
+    }
+    .igmv_ResourceButton.igws_R10:hover,
+    .igdv_ResourceButton.igws_R10:hover,
+    .igwv_ResourceButton.igws_R10:hover {
+        border-top:2px solid  #545794;
+    }

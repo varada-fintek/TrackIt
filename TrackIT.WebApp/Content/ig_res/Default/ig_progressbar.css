@@ -1,0 +1,67 @@
+.igpb_Control
+{
+}
+
+
+.igpb_Container
+{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	
+}
+
+
+.igpb_InnerDiv
+{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+}
+
+
+.igpb_BaseLabel
+{
+	padding:2px;
+	white-space: nowrap;
+	position: absolute;
+	text-align:left;
+}
+
+
+.igpb_ForegroundLabel
+{
+	color:White;
+}
+
+
+.igpb_BackgroundLabel
+{
+	color:Black;
+}
+
+
+.igpb_Fill_Horiz
+{
+	background-color:#4897AA;
+}
+
+
+.igpb_Fill_Vert
+{
+	background-color:#4897AA;
+}
+
+
+.igpb_Background_Horiz
+{
+	background-color:#E0E0E0;
+}
+
+
+.igpb_Background_Vert
+{
+	background-color:#E0E0E0;
+}

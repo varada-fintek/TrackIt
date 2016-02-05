@@ -1,0 +1,278 @@
+.igeb_Control
+{
+	background-color:Transparent;
+	font-size:13px;
+	font-family:Segoe UI,Verdana,Helvetica,sans-serif;
+	border-style:solid;
+    border-width: 1px;
+    border-color: #D3D3D3;
+	border-top-width:0px;
+	overflow-x: hidden;
+	_overflow: hidden!important;
+	color: #444444;
+}
+
+
+.igeb_Group
+{
+	background-repeat:repeat-x;
+	background-color:#E8E8E8;
+	background-position: 0px 0px;
+	background-image: none;	
+	display: block;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	color: #444444;
+	vertical-align:middle;
+    padding: 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#D3D3D3;
+    border-bottom-color: transparent;
+
+}
+
+.igeb_GroupActive
+{
+	background-repeat:repeat-x;
+	background-position:0px 0px;
+	background-color:#9ECBD6;
+	background-image: none;
+	color:#444444;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#4897AA;
+}
+
+
+.igeb_GroupHover
+{
+	background-repeat:repeat-x;
+	background-position:0px 0px;
+	background-color:#CCCCCC;
+	background-image: none;
+	color:#444444;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#999999;
+}
+
+.igeb_GroupSelected
+{
+	background-repeat:repeat-x;
+	background-position:0px 0px;
+	background-color:#9ECBD6;
+	background-image: none;
+	color:#444444;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#4897AA;
+}
+
+.igeb_Item
+{
+	background-color:transparent;
+	line-height: 23px;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    border-width: 0px;
+}
+
+
+.igeb_ItemImage
+{
+	padding-top:5px;
+	padding-right:5px;
+	padding-left:0px;
+}
+
+
+.igeb_ItemSelected
+{
+	background-color:#9ECBD6;
+	color:#444444;
+}
+
+
+.igeb_ItemActive
+{
+	background-color:#9ECBD6;
+	color:#444444;
+}
+
+
+.igeb_ItemHover
+{
+	background-color:#CCCCCC;
+}
+
+.igeb_ItemDisabled
+{   
+    opacity:0.5;
+    zoom: 1;
+    filter: alpha(opacity = 50);
+    background-color:#fff;
+}
+
+
+.igeb_GroupContents
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:0px;
+	list-style: none;
+    
+}
+
+.igdt_NodeHolder .igeb_GroupContents {
+}
+
+.igeb_GroupLabel
+{
+	font-weight:bold;
+	font-size:12px;
+	font-family: Segoe UI,Verdana,Helvetica,sans-serif;
+	margin-left:5px;
+	padding-left:5px;
+	text-decoration:none;
+}
+
+
+.igeb_GroupDisabled
+{
+	background-repeat:repeat-x;
+	background-position:0px 0px;
+	background-color:#B5B5B5;
+	background-image: none;
+	color:Gray;
+}
+
+
+.igdt_NodeHolder img.igeb_GroupExpanderImage,
+.igeb_GroupExpanderImage
+{
+	margin-top:5px;
+	margin-right:5px;
+	float: right;
+}
+
+
+.igeb_ItemLabel
+{
+	font-weight:normal;
+	font-size:12px;
+	font-family: Segoe UI,Verdana,Helvetica,sans-serif;
+	display: block;
+	color: #444444;
+}
+
+
+.igeb_Holder
+{
+    clear:left;
+}
+.igeb_Holder .igeb_Item
+{
+    padding: 0px;
+}
+
+.igeb_Item.igdt_Node > a
+{
+    margin-left: 5px;
+}
+
+.igeb_GroupLink
+{
+	margin-bottom:0px;
+	padding-bottom:0px;
+	padding-left:6px;
+	display: block;
+	color: inherit;
+	text-decoration:none;
+}
+
+
+.igeb_ItemLink
+{
+	padding-top:2px;
+	padding-bottom:2px;
+	display: block;
+	color: #444444;
+	text-decoration:none;
+	
+	padding-left:10px;
+}
+
+
+.igeb_ItemParent
+{
+	background-repeat:no-repeat;
+	background-image: url(images/igeb_Bullet.png);
+	background-position: 5px 5px;
+}
+
+
+/* IE 7 Disabled item fix */
+.igeb_ItemDisabled a visited, .igeb_ItemDisabled a
+{
+	color:Gray;
+}
+
+
+.igeb_Group a:visited
+{
+	color:#666666;
+}
+
+
+/* IE 7 fix to icon bad alignment*/
+.igeb_Item ,.igeb_ItemActive ,.igeb_ItemSelected
+{
+	min-height: 30px;
+}
+
+.igeb_Group a:link, .igeb_Group a:visited, .igeb_Group a:hover, .igeb_Group a:active
+{
+	color:#444444;
+}
+
+.igeb_GroupActive a:link, .igeb_GroupActive a:visited, .igeb_GroupActive a:hover, .igeb_GroupActive a:active
+{
+	color:#444444;
+}
+
+
+.igeb_GroupHover a:link, .igeb_GroupHover a:hover, .igeb_GroupHover a:visited, .igeb_GroupHover a:active
+{
+	color:#444444;
+}
+
+.igeb_GroupSelected a:link, .igeb_GroupSelected a:hover, .igeb_GroupSelected a:visited, .igeb_GroupSelected a:active
+{
+	color: #444444;
+}
+
+
+
+.igeb_ItemHolder img
+{
+	vertical-align:middle;
+}
+
+.igeb_ItemHolder
+{
+}
+
+
+.igeb_ItemContents
+{
+	margin-left:0px;
+	padding-left:0px;
+	list-style: none;
+}

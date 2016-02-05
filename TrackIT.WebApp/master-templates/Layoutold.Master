@@ -1,0 +1,328 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layoutold.Master.cs" Inherits="ProjMngTrack.WebApp.master_templates.Layoutold" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Src="~/UserControls/HeaderMenu.ascx" TagName="HeaderMenu" TagPrefix="uc1" %>
+<%@ Register Src="~/UserControls/FooterMenu.ascx" TagName="FooterMenu" TagPrefix="uc2" %>
+<%@ Register Src="~/UserControls/PageHeader.ascx" TagName="PageHeader" TagPrefix="uc5" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title runat="server" id="iTitle"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <link href="../stylesheets/CtrlA.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript" src="../javascript/Common.js"></script>
+    <link id="lkShortCutIcon" runat="server" rel="shortcut icon" href="~/images/logo.ico" type="image/x-icon" />
+    <link id="lkFavIcon" runat="server" rel="icon" href="~/images/logo.ico" type="image/ico" />
+    
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/ionicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/animate/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/xcharts/xcharts.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/owl-carousel/owl.theme.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/owl-carousel/owl.transitions.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/clndr/clndr.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/datepicker/datepicker.css" /> 
+    <link rel="stylesheet" type="text/css" href="~/Content/css/datetimepicker/jquery.datetimepicker.css" />
+    <script type="text/javascript" src="~/content/wizard/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/content/wizard/ace.min.css"  />
+    <script type="text/javascript" src="~/content/wizard/ace-extra.min.js"></script>
+    <script type="text/javascript" src="~/content/common.js"></script>
+   
+    <script type="text/javascript" src="~/content/wizard/fuelux.wizard.min.js"></script>
+    <script type="text/javascript" src="~/content/wizard/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/content/wizard/bootbox.min.js"></script>
+    <script type="text/javascript" src="~/content/wizard/ace-elements.min.js"></script>
+    <script type="text/javascript" src="~/content/wizard/ace.min.js"></script>
+   
+    <script type="text/javascript">
+
+        function disableBackButton() {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+
+        fnDisableF5();
+        //fnDisableRightClick();
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+
+    </script>
+    <link href="../javascript/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../javascript/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../javascript/jquery-1.js"></script>
+    <script type="text/javascript" src="../javascript/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#flip1").click(function () {
+                $("#panel1").slideToggle("fast");
+                //$('#flip1').children('img').attr('src', '../images/left-arrow1.png');
+            });
+            $("#flip2").click(function () {
+                $("#panel2").slideToggle("fast");
+            });
+        });
+    </script>
+    <style type="text/javascript">
+        #panel1, #flip1 {
+            text-align: center;
+        }
+
+        #panel2, #flip2 {
+            text-align: center;
+        }
+
+        .green {
+            padding: 6px 10px;
+            background-color: #5FC660;
+            color: #FFF;
+            text-align: center;
+            font-family: arial,sans-serif;
+            line-height: 80%;
+            border-radius: 2px;
+            font-weight: bold;
+            margin-right: 20px;
+            cursor: pointer;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%-- <asp:ScriptManager AllowCustomErrorsRedirect="true" EnablePartialRendering="true" ID="sm" runat="server">
+        </asp:ScriptManager>--%>
+        <asp:ScriptManager ID="mgrScripts" runat="server" EnablePartialRendering="true">
+        </asp:ScriptManager>
+        <script type="text/javascript" language="javascript">
+
+            fnAvoidAjaxLoadError();
+
+        </script>
+        <style type="text/css">
+            #leftslide {
+                display: none;
+            }
+
+            #sideBarOpened {
+                display: block;
+            }
+        </style>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('#leftslide').animate({
+                    width: 'show'
+                }, "fast");
+                $('.leftBarToggler').attr('id', 'sideBarOpened');
+            });
+            $(document).ready(function () {
+                $('.leftBarToggler').click(function () {
+                    var X = $('.leftBarToggler').attr('id');
+                    if (X == 'sideBarClosed') {
+                        $('#leftslide').animate({
+                            width: 'show'
+                        }, "fast");
+                        $('.leftBarToggler').attr('id', 'sideBarOpened');
+
+                    } else {
+                        $('#leftslide').animate({
+                            width: 'hide'
+                        }, "fast");
+                        $('.leftBarToggler').attr('id', 'sideBarClosed');
+                    }
+                });
+            });
+        </script>
+
+        <div style="margin: 0px; padding: 0px;">
+            <header class="header navbar navbar-fixed-top" role="banner"> 
+            <div class="container"> 
+            
+                 <a class="navbar-brand" href="#"> <img src="../images/logo.png" alt="logo"></a><ul class="nav navbar-nav"> 
+
+                <li><a id="sideBarClosed" class="leftBarToggler" href="#"><img src="../images/top_slide.png" /></a></li></ul><a href="#" class="toggle-sidebar bs-tooltip" data-placement="bottom" data-original-title="Toggle navigation"> <i class="icon-reorder"></i> </a> <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm"> <li> <a href="#"> Dashboard </a> </li> <%--<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Dropdown <i class="icon-caret-down small"></i> </a> <ul class="dropdown-menu"> <li><a href="#"><i class="icon-user"></i> Example #1</a></li> <li><a href="#"><i class="icon-calendar"></i> Example #2</a></li> <li class="divider"></li> <li><a href="#"><i class="icon-tasks"></i> Example #3</a></li> </ul> </li> --%> </ul> <ul class="nav navbar-nav navbar-right"> <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-warning-sign"></i><img src="../images/Myrequest.png" /> <span class="badge">5</span> </a> <ul class="dropdown-menu extended notification"> <li class="title"> <p>You have 5 new requests</p> </li> <li> <a href="javascript:void(0);"> <span class="label label-success"><i class="icon-plus"></i></span> <span class="message">New user registration.</span> <span class="time">1 mins</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="label label-danger"><i class="icon-warning-sign"></i></span> <span class="message">High CPU load on cluster #2.</span> <span class="time">5 mins</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="label label-success"><i class="icon-plus"></i></span> <span class="message">New user registration.</span> <span class="time">10 mins</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="label label-info"><i class="icon-bullhorn"></i></span> <span class="message">New items are in queue.</span> <span class="time">25 mins</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="label label-warning"><i class="icon-bolt"></i></span> <span class="message">Disk space to 85% full.</span> <span class="time">55 mins</span> </a> </li> <li class="footer1"> <a href="javascript:void(0);">View all requests</a> </li> </ul> </li> <li class="dropdown hidden-xs hidden-sm"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-tasks"></i> <img src="../images/Formyapproval.png" /><span class="badge">7</span> </a> <ul class="dropdown-menu extended notification"> <li class="title"> <p>You have 7 notitification for approval</p> </li> <li> <a href="javascript:void(0);"> <span class="task"> <span class="desc">Preparing new release</span> <span class="percent">30%</span> </span> <div class="progress progress-small"> <div style="width: 30%;" class="progress-bar progress-bar-info"></div> </div> </a> </li> <li> <a href="javascript:void(0);"> <span class="task"> <span class="desc">Change management</span> <span class="percent">80%</span> </span> <div class="progress progress-small progress-striped active"> <div style="width: 80%;" class="progress-bar progress-bar-danger"></div> </div> </a> </li> <li> <a href="javascript:void(0);"> <span class="task"> <span class="desc">Mobile development</span> <span class="percent">60%</span> </span> <div class="progress progress-small"> <div style="width: 60%;" class="progress-bar progress-bar-success"></div> </div> </a> </li> <li> <a href="javascript:void(0);"> <span class="task"> <span class="desc">Database migration</span> <span class="percent">20%</span> </span> <div class="progress progress-small"> <div style="width: 20%;" class="progress-bar progress-bar-warning"></div> </div> </a> </li> <li class="footer1"> <a href="javascript:void(0);">View all Pending Approval</a> </li> </ul> </li> <li class="dropdown hidden-xs hidden-sm"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-envelope"></i> <img src="../images/Mytask.png" /><span class="badge">1</span> </a> <ul class="dropdown-menu extended notification"> <li class="title"> <p>You have 3 new pending tasks</p> </li> <li> <a href="javascript:void(0);"> <span class="photo"></span> <span class="subject"> <span class="from">Bob Carter</span> <span class="time">Just Now</span> </span> <span class="text"> Basic Mandate Info... </span> </a> </li> <li> <a href="javascript:void(0);"> <span class="photo"></span> <span class="subject"> <span class="from">Jane Doe</span> <span class="time">45 mins</span> </span> <span class="text"> App details... </span> </a> </li> <li> <a href="javascript:void(0);"> <span class="photo"></span> <span class="subject"> <span class="from">Patrick Nilson</span> <span class="time">6 hours</span> </span> <span class="text"> Role details ... </span> </a> </li> <li class="footer1"> <a href="../MyTask.aspx">View all pending tasks</a> </li> </ul> </li> <li class="dropdown user"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-male"></i><img src="../images/user.png" /> <span class="username">John David <img src="../images/droparrow.png" /></span> <i class="icon-caret-down small"></i> </a> <ul class="dropdown-menu"> <li><a href="../MyProfile.aspx"><img src="../images/userprofile.png" /><i class="icon-user"></i> My Profile </a></li> <li class="divider"></li> <li><a href="../Login.aspx"><img src="../images/logout.png" /><i class="icon-key"></i> Log Out</a></li> </ul> </li> </ul> </div> <div style="position: relative; margin-top: 0px; display: none;" id="project-switcher" class="container project-switcher"> <div id="scrollbar"> <div class="handle"></div> </div> <div style="position: relative; overflow: hidden; width: 100%; height: auto;" class="slimScrollDiv"><div style="overflow: hidden; width: 100%; height: auto;" id="frame"> <ul style="width: 2727px;" class="project-list"> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-desktop"></i></span> <span class="title">Lorem ipsum dolor</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-compass"></i></span> <span class="title">Dolor sit invidunt</span> </a> </li> <li class="current"> <a href="javascript:void(0);"> <span class="image"><i class="icon-male"></i></span> <span class="title">Consetetur sadipscing elitr</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-thumbs-up"></i></span> <span class="title">Sed diam nonumy</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-female"></i></span> <span class="title">At vero eos et</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-beaker"></i></span> <span class="title">Sed diam voluptua</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-desktop"></i></span> <span class="title">Lorem ipsum dolor</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-compass"></i></span> <span class="title">Dolor sit invidunt</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-male"></i></span> <span class="title">Consetetur sadipscing elitr</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-thumbs-up"></i></span> <span class="title">Sed diam nonumy</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-female"></i></span> <span class="title">At vero eos et</span> </a> </li> <li> <a href="javascript:void(0);"> <span class="image"><i class="icon-beaker"></i></span> <span class="title">Sed diam voluptua</span> </a> </li> </ul> </div><div style="background: none repeat scroll 0% 0% rgb(255, 255, 255); height: 5px; position: absolute; bottom: 1px; opacity: 0.2; display: block; border-radius: 5px; z-index: 99;" class="slimScrollBar ui-draggable"></div><div style="width: 100%; height: 5px; position: absolute; bottom: 1px; display: none; border-radius: 5px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90;" class="slimScrollRail"></div></div> </div> </header>
+
+            <%--<table>
+                <tr>
+                    <!--Header-->
+
+                    <td>
+                        <table cellpadding="0" cellspacing="0" class="HeaderTableHolder" align="center">
+
+                            <tr>
+                                <td class="TopNavButtonHolder" align="right">
+                                    <!--Dynamic Menu Starts Here-->
+                                     <table cellpadding="0" cellspacing="0" border="0" class="TopNavButtonBGTable">
+                                        <tr>
+                                            <td class="TopNavButtonLeftBG"></td>
+                                            <td class="TopNavButtonCenterBG">
+                                                <!--Top Navigation Button Starts Here-->
+                                                <asp:UpdatePanel ID="upMaster" runat="server">
+                                                    <ContentTemplate>
+                                                        <table cellpadding="0" cellspacing="0" border="0">
+                                                            <tr>
+                                                                <td valign="middle" runat="server" id="tdLeftArrow" visible="false">
+                                                                    <asp:ImageButton ID="ibPrevious" runat="server" ImageAlign="Middle" ImageUrl="~/images/left_arrow.png" OnClick="ibPrevious_Click" CausesValidation="false" Style="cursor: pionter; cursor: hand;" />
+                                                                </td>
+                                                                <td class="TopNavSpacer"></td>
+                                                                <td class="TopNavLeft"></td>
+                                                                <td style="height: 28px" valign="top">
+                                                                    <div id="navigation">
+
+                                                                        <asp:Menu ID="mnTopMenu" runat="server" Width="100%" Orientation="Horizontal" OnMenuItemClick="mnTopMenu_MenuItemClick">
+                                                                            <StaticMenuItemStyle CssClass="TopNavMiddle" />
+                                                                            <StaticSelectedStyle CssClass="selectedMenuItem" />
+                                                                        </asp:Menu>
+
+                                                                    </div>
+                                                                </td>
+                                                                <td class="TopNavRight"></td>
+                                                                <td class="TopNavSpacer"></td>
+                                                                <td valign="middle" runat="server" id="tdRightArrow" visible="false">
+                                                                    <asp:ImageButton ID="ibNext" runat="server" ImageAlign="Middle" ImageUrl="~/images/right_arrow.png" OnClick="ibNext_Click" CausesValidation="false" Style="cursor: pionter; cursor: hand;" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                                <!--Top Navigation Button Ends Here-->
+                                            </td>
+                                            <td class="TopNavButtonRightBG"></td>
+                                        </tr>
+                                    </table>
+                                    <!--Dynamic Menu Ends Here-->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>--%>
+            <table cellpadding="0" cellspacing="0" class="MainTable">
+                <tr>
+                    <!--Content Place Holder-->
+                    <td class="ContentPlaceholder" align="center">
+                        <!--Content Application Content-->
+                        <table cellpadding="0" cellspacing="0" align="center" class="ContentTable" style="min-height: 500px;">
+                            <tr>
+                                <td id="leftslide" class="LeftNavHolder">
+                                    <!--Left Navigation Starts here-->
+                                    <table cellpadding="0" cellspacing="0" border="0" class="LeftNavigationTable">
+                                        <tr>
+                                            <td class="LeftNavigationTop"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="LeftNavigationBodyAndButtons" align="left" valign="top">
+                                                <!--Left Navigation Buttons Starts here-->
+                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:TreeView ID="tvLeftMenu" runat="server" Style="background: #293541; color: #ccc; display: block; margin: 0; padding: 30px 0px; text-decoration: none; font-weight: normal;" Width="200px" OnTreeNodeExpanded="tvLeftMenu_TreeNodeExpanded"
+                                                            CollapseImageUrl="~/images/triangle_green_expand.gif" ExpandImageUrl="~/images/triangle_green_collapse.gif" NodeWrap="true" NodeIndent="2" OnSelectedNodeChanged="tvLeftMenu_SelectedNodeChanged">
+                                                            <ParentNodeStyle CssClass="leftMenu" />
+                                                            <NodeStyle CssClass="leftMenu" />
+                                                            <RootNodeStyle CssClass="leftMenu" />
+                                                            <LeafNodeStyle CssClass="leftMenu" HorizontalPadding="2px" VerticalPadding="2px" />
+                                                            <HoverNodeStyle CssClass="leftMenuHover" />
+                                                            <SelectedNodeStyle CssClass="leftMenuSelected" />
+
+                                                        </asp:TreeView>
+
+                                                        <asp:Menu ID="mnLeftMenu" runat="server" Orientation="Vertical" StaticMenuItemStyle-Height="34" Visible="false">
+                                                            <%--<StaticMenuItemStyle CssClass="LeftMenuNavMiddle1" HorizontalPadding="5" />--%>
+                                                            <%--<StaticHoverStyle CssClass="LeftMenuNavMiddle" />
+                                                            <StaticSelectedStyle CssClass="leftMenuSelected" />--%>
+                                                        </asp:Menu>
+                                                        <asp:Menu ID="mnNewLeftMenu" runat="server" Orientation="Vertical" StaticMenuItemStyle-Height="34" StaticDisplayLevels="2"
+                                                            StaticSubMenuIndent="10">
+                                                            <%--<StaticMenuItemStyle CssClass="leftMenu" HorizontalPadding="5" />
+                                                            <StaticSelectedStyle CssClass="leftMenuSelected" />--%>
+
+                                                            <LevelMenuItemStyles>
+                                                                <asp:MenuItemStyle CssClass="parent_menu" />
+                                                            </LevelMenuItemStyles>
+                                                            <LevelSelectedStyles>
+                                                                <asp:MenuItemStyle CssClass="child_menu" />
+                                                            </LevelSelectedStyles>
+                                                            <DynamicMenuItemStyle CssClass="sub_menu" />
+                                                            <DynamicHoverStyle CssClass="hover_menu" />
+                                                            <StaticSelectedStyle CssClass="selected_menu" />
+                                                            <StaticHoverStyle CssClass="hover_menu" />
+
+                                                        </asp:Menu>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                                <asp:Panel runat="server" ID="pnlMenu" CssClass="lftmenu"></asp:Panel>
+                                                <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+                                                <script src="../javascript/script.js" type="text/javascript"></script>
+                                                <!--Left Navigation Buttons Ends here-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="LeftNavigationBottom"></td>
+                                        </tr>
+                                    </table>
+                                    <!--Left Navigation Ends here-->
+                                </td>
+                                <td width="10px"></td>
+                                <td class="GridTableHolder">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="GridTableBG">
+                                        <tr>
+                                            <td class="GridTableBGTop"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="GridTableBGBody" align="center">
+
+                                                <table cellpadding="0" cellspacing="0" class="CategoryTable">
+                                                    <tr>
+                                                        <td>
+                                                            <uc5:PageHeader ID="ucPageHeader" runat="server" />
+                                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                            </asp:ContentPlaceHolder>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="GridTableBGBottom"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <%--<tr>
+                    <!--Footer-->
+                    <td class="Footer" align="center">© 2012 Copyright. All rights reserved to <a href="http://www.peritusglobal.com" class="footerLabelUnderline" target="_blank"><span class="Footer">PERITUS SOLUTIONS PVT LTD.</span></a></td>
+                </tr>--%>
+            </table>
+        </div>
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0" DynamicLayout="false">
+            <ProgressTemplate>
+                <br />
+                <table border="0" style="width: 800px; height: 400px" align="center" valign="middle">
+                    <tr>
+                        <td align="center" style="width: 10%;" valign="middle">
+                            <asp:Image ID="imgLoading" runat="server" ImageUrl="~/images/ajax-loader.gif" />
+                        </td>
+                    </tr>
+                </table>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+        <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender2" runat="server"
+            HorizontalOffset="0" HorizontalSide="Center" TargetControlID="UpdateProgress1"
+            VerticalSide="Top">
+        </cc1:AlwaysVisibleControlExtender>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,130 @@
+.igc_Control
+{
+	background-color:#FFFFFF;
+	font-size:13px;
+	font-family: Segoe UI,Verdana,Arial,Sans-Serif;
+	border:solid 1px #CCCCCC;
+	margin:0px;
+	padding:10px;
+}
+
+
+.igc_ControlActive
+{
+}
+
+
+.igc_CaptchaImage
+{
+	margin-bottom:10px;
+	display: block;
+}
+
+
+.igc_CaptchaInput
+{
+	margin-bottom:10px;
+	padding-right:0px;
+	display: block;
+	*margin-bottom: 0px;
+}
+
+
+.igc_RefreshAndAudioButtonsArea
+{
+	border-width:0px;
+	margin-left:10px;
+	display: block;
+	float: left;
+	text-decoration:none;
+}
+
+
+.igc_SubmitButton
+{
+	background-color:#E8E8E8;
+	font-size:13px;
+	font-family: Segoe UI,Verdana,Arial,Sans-Serif;
+	border:solid 1px #D3D3D3;
+	margin-top:10px;
+	padding:0px;
+	clear: left;
+	display: block;
+	height: 30px;
+	width: 177px;
+	cursor:pointer;
+	color:#666666;
+}
+
+.igc_SubmitButton:hover,
+.igc_SubmitButton:focus {
+	background-color:#CCCCCC;
+	border:solid 1px #999999;
+}
+
+.igc_ErrorLabel
+{
+	background-color:#FF6666;
+	padding:3px;
+	color:White;
+}
+
+
+.igc_CaptchaInfoTextLabel
+{
+	margin:10px 0px 5px 0px;
+	display: block;
+}
+
+
+.igc_CaptchaText
+{
+}
+
+
+.igc_CaptchaImageArea
+{
+	margin:0px;
+	padding:0px;
+	display: block;
+	float: left;
+}
+
+
+.igc_RefreshAndAudioButtonsArea a
+{
+	display: block;
+}
+
+
+.igc_RefreshAndAudioButtonsArea a, .igc_RefreshAndAudioButtonsArea img
+{
+	cursor:pointer;
+}
+
+
+.igc_CaptchaImageLabel
+{
+	border:solid 1px #BBBBBB;
+}
+
+
+.igc_CaptchaInputLabel
+{
+}
+
+
+.igc_RefreshAndAudioButtonsArea img
+{
+	border-width:0px;
+	margin-bottom:3px;
+	text-decoration:none;
+}
+
+
+.igc_CaptchaImageArea label
+{
+	display: block;
+}
+
+

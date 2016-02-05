@@ -1,0 +1,130 @@
+.igspl_Control
+{
+	border:solid 1px #CCCCCC;
+}
+
+
+.igspl_Pane
+{
+	background-color:White;
+	background-repeat:repeat-x;
+}
+
+
+.igspl_VSplitBar
+{
+	background-color:transparent;
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(./images/igspl_splitVert.gif);
+    background-color: #E0E0E0;
+	font-size:1px;
+	border-right-width:0px;
+	border-left-width:0px;
+	cursor:e-resize;
+}
+
+
+.igspl_HSplitBar
+{
+	background-color:transparent;
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(./images/igspl_splitHoriz.gif);
+    background-color: #E0E0E0;
+	font-size:1px;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	cursor:n-resize;
+}
+
+
+.igspl_VSplitBarHover
+{
+	background-image: url(./images/igspl_splitVertHover.gif);
+    background-color: #4897AA;
+}
+
+
+.igspl_HSplitBarHover
+{
+	background-image: url(./images/igspl_splitHorizHover.gif);
+    background-color: #4897AA;
+}
+
+
+.igspl_VSplitBarPressed
+{
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(./images/igspl_splitVertPressed.gif);
+    background-color: #CCCCCC;
+}
+
+
+.igspl_HSplitBarPressed
+{
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(./images/igspl_splitHorizPressed.gif);
+    background-color: #CCCCCC;
+}
+
+
+.igspl_HSplitBarShadow
+{
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(./images/igspl_splitHorizHover.gif);
+    background-color: #4897AA;
+	border:dotted 1px Black;
+	filter: alpha(opacity : 70);
+	opacity: 0.7;
+}
+
+
+.igspl_VSplitBarShadow
+{
+	background-repeat:no-repeat;
+	background-position:center;
+	background-image: url(./images/igspl_splitVertHover.gif);
+    background-color: #4897AA;
+	border:dotted 1px Black;
+	filter: alpha(opacity : 70);
+	opacity: 0.7;
+}
+
+
+.igspl_VSplitBarShadowLimit
+{
+	background-color: #4897AA;
+	border-style:solid;
+}
+
+
+.igspl_HSplitBarShadowLimit
+{
+	background-color: #4897AA;
+	border-style:solid;
+}
+
+
+.igspl_CollapseSplitBarButton
+{
+	background-color:#E0E0E0;
+	cursor:pointer;margin: 2px;
+}
+
+
+.igspl_HSplitBarHeight
+{
+	height: 10px;
+}
+
+
+.igspl_VSplitBarWidth
+{
+	width: 10px;
+}
+
+

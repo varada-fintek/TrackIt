@@ -1,0 +1,168 @@
+.igdw_Control
+{
+	background-color:#FFFFFF;
+	border-width:1px;
+    border-color: #CCCCCC;
+    border-style:solid;
+}
+
+
+.igdw_HeaderArea
+{
+	background-color:#888888;
+	font-weight:normal;
+	border-width:0px;
+	height: 24px;
+	cursor:default;
+	color:#333;
+	font-family:'Segoe UI', verdana, sans-serif ;
+	font-size:13px;
+}
+
+
+.igdw_BodyContent
+{
+	border:solid 0px #999999;
+}
+
+
+.igdw_HeaderButton
+{
+	margin:4px 3px 3px 3px;
+	cursor:pointer;
+}
+
+
+.igdw_HeaderCaption
+{
+	font-weight:normal;
+	color:#333;
+	font-family:'Segoe UI', verdana, sans-serif ;
+	font-size:13px;
+}
+
+
+.igdw_HeaderButtonArea
+{
+	width: 120px;
+	vertical-align:middle;
+}
+
+
+.igdw_HeaderButtonArea img
+{
+	margin-left:2px;
+}
+
+
+.igdw_HeaderImage
+{
+	cursor:default;
+}
+
+
+.igdw_ModalBackground
+{
+	background-color:White;
+	filter: alpha(opacity : 50);
+	opacity: 0.5;
+	z-index: 99999;
+}
+
+
+.igdw_ResizingHandle
+{
+	cursor:se-resize;
+}
+
+
+/* used only when header visible */
+.igdw_HeaderCornerLeft
+{
+	background-color:Transparent;
+	width: 6px;
+	background-repeat:no-repeat;
+}
+
+
+/* used only when header visible */
+.igdw_HeaderContent
+{
+}
+
+
+/* used only when header visible */
+.igdw_HeaderCornerRight
+{
+	width: 6px;	
+	background-repeat:no-repeat;
+}
+
+
+/* used only when header hidden */
+.igdw_BodyCornerTopLeft
+{
+	width: 6px;
+}
+
+
+/* used only when header hidden */
+.igdw_BodyEdgeTop
+{
+}
+
+
+/* used only when header hidden */
+.igdw_BodyCornerTopRight
+{
+	width: 6px;
+}
+
+
+.igdw_BodyEdgeLeft
+{
+	font-size:1px;
+	width:5px;
+	background-repeat:repeat-x;
+}
+
+
+.igdw_BodyEdgeRight
+{
+	font-size:1px;
+	width:5px;
+}
+
+
+.igdw_BodyCornerBottomLeft
+{
+	font-size:1px;
+	height: 7px;
+	width: 7px;
+}
+
+
+.igdw_BodyContentArea
+{
+	background-color:White;
+	vertical-align:top;
+}
+
+
+.igdw_BodyCornerBottomRight
+{
+	background-color:White;
+	font-size:1px;
+	height: 7px;
+	width: 7px;
+}
+
+
+.igdw_BodyEdgeBottom
+{
+	background-color:White;
+	font-size:1px;
+	height: 6px;
+}
+
+

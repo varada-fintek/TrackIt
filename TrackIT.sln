@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackIT.Security", "SecurityCommon\CtrlA.Security\TrackIT.Security.csproj", "{107EC864-3D05-410C-8189-BD27F3923030}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fintek.SqlHelper", "Fintek.SqlHelper\Fintek.SqlHelper.csproj", "{44BD4170-2452-43C3-AD10-00DFFE135987}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fintek.EncryptDecrypt", "Fintek.EncryptDecrypt\Fintek.EncryptDecrypt.csproj", "{6C649181-89E2-4D80-A92E-2B98598676DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackIT.WebApp", "TrackIT.WebApp\TrackIT.WebApp.csproj", "{00C2F363-9E89-46E7-9045-AF8484C82103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackIT.Common", "SecurityCommon\TrackIT.Common\TrackIT.Common.csproj", "{B166994C-5D85-4BA5-8FE9-13FE589F92F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{107EC864-3D05-410C-8189-BD27F3923030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107EC864-3D05-410C-8189-BD27F3923030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107EC864-3D05-410C-8189-BD27F3923030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107EC864-3D05-410C-8189-BD27F3923030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44BD4170-2452-43C3-AD10-00DFFE135987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BD4170-2452-43C3-AD10-00DFFE135987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BD4170-2452-43C3-AD10-00DFFE135987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BD4170-2452-43C3-AD10-00DFFE135987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C649181-89E2-4D80-A92E-2B98598676DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C649181-89E2-4D80-A92E-2B98598676DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C649181-89E2-4D80-A92E-2B98598676DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C649181-89E2-4D80-A92E-2B98598676DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C2F363-9E89-46E7-9045-AF8484C82103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C2F363-9E89-46E7-9045-AF8484C82103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C2F363-9E89-46E7-9045-AF8484C82103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C2F363-9E89-46E7-9045-AF8484C82103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B166994C-5D85-4BA5-8FE9-13FE589F92F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B166994C-5D85-4BA5-8FE9-13FE589F92F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B166994C-5D85-4BA5-8FE9-13FE589F92F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B166994C-5D85-4BA5-8FE9-13FE589F92F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
