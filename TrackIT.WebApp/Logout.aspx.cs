@@ -28,7 +28,7 @@ namespace TrackIT.WebApp
 				{
 					UserBO objResult = new UserBO(this.ConnectionString);
 					objResult.LoginSessionID = Session.SessionID.ToString();
-					objResult.UsersID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.User_ID).ToString());
+					objResult.UsersID = Convert.ToInt64(GetSessionValue(SessionItems.User_ID));
 					objResult.LoginType = "O";
 					//UserBLL.InsertLoginDetails(objResult);
 				}

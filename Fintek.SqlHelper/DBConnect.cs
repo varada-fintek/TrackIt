@@ -8,9 +8,10 @@ using System.Configuration;
 using System.Data.OleDb;
 using System.Web;
 using System.Linq;
-
 using Microsoft.Practices.EnterpriseLibrary.Common;
 
+
+using Microsoft.ApplicationBlocks.Data;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 
 namespace DBHelper
@@ -51,17 +52,23 @@ namespace DBHelper
                 foreach (var lvar_pair in adict_parameterMap)
                     lsqlcmd_command.Parameters.AddWithValue(lvar_pair.Key, lvar_pair.Value);
 
-                lsqlcmd_command.CommandType = CommandType.Text;
+                
                 //lsqlcmd_command.Connection = C;
-                if (astr_type== "scope")
-                    lstr_id = (string)lsqlcmd_command.ExecuteScalar();
+                if (astr_type == "scope")
+                {
+                    lsqlcmd_command.CommandText += ";SELECT SCOPE_IDENTITY();";
+                    lsqlcmd_command.CommandType = CommandType.Text;
+                  lstr_id = lsqlcmd_command.ExecuteScalar().ToString();
+                }
                 else
                 {
+                    lsqlcmd_command.CommandType = CommandType.Text;
                     lsqlcmd_command.ExecuteNonQuery();
                     lstr_id = "SUCCESS^";
                 }
                 isqltrans_Tr.Commit();
                 lsqlcon_connection.Close();
+                isqltrans_Tr.Dispose();
                 return lstr_id;                    
             }
             catch (Exception ex)
@@ -69,15 +76,15 @@ namespace DBHelper
                 if (ExceptionPolicy.HandleException(ex, "Rethrow_Policy")) throw;
                 lsqlcon_connection.Close();
                // if (ExceptionPolicy.HandleException(ex, "Rethrow_Policy")) throw;
-               
+                isqltrans_Tr.Dispose();
                 return ex.Message;
 
             }
-            finally
-            {
-                isqlcon_connection.Close();
-                isqlcon_connection.Dispose();
-            }
+            //finally
+            //{
+            //    isqlcon_connection.Close();
+            //    isqlcon_connection.Dispose();
+            //}
         }
 
         private static string CreateInsertSql(string table,
@@ -157,7 +164,6 @@ namespace DBHelper
             {
                 con.Close();
                 con.Dispose();
-
                 isqlcon_connection.Close();
             }
         }
@@ -276,6 +282,43 @@ namespace DBHelper
             {
                 return false;
             }
+        }
+
+        public DataSet ExecuteSp(string astr_spName, SqlParameter[] asqlpar_parameter)
+        {
+            SqlConnection lsqlcon_connection = new SqlConnection("Data Source=192.168.1.96;Initial Catalog=PMTS;User ID=pmts;Password=pmts;");
+
+           // SqlCommand lsqlcmd_command;
+            DataSet lds_dsResult=null;
+            string id = string.Empty;
+            try
+            {
+                lsqlcon_connection.Open();
+                //isqltrans_Tr = lsqlcon_connection.BeginTransaction();
+                //lsqlcmd_command = new SqlCommand();
+                //lsqlcmd_command.CommandType = CommandType.Text;
+                //lsqlcmd_command.Connection = lsqlcon_connection;
+                //lsqlcmd_command.CommandTimeout = iint_Timeout;
+                //lsqlcmd_command.Transaction = isqltrans_Tr;
+                lds_dsResult = SqlHelper.ExecuteDataset(lsqlcon_connection, astr_spName, asqlpar_parameter);
+               
+                return lds_dsResult;
+
+            }
+            catch (Exception ex)
+            {
+                lsqlcon_connection.Close();
+                return lds_dsResult;
+
+            }
+            finally
+            {
+                lsqlcon_connection.Close();
+                lsqlcon_connection.Dispose();
+                lsqlcon_connection.Close();
+            }
+           
+            
         }
 
         //Method to return string value with out Parameter

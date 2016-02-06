@@ -31,22 +31,21 @@ namespace TrackIT.WebApp
     public class UserBO : TrackITAbstractType
     {
 
-        public Guid? UsersID { get; set; }
+        public Int64 ? UsersID { get; set; }
         public string UserName { get; set; }
         public string LoginUserName { get; set; }
         public byte[] Password { get; set; }
-        public Guid? RoleID { get; set; }
+        public Int64? RoleID { get; set; }
         public DataSet dsUser { get; set; }
         public Boolean IsSuperUser { get; set; }
         public Boolean IsAdminRole { get; set; }
         public string ChildScreenURL { get; set; }
         public string UserType { get; set; }
-        public Guid? FirmID { get; set; }
         public string FirmCode { get; set; }
 
         public int IsFirstLogin { get; set; }
 
-        public Guid? UsersAccessID { get; set; }
+        public Int64? UsersAccessID { get; set; }
         public int ModuleID { get; set; }
         public int ScreenID { get; set; }
         //public string Image_Path { get; set; }
@@ -63,7 +62,7 @@ namespace TrackIT.WebApp
 
         public int LoginID { get; set; }
 
-        public Guid? logged_in_UserID { get; set; }
+        public Int64? logged_in_UserID { get; set; }
         
 
         public string DisplayName { get; set; }
@@ -186,12 +185,12 @@ namespace TrackIT.WebApp
                 if(lds_Result.Tables[0].Rows.Count>0)
                 { 
                     if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Users_ID"].ToString()))
-                        objUser.UsersID = new Guid(lds_Result.Tables[0].Rows[0]["Users_ID"].ToString());
+                        objUser.UsersID = Convert.ToInt64(lds_Result.Tables[0].Rows[0]["Users_ID"]);
                     else
                         objUser.UsersID = null;
 
                     if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Staff_ID"].ToString()))
-                        objUser.logged_in_UserID = new Guid(lds_Result.Tables[0].Rows[0]["Staff_ID"].ToString());
+                        objUser.logged_in_UserID = Convert.ToInt64(lds_Result.Tables[0].Rows[0]["Staff_ID"]);
                     else
                         objUser.logged_in_UserID = null;
 
@@ -200,7 +199,7 @@ namespace TrackIT.WebApp
                     objUser.Password = (byte[])lds_Result.Tables[0].Rows[0]["Password"];
 
                     if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Role_ID"].ToString()))
-                        objUser.RoleID = new Guid(lds_Result.Tables[0].Rows[0]["Role_ID"].ToString());
+                        objUser.RoleID =Convert.ToInt64(lds_Result.Tables[0].Rows[0]["Role_ID"]);
                     else
                         objUser.RoleID = null;
 

@@ -36,9 +36,9 @@ namespace TrackIT.WebApp
 {
     public class UserAccessBO : TrackITAbstractType
     {
-        public Guid? UsersAccessID { get; set; }
-        public Guid? UsersID { get; set; }
-        public Guid? RoleID { get; set; }
+        public Int64? UsersAccessID { get; set; }
+        public Int64? UsersID { get; set; }
+        public Int64? RoleID { get; set; }
         public int ModuleID { get; set; }
         public int ScreenID { get; set; }
         public int Add { get; set; }
@@ -100,10 +100,10 @@ namespace TrackIT.WebApp
         #region "Private Variables"
 
 
-        private Guid? _guidLoggedInUserRoleID;
-        private Guid?  _guidLoggedInUserID;
-        private Guid? _guidLoggedInFirmID;
-        private Guid? _guidLoggedInStaffID;
+        private Int64? _guidLoggedInUserRoleID;
+        private Int64? _guidLoggedInUserID;
+        private Int64? _guidLoggedInFirmID;
+        private Int64? _guidLoggedInStaffID;
         private string _sLoggedInUserName;
         private string _sLoggedInUserDisplayName;
         private string _sLoggedInUserPhotoPath;
@@ -183,25 +183,25 @@ namespace TrackIT.WebApp
 
         #region "Properties"
 
-        public Guid? LoggedInFirmId
+        public Int64? LoggedInFirmId
         {
             get { return _guidLoggedInFirmID; }
             set { _guidLoggedInFirmID = value; }
         }
 
-        public Guid? LoggedInUserRoleId
+        public Int64? LoggedInUserRoleId
         {
             get { return _guidLoggedInUserRoleID; }
             set { _guidLoggedInUserRoleID = value; }
         }
 
-        public Guid? LoggedInUserId
+        public Int64? LoggedInUserId
         {
             get { return _guidLoggedInUserID; }
             set { _guidLoggedInUserID = value; }
         }
 
-        public Guid? LoggedInStaffID
+        public Int64? LoggedInStaffID
         {
             get { return _guidLoggedInStaffID; }
             set { _guidLoggedInStaffID = value; }
@@ -346,11 +346,11 @@ namespace TrackIT.WebApp
                 {
                     if (GetSessionValue(SessionItems.User_ID) != null)
                     {
-                        _guidLoggedInUserID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.User_ID).ToString());
-                        _guidLoggedInUserRoleID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.Role_ID).ToString());
+                        _guidLoggedInUserID = Convert.ToInt64(GetSessionValue(SessionItems.User_ID).ToString());
+                        _guidLoggedInUserRoleID = Convert.ToInt64(GetSessionValue(SessionItems.Role_ID).ToString());
 
                         if (GetSessionValue(SessionItems.loggedin_User_ID) != null)
-                            _guidLoggedInStaffID = Conversion.ConvertStringToGuid(GetSessionValue(SessionItems.loggedin_User_ID).ToString());
+                            _guidLoggedInStaffID = Convert.ToInt64(GetSessionValue(SessionItems.loggedin_User_ID).ToString());
                         _sLoggedInUserName = StringFunctions.ToString(GetSessionValue(SessionItems.User_Name)).Trim();
                         _sModuleID = StringFunctions.ToString(GetSessionValue(SessionItems.Module_ID)).Trim();
                         _sLeftNode = StringFunctions.ToString(GetSessionValue(SessionItems.Left_Node)).Trim();
@@ -555,7 +555,7 @@ namespace TrackIT.WebApp
             return dtMenu;
         }
 
-        public DataTable GetScreenAuthentication(Guid? guidUserID, string sFilePath)
+        public DataTable GetScreenAuthentication(Int64? guidUserID, string sFilePath)
         {
             DataTable dtRights = null;
             try
@@ -581,7 +581,7 @@ namespace TrackIT.WebApp
             return dtRights;
         }
 
-        public bool IsUserHasScreenAuthentication(Guid? guidUserID, string sFilePath, string sOption)
+        public bool IsUserHasScreenAuthentication(Int64? guidUserID, string sFilePath, string sOption)
         {
             bool isHasRights = false;
             try
@@ -644,12 +644,12 @@ namespace TrackIT.WebApp
 
                         string[] sRawURL = Request.RawUrl.ToString().Split('&');
                         string sFilePath = sRawURL[0].ToString();
-                        if (Request.CurrentExecutionFilePath.Equals("/StudentSearch.aspx"))
-                            objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
-                        else if (Request.CurrentExecutionFilePath.Equals("/HCM/StaffsList.aspx"))
-                            objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
-                        else if (Request.CurrentExecutionFilePath.Equals("/HCM/StaffReports.aspx"))
-                            objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
+                        //if (Request.CurrentExecutionFilePath.Equals("/StudentSearch.aspx"))
+                        //    objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
+                        //else if (Request.CurrentExecutionFilePath.Equals("/HCM/StaffsList.aspx"))
+                        //    objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
+                        //else if (Request.CurrentExecutionFilePath.Equals("/HCM/StaffReports.aspx"))
+                        //    objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
 
                         SqlParameter[] objParams = { 
                         //new SqlParameter ("@UserID",  objUserAccess.UsersID),

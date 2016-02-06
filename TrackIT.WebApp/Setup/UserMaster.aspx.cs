@@ -28,7 +28,6 @@ namespace TrackIT.WebApp.Setup
     {
 
         #region Declarations
-        //UserMasterBo objUserBO;
         DBHelper.DBConnect ldbh_QueryExecutors = new DBHelper.DBConnect();
         WebDataGrid lwdg_UserMasterGrid;
         private  byte[] ibyt_Password { get; set; }
@@ -58,7 +57,7 @@ namespace TrackIT.WebApp.Setup
                     //Unit Testing ID - UserMaster.aspx.cs_2
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_2 PageLoad IsPostBack  ");
                     //Assign all dropdown data Roles Drop Down
-                    DataSet lds_role = ldbh_QueryExecutors.ExecuteDataSet("SELECT Role_ID AS [Value], Role_Name AS TextValue FROM Security_Roles (NOLOCK) WHERE Active = 1 ORDER BY Role_Name");
+                    DataSet lds_role = ldbh_QueryExecutors.ExecuteDataSet("SELECT Role_ID AS [Value], Role_Name AS TextValue FROM prj_roles (NOLOCK) WHERE Active = 1 ORDER BY Role_Name");
                     if (lds_role.Tables[0].Rows.Count > 0)
                     {
                         //Unit Testing ID - UserMaster.aspx.cs_3
@@ -73,7 +72,7 @@ namespace TrackIT.WebApp.Setup
                     }
 
                     //Assign all dropdown data User Location Drop Down
-                    DataSet lds_userLocation = ldbh_QueryExecutors.ExecuteDataSet("sELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='CON' and cp.Active = 1 ORDER BY parameter_name");
+                    DataSet lds_userLocation = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='LOC' and cp.Active = 1 ORDER BY parameter_name");
                     if (lds_userLocation.Tables[0].Rows.Count > 0)
                     { 
                         //Unit Testing ID - UserMaster.aspx.cs_4
@@ -88,7 +87,7 @@ namespace TrackIT.WebApp.Setup
                     }
 
                     //Assign all dropdown datar User Title Drop Down
-                    DataSet lds_title = ldbh_QueryExecutors.ExecuteDataSet("sELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TIT' and cp.Active = 1 ORDER BY parameter_name");
+                    DataSet lds_title = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TIT' and cp.Active = 1 ORDER BY parameter_name");
                     if (lds_title.Tables[0].Rows.Count > 0)
                     {
                         //Unit Testing ID - UserMaster.aspx.cs_5
@@ -103,7 +102,7 @@ namespace TrackIT.WebApp.Setup
                     }
 
                     //Assign all dropdown data User Timezone Drop Down
-                    DataSet lds_timeZone = ldbh_QueryExecutors.ExecuteDataSet("sELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TZO' and cp.Active = 1 ORDER BY parameter_name");
+                    DataSet lds_timeZone = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TZO' and cp.Active = 1 ORDER BY parameter_name");
                     if (lds_timeZone.Tables[0].Rows.Count > 0)
                     {
                         //Unit Testing ID - UserMaster.aspx.cs_6
@@ -125,7 +124,7 @@ namespace TrackIT.WebApp.Setup
                     //Edit User Details
                     //Unit Testing ID - UserMaster.aspx.cs_7
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_7 Edit User Details popId and Unique ID" + hdnUserID.Value + hdnpop.Value); 
-                    Guid? userid = Conversion.ConvertStringToGuid(hdnUserID.Value.ToString());
+                    Int64? userid = Convert.ToInt64(hdnUserID.Value.ToString());
                     EnableDisableControls(true);
                     btnSave.Visible = bitEdit;
                     EditUserDetails(userid);
@@ -256,7 +255,7 @@ namespace TrackIT.WebApp.Setup
                // if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
                 ibyt_Password  = Crypto.CreateHash(txtConfrimPass.Text);
                 string lstr_user_id = Convert.ToString(Guid.NewGuid());
-                istr_tablename = "Security_Users";
+               
                 string lstr_outMessage = string.Empty;
                 // hdnUserID to check weather Insert / Update.
                 if (string.IsNullOrEmpty(hdnUserID.Value))
@@ -265,26 +264,11 @@ namespace TrackIT.WebApp.Setup
                     //Unit Testing ID - UserMaster.aspx.cs_13
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_13 Insert"+hdnUserID.Value);
                     string astr_Users_ID = Convert.ToString(Guid.NewGuid());
-                    //insert User for Login 
-                    string lstr_returnmsg = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
-                     {
-                    {"Users_ID", astr_Users_ID},
-                    {"User_Name",txtUserID.Text },
-                    {"Password ", ibyt_Password },
-                    {"Role_ID", ddlRole.SelectedValue},
-                    {"User_Type", "STF"},
-                    {"Super_User", "0"},
-                    {"Users_Key", lstr_user_id},
-                    {"Active",(chkinactive.Checked ? 1 : 0).ToString()},
-                    {"Created_By", astr_Users_ID },
-                    {"Created_Date", DateTime.Now}
-                       }, "nonQuery");
-                    
 
-                     istr_tablename = "Setup_mas_users";
-                     string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                    istr_tablename = "prj_users";
+                    string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                     {
-                        {"user_id", lstr_user_id},
+                       // {"user_id", lstr_user_id},
                         {"user_first_name", txtuserfirstname.Text.Replace("'", "''")},
                         {"user_middle_name", txtusersmidlename.Text.Replace("'", "''")},
                         {"user_last_name", txtuserlastname.Text.Replace("'", "''")},
@@ -296,11 +280,34 @@ namespace TrackIT.WebApp.Setup
                         {"user_timezone_id", ddlUserTimeZone.SelectedValue},
                         {"user_role_key", ddlRole.SelectedValue},
                         {"Active", (chkinactive.Checked ? 1 : 0).ToString()},
-                        {"Created_By", lstr_user_id },
+                        {"Created_By", this.LoggedInUserId },
                         {"Created_Date", DateTime.Now},
+                        {"last_modified_By", this.LoggedInUserId },
                         {"last_modified_date", DateTime.Now}
                       }
-                            , "scope");
+                           , "scope");
+
+                    //insert User for Login 
+                    istr_tablename = "Security_Users";
+                    string lstr_returnmsg = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                     {
+                   // {"Users_ID", astr_Users_ID},
+                    {"User_Name",txtUserID.Text },
+                    {"Password ", ibyt_Password },
+                    {"Role_ID", ddlRole.SelectedValue},
+                    {"User_Type", "OTH"},
+                    {"Super_User", "0"},
+                    {"Users_Key", lstr_id},
+                    {"Active",(chkinactive.Checked ? 1 : 0).ToString()},
+                    {"Created_By", this.LoggedInUserId },
+                    {"Created_Date", DateTime.Now},
+                    {"Is_First_Login", "0"},
+                    {"last_modified_by", this.LoggedInUserId },
+                    {"last_modified_date", DateTime.Now}
+                       }, "nonQuery");
+                    
+
+                    
                      lstr_outMessage = "SUCCESS";
 
                 }
@@ -325,7 +332,7 @@ namespace TrackIT.WebApp.Setup
                      },
                     "nonQuery");
 
-                    istr_tablename = "Setup_mas_users";
+                    istr_tablename = "prj_users";
                     string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                 {
                     {"user_first_name", txtuserfirstname.Text.Replace("'", "''")},
@@ -405,7 +412,7 @@ namespace TrackIT.WebApp.Setup
                 lwdg_UserMasterGrid.Columns.Add(td);
                 //Query to Get Landing Page Grid Details
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select sm.user_id,su.User_Name,sm.user_first_name,sm.user_middle_name,sm.user_last_name,sr.Role_Name,cp1.parameter_name as User_Title,sm.user_phone,sm.user_email,sm.user_location,sm.Row_Version,cp.parameter_type,cp.parameter_code,cp.parameter_name, sm.Active from Setup_mas_users sm inner join Security_Roles sr on sr.Role_ID=sm.user_role_key inner join com_parameters cp on cp.parameter_key= sm.user_location inner join com_parameters cp1 on  sm.user_title=cp1.parameter_key  inner join Security_Users su on su.Users_Key=sm.user_id ");
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select sm.user_id,su.User_Name,sm.user_first_name,sm.user_middle_name,sm.user_last_name,sr.Role_Name,cp1.parameter_name as User_Title,sm.user_phone,sm.user_email,sm.user_location,cp.parameter_type,cp.parameter_code,cp.parameter_name, sm.Active from prj_users sm inner join prj_roles sr on sr.Role_ID=sm.user_role_key inner join com_parameters cp on cp.parameter_key= sm.user_location inner join com_parameters cp1 on  sm.user_title=cp1.parameter_key  inner join Security_Users su on su.Users_Key=sm.user_id ");
                 lwdg_UserMasterGrid.Visible = false;
                
                 if (lds_Result != null)
@@ -447,49 +454,55 @@ namespace TrackIT.WebApp.Setup
         /// </summary>
         protected void lwdg_UserMasterGrid_InitializeRow(object sender, Infragistics.Web.UI.GridControls.RowEventArgs e)
         {
-
-            //Unit Testing ID - UserMaster.aspx.cs_20
-            System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_20 intialize grid row "+e.Row.Index);
-            if (e.Row.Index == 0)
+            try
             {
-
-                //Unit Testing ID - UserMaster.aspx.cs_21
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_21 row Index"+e.Row.Items.Count);
-                e.Row.Items.FindItemByKey("user_id").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("parameter_type").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("parameter_code").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("user_location").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("user_middle_name").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("Row_Version").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("User_Name").Column.Header.Text = RollupText("UserMaster", "gridUserName");
-                e.Row.Items.FindItemByKey("User_Name").Column.CssClass = "Dataalign";
-                e.Row.Items.FindItemByKey("user_first_name").Column.Header.Text = RollupText("UserMaster", "gridFirstName");
-                e.Row.Items.FindItemByKey("user_first_name").Column.CssClass = "Dataalign";
-                e.Row.Items.FindItemByKey("user_last_name").Column.Header.Text = RollupText("UserMaster", "gridlastname");
-                e.Row.Items.FindItemByKey("Role_Name").Column.Header.Text = RollupText("UserMaster", "gridRoleName");
-                e.Row.Items.FindItemByKey("User_Title").Column.Header.Text = RollupText("UserMaster", "gridTitle");
-                e.Row.Items.FindItemByKey("user_phone").Column.Header.Text = RollupText("UserMaster", "gridphone");
-                e.Row.Items.FindItemByKey("user_email").Column.Header.Text = RollupText("UserMaster", "gridemail");
-                e.Row.Items.FindItemByKey("parameter_name").Column.Header.Text = RollupText("UserMaster", "gridLocation");
-                e.Row.Items.FindItemByKey("Active").Column.Header.Text = RollupText("Common", "gvActive");
-                if (!IsPostBack)
+                //Unit Testing ID - UserMaster.aspx.cs_20
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_20 intialize grid row " + e.Row.Index);
+                if (e.Row.Index == 0)
                 {
-                    //Grid Postback to onRowSorting and Grid Filtering
 
-                    for (int lint_i = 0; lint_i < e.Row.Items.Count; lint_i++)
+                    //Unit Testing ID - UserMaster.aspx.cs_21
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_21 row Index" + e.Row.Items.Count);
+                    e.Row.Items.FindItemByKey("user_id").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("parameter_type").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("parameter_code").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("user_location").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("user_middle_name").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("User_Name").Column.Header.Text = RollupText("UserMaster", "gridUserName");
+                    e.Row.Items.FindItemByKey("User_Name").Column.CssClass = "Dataalign";
+                    e.Row.Items.FindItemByKey("user_first_name").Column.Header.Text = RollupText("UserMaster", "gridFirstName");
+                    e.Row.Items.FindItemByKey("user_first_name").Column.CssClass = "Dataalign";
+                    e.Row.Items.FindItemByKey("user_last_name").Column.Header.Text = RollupText("UserMaster", "gridlastname");
+                    e.Row.Items.FindItemByKey("Role_Name").Column.Header.Text = RollupText("UserMaster", "gridRoleName");
+                    e.Row.Items.FindItemByKey("User_Title").Column.Header.Text = RollupText("UserMaster", "gridTitle");
+                    e.Row.Items.FindItemByKey("user_phone").Column.Header.Text = RollupText("UserMaster", "gridphone");
+                    e.Row.Items.FindItemByKey("user_email").Column.Header.Text = RollupText("UserMaster", "gridemail");
+                    e.Row.Items.FindItemByKey("parameter_name").Column.Header.Text = RollupText("UserMaster", "gridLocation");
+                    e.Row.Items.FindItemByKey("Active").Column.Header.Text = RollupText("Common", "gvActive");
+                    if (!IsPostBack)
                     {
-                        if (e.Row.Items[lint_i].Column.Type.FullName.ToString().Equals("System.String") && !string.IsNullOrEmpty(e.Row.Items[lint_i].Column.Key))
+                        //Grid Postback to onRowSorting and Grid Filtering
+
+                        for (int lint_i = 0; lint_i < e.Row.Items.Count; lint_i++)
                         {
-                            //Unit Testing ID - UserMaster.aspx.cs_22
-                            System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_22 " + e.Row.Items[lint_i].Column.Key);
-                            ColumnFilter filter = new ColumnFilter();
-                            filter.ColumnKey = e.Row.Items[lint_i].Column.Key;
-                            filter.Condition = new RuleTextNode(TextFilterRules.Contains, "");
-                            lwdg_UserMasterGrid.Behaviors.Filtering.ColumnFilters.Add(filter);
+                            if (e.Row.Items[lint_i].Column.Type.FullName.ToString().Equals("System.String") && !string.IsNullOrEmpty(e.Row.Items[lint_i].Column.Key))
+                            {
+                                //Unit Testing ID - UserMaster.aspx.cs_22
+                                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_22 " + e.Row.Items[lint_i].Column.Key);
+                                ColumnFilter filter = new ColumnFilter();
+                                filter.ColumnKey = e.Row.Items[lint_i].Column.Key;
+                                filter.Condition = new RuleTextNode(TextFilterRules.Contains, "");
+                                lwdg_UserMasterGrid.Behaviors.Filtering.ColumnFilters.Add(filter);
+                            }
                         }
                     }
-                }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
             }
         }
         #endregion
@@ -498,7 +511,7 @@ namespace TrackIT.WebApp.Setup
         /// <summary>
         /// Get User Details on Edit
         /// </summary>
-        private void EditUserDetails(Guid? guidBUID)
+        private void EditUserDetails(Int64? guidBUID)
         {
             try
             {
@@ -506,10 +519,10 @@ namespace TrackIT.WebApp.Setup
                 //Unit Testing ID - UserMaster.aspx.cs_23
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_23 GetUser Details Edit" +guidBUID);
                // if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
-                Guid? BU_ID = guidBUID;
+                Int64? BU_ID = guidBUID;
                 string lstr_password;
                 //Fetch Single Record from table and assign to Edit
-                DataSet lds_userdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from Setup_mas_users smu inner join Security_Users su on su.Users_Key=smu.user_id where smu.user_id='" + guidBUID + "'");
+                DataSet lds_userdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_users smu inner join Security_Users su on su.Users_Key=smu.user_id where smu.user_id='" + guidBUID + "'");
                 if (lds_userdetail.Tables[0].Rows.Count > 0)
                 {
                     if (lds_userdetail.Tables[0].Rows[0]["user_location"] != null)
@@ -725,16 +738,24 @@ namespace TrackIT.WebApp.Setup
         /// </summary>
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
-            //Unit Testing ID - UserMaster.aspx.cs_26
-            System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_26 Export Excel");
+            try
+            {
+                //Unit Testing ID - UserMaster.aspx.cs_26
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_26 Export Excel");
 
-            DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
-            lwdg_UserMasterGrid.DataSource = ldt_ExcelExp;
-            lwdg_UserMasterGrid.DataBind();
-            WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
-            WebExcelExporter.Export(lwdg_UserMasterGrid); 
-            WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download; 
-            this.WebExcelExporter.Export(this.lwdg_UserMasterGrid);
+                DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
+                lwdg_UserMasterGrid.DataSource = ldt_ExcelExp;
+                lwdg_UserMasterGrid.DataBind();
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebExcelExporter.Export(lwdg_UserMasterGrid);
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebExcelExporter.Export(this.lwdg_UserMasterGrid);
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
         }
 
         /// <summary>
@@ -742,16 +763,24 @@ namespace TrackIT.WebApp.Setup
         /// </summary>
         protected void btnExportPDF_Click(object sender, EventArgs e)
         {
-            //Unit Testing ID - UserMaster.aspx.cs_27
-            System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_27 ExportPdf");
-            DataTable ldt_PdfExp = (DataTable)ViewState["export"];
-            TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_UserMasterGrid);
-            lwdg_UserMasterGrid.DataSource = ldt_PdfExp;
-            lwdg_UserMasterGrid.DataBind();
-            WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
-            WebPDFExporter.Export(lwdg_UserMasterGrid);
-            WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download; 
-            this.WebPDFExporter.Export(this.lwdg_UserMasterGrid);
+            try
+            {
+                //Unit Testing ID - UserMaster.aspx.cs_27
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_27 ExportPdf");
+                DataTable ldt_PdfExp = (DataTable)ViewState["export"];
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_UserMasterGrid);
+                lwdg_UserMasterGrid.DataSource = ldt_PdfExp;
+                lwdg_UserMasterGrid.DataBind();
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebPDFExporter.Export(lwdg_UserMasterGrid);
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebPDFExporter.Export(this.lwdg_UserMasterGrid);
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
         }
 
        

@@ -140,7 +140,7 @@ namespace TrackIT.WebApp.master_templates
             }
         }
 
-        protected void LoadMenuWithUL(Guid? guidUserID, string sModuleID)
+        protected void LoadMenuWithUL(Int64? guidUserID, string sModuleID)
         {
             BasePage objBasePageLTV = Page as BasePage;
             DataSet dsTest = null;
