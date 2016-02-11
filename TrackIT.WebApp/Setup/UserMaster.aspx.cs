@@ -124,10 +124,10 @@ namespace TrackIT.WebApp.Setup
                     //Edit User Details
                     //Unit Testing ID - UserMaster.aspx.cs_7
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_7 Edit User Details popId and Unique ID" + hdnUserID.Value + hdnpop.Value); 
-                    Int64? userid = Convert.ToInt64(hdnUserID.Value.ToString());
+                    Int64? lint_userid = Convert.ToInt64(hdnUserID.Value.ToString());
                     EnableDisableControls(true);
                     btnSave.Visible = bitEdit;
-                    EditUserDetails(userid);
+                    EditUserDetails(lint_userid);
                     System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
                     mpe_UserPopup.Show();
                 }
@@ -750,6 +750,7 @@ namespace TrackIT.WebApp.Setup
                 WebExcelExporter.Export(lwdg_UserMasterGrid);
                 WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
                 this.WebExcelExporter.Export(this.lwdg_UserMasterGrid);
+                
             }
             catch (Exception ex)
             {
@@ -791,8 +792,12 @@ namespace TrackIT.WebApp.Setup
         {
             /* Verifies that the control is rendered */
         }
+
         #endregion
 
-        
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+            mpe_UserPopup.Show();
+        }
     }
 }

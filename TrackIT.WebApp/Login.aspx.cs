@@ -161,7 +161,7 @@ namespace TrackIT.WebApp
             try
             {
                 if (objUser == null) objUser = new UserBO(this.ConnectionString);
-                objResult = new UserBO(this.ConnectionString);
+                 objResult = new UserBO(this.ConnectionString);
 
                 objUser.UserName = string.Empty;
                 objUser.Password = null;
@@ -234,13 +234,11 @@ namespace TrackIT.WebApp
                     {
                         //Unit Testing ID - Login_CS_6
                         System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_6 - Crypto of Password");
-
                         SetSessionValue(SessionItems.User_ID, objUser.UsersID);
                         SetSessionValue(SessionItems.Login_Name, txtUsername.Text.ToString().Trim());
                         SetSessionValue(SessionItems.User_Name, objUser.LoginUserName);
                         SetSessionValue(SessionItems.User_Type, objUser.UserType);
                         SetSessionValue(SessionItems.Super_User, objUser.IsSuperUser);
-                     
                         SetSessionValue(SessionItems.loggedin_User_ID, objResult.logged_in_UserID);
                         SetSessionValue(SessionItems.Role_ID, objUser.RoleID);
                         SetSessionValue(SessionItems.User_Display_Name, objUser.DisplayName);

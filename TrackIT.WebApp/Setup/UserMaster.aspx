@@ -2,10 +2,6 @@
 <%@ Page Language="C#" MasterPageFile="~/master-templates/Layout.Master" AutoEventWireup="true" CodeBehind="UserMaster.aspx.cs" Inherits="TrackIT.WebApp.Setup.UserMaster" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%--<%@ Register TagPrefix="uc" TagName="Paging" Src="~/UserControls/PagingControl.ascx" %>--%>
-<%--<%@ Register TagPrefix="uc" TagName="NoRecords" Src="~/UserControls/NoRecords.ascx" %>--%>
-<%--<%@ Register TagPrefix="ucProp" TagName="ucProperty" Src="~/UserControls/ucControls.ascx" %>--%>
-
 
 <%@ Register Assembly="Infragistics4.WebUI.WebDataInput.v14.1, Version=14.1.20141.2328, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
 
@@ -25,10 +21,13 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+ <%--   <asp:scriptmanager id="ScriptManager1" runat="server">
+</asp:scriptmanager>--%>
     <script type="text/javascript">
 
         function ShowModalPopup() {
             $find("mpe").show();
+            $find("ctl00_ContentPlaceHolder1_pnlPopup").show();
             return false;
         }
         function HideModalPopup() {
@@ -67,7 +66,7 @@
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>
                         &nbsp;&nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
-                                 <a href="#" onclick="show();"></a></span>
+                                 <a href="#" onclick="ShowModalPopup();"></a></span>
                     </div>
 
                     <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource"  Format="PDF" />
@@ -101,7 +100,7 @@
                     <div class="page-content">
 
                         <div class="page-content-area">
-
+                            
                             <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
                     <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
                     <cc1:ModalPopupExtender ID="mpe_UserPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
