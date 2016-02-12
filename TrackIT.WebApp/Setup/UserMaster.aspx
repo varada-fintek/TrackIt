@@ -103,6 +103,7 @@
                             
                             <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
                     <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
+                   
                     <cc1:ModalPopupExtender ID="mpe_UserPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
                         PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
                     </cc1:ModalPopupExtender>

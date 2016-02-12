@@ -286,30 +286,7 @@ namespace TrackIT.WebApp.Setup
                         {"last_modified_date", DateTime.Now}
                       }
                            , "scope");
-
-                    //insert User for Login 
-                    istr_tablename = "Security_Users";
-                    string lstr_returnmsg = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
-                     {
-                   // {"Users_ID", astr_Users_ID},
-                    {"User_Name",txtUserID.Text },
-                    {"Password ", ibyt_Password },
-                    {"Role_ID", ddlRole.SelectedValue},
-                    {"User_Type", "OTH"},
-                    {"Super_User", "0"},
-                    {"Users_Key", lstr_id},
-                    {"Active",(chkinactive.Checked ? 1 : 0).ToString()},
-                    {"Created_By", this.LoggedInUserId },
-                    {"Created_Date", DateTime.Now},
-                    {"Is_First_Login", "0"},
-                    {"last_modified_by", this.LoggedInUserId },
-                    {"last_modified_date", DateTime.Now}
-                       }, "nonQuery");
-                    
-
-                    
-                     lstr_outMessage = "SUCCESS";
-
+                   
                 }
                 // Update User Login and User Details.
                 else
@@ -317,20 +294,7 @@ namespace TrackIT.WebApp.Setup
 
                     //Unit Testing ID - UserMaster.aspx.cs_14
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_14 Update User"+hdnUserID.Value);
-                    istr_tablename = "Security_Users";
-                    string msg = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
-                {
-                   
-                    {"User_Name",txtUserID.Text },
-                    {"Password", ibyt_Password },
-                    {"Role_ID", ddlRole.SelectedValue},
-                    {"Active", (chkinactive.Checked ? 1 : 0).ToString()},
-                },
-                    new System.Collections.Generic.Dictionary<string, object>()
-                     {
-                         {"Users_Key", hdnUserID.Value},
-                     },
-                    "nonQuery");
+                  
 
                     istr_tablename = "prj_users";
                     string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
@@ -755,7 +719,7 @@ namespace TrackIT.WebApp.Setup
             catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                Response.Redirect("~/Error.aspx", false);
+                //Response.Redirect("~/Error.aspx", false);
             }
         }
 
@@ -780,7 +744,7 @@ namespace TrackIT.WebApp.Setup
             catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                Response.Redirect("~/Error.aspx", false);
+               // Response.Redirect("~/Error.aspx", false);
             }
         }
 

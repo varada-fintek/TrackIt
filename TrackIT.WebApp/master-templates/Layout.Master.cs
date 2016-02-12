@@ -210,7 +210,7 @@ namespace TrackIT.WebApp.master_templates
                             }
                             else
                             {
-                                userdrp.Visible = false;
+                                //userdrp.Visible = false;
                             }
 
                             if (dsTest.Tables[0].Rows[i]["Is_Parent_Only"].ToString().Trim() == "True")

@@ -19,24 +19,21 @@ namespace DBHelper
     public class DBConnect
     {
         private string istr_context;
-        public string iconnectionstring=ConfigurationManager.ConnectionStrings.ToString();
-        public SqlConnection isqlcon_connection  =new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_DEV;User ID=TrackIT;Password=TrackIT@123;");
+        public string iconnectionstring=ConfigurationManager.ConnectionStrings[1].ToString();
+        public SqlConnection isqlcon_connection;
         public OleDbConnection ObledbC;
         public SqlTransaction isqltrans_Tr;
         public int iint_Timeout = 120000;
         private IList<SqlParameter> ilst_Params;
         
         public DBConnect()
-        {          
-            //C = new SqlConnection(ConfigurationManager.ConfigManager.GetConnectString());
-           // isqlcon_connection = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=PMTS;User ID=PMTS;Password=PMTS;");
+        {
+            isqlcon_connection = new SqlConnection(iconnectionstring);
             ilst_Params = new List<SqlParameter>();
-          //  isqlcon_connection = new SqlConnection(ConfigurationManager.ConnectionStrings);
         }
         public string SqlInsert(string astr_tablename, IDictionary<string, object> adict_parameterMap,string astr_type)
-           { 
-            //String strConnString = SqlConnection("Data Source=192.168.1.96;Initial Catalog=PMTS;User ID=pmts;Password=pmts;");
-               SqlConnection lsqlcon_connection = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_DEV;User ID=TrackIT;Password=TrackIT@123;");
+           {
+            SqlConnection lsqlcon_connection = new SqlConnection(iconnectionstring);
 
             SqlCommand lsqlcmd_command;
             string lstr_id = string.Empty;
@@ -122,8 +119,7 @@ namespace DBHelper
 
         public string SqlUpdate(string table, IDictionary<string, object> parameterMap,IDictionary<string, object> parameterMapforwhere, string type)
         {
-            //String strConnString = SqlConnection("Data Source=192.168.1.96;Initial Catalog=PMTS;User ID=pmts;Password=pmts;");
-            SqlConnection con = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_DEV;User ID=TrackIT;Password=TrackIT@123;");
+            SqlConnection con = new SqlConnection(iconnectionstring); 
 
             SqlCommand lsqlcmd_command;
             string id = string.Empty;
@@ -286,9 +282,8 @@ namespace DBHelper
         }
 
         public DataSet ExecuteSp(string astr_spName, SqlParameter[] asqlpar_parameter)
-        {   
-            SqlConnection lsqlcon_connection = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_DEV;User ID=TrackIT;Password=TrackIT@123;");
-
+        {
+            SqlConnection lsqlcon_connection = new SqlConnection(iconnectionstring);
            // SqlCommand lsqlcmd_command;
             DataSet lds_dsResult=null;
             string id = string.Empty;
