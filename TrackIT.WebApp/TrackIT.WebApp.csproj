@@ -84,7 +84,7 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Dlls\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\Microsoft.Office.Interop.Excel\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1399,6 +1399,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Clients\Client.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Client.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Companies\Companies.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1615,9 +1620,6 @@
     <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Microsoft.Office.Interop.Excel.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3924545A-F8E2-475A-B1A4-05175BC41E50}" />
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
@@ -1762,15 +1764,6 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -1807,6 +1800,10 @@
     <Content Include="App_GlobalResources\Taxes\Taxes.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Taxes.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Clients\Client.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Client.designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

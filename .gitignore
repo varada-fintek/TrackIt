@@ -166,3 +166,5 @@ TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
 TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
 *.csproj
 TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
+*.pubxml
+TrackIT.WebApp/TrackIT.WebApp.csproj
