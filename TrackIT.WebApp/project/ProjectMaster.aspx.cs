@@ -26,9 +26,39 @@ namespace TrackIT.WebApp.project
 {
     public partial class ProjectMaster : BasePage
     {
+        #region Declarations
+        DBHelper.DBConnect ldbh_QueryExecutors = new DBHelper.DBConnect();
+        WebDataGrid lwdg_projectsMasterGrid;
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            lwdg_projectsMasterGrid = new WebDataGrid();
+            pnl_projectsGrid.Controls.Add(lwdg_projectsMasterGrid);
+            TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_projectsMasterGrid);
             lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
+
+            lwdg_projectsMasterGrid.InitializeRow += Lwdg_projectsMasterGrid_InitializeRow; ;
+            
+            //Query to Get Landing Page Grid Details
+            DataSet lds_Result;
+            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select project_code,project_name from prj_projects");
+            if(lds_Result.Tables[0].Rows.Count>0)
+            {
+                lwdg_projectsMasterGrid.DataSource = lds_Result.Tables[0];
+                lwdg_projectsMasterGrid.DataBind();
+
+            }
+        }
+
+        private void Lwdg_projectsMasterGrid_InitializeRow(object sender, RowEventArgs e)
+        {
+            if (e.Row.Index == 0)
+            {
+                e.Row.Items.FindItemByKey("project_code").Column.Header.Text = RollupText("Projects", "gridProjectcode");
+                e.Row.Items.FindItemByKey("project_name").Column.Header.Text = RollupText("Projects", "gridProjectName");
+            }
+            //throw new NotImplementedException();
         }
     }
 }

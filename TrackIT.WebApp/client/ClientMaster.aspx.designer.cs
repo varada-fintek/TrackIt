@@ -67,12 +67,21 @@ namespace TrackIT.WebApp.client {
         protected global::Infragistics.Web.UI.GridControls.WebExcelExporter WebExcelExporter;
         
         /// <summary>
-        /// lblCreateUser control.
+        /// lblCreateClient control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCreateUser;
+        protected global::System.Web.UI.WebControls.Label lblCreateClient;
+        
+        /// <summary>
+        /// pnl_clientGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_clientGrid;
     }
 }

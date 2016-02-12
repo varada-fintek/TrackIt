@@ -38,9 +38,12 @@
                     <h1>
                         <i class="menu-icon fa fa-lg fa-fw fa-user"></i>
                         <i class="icon-angle-right"></i>
-                        <asp:Label ID="lblCreateUser" runat="server"></asp:Label>
+                        <asp:Label ID="lblCreateClient" runat="server"></asp:Label>
                     </h1>
                 </div>
+                <div runat="server" id="pnl_clientGrid">
+                     
+                 </div>
             </div>
 
         </ContentTemplate>

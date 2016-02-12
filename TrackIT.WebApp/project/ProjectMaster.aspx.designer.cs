@@ -74,5 +74,14 @@ namespace TrackIT.WebApp.project {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreateProjects;
+        
+        /// <summary>
+        /// pnl_projectsGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_projectsGrid;
     }
 }
