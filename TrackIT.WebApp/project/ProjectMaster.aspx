@@ -38,9 +38,6 @@
                         <asp:Label ID="lblCreateProjects" runat="server"></asp:Label>
                     </h1>
                 </div>
-                 <div runat="server" id="pnl_projectsGrid">
-                     
-                 </div>
             </div>
 
         </ContentTemplate>

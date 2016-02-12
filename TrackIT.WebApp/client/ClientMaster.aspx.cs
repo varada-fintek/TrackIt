@@ -40,7 +40,7 @@ namespace TrackIT.WebApp.client
             
             lwdg_clientMasterGrid.InitializeRow += Lwdg_clientMasterGrid_InitializeRow;
             DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_clients");
+            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_name,client_code from prj_clients");
             if (lds_Result.Tables[0].Rows.Count > 0)
             {
                 lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];

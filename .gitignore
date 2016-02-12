@@ -154,3 +154,15 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+*.dll
+TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
+*.pubxml
+TrackIT.WebApp/TrackIT.WebApp.csproj
+*.csproj
+TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
+*.pubxml
+TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
+*.pubxml
+TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
+*.csproj
+TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml

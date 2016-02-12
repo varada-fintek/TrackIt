@@ -19,14 +19,18 @@ namespace DBHelper
     public class DBConnect
     {
         private string istr_context;
+<<<<<<< HEAD
         public string iconnectionstring=ConfigurationManager.ConnectionStrings[1].ToString();
+=======
+>>>>>>> d8560f4815c8f5c94658d37885dd25ccd432b2c8
         public SqlConnection isqlcon_connection;
         public OleDbConnection ObledbC;
         public SqlTransaction isqltrans_Tr;
         public int iint_Timeout = 120000;
         private IList<SqlParameter> ilst_Params;
-        
+
         public DBConnect()
+<<<<<<< HEAD
         {
             isqlcon_connection = new SqlConnection(iconnectionstring);
             ilst_Params = new List<SqlParameter>();
@@ -34,6 +38,18 @@ namespace DBHelper
         public string SqlInsert(string astr_tablename, IDictionary<string, object> adict_parameterMap,string astr_type)
            {
             SqlConnection lsqlcon_connection = new SqlConnection(iconnectionstring);
+=======
+        {          
+            //C = new SqlConnection(ConfigurationManager.ConfigManager.GetConnectString());
+            isqlcon_connection = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_Dev; USER ID=TrackIT; PASSWORD=TrackIT@123;");
+            ilst_Params = new List<SqlParameter>();
+            
+        }
+        public string SqlInsert(string astr_tablename, IDictionary<string, object> adict_parameterMap,string astr_type)
+           { 
+            //String strConnString = SqlConnection("Data Source=192.168.1.96;Initial Catalog=PMTS;User ID=pmts;Password=pmts;");
+               SqlConnection lsqlcon_connection = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_Dev; USER ID=TrackIT; PASSWORD=TrackIT@123");
+>>>>>>> d8560f4815c8f5c94658d37885dd25ccd432b2c8
 
             SqlCommand lsqlcmd_command;
             string lstr_id = string.Empty;
@@ -119,7 +135,12 @@ namespace DBHelper
 
         public string SqlUpdate(string table, IDictionary<string, object> parameterMap,IDictionary<string, object> parameterMapforwhere, string type)
         {
+<<<<<<< HEAD
             SqlConnection con = new SqlConnection(iconnectionstring); 
+=======
+            //String strConnString = SqlConnection("Data Source=192.168.1.96;Initial Catalog=PMTS;User ID=pmts;Password=pmts;");
+            SqlConnection con = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_Dev; USER ID=TrackIT; PASSWORD=TrackIT@123");
+>>>>>>> d8560f4815c8f5c94658d37885dd25ccd432b2c8
 
             SqlCommand lsqlcmd_command;
             string id = string.Empty;
@@ -283,7 +304,12 @@ namespace DBHelper
 
         public DataSet ExecuteSp(string astr_spName, SqlParameter[] asqlpar_parameter)
         {
+<<<<<<< HEAD
             SqlConnection lsqlcon_connection = new SqlConnection(iconnectionstring);
+=======
+            SqlConnection lsqlcon_connection = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_Dev; USER ID=TrackIT; PASSWORD=TrackIT@123");
+
+>>>>>>> d8560f4815c8f5c94658d37885dd25ccd432b2c8
            // SqlCommand lsqlcmd_command;
             DataSet lds_dsResult=null;
             string id = string.Empty;
@@ -381,15 +407,15 @@ namespace DBHelper
         public DataSet ExecuteDataSet(string SqlText)
         {
             SqlCommand lsqlcmd_command;
-            SqlConnection lsql_Connection = isqlcon_connection;//new SqlConnection("Data Source=172.16.1.234;Initial Catalog=PMTS;User ID=pmts;Password=PMTS;");
+            SqlConnection con = new SqlConnection("Data Source=172.16.1.234;Initial Catalog=TrackIT_Dev; USER ID=TrackIT; PASSWORD=TrackIT@123");
             DataSet retrunDataSet = new DataSet();
             try
             {
-                lsql_Connection.Open();
-                isqltrans_Tr = lsql_Connection.BeginTransaction();
+                con.Open();
+                isqltrans_Tr = con.BeginTransaction();
                 lsqlcmd_command = new SqlCommand();
                 lsqlcmd_command.CommandType = CommandType.Text;
-                lsqlcmd_command.Connection = lsql_Connection;
+                lsqlcmd_command.Connection = con;
                 lsqlcmd_command.CommandText = SqlText;
                 lsqlcmd_command.CommandTimeout = iint_Timeout;
                 lsqlcmd_command.Transaction = isqltrans_Tr;
@@ -406,7 +432,7 @@ namespace DBHelper
             }
             finally
             {
-                lsql_Connection.Close();
+                con.Close();
             }
             return (retrunDataSet);
         }

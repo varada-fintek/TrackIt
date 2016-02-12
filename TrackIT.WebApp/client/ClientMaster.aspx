@@ -41,11 +41,8 @@
                         <asp:Label ID="lblCreateClient" runat="server"></asp:Label>
                     </h1>
                 </div>
-                <div runat="server" id="pnl_clientGrid">
-                     
-                 </div>
             </div>
-
+            <div id="pnl_clientGrid" runat="server"></div>
         </ContentTemplate>
     </asp:UpdatePanel>
 
