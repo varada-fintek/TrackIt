@@ -37,34 +37,28 @@ namespace TrackIT.WebApp.client
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
-
-            /*
-
-            lwdg_projectsMasterGrid.InitializeRow += Lwdg_projectsMasterGrid_InitializeRow; ;
-
-            //Query to Get Landing Page Grid Details
-            DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select project_code,project_name from prj_projects");
-            if (lds_Result.Tables[0].Rows.Count > 0)
-            {
-                lwdg_projectsMasterGrid.DataSource = lds_Result.Tables[0];
-                lwdg_projectsMasterGrid.DataBind();
-
-            }
-            */
+            
             lwdg_clientMasterGrid.InitializeRow += Lwdg_clientMasterGrid_InitializeRow;
             DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select * from pjt_client");
+            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_clients");
             if (lds_Result.Tables[0].Rows.Count > 0)
             {
                 lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
+                lwdg_clientMasterGrid.DataBind();
             }
 
         }
 
         private void Lwdg_clientMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.Row.Index == 0)
+            {
+                e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("client", "gridcode");
+                e.Row.Items.FindItemByKey("client_code").Column.Header.Text = RollupText("client", "gridname");
+            }
+
+
+            //throw new NotImplementedException();
         }
     }
 }

@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Projet Code.
+        /// </summary>
+        internal static string gridcode {
+            get {
+                return ResourceManager.GetString("gridcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project name.
+        /// </summary>
+        internal static string gridname {
+            get {
+                return ResourceManager.GetString("gridname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clients.
         /// </summary>
         internal static string lblCreateClients {

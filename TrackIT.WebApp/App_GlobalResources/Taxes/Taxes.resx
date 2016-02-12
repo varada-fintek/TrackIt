@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gridtaxcode" xml:space="preserve">
+    <value>Tax Code</value>
+  </data>
+  <data name="gridtaxkey" xml:space="preserve">
+    <value>Tax Key</value>
+  </data>
+  <data name="gridtaxname" xml:space="preserve">
+    <value>Tax Name</value>
+  </data>
   <data name="lblCreatetaxes" xml:space="preserve">
     <value>Tax</value>
   </data>

@@ -61,6 +61,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tax Code.
+        /// </summary>
+        internal static string gridtaxcode {
+            get {
+                return ResourceManager.GetString("gridtaxcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Key.
+        /// </summary>
+        internal static string gridtaxkey {
+            get {
+                return ResourceManager.GetString("gridtaxkey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Name.
+        /// </summary>
+        internal static string gridtaxname {
+            get {
+                return ResourceManager.GetString("gridtaxname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tax.
         /// </summary>
         internal static string lblCreatetaxes {

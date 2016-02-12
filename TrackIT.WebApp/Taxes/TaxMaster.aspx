@@ -37,6 +37,10 @@
                         <asp:Label ID="lblCreatetaxes" runat="server"></asp:Label>
                     </h1>
                 </div>
+
+                 <div runat="server" id="pnl_taxGrid">
+                     
+                 </div>
             </div>
 
         </ContentTemplate>
