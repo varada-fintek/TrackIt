@@ -77,7 +77,6 @@
             $('#border-left-proj').addClass("displayNone");
         }
         function show() {
-            alert("a");
             //document.getElementById("insideform").style.display = "block";
             var myvar = $('#createnew').is(':visible');
             if (myvar == true) {

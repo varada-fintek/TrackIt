@@ -17,13 +17,26 @@
 </asp:Content>
 
 <asp:Content ID="client" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-
+    <script type="text/javascript">
+        function editRow(obj) {
+            
+            //Unit Testing- Security_ASPX_001
+            var grid = $find("lwdg_FundMasterGrid");
+            var row = $(obj).parents("tr[type='row']").get(0);
+            var rowid = row.cells[1].innerHTML;
+            var pop_open = '1';
+            document.getElementById("hdnUserID").value = rowid;
+            document.getElementById("hdnpop").value = pop_open;
+            //$find("mpe").show();
+            return true;
+        }
+    </script>
   
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
                 <div class="page-header">
-
+                    
                      <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png" ></asp:ImageButton>
                         &nbsp;&nbsp;                       
@@ -43,6 +56,9 @@
                 </div>
             </div>
             <div id="pnl_clientGrid" runat="server"></div>
+
+             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
+           <asp:HiddenField ID="hdnUserID" runat="server" ClientIDMode="Static" />
         </ContentTemplate>
     </asp:UpdatePanel>
 

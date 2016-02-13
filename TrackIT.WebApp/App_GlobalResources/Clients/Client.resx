@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gridcode" xml:space="preserve">
-    <value>Projet Code</value>
+    <value>Client Code</value>
   </data>
   <data name="gridname" xml:space="preserve">
-    <value>Project name</value>
+    <value>Client name</value>
   </data>
   <data name="lblCreateClients" xml:space="preserve">
     <value>Clients</value>

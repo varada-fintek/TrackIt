@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Projet Code.
+        ///   Looks up a localized string similar to Client Code.
         /// </summary>
         internal static string gridcode {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project name.
+        ///   Looks up a localized string similar to Client name.
         /// </summary>
         internal static string gridname {
             get {
