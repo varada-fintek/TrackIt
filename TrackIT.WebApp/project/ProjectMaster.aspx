@@ -57,6 +57,17 @@
                      
                  </div>
             </div>
+             <script type="text/javascript">
+                 try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+                </script>
+                <style type="text/css">
+                    
+
+                    .Datealign {
+                        text-align: center !important;
+                    }
+                </style>
+
             <div class="main-content">
 
                     <div class="page-content">
@@ -70,11 +81,60 @@
                              <asp:Panel ID="pnlPopup" runat="server" CssClass="modal-dialog" Style="display: none;">
                                 <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
                                     <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
-                                        <h4 class="modal-title">project</h4>
+                                        <h4 class="modal-title">Project</h4>
                                     </asp:Panel>
                                      <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
                                         <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                             <div class="form-horizontal">
+                                <div class="form-horizontal">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-6">
+                                                        <asp:DropDownList ID="ddlRole" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblprojectcode" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                      <asp:TextBox ID="txtUserID" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">
+                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
+                                                            runat="server" Enabled="True" TargetControlID="txtUserID"
+                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                        </cc1:FilteredTextBoxExtender>
+                                                        <asp:RequiredFieldValidator ID="reqvprojectcode" runat="server"
+                                                            ControlToValidate="txtUserID" Display="Static" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                        <asp:RequiredFieldValidator ID="reqvproectcodeUNQ" runat="server"
+                                                            ControlToValidate="txtUserID" Display="Static" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblprojectname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">
+                                                        <cc1:FilteredTextBoxExtender ID="ccfirstname_FilteredTextBoxExtender"
+                                                            runat="server" Enabled="True" TargetControlID="txtprojectname"
+                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                        </cc1:FilteredTextBoxExtender>
+                                                        <asp:RequiredFieldValidator ID="reqvprojectname" runat="server"
+                                                            ControlToValidate="txtprojectname" Display="Static" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                    </div>
+                                
+
                                 </div>
                                      </asp:Panel>
                                     </asp:Panel>

@@ -32,7 +32,9 @@ namespace TrackIT.WebApp.project
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
+            ControlNames();
             lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
+            
             iwdg_projectMasterGrid = new WebDataGrid();
             pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
@@ -59,5 +61,40 @@ namespace TrackIT.WebApp.project
                 e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("projects", "gridisactive");
             }
         }
+
+        #region ControlNames
+        /// <summary>
+        /// ControlNames Assign Values to label and Validators
+        /// </summary>
+        private void ControlNames()
+        {
+            try
+            {
+
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_25 ControlNames");
+                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text = RollupText("Projects", "lblListCaption");
+                lblclientname.Text = RollupText("Projects", "lblclientname");
+                lblprojectcode.Text = RollupText("Projects", "lblprojectcode");
+                lblprojectname.Text = RollupText("Projects", "lblprojectname");
+                reqvprojectcode.ErrorMessage = RollupText("Projects", "reqvprojectcode");
+                reqvprojectname.ErrorMessage = RollupText("Projects", "reqvprojectname");
+
+                if (!bitAdd)
+                    createnew.Style.Add("display", "none");
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
+        #endregion
+        #region Verify Control Rendereing
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
+
+        #endregion
     }
 }
