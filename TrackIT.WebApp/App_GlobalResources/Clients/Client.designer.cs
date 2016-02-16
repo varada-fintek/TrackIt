@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client Name.
+        /// </summary>
+        internal static string lblclientname {
+            get {
+                return ResourceManager.GetString("lblclientname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clients.
         /// </summary>
         internal static string lblCreateClients {

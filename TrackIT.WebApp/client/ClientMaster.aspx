@@ -65,15 +65,118 @@
                             PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
                         </cc1:ModalPopupExtender>
                         <asp:Panel ID="pnlPopup" runat="server" CssClass="modal-dialog" Style="display: none;">
-                            <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
-                                <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
+                           
+                             <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
+                               
+                                  <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
                                     <h4 class="modal-title">Clients</h4>
                                 </asp:Panel>
-                                <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
-                                    <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
-                                    <div class="form-horizontal">
-                                    </div>
+
+                                <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">                                    
+                                   <asp:ValidationSummary ID="valSumUser" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
+                                      <div class="form-horizontal">
+                                          <div class="col-md-6" >
+                                              <div class="form-group">
+                                                   <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="txtclintName" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+
+                                               <div class="form-group">
+                                                   <asp:Label ID="lblclientcode" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:TextBox ID="txtclientCode" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+
+                                               <div class="form-group">
+                                                   <asp:Label ID="lblclientaddress1" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:TextBox ID="txtclientaddress1" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+
+                                               <div class="form-group">
+                                                   <asp:Label ID="lblclientaddress2" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:TextBox ID="txtclientaddress2" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+                                               <div class="form-group">
+                                                   <asp:Label ID="lblclientcity" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:TextBox ID="txtclientcity" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+                                               <div class="form-group">
+                                                   <asp:Label ID="lblclientstate" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:TextBox ID="txtclientstate" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+
+                                               <div class="form-group">
+                                                   <asp:Label ID="lblclientzip" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:TextBox ID="txtclientzip" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+                                          </div>
+                                           <div class="form-group">
+                                                   <asp:Label ID="lblcountry" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                    <asp:DropDownList ID="ddlRole" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+
+
+                                          <div class="col-md-6" >
+
+                                              <div class="form-group">
+                                                   <asp:Label ID="Label1" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
+                                                    </div>
+                                              </div>
+
+
+
+                                          </div>
+
+                                          </div>
                                 </asp:Panel>
+
+
+                                 <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
+                                        <div class="form-group">
+                                            <div class="col-md-1 floatright">
+                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" CausesValidation="false" />
+                                            </div>
+                                            <div class="col-md-1 floatright">
+                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" />
+                                            </div>
+                                        </div>
+                                    </asp:Panel>
                             </asp:Panel>
                         </asp:Panel>
                     </div>

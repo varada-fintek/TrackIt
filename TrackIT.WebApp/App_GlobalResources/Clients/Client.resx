@@ -147,6 +147,9 @@
   <data name="gridclientszip" xml:space="preserve">
     <value>Zip Code</value>
   </data>
+  <data name="lblclientname" xml:space="preserve">
+    <value>Client Name</value>
+  </data>
   <data name="lblCreateClients" xml:space="preserve">
     <value>Clients</value>
   </data>
