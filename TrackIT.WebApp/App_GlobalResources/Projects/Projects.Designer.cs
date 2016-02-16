@@ -61,11 +61,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client Name.
+        /// </summary>
+        internal static string gridclientname {
+            get {
+                return ResourceManager.GetString("gridclientname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string gridisactive {
+            get {
+                return ResourceManager.GetString("gridisactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Code.
+        /// </summary>
+        internal static string gridprojectcode {
+            get {
+                return ResourceManager.GetString("gridprojectcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project KickOff Date.
+        /// </summary>
+        internal static string gridprojectkickoffdate {
+            get {
+                return ResourceManager.GetString("gridprojectkickoffdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Name.
+        /// </summary>
+        internal static string gridprojectname {
+            get {
+                return ResourceManager.GetString("gridprojectname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Owner.
+        /// </summary>
+        internal static string gridprojectowner {
+            get {
+                return ResourceManager.GetString("gridprojectowner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client Name*.
+        /// </summary>
+        internal static string lblclientname {
+            get {
+                return ResourceManager.GetString("lblclientname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projects.
         /// </summary>
         internal static string lblCreateProjects {
             get {
                 return ResourceManager.GetString("lblCreateProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Code*.
+        /// </summary>
+        internal static string lblprojectcode {
+            get {
+                return ResourceManager.GetString("lblprojectcode", resourceCulture);
             }
         }
     }

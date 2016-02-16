@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gridclientname" xml:space="preserve">
+    <value>Client Name</value>
+  </data>
+  <data name="gridisactive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="gridprojectcode" xml:space="preserve">
+    <value>Project Code</value>
+  </data>
+  <data name="gridprojectkickoffdate" xml:space="preserve">
+    <value>Project KickOff Date</value>
+  </data>
+  <data name="gridprojectname" xml:space="preserve">
+    <value>Project Name</value>
+  </data>
+  <data name="gridprojectowner" xml:space="preserve">
+    <value>Project Owner</value>
+  </data>
+  <data name="lblclientname" xml:space="preserve">
+    <value>Client Name*</value>
+  </data>
   <data name="lblCreateProjects" xml:space="preserve">
     <value>Projects</value>
+  </data>
+  <data name="lblprojectcode" xml:space="preserve">
+    <value>Project Code*</value>
   </data>
 </root>
