@@ -18,6 +18,16 @@
 
 <asp:Content ID="client" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <script type="text/javascript">
+        function ShowModalPopup() {
+            $find("mpe").show();
+            $find("ctl00_ContentPlaceHolder1_pnlPopup").show();
+            return false;
+        }
+        function HideModalPopup() {
+            $find("mpe").hide();
+            document.getElementById("createnew").style.display = "block";
+            return false;
+        }
         function editRow(obj) {
             
             //Unit Testing- Security_ASPX_001
@@ -47,15 +57,33 @@
                     </div>
                      <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource"  Format="PDF" />
                     <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource"/>
-
                     <h1>
                         <i class="menu-icon fa fa-lg fa-fw fa-user"></i>
                         <i class="icon-angle-right"></i>
                         <asp:Label ID="lblCreateClient" runat="server"></asp:Label>
                     </h1>
                 </div>
+                  <div id="pnl_clientGrid" runat="server"></div>
             </div>
-            <div id="pnl_clientGrid" runat="server"></div>
+           <script type="text/javascript">
+               try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+                </script>
+                <style type="text/css">
+                    
+
+                    .Datealign {
+                        text-align: center !important;
+                    }
+                </style>
+            
+                <div class="main-content">
+
+                    <div class="page-content">
+
+                        <div class="page-content-area">
+                            
+                            </div></div></div>
+
 
              <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
            <asp:HiddenField ID="hdnUserID" runat="server" ClientIDMode="Static" />
