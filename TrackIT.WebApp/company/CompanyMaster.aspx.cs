@@ -33,6 +33,7 @@ namespace TrackIT.WebApp.company
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
+            ControlNames();
             lwdg_companyMasterGrid = new WebDataGrid();
             pnl_companyGrid.Controls.Add(lwdg_companyMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_companyMasterGrid);
@@ -57,5 +58,64 @@ namespace TrackIT.WebApp.company
 
             }
         }   
+     #region ControlNames
+        /// <summary>
+        /// ControlNames Assign Values to label and Validators
+        /// </summary>
+        private void ControlNames()
+        {
+            try
+            {
+
+                //Unit Testing ID - UserMaster.aspx.cs_25
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_25 ControlNames");
+                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text = RollupText("UserMaster", "lblListCaption");
+                lblCreateCompanies.Text = RollupText("Companies", "lblCreateCompanies");
+                lblcompanyname.Text = RollupText("Companies", "lblcompanyname");
+                lblcompanycode.Text = RollupText("Companies", "lblcompanycode");
+                lblactive.Text = RollupText("Companies", "lblactive");
+                lbladdressline1.Text = RollupText("Companies", "lbladdressline1");
+                lbladdressline2.Text = RollupText("Companies", "lbladdressline2");
+                lblcity.Text = RollupText("Companies", "lblcity");
+                lblstate.Text = RollupText("Companies", "lblstate");
+                lblzip.Text = RollupText("Companies", "lblzip");
+                lblcountry.Text = RollupText("Companies", "lblcountry");
+                lblname.Text = RollupText("Companies", "lblname");
+                lbldesigination.Text = RollupText("Companies", "lbldesigination");
+                lblbilladdressline1.Text = RollupText("Companies", "lblbillddressline1");
+                lblbilladdressline2.Text = RollupText("Companies", "lblbilladdressline2");
+                lblbillcity.Text = RollupText("Companies", "lblbillcity");
+                lblbillstate.Text = RollupText("Companies", "lblbillstate");
+                lblbillzip.Text = RollupText("Companies", "lblbillzip");
+                lblbillcountry.Text = RollupText("Companies", "lblbillcountry");
+                lblactive.Text = RollupText("Companies", "lblactive");
+                lblsameinfo.Text = RollupText("Companies", "lblsameinfo");
+                                        
+                sConfirmation = RollupText("Common", "DeleteRecord");
+                btnSave.Text = RollupText("Common", "btnSave");
+
+                reqvtxtcompanyname.ErrorMessage = RollupText("Companies", "reqvtxtcompanyname");
+                reqvcompanycode.ErrorMessage = RollupText("Companies", "reqvcompanycode");
+                reqvtxtcompanyname.ErrorMessage = RollupText("Companies", "reqvtxtcompanyname");
+                                reqvtxtaddressline1.ErrorMessage = RollupText("Companies", "reqvtxtaddressline1");
+                reqvtxtname.ErrorMessage = RollupText("Companies", "reqvtxtname");
+                reqvtxtdesigination.ErrorMessage = RollupText("Companies", "reqvtxtdesigination");
+                reqvtxtbilladdressline1.ErrorMessage = RollupText("Companies", "reqvtxtbilladdressline1");
+                
+
+                if (!bitAdd)
+                    createnew.Style.Add("display", "none");
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
+        #endregion
+
+    
     }
+
+
 }

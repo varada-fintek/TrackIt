@@ -18,7 +18,18 @@
 
 <asp:Content ID="client" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <script type="text/javascript">
-
+        function ShowModalPopup() {
+            $find("mpe").show();
+            $find("ctl00_ContentPlaceHolder1_pnlPopup").show();
+            return false;
+        }
+        function HideModalPopup() {
+            $find("mpe").hide();
+            document.getElementById("createnew").style.display = "block";
+            return false;
+        }
+        function editRow(obj) {
+            
         function ShowModalPopup() {
             $find("mpe").show();
             $find("ctl00_ContentPlaceHolder1_pnlPopup").show();
@@ -30,13 +41,13 @@
             return false;
         }
     </script>
-
+  
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
                 <div class="page-header">
-
-                    <div class="floatright pull_right">
+                    
+                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"></asp:ImageButton>
                         &nbsp;&nbsp;                       
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png"></asp:ImageButton>
@@ -163,8 +174,26 @@
 
                                           </div>
 
-                                          </div>
-                                </asp:Panel>
+            </div>
+           <script type="text/javascript">
+               try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+                </script>
+                <style type="text/css">
+                    
+
+                    .Datealign {
+                        text-align: center !important;
+                    }
+                </style>
+            
+                <div class="main-content">
+
+                    <div class="page-content">
+
+                        <div class="page-content-area">
+                            
+                            </div></div></div>
+
 
 
                                  <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
@@ -182,8 +211,8 @@
                     </div>
                 </div>
             </div>
-            <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
-            <asp:HiddenField ID="hdnUserID" runat="server" ClientIDMode="Static" />
+             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
+           <asp:HiddenField ID="hdnUserID" runat="server" ClientIDMode="Static" />
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
