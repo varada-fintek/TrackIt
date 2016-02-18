@@ -31,7 +31,7 @@ namespace DBHelper
             isqlcon_connection = new SqlConnection(iconnectionstring);
             ilst_Params = new List<SqlParameter>();
         }
-        public string SqlInsert(string astr_tablename, IDictionary<string, object> adict_parameterMap,string astr_type)
+        public string SqlInsert(string astr_tablename, IDictionary<string, object> adict_parameterMap,Boolean abool_type)
            {
             SqlConnection lsqlcon_connection = new SqlConnection(iconnectionstring); //("Data Source=172.16.1.234;Initial Catalog=TrackIT_Dev; USER ID=TrackIT; PASSWORD=TrackIT@123");
             SqlCommand lsqlcmd_command;
@@ -51,7 +51,7 @@ namespace DBHelper
 
                 
                 //lsqlcmd_command.Connection = C;
-                if (astr_type == "scope")
+                if (abool_type == true)
                 {
                     lsqlcmd_command.CommandText += ";SELECT SCOPE_IDENTITY();";
                     lsqlcmd_command.CommandType = CommandType.Text;
@@ -116,7 +116,7 @@ namespace DBHelper
         }
 
 
-        public string SqlUpdate(string table, IDictionary<string, object> parameterMap,IDictionary<string, object> parameterMapforwhere, string type)
+        public string SqlUpdate(string table, IDictionary<string, object> parameterMap,IDictionary<string, object> parameterMapforwhere, Boolean abool_type)
         {
             SqlConnection con = new SqlConnection(iconnectionstring); 
             //String strConnString = SqlConnection("Data Source=192.168.1.96;Initial Catalog=PMTS;User ID=pmts;Password=pmts;");
@@ -140,8 +140,11 @@ namespace DBHelper
 
                 lsqlcmd_command.CommandType = CommandType.Text;
                 //lsqlcmd_command.Connection = C;
-                if (type == "scope")
-                    id = (string)lsqlcmd_command.ExecuteScalar();
+                if (abool_type == true)
+                {
+                    lsqlcmd_command.CommandText += ";SELECT SCOPE_IDENTITY();";
+                    id = lsqlcmd_command.ExecuteScalar().ToString();
+                }
                 else
                 {
                     lsqlcmd_command.ExecuteNonQuery();
@@ -155,7 +158,7 @@ namespace DBHelper
             catch (Exception ex)
             {
                 isqlcon_connection.Close();
-                return "Error";
+                return ex.ToString();
 
             }
             finally

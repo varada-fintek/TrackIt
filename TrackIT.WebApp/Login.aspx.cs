@@ -212,8 +212,8 @@ namespace TrackIT.WebApp
 
                    // objUser.UserType = lds_Result.Tables[0].Rows[0]["User_Type"].ToString();
                   //  objUser.DisplayName = lds_Result.Tables[0].Rows[0]["Display_Name"].ToString();
-                    objUser.RoleName = lds_Result.Tables[0].Rows[0]["Role_Name"].ToString();
-                    objUser.RoleType = lds_Result.Tables[0].Rows[0]["Role_Type"].ToString();
+                    objUser.RoleName = lds_Result.Tables[1].Rows[0]["Role_Name"].ToString();
+                    objUser.RoleType = lds_Result.Tables[1].Rows[0]["Role_Type"].ToString();
                     // objUser.IsSuperUser = Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Super_User"].ToString());
                     // objUser.IsAdminRole = Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Admin_Role"].ToString());
                     // objUser.DepartmentCode = lds_Result.Tables[0].Rows[0]["Department_Code"].ToString();

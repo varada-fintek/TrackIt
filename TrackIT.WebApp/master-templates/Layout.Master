@@ -82,8 +82,9 @@
             if (myvar == true) {
                 document.getElementById("createnew").style.display = "none";
             }
-
-            //document.getElementById("listform").style.display = "none";
+            else {
+                document.getElementById("createnew").style.display = "block";
+            }
 
         }
         function hide() {
@@ -91,31 +92,9 @@
             document.getElementById("createnew").style.display = "block";
             //document.getElementById("listform").style.display = "block";
         }
-        //$(document).ready(function () {
-        //    $("#lblSearchHeader").hide();
-        //    $(".panel-heading").css("display", "none");
-        //    //styleload();
-        //});
-        //function styleload() {
-        //    $(".select2").select2();
-        //}
-    //$(document).ready(function(){
-        //$("#task_count").click(function() {
-        //    $(".mytasks-container li").removeClass("hide-task");
-        //    $(".mytasks-container li").addClass("show-task");
-        //});
-
-        //$("#overdue_count").click(function() {
-        //    $(".mytasks-container li").not(".bgduetask").removeClass("show-task");
-        //    $(".mytasks-container li").not(".bgduetask").addClass("hide-task");
-        //});
-    //});
+       
     $(window).bind('resize', function () {
-        // resize $('.container').width() based on $(window).width()
-        //alert('resize');
         $('#sidebarLeftToggle').addClass('nav-button', '0');
-       // $("#sidebarLeftToggle").toggleClass('nav-button');
-//
     });
 
         //Navigation show-hide menus
@@ -250,7 +229,7 @@
                 min-height: 20px;
             }
             .form-control {
-        width: 122%;
+       width: 248px;
     }
             .drop{
             width: 198px !important;
@@ -314,11 +293,11 @@
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
 									
-                                <asp:LinkButton ID="lnkProfile" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> My Profile" OnClick="lnkProfile_Click" CausesValidation="false"></asp:LinkButton>
+                                <asp:LinkButton ID="lnkProfile" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> My Profile"  CausesValidation="false"></asp:LinkButton>
 								</li>
 
 								<li>
-									<asp:LinkButton ID="lnkManageIDs" Visible="false" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> Manage IDs" OnClick="lnkManageIDs_Click" CausesValidation="false"></asp:LinkButton>
+									<asp:LinkButton ID="lnkManageIDs" Visible="false" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> Manage IDs"  CausesValidation="false"></asp:LinkButton>
 								</li>
 
 								    
