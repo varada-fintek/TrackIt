@@ -7676,7 +7676,7 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
     box-shadow: none !important;
     -webkit-transition-duration: .1s;
     transition-duration: .1s;
-    width: 248px;
+    width: 200px;
 }
 
     input[type=color]:hover, input[type=date]:hover, input[type=datetime-local]:hover, input[type=datetime]:hover, input[type=email]:hover, input[type=month]:hover, input[type=number]:hover, input[type=password]:hover, input[type=search]:hover, input[type=tel]:hover, input[type=text]:hover, input[type=time]:hover, input[type=url]:hover, input[type=week]:hover, textarea:hover {

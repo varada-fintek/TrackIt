@@ -229,7 +229,7 @@
                 min-height: 20px;
             }
             .form-control {
-       width: 248px;
+       width: 200px;
     }
             .drop{
             width: 198px !important;
