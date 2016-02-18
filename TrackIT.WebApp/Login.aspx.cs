@@ -113,7 +113,7 @@ namespace TrackIT.WebApp
             try
             {
                 ControlNames();
-
+                loginpanel.DefaultButton = "btnuserlogin";
                 if (!IsPostBack)
                 {
                     //Unit Testing ID - Login_CS_3

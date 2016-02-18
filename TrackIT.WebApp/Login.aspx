@@ -15,6 +15,7 @@
                                 <img src="../images/logo_fin.png" alt="Fintek Solutions">
                             </div>
                             <h2 class="login-title">Welcome to Fintek!</h2>
+                            <asp:Panel ID="loginpanel" runat="server">
                             <div class="login-input-area">
                                 <span class="help-block">Login With Your Account</span>
                                 <asp:TextBox ID="txtUsername" runat="server" placeholder="User Name" autocomplete="off" />
@@ -80,6 +81,7 @@
 
 
                             </div>
+                                </asp:Panel>
 
                         </div>
                     </div>
