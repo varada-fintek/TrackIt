@@ -75,7 +75,7 @@
                                 <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">                                    
                                    <asp:ValidationSummary ID="valSumUser" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                                       <div class="form-horizontal">
-                                          <div class="col-md-6" >
+                                         
                                               <div class="form-group">
                                                    <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
@@ -93,7 +93,7 @@
                                                     <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
                                                     </div>
                                               </div>
-
+                                          <div class="col-md-6">
                                                <div class="form-group">
                                                    <asp:Label ID="lblclientaddress1" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
@@ -127,7 +127,7 @@
                                                     <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
                                                     </div>
                                               </div>
-
+                                              </div>
                                                <div class="form-group">
                                                    <asp:Label ID="lblclientzip" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
@@ -136,7 +136,7 @@
                                                     <div class="col-md-1" style="display: none;">FOR VALIDATIONS                                                       
                                                     </div>
                                               </div>
-                                          </div>
+                                         
                                            <div class="form-group">
                                                    <asp:Label ID="lblcountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">

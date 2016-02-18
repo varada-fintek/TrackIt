@@ -119,7 +119,10 @@ namespace TrackIT.WebApp.Security
                 if (Page.IsValid)
                     InsertorUpdateRoles();
                 else
+                {
+                    ModalPopupExtender1.Show();
                     System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                }
             }
             catch (Exception ex)
             {

@@ -140,5 +140,14 @@ namespace Resources {
                 return ResourceManager.GetString("lblprojectcode", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Clients.
+        /// </summary>
+        internal static string reqvClient {
+            get {
+                return ResourceManager.GetString("reqvClient", resourceCulture);
+            }
+        }
     }
 }
