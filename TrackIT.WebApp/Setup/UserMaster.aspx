@@ -1,5 +1,4 @@
-﻿
-<%@ Page Language="C#" MasterPageFile="~/master-templates/Layout.Master" AutoEventWireup="true" CodeBehind="UserMaster.aspx.cs" Inherits="TrackIT.WebApp.Setup.UserMaster" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/master-templates/Layout.Master" AutoEventWireup="true" CodeBehind="UserMaster.aspx.cs" Inherits="TrackIT.WebApp.Setup.UserMaster" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -21,7 +20,7 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <%--   <asp:scriptmanager id="ScriptManager1" runat="server">
+    <%--   <asp:scriptmanager id="ScriptManager1" runat="server">
 </asp:scriptmanager>--%>
     <script type="text/javascript">
 
@@ -56,7 +55,7 @@
     <asp:UpdatePanel ID="uplState" runat="server">
 
         <ContentTemplate>
-            
+
             <div class="main-container" id="main-container">
                 <div class="page-header">
 
@@ -66,11 +65,11 @@
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>
                         &nbsp;&nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
-                                 <a href="#" onclick="ShowModalPopup();"></a></span>
+                                 <a href="#" onclick="show(); ShowModalPopup();"></a></span>
                     </div>
 
-                    <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource"  Format="PDF" />
-                    <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false"  ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource"/>
+                    <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource" Format="PDF" />
+                    <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource" />
 
                     <h1>
                         <i class="menu-icon fa fa-lg fa-fw fa-user"></i>
@@ -86,8 +85,6 @@
                     try { ace.settings.check('main-container', 'fixed') } catch (e) { }
                 </script>
                 <style type="text/css">
-                    
-
                     .Datealign {
                         text-align: center !important;
                     }
@@ -100,15 +97,15 @@
                     <div class="page-content">
 
                         <div class="page-content-area">
-                            
+
                             <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
-                    <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
-                   
-                    <cc1:ModalPopupExtender ID="mpe_UserPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
-                        PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
-                    </cc1:ModalPopupExtender>
-                             
-                            
+                            <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
+
+                            <cc1:ModalPopupExtender ID="mpe_UserPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
+                                PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
+                            </cc1:ModalPopupExtender>
+
+
                             <asp:Panel ID="pnlPopup" runat="server" CssClass="modal-dialog" Style="display: none;">
                                 <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
                                     <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
@@ -124,8 +121,9 @@
                                                 <div class="form-group">
                                                     <asp:Label ID="lblUserID" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                      <asp:TextBox ID="txtUserID" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                        <asp:TextBox ID="txtUserID" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
                                                     </div>
+
                                                     <div class="col-md-1" style="display: none;">
                                                         <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
                                                             runat="server" Enabled="True" TargetControlID="txtUserID"
@@ -217,10 +215,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-6">
 
-                                                <div class="form-group" >
+                                                <div class="form-group">
                                                     <asp:Label ID="lblPassword" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-5">
                                                         <asp:TextBox ID="txtPassword" runat="server" TabIndex="5" CssClass="form-control" MaxLength="50"></asp:TextBox>
@@ -232,12 +229,12 @@
                                                         </cc1:FilteredTextBoxExtender>
 
                                                         <asp:RequiredFieldValidator ID="reqvPassword" runat="server"
-                                                            ControlToValidate="txtPassword"  SetFocusOnError="True"
+                                                            ControlToValidate="txtPassword" SetFocusOnError="True"
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group" >
+                                                <div class="form-group">
                                                     <asp:Label ID="lblConfirmPassword" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-5">
                                                         <asp:TextBox ID="txtConfrimPass" runat="server" TabIndex="6" CssClass="form-control" MaxLength="50"></asp:TextBox>
@@ -253,7 +250,7 @@
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
-                                                <div class="form-group" >
+                                                <div class="form-group">
                                                     <asp:Label ID="lblmailID" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-5">
                                                         <asp:TextBox ID="txtmailID" runat="server" CssClass="form-control" TabIndex="7" MaxLength="50"></asp:TextBox>
@@ -263,7 +260,7 @@
                                                             runat="server" Enabled="True" TargetControlID="txtmailID"
                                                             ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
                                                         </cc1:FilteredTextBoxExtender>
-                                                       <%-- <asp:RegularExpressionValidator ID="txtmailID_RegularExpressionValidator" runat="server" ErrorMessage="Not a valid email format" ForeColor="#FF3300" SetFocusOnError="True" ControlToValidate="txtmailID" ValidationGroup="vgrpSave" ValidationExpression="^(?('')(''.+?''@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$"></asp:RegularExpressionValidator>--%>
+                                                        <%-- <asp:RegularExpressionValidator ID="txtmailID_RegularExpressionValidator" runat="server" ErrorMessage="Not a valid email format" ForeColor="#FF3300" SetFocusOnError="True" ControlToValidate="txtmailID" ValidationGroup="vgrpSave" ValidationExpression="^(?('')(''.+?''@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$"></asp:RegularExpressionValidator>--%>
                                                         <asp:RequiredFieldValidator ID="reqvEmailId" runat="server"
                                                             ControlToValidate="txtmailID" Display="Static" SetFocusOnError="True"
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
@@ -330,7 +327,7 @@
                                 </asp:Panel>
 
                             </asp:Panel>
-                           
+
                         </div>
                     </div>
 
@@ -348,9 +345,9 @@
     </asp:UpdatePanel>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-    $(".e1").select2();
-    $(".e1").css("border", "none");
-});
-                       </script>
-                   </asp:Content>
+            $(document).ready(function () {
+                $(".e1").select2();
+                $(".e1").css("border", "none");
+            });
+    </script>
+</asp:Content>

@@ -93,7 +93,6 @@ namespace TrackIT.WebApp.Security
                     EnableDiableControls(true);
                     btnSave.Visible = bitEdit;
                     GetRoleDetails(RoleId);
-                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
                     ModalPopupExtender1.Show();
                 }
             }
@@ -120,7 +119,10 @@ namespace TrackIT.WebApp.Security
                 if (Page.IsValid)
                     InsertorUpdateRoles();
                 else
+                {
+                    ModalPopupExtender1.Show();
                     System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                }
             }
             catch (Exception ex)
             {
@@ -196,15 +198,6 @@ namespace TrackIT.WebApp.Security
         {
             try
             {
-               // if (objRoleBO == null) objRoleBO = new RoleBO(this.ConnectionString);
-                // SqlConnection Conn = new SqlConnection(objRoleBO.ConnectionString);
-                //objRoleBO.RoleID = Conversion.ConvertStringToGuid(hdnRoleID.Value);
-                //objRoleBO.RoleCode = (!string.IsNullOrEmpty(txtRoleCode.Text)) ? txtRoleCode.Text.Trim() : null;
-                //objRoleBO.RoleName = (!string.IsNullOrEmpty(txtRoleName.Text)) ? txtRoleName.Text.Trim() : null;
-                //objRoleBO.RoleType = "CUS";
-                //objRoleBO.Active = chkinactive.Checked;
-                //objRoleBO.CreatedBy = this.LoggedInUserId;
-                //objRoleBO.RowVersion = Conversion.StringToByte(hdnRowVersion.Value);
 
                 XmlDocument doc = new XmlDocument();
                 XmlNode RootNode = XmlUtility.AddChildXmlNode(doc, null, "SCREENS", "");
@@ -268,6 +261,8 @@ namespace TrackIT.WebApp.Security
 
                 string  lstr_tablename = "prj_roles";
                 string lstr_RoleID =string.Empty;
+                string lstr_sOutput = string.Empty;
+                Boolean lbool_Type = true;
                 if (string.IsNullOrEmpty(hdnRoleID.Value))
                 {
                     lstr_RoleID = ldbh_QueryExecutors.SqlInsert(lstr_tablename, new System.Collections.Generic.Dictionary<string, object>()
@@ -282,10 +277,23 @@ namespace TrackIT.WebApp.Security
                     {"Created_Date", DateTime.Now},
                     {"last_modified_by", this.LoggedInUserId },
                     {"last_modified_date", DateTime.Now}
-                       }, "scope");
+                       }, lbool_Type);
+                    SqlParameter[] objParams = {
+                        new SqlParameter ("@RoleID",  Convert.ToInt64(lstr_RoleID)),
+                      new SqlParameter ("@RoleCode",txtRoleCode.Text.Replace("'", "''")),
+                     new SqlParameter("@RoleName", txtRoleName.Text.Replace("'", "''") ),
+                        new SqlParameter ("@Active", chkinactive.Checked ? 1 : 0),
+                        new SqlParameter ("@XMLData", XMLData),
+                        new SqlParameter ("@CreatedBy", this.LoggedInUserId),
+                        new SqlParameter ("@CreatedDate", DateTime.Now)
+                    };
+                    string Usp_INSERT_OR_UPDATE_ROLES = "Security_InsertOrUpdateRoles";
+                    DataSet lds_dsResult = ldbh_QueryExecutors.ExecuteSp(Usp_INSERT_OR_UPDATE_ROLES, objParams);
+                    lstr_sOutput = lds_dsResult.Tables[0].Rows[0][0].ToString();
                 }
                 else
                 {
+                    lbool_Type = true;
                     lstr_RoleID = ldbh_QueryExecutors.SqlUpdate(lstr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                       {
                    
@@ -299,11 +307,9 @@ namespace TrackIT.WebApp.Security
                      {
                          {"Role_ID", Convert.ToInt64(hdnRoleID.Value)},
                      },
-                    "scope");
-                }
-          
-                SqlParameter[] objParams = {
-                        new SqlParameter ("@RoleID",  Convert.ToInt64(lstr_RoleID)),
+                    lbool_Type);
+                    SqlParameter[] objParams = {
+                        new SqlParameter ("@RoleID",  Convert.ToInt64(hdnRoleID.Value)),
                       new SqlParameter ("@RoleCode",txtRoleCode.Text.Replace("'", "''")),
                      new SqlParameter("@RoleName", txtRoleName.Text.Replace("'", "''") ),
                         new SqlParameter ("@Active", chkinactive.Checked ? 1 : 0),
@@ -311,15 +317,15 @@ namespace TrackIT.WebApp.Security
                         new SqlParameter ("@CreatedBy", this.LoggedInUserId),
                         new SqlParameter ("@CreatedDate", DateTime.Now)
                     };
-                string Usp_INSERT_OR_UPDATE_ROLES = "Security_InsertOrUpdateRoles";
-                DataSet lds_dsResult = ldbh_QueryExecutors.ExecuteSp(Usp_INSERT_OR_UPDATE_ROLES, objParams);
-               //DataSet lds_dsResult = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, Usp_INSERT_OR_UPDATE_ROLES, objParams);
-               // objRoleBO.dsResult = ldbh_QueryExecutors.ExecuteDataSetSP("[USP_GET_USER_FUND_DETAILS]");
-               string sOutput = lds_dsResult.Tables[0].Rows[0][0].ToString();
-                if (sOutput.Contains("SUCCESS^"))
+                    string Usp_INSERT_OR_UPDATE_ROLES = "Security_InsertOrUpdateRoles";
+                    DataSet lds_dsResult = ldbh_QueryExecutors.ExecuteSp(Usp_INSERT_OR_UPDATE_ROLES, objParams);
+                    lstr_sOutput = lds_dsResult.Tables[0].Rows[0][0].ToString();
+                }
+          
+                
+                if (lstr_sOutput.Contains("SUCCESS^"))
                 {
-                    string[] sRoleID = sOutput.Split('^');
-                   // ucPropControls.InsertorUpdatePropertyTransValues("ROLES", (!string.IsNullOrEmpty(sRoleID[1])) ? Conversion.ConvertStringToGuid(sRoleID[1]) : null);
+                    string[] sRoleID = lstr_sOutput.Split('^');
                     SaveMessage();
                     GetRoleDetails(); 
                     ClearControls();
@@ -327,7 +333,7 @@ namespace TrackIT.WebApp.Security
                 }
                 else
                 {
-                    switch (sOutput.ToUpper())
+                    switch (lstr_sOutput.ToUpper())
                     {
                         case EXISTS:
                             AlreadyExistMessage();
@@ -432,7 +438,6 @@ namespace TrackIT.WebApp.Security
         }
         #endregion
 
-
         #region initializerow for user grid
         protected void lwdg_RoleMasterGrid_InitializeRow(object sender, Infragistics.Web.UI.GridControls.RowEventArgs e)
         {
@@ -471,16 +476,16 @@ namespace TrackIT.WebApp.Security
         /// 
         /// </summary>
         /// <param name="sRoleID"></param>
-        private void GetRoleDetails(Int64? guidRoleID)
+        private void GetRoleDetails(Int64? iint_RoleID)
         {
             try
             {
                 //if (objRoleBO == null) objRoleBO = new RoleBO(this.ConnectionString);
 
-//                objRoleBO.RoleID = guidRoleID;
+//                objRoleBO.RoleID = iint_RoleID;
                 //objRoleBO = RoleBLL.GetRoleDetails(objRoleBO);
 
-                DataSet lds_dsresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT SR.Role_ID, SR.Role_Code, SR.Role_Name, SR.Is_Predefined, SR.Role_Type, SR.Active FROM prj_roles SR where SR.Role_ID="+guidRoleID+"");
+                DataSet lds_dsresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT SR.Role_ID, SR.Role_Code, SR.Role_Name, SR.Is_Predefined, SR.Role_Type, SR.Active FROM prj_roles SR where SR.Role_ID="+iint_RoleID+"");
                 if (lds_dsresult.Tables[0].Rows.Count>0)
                 {
                     hdnRoleID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_dsresult.Tables[0].Rows[0]["Role_ID"]))) ? Convert.ToString(lds_dsresult.Tables[0].Rows[0]["Role_ID"]).Trim() : string.Empty;
@@ -509,19 +514,15 @@ namespace TrackIT.WebApp.Security
         /// </summary>
         /// <param name="sRoleID"></param>
         /// <param name="sModuleID"></param>
-        private void GetRoleAccessDetails(string guidRoleID)
+        private void GetRoleAccessDetails(string iint_RoleID)
         {
             try
             {
-                //if (objRoleAccess == null) objRoleAccess = new RoleAccessBO(this.ConnectionString);
-
- //               objRoleAccess.RoleID = guidRoleID;
-               // objRoleAccess = RoleAccessBLL.GetRoleAccess(objRoleAccess);
                  DataSet lds_dsResult=null;
-                if (!string.IsNullOrEmpty(guidRoleID))
+                if (!string.IsNullOrEmpty(iint_RoleID))
                 {
                     SqlParameter[] objParams = { 
-                        new SqlParameter ("@RoleID", Convert.ToInt64(guidRoleID))
+                        new SqlParameter ("@RoleID", Convert.ToInt64(iint_RoleID))
                     };
                     string Usp_GetAccess_ROLES = "Security_GetRoleAccess";
 
@@ -537,21 +538,20 @@ namespace TrackIT.WebApp.Security
                     lds_dsResult = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, Usp_GetAccess_ROLES, objParams);
                 }
                
-                   // objRoleAccess.dsResult = SqlHelper.ExecuteDataset(Conn, GET_ROLE_ACCESS, objParams)
 
                 if (lds_dsResult.Tables.Count > 0)
                 {
                     //FS_ID 4.9.1.4
                     //Unit Testing ID - AccessRoles.aspx.cs_4
-                    System.Diagnostics.Debug.WriteLine("Unit testing ID - AccessRoles.aspx.cs_4 " + guidRoleID.ToString());
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - AccessRoles.aspx.cs_4 " + iint_RoleID.ToString());
 
                     //FS_ID 4.9.1.7
                     //Unit Testing ID - AccessRoles.aspx.cs_7
-                    System.Diagnostics.Debug.WriteLine("Unit testing ID - AccessRoles.aspx.cs_7 " + guidRoleID.ToString());
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - AccessRoles.aspx.cs_7 " + iint_RoleID.ToString());
 
                     //FS_ID 4.9.1.9
                     //Unit Testing ID - AccessRoles.aspx.cs_8
-                    System.Diagnostics.Debug.WriteLine("Unit testing ID - AccessRoles.aspx.cs_8 " + guidRoleID.ToString());
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - AccessRoles.aspx.cs_8 " + iint_RoleID.ToString());
 
                     gvRoleAccess.DataSource = lds_dsResult;
                     gvRoleAccess.DataBind();
@@ -684,12 +684,9 @@ namespace TrackIT.WebApp.Security
            // ucPropControls.getControls();
         }
         #endregion
+
         #endregion
-
-       
-
-      
-
+     
         #region "Access Grid Events"
         #region gvRoleAccess_RowDataBound
         /// <summary>

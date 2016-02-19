@@ -125,10 +125,10 @@ namespace TrackIT.WebApp.Setup
                     //Unit Testing ID - UserMaster.aspx.cs_7
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_7 Edit User Details popId and Unique ID" + hdnUserID.Value + hdnpop.Value); 
                     Int64? lint_userid = Convert.ToInt64(hdnUserID.Value.ToString());
-                    EnableDisableControls(true);
+                    txtUserID.Enabled = false;
                     btnSave.Visible = bitEdit;
                     EditUserDetails(lint_userid);
-                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                   // System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
                     mpe_UserPopup.Show();
                 }
 
@@ -154,32 +154,10 @@ namespace TrackIT.WebApp.Setup
             try
             {
                  DataSet lds_Result;
-                 if (!string.IsNullOrEmpty(hdnUserID.Value))
+                // User Id Unique validations
+                if (string.IsNullOrEmpty(hdnUserID.Value))
                 {
-                    lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select User_Name from Security_Users where active=1 and Users_Key<>'" + hdnUserID.Value + "' and User_Name='" + txtUserID.Text + "'");
-                    if (lds_Result.Tables[0].Rows.Count > 0)
-                    {
-                        reqvuserIdUNQ.ErrorMessage = RollupText("UserMaster", "reqvUnqUserID");
-                        reqvuserIdUNQ.Enabled = true;
-                        reqvuserIdUNQ.Visible = true;
-                        ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("UserMaster", "reqvUnqUserID") + "')</script>", false);
-                       // Unit Testing ID - UserMaster.aspx.cs_17
-                       System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_17 User Id Unique check");
-                        mpe_UserPopup.Show();
-                    }
-                    else
-                    {
-                        //Unit Testing ID - UserMaster.aspx.cs_9
-                        System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_9 validate Page and Insert/Update User" + Page.IsValid);
-                        InsertorUpdateUserDetails();
-                        //Unit Testing ID - UserMaster.aspx.cs_10
-                        System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_10 Pagevalidation Fails" + Page.IsValid);
-                        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
-                    }
-                }
-                else
-                {
-                     lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select User_Name from Security_Users where active=1 and User_Name='" + txtUserID.Text + "'");
+                    lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select User_Name from Security_Users where active=1 and User_Name='" + txtUserID.Text + "'");
                     if (lds_Result.Tables[0].Rows.Count > 0)
                     {
                         reqvuserIdUNQ.ErrorMessage = RollupText("UserMaster", "reqvUnqUserID");
@@ -196,10 +174,21 @@ namespace TrackIT.WebApp.Setup
                         System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_9 validate Page and Insert/Update User" + Page.IsValid);
                         InsertorUpdateUserDetails();
                         //Unit Testing ID - UserMaster.aspx.cs_10
-                        System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_10 Pagevalidation Fails" + Page.IsValid);
-                        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                       // System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_10 Pagevalidation Fails" + Page.IsValid);
+                        //System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
                     }
                 }
+                else
+                {
+                    //Unit Testing ID - UserMaster.aspx.cs_9
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_9 validate Page and Insert/Update User" + Page.IsValid);
+                    InsertorUpdateUserDetails();
+                    //Unit Testing ID - UserMaster.aspx.cs_10
+                    //System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_10 Pagevalidation Fails" + Page.IsValid);
+                    //System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                }
+
+
                 //Unit Testing ID - UserMaster.aspx.cs_8
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_8 SaveButtonClick");
                 
@@ -251,11 +240,9 @@ namespace TrackIT.WebApp.Setup
                 
                 //Unit Testing ID - UserMaster.aspx.cs_12
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_12 InsertUpdateUser Details");
-                
-               // if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
                 ibyt_Password  = Crypto.CreateHash(txtConfrimPass.Text);
                 string lstr_user_id = Convert.ToString(Guid.NewGuid());
-               
+                Boolean lbool_type = true;
                 string lstr_outMessage = string.Empty;
                 // hdnUserID to check weather Insert / Update.
                 if (string.IsNullOrEmpty(hdnUserID.Value))
@@ -285,7 +272,7 @@ namespace TrackIT.WebApp.Setup
                         {"last_modified_By", this.LoggedInUserId },
                         {"last_modified_date", DateTime.Now}
                       }
-                           , "scope");
+                           , lbool_type);
                    
                 }
                 // Update User Login and User Details.
@@ -294,9 +281,9 @@ namespace TrackIT.WebApp.Setup
 
                     //Unit Testing ID - UserMaster.aspx.cs_14
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_14 Update User"+hdnUserID.Value);
-                  
+                    lbool_type = false;
 
-                    istr_tablename = "prj_users";
+                      istr_tablename = "prj_users";
                     string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                 {
                     {"user_first_name", txtuserfirstname.Text.Replace("'", "''")},
@@ -316,11 +303,10 @@ namespace TrackIT.WebApp.Setup
                      {
                          {"user_id", hdnUserID.Value},
                      },
-                         "nonscope");
+                         lbool_type);
 
                     lstr_outMessage = "SUCCESS";
                 }
-                
 
                 //Sucess Message After Insert/Update
                 if (lstr_outMessage.Contains("SUCCESS"))
@@ -337,7 +323,6 @@ namespace TrackIT.WebApp.Setup
                 }
                 else
                 {
-
                     //Unit Testing ID - UserMaster.aspx.cs_16
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_16 ErrorMessage");
                     Response.Redirect("~/Setup/UserMaster.aspx", false);
@@ -376,7 +361,7 @@ namespace TrackIT.WebApp.Setup
                 lwdg_UserMasterGrid.Columns.Add(td);
                 //Query to Get Landing Page Grid Details
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select sm.user_id,su.User_Name,sm.user_first_name,sm.user_middle_name,sm.user_last_name,sr.Role_Name,cp1.parameter_name as User_Title,sm.user_phone,sm.user_email,sm.user_location,cp.parameter_type,cp.parameter_code,cp.parameter_name, sm.Active from prj_users sm inner join prj_roles sr on sr.Role_ID=sm.user_role_key inner join com_parameters cp on cp.parameter_key= sm.user_location inner join com_parameters cp1 on  sm.user_title=cp1.parameter_key  inner join Security_Users su on su.Users_Key=sm.user_id ");
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select sm.user_id,sm.user_first_name,sm.user_middle_name,sm.user_last_name,sr.Role_Name,cp1.parameter_name as User_Title,sm.user_phone,sm.user_email,sm.user_location,cp.parameter_type,cp.parameter_code,cp.parameter_name, sm.Active from prj_users sm inner join prj_roles sr on sr.Role_ID=sm.user_role_key inner join com_parameters cp on cp.parameter_key= sm.user_location inner join com_parameters cp1 on  sm.user_title=cp1.parameter_key");  //inner join Security_Users su on su.Users_Key=sm.user_id ");
                 lwdg_UserMasterGrid.Visible = false;
                
                 if (lds_Result != null)
@@ -432,8 +417,8 @@ namespace TrackIT.WebApp.Setup
                     e.Row.Items.FindItemByKey("parameter_code").Column.Hidden = true;
                     e.Row.Items.FindItemByKey("user_location").Column.Hidden = true;
                     e.Row.Items.FindItemByKey("user_middle_name").Column.Hidden = true;
-                    e.Row.Items.FindItemByKey("User_Name").Column.Header.Text = RollupText("UserMaster", "gridUserName");
-                    e.Row.Items.FindItemByKey("User_Name").Column.CssClass = "Dataalign";
+                    //e.Row.Items.FindItemByKey("User_Name").Column.Header.Text = RollupText("UserMaster", "gridUserName");
+                    //e.Row.Items.FindItemByKey("User_Name").Column.CssClass = "Dataalign";
                     e.Row.Items.FindItemByKey("user_first_name").Column.Header.Text = RollupText("UserMaster", "gridFirstName");
                     e.Row.Items.FindItemByKey("user_first_name").Column.CssClass = "Dataalign";
                     e.Row.Items.FindItemByKey("user_last_name").Column.Header.Text = RollupText("UserMaster", "gridlastname");
@@ -475,18 +460,18 @@ namespace TrackIT.WebApp.Setup
         /// <summary>
         /// Get User Details on Edit
         /// </summary>
-        private void EditUserDetails(Int64? guidBUID)
+        private void EditUserDetails(Int64? aint_UserID)
         {
             try
             {
 
                 //Unit Testing ID - UserMaster.aspx.cs_23
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_23 GetUser Details Edit" +guidBUID);
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_23 GetUser Details Edit" +aint_UserID);
                // if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
-                Int64? BU_ID = guidBUID;
+                Int64? lint_UserID = aint_UserID;
                 string lstr_password;
                 //Fetch Single Record from table and assign to Edit
-                DataSet lds_userdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_users smu inner join Security_Users su on su.Users_Key=smu.user_id where smu.user_id='" + guidBUID + "'");
+                DataSet lds_userdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_users smu where smu.user_id='" + lint_UserID + "'");
                 if (lds_userdetail.Tables[0].Rows.Count > 0)
                 {
                     if (lds_userdetail.Tables[0].Rows[0]["user_location"] != null)
@@ -538,7 +523,7 @@ namespace TrackIT.WebApp.Setup
                         ddlRole.SelectedIndex = 0;
 
                     hdnUserID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_id"]))) ? Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_id"]).Trim() : string.Empty;
-                    txtUserID.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_userdetail.Tables[0].Rows[0]["User_Name"]))) ? Convert.ToString(lds_userdetail.Tables[0].Rows[0]["User_Name"]).Trim() : string.Empty;
+                    txtUserID.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_first_name"]))) ? Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_first_name"]).Trim() : string.Empty;
                     txtuserfirstname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_first_name"]))) ? Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_first_name"]).Trim() : string.Empty;
                     txtuserfirstname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_first_name"]))) ? Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_first_name"]).Trim() : string.Empty;
                     txtuserlastname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_last_name"]))) ? Convert.ToString(lds_userdetail.Tables[0].Rows[0]["user_last_name"]).Trim() : string.Empty;
@@ -576,20 +561,8 @@ namespace TrackIT.WebApp.Setup
             {
                 //Unit Testing ID - UserMaster.aspx.cs_24
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_24 EnableDiasble Controls");
-
-                txtuserfirstname.Enabled = bValue;
-                txtuserfirstname.Enabled = bValue;
-                txtusersmidlename.Enabled = bValue;
-                txtuserlastname.Enabled = bValue; ;
-                ddlUserLocation.Enabled = bValue; ;
-                ddlUserTimeZone.Enabled = bValue;
-                ddlUserTitle.Enabled = bValue;
-                txtmailID.Enabled = bValue;
-                txtphone.Enabled = bValue;
-                txtConfrimPass.Enabled = bValue;
-                txtPassword.Enabled = bValue;
-                ddlRole.Enabled = bValue;
-                chkinactive.Enabled = bValue;
+                
+                
             }
             catch (Exception ex)
             {
@@ -612,6 +585,7 @@ namespace TrackIT.WebApp.Setup
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_24 ClearControls");
                 hdnUserID.Value = string.Empty;
                 txtUserID.Text = string.Empty;
+                txtUserID.Enabled = true;   
                 txtuserfirstname.Text = string.Empty;
                 txtusersmidlename.Text = string.Empty;
                 txtuserlastname.Text = string.Empty;

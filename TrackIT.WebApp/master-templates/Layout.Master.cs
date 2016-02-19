@@ -43,7 +43,6 @@ namespace TrackIT.WebApp.master_templates
         //IMyTask objTask;
         //CreateRequestBO objCreateRequestBO;
         //ICreateRequest objRequest;
-        int intCurrentPageIndex;
         BasePage objBasePagePL;
         #endregion
 
@@ -66,24 +65,17 @@ namespace TrackIT.WebApp.master_templates
                     objBasePagePL.SetSessionValue(SessionItems.Left_Menu, null);
                     objBasePagePL.GetTopandLeftMenuItems();
                     lbl_currentDate.Text = Convert.ToString(DateTime.Now);
-                    if (System.IO.File.Exists(Server.MapPath(objBasePagePL.RollupText("Common", "UserImagePath") + "/" + objBasePagePL.LoggedInUserPhotoPath)))
-                        ((HtmlImage)imgUserPhoto).Src = objBasePagePL.RollupText("Common", "UserImagePath") + "/" + objBasePagePL.LoggedInUserPhotoPath;
-                    else
-                        ((HtmlImage)imgUserPhoto).Src = objBasePagePL.RollupText("Common", "NoimagePath");
+                    ((HtmlImage)imgUserPhoto).Src = objBasePagePL.RollupText("Common", "NoimagePath");
 
                     lblLoginUserName.Text = objBasePagePL.LoggedInUserDisplayName;
                     lblLoginUserRoleName.Text = objBasePagePL.LoggedInUserRoleName;
 
-                   // LoadMyNotifications(this.objBasePagePL.LoggedInUserId);
-                //    LoadMyTasks(this.objBasePagePL.LoggedInUserId);
-                //    LoadMyRequests(this.objBasePagePL.LoggedInUserId);
-
+                   
                 }
                 LoadMenuWithUL(objBasePagePL.LoggedInUserId, "0");
 
                 if (int.Parse(objBasePagePL.GetSessionValue(SessionItems.Is_First_Login).ToString()) == 1)
                 {                
-                    //HtmlAnchor MyLnk = (HtmlAnchor)this.Master.FindControl("sidebarLeftToggle");
                     HtmlAnchor MyLnk = (HtmlAnchor)this.FindControl("sidebarLeftToggle");
                     if (MyLnk != null)
                     { 
@@ -106,15 +98,6 @@ namespace TrackIT.WebApp.master_templates
         }
         #endregion
 
-        protected void lnkProfile_Click(object sender, System.EventArgs e)
-        {
-            Response.Redirect("~/My_Profile.aspx", false);
-        }
-
-        protected void lnkManageIDs_Click(object sender, System.EventArgs e)
-        {
-            Response.Redirect("~/ManageIDs.aspx", false);
-        }
 
         protected void lnkLogout_Click(object sender, System.EventArgs e)
         {
@@ -147,14 +130,11 @@ namespace TrackIT.WebApp.master_templates
             try
             {
                 UserAccessBO objUserAccessBO = new UserAccessBO(objBasePageLTV.ConnectionString);
-                //objUserAccessBO.UsersID = guidUserID;
                 objUserAccessBO.RoleID = objBasePageLTV.LoggedInUserRoleId;
                 objUserAccessBO.ModuleID = Convert.ToInt32(sModuleID);
 
                 SqlParameter[] objParams = { 
-                        //new SqlParameter ("@UserID",  objUserAccess.UsersID) ,
                         new SqlParameter ("@Role_ID",  objUserAccessBO.RoleID) 
-                        //new SqlParameter ("@ModuleID",  objUserAccess.ModuleID)
                     };
 
                 dsTest = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, GET_TREEVIEW_MENU_DETAILS, objParams);
@@ -164,14 +144,7 @@ namespace TrackIT.WebApp.master_templates
 
                 if (dsTest != null)
                 {
-                    //StringBuilder lsb_dbmenu = new StringBuilder();
-                    //lsb_dbmenu.Append("<ul class='sidebar-nav'>");
-                    //lsb_dbmenu.Append("<li class='border-left-red'>");
-                    //lsb_dbmenu.Append("<a href='javascript:void(0);' data-toggle='collapse' data-target='#pages-submenu' title='UI Elements' class=''><i class='menu-icon fa fa-lg fa-fw fa-desktop'></i> <span>UI Elements</span><i class='fa fa-caret-right submenu-indicator'></i></a>");
-                    //lsb_dbmenu.Append("<ul id='pages-submenu' class='collapse'><li><a href='profile.html'>Profile</a></li><li><a href='account.html'>Account Settings</a></li>");
-                    //lsb_dbmenu.Append("</ul></li>");
-                    //lsb_dbmenu.Append("</ul>");
-                    //ltrl_dbmenus.Text = lsb_dbmenu.ToString();
+                    
                     HtmlGenericControl ul, ulchild, liSub, li, anchor, italic1, italic2, span;
                     Image img = null;
                     ul = new HtmlGenericControl("ul");
@@ -249,40 +222,12 @@ namespace TrackIT.WebApp.master_templates
                                     ulchild.Attributes.Add("class", "collapse");
                                     //ulchild.Attributes.Add("height", "auto");
                                     ulchild.Attributes.Add("id", dsTest.Tables[0].Rows[i]["Menu_Name"].ToString());
-
-                                    //li = new HtmlGenericControl("li");
-                                    //lbAnchor = new LinkButton();
-                                    //lbAnchor.Text = " " + drRow["Menu_Name"].ToString();
-                                    //lbAnchor.ID = "mnLink_" + drRow["Screen_ID"].ToString();
-                                    //lbAnchor.Attributes.Add("href", drRow["Url"].ToString() + "&Mode=N");
-                                    //if (drRow["Url"].ToString().Contains("?"))
-                                    //    lbAnchor.Attributes.Add("href", drRow["Url"].ToString() + "&Mode=N");
-                                    //else
-                                    //    lbAnchor.Attributes.Add("href", drRow["Url"].ToString() + "?Mode=N");
-                                    //lbAnchor.Visible = true;
-                                    //lbAnchor.Click += new EventHandler(lbMenu_Click);
-                                    //if (HttpContext.Current.Request.Path == Convert.ToString(drRow["Url"]))
-                                    //{
-                                    //    ulchild.Style.Add("display", "block");
-                                    //    lbAnchor.Style.Add("background-color", "#2494f2");
-                                    //    lbAnchor.Style.Add("color", "white");
-                                    //    lbAnchor.Style.Add("border-top", "1px solid #2b81ca");
-                                    //}
-                                    //li.Controls.Add(lbAnchor);
-
-                                    //ulchild.Controls.Add(li);
-                                
                                 }
                                }
                             }
                             else
                             {
-                               // DataRow[] drRowArrayq = dsTest.Tables[1].Select(" Module_ID = '" + dsTest.Tables[0].Rows[i]["Module_ID"].ToString().Trim() + "' ");
-                                //liSub.InnerText = dsTest.Tables[0].Rows[i]["Menu_Name"].ToString();
-                                //img = new Image();
-                                //img.ImageUrl = "../images/" + dsTest.Tables[0].Rows[i]["Menu_Name"].ToString().Replace(" ", "_") + ".png";
-                                //img.ID = "img_Icon_" + dsTest.Tables[0].Rows[i]["Module_ID"].ToString();
-                                ////liSub.Controls.Add(img);
+                               
                                 if (dsTest.Tables[0].Rows[i]["Module_ID"].ToString().Trim() != "17")
                                 {
                                 anchor = new HtmlGenericControl("a");
@@ -313,11 +258,7 @@ namespace TrackIT.WebApp.master_templates
                                 foreach (DataRow drRow in drRowArray)
                                 {
                                     li = new HtmlGenericControl("li");
-                                    //li.Attributes.Add("class", "has-sub");
-                                    //img = new Image();
-                                    //img.ImageUrl = "#";
-                                    //img.ID = "img_Icon_" + drRow["Screen_ID"].ToString();
-                                    //li.Controls.Add(img);
+                                   
                                     lbAnchor = new LinkButton();
                                     lbAnchor.Text = " " + drRow["Menu_Name"].ToString();
                                     lbAnchor.ID = "mnLink_" + drRow["Screen_ID"].ToString();
@@ -361,22 +302,7 @@ namespace TrackIT.WebApp.master_templates
             }
         }
 
-        protected void LoadMyNotifications(Guid? guidUserID)
-        {
-          
-            
-        }
-
-        protected void LoadMyTasks(Guid? guidUserID)
-        {
-            
-        }
-
-        protected void LoadMyRequests(Guid? guidUserID)
-        {
-        
-        }
-
+       
         protected void lnk_Users_Click(object sender, EventArgs e)
         {
             DataSet ldst = (DataSet)ViewState["modules"];

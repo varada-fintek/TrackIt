@@ -33,6 +33,7 @@ namespace TrackIT.WebApp.client
         protected void Page_Load(object sender, EventArgs e)
         {
             lblCreateClient.Text = RollupText ("Client", "lblCreateClients");
+            lblclientname.Text = RollupText("Client", "lblclientname");
             
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
@@ -53,11 +54,7 @@ namespace TrackIT.WebApp.client
             {
                 lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
                 lwdg_clientMasterGrid.DataBind();
-                DataColumn[] keyColumns = new DataColumn[1];
-                DataTable ldt_dt = lds_Result.Tables[0];
-                lwdg_clientMasterGrid.DataKeyFields = "client_key";
-                keyColumns[0] = ldt_dt.Columns["user_id"];
-                ldt_dt.PrimaryKey = keyColumns;
+                
             }
 
         }
