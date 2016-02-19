@@ -68,13 +68,14 @@ namespace TrackIT.WebApp
         public const string GENERATED = "GENERATED";
       
 
-        public string GET_USER_ACCESS = "Security_GetUserAccess";
+       // public string GET_USER_ACCESS = "Security_GetUserAccess";
         public string GET_MODULE_ACCESS_RIGHTS = "Security_GetModuleAccessRights";
         public string GET_SCREEN_ACCESS_RIGHTS = "Security_GetScreenAccessRights";
 
         public string GET_SCREEN_AUTHENTICATION = "Security_GetScreenAuthentication";
-        public string GET_TREEVIEW_MENU_DETAILS = "Security_GetTreeViewMenuDetails";
-        public string GET_PARENT_SCREEN_URL = "Security_GetParentScreenUrl";
+        //public string GET_TREEVIEW_MENU_DETAILS = "Security_GetTreeViewMenuDetails";
+
+        //public string GET_PARENT_SCREEN_URL = "Security_GetParentScreenUrl";
 
 
         public const string Log_Only_Policy = "Log_Only_Policy";
