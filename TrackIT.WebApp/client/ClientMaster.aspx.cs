@@ -33,6 +33,7 @@ namespace TrackIT.WebApp.client
         protected void Page_Load(object sender, EventArgs e)
         {
             lblCreateClient.Text = RollupText ("Client", "lblCreateClients");
+            lblclientname.Text = RollupText("Client", "lblclientname");
             
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
@@ -48,16 +49,12 @@ namespace TrackIT.WebApp.client
 
 
             DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_key,client_name,client_code from prj_clients");
+            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code,client_name,client_address_1,client_address_2,client_city,client_state,client_zip,client_country,client_contact_name,client_contact_designation from prj_clients");
             if (lds_Result.Tables[0].Rows.Count > 0)
             {
                 lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
                 lwdg_clientMasterGrid.DataBind();
-                DataColumn[] keyColumns = new DataColumn[1];
-                DataTable ldt_dt = lds_Result.Tables[0];
-                lwdg_clientMasterGrid.DataKeyFields = "client_key";
-                keyColumns[0] = ldt_dt.Columns["user_id"];
-                ldt_dt.PrimaryKey = keyColumns;
+                
             }
 
         }
@@ -66,9 +63,17 @@ namespace TrackIT.WebApp.client
         {
             if (e.Row.Index == 0)
             {
-                e.Row.Items.FindItemByKey("client_key").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("client", "gridcode");
-                e.Row.Items.FindItemByKey("client_code").Column.Header.Text = RollupText("client", "gridname");
+                
+                e.Row.Items.FindItemByKey("client_code").Column.Header.Text = RollupText("client", "gridclientscode");
+                e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("client", "gridclientsname");
+                e.Row.Items.FindItemByKey("client_address_1").Column.Header.Text = RollupText("client", "gridclientsaddress1");
+                e.Row.Items.FindItemByKey("client_address_2").Column.Header.Text = RollupText("client", "gridclientsaddress2");
+                e.Row.Items.FindItemByKey("client_city").Column.Header.Text = RollupText("client", "gridclientscity");
+                e.Row.Items.FindItemByKey("client_state").Column.Header.Text = RollupText("client", "gridclientsstate");
+                e.Row.Items.FindItemByKey("client_zip").Column.Header.Text = RollupText("client", "gridclientszip");
+                e.Row.Items.FindItemByKey("client_country").Column.Header.Text = RollupText("client", "gridclientscountry");
+                e.Row.Items.FindItemByKey("client_contact_name").Column.Header.Text = RollupText("client", "gridclientscontactname");
+                e.Row.Items.FindItemByKey("client_contact_designation").Column.Header.Text = RollupText("client", "gridclientsdesignation");
             }
             if (!IsPostBack)
             {

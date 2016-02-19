@@ -117,11 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="gridcode" xml:space="preserve">
+  <data name="gridclientsaddress1" xml:space="preserve">
+    <value>Address 1</value>
+  </data>
+  <data name="gridclientsaddress2" xml:space="preserve">
+    <value>Address 2</value>
+  </data>
+  <data name="gridclientscity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="gridclientscode" xml:space="preserve">
     <value>Client Code</value>
   </data>
-  <data name="gridname" xml:space="preserve">
+  <data name="gridclientscontactname" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="gridclientscountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="gridclientsdesignation" xml:space="preserve">
+    <value>Contact Designation</value>
+  </data>
+  <data name="gridclientsname" xml:space="preserve">
     <value>Client name</value>
+  </data>
+  <data name="gridclientsstate" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="gridclientszip" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+  <data name="lblclientname" xml:space="preserve">
+    <value>Client Name</value>
   </data>
   <data name="lblCreateClients" xml:space="preserve">
     <value>Clients</value>

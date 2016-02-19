@@ -61,20 +61,101 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address 1.
+        /// </summary>
+        internal static string gridclientsaddress1 {
+            get {
+                return ResourceManager.GetString("gridclientsaddress1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address 2.
+        /// </summary>
+        internal static string gridclientsaddress2 {
+            get {
+                return ResourceManager.GetString("gridclientsaddress2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string gridclientscity {
+            get {
+                return ResourceManager.GetString("gridclientscity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client Code.
         /// </summary>
-        internal static string gridcode {
+        internal static string gridclientscode {
             get {
-                return ResourceManager.GetString("gridcode", resourceCulture);
+                return ResourceManager.GetString("gridclientscode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Name.
+        /// </summary>
+        internal static string gridclientscontactname {
+            get {
+                return ResourceManager.GetString("gridclientscontactname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        internal static string gridclientscountry {
+            get {
+                return ResourceManager.GetString("gridclientscountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Designation.
+        /// </summary>
+        internal static string gridclientsdesignation {
+            get {
+                return ResourceManager.GetString("gridclientsdesignation", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Client name.
         /// </summary>
-        internal static string gridname {
+        internal static string gridclientsname {
             get {
-                return ResourceManager.GetString("gridname", resourceCulture);
+                return ResourceManager.GetString("gridclientsname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to State.
+        /// </summary>
+        internal static string gridclientsstate {
+            get {
+                return ResourceManager.GetString("gridclientsstate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip Code.
+        /// </summary>
+        internal static string gridclientszip {
+            get {
+                return ResourceManager.GetString("gridclientszip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client Name.
+        /// </summary>
+        internal static string lblclientname {
+            get {
+                return ResourceManager.GetString("lblclientname", resourceCulture);
             }
         }
         

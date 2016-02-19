@@ -16,6 +16,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="adminhead" runat="server">
 </asp:Content>
 <asp:Content ID="project" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <%--   <asp:scriptmanager id="ScriptManager1" runat="server">
+</asp:scriptmanager>--%>
+    <script type="text/javascript">
+
+        function ShowModalPopup() {
+            $find("mpe").show();
+            $find("ctl00_ContentPlaceHolder1_pnlPopup").show();
+            return false;
+        }
+        function HideModalPopup() {
+            $find("mpe").hide();
+            document.getElementById("createnew").style.display = "block";
+            return false;
+        }
+        </script>
      <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
@@ -38,7 +53,35 @@
                         <asp:Label ID="lblCreateProjects" runat="server"></asp:Label>
                     </h1>
                 </div>
+                <div runat="server" id="pnl_projectGrid">
+                     
+                 </div>
             </div>
+            <div class="main-content">
+
+                    <div class="page-content">
+
+                        <div class="page-content-area">
+                             <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
+                    <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
+                              <cc1:ModalPopupExtender ID="mpe_projectPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
+                        PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
+                    </cc1:ModalPopupExtender>
+                             <asp:Panel ID="pnlPopup" runat="server" CssClass="modal-dialog" Style="display: none;">
+                                <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
+                                    <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
+                                        <h4 class="modal-title">project</h4>
+                                    </asp:Panel>
+                                     <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
+                                        <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
+                            <div class="form-horizontal">
+                                </div>
+                                     </asp:Panel>
+                                    </asp:Panel>
+                                 </asp:Panel>
+                                          </div>
+                        </div>
+                </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
