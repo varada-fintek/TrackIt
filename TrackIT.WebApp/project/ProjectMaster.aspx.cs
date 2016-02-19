@@ -34,26 +34,44 @@ namespace TrackIT.WebApp.project
         {
             ControlNames();
             lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
-            
             iwdg_projectMasterGrid = new WebDataGrid();
             pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
 
             iwdg_projectMasterGrid.InitializeRow += iwdg_projectMasterGrid_InitializeRow;
             DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select project_code,project_name,project_kickoff_date,project_owner,is_active from prj_projects");
+            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select pc.client_name, pp.project_code,pp.project_name,pp.project_kickoff_date,pp.project_owner,pp.is_active from prj_projects pp inner join prj_clients pc on pc.client_key=pp.client_key");
             if (lds_Result.Tables[0].Rows.Count > 0)
             {
                 iwdg_projectMasterGrid.DataSource = lds_Result.Tables[0];
                 iwdg_projectMasterGrid.DataBind();
             }
+            if(!IsPostBack)
+            {
+                DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients (NOLOCK) WHERE is_active = 1 ORDER BY client_name");
+                if (lds_Client.Tables[0].Rows.Count > 0)
+                {
+                    //Unit Testing ID - UserMaster.aspx.cs_3
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_3 Roles dataset count" + lds_Client.Tables[0].Rows.Count);
+                    ddlClients.Items.Clear();
+                    System.Web.UI.WebControls.ListItem llstm_li = new System.Web.UI.WebControls.ListItem("Select", "");
+                    ddlClients.DataSource = lds_Client;
+                    ddlClients.DataTextField = "TextValue";
+                    ddlClients.DataValueField = "Value";
+                    ddlClients.DataBind();
+                    ddlClients.Items.Insert(0, llstm_li);
+                }
+
+            }
         }
+
         private void iwdg_projectMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
             //throw new NotImplementedException();
             if (e.Row.Index == 0)
             {
 
+                e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("projects", "gridclientname");
                 e.Row.Items.FindItemByKey("project_code").Column.Header.Text = RollupText("projects", "gridprojectcode");
                 e.Row.Items.FindItemByKey("project_name").Column.Header.Text = RollupText("projects", "gridprojectname");
                 e.Row.Items.FindItemByKey("project_kickoff_date").Column.Header.Text = RollupText("projects", "gridprojectkickoffdate");
@@ -61,40 +79,29 @@ namespace TrackIT.WebApp.project
                 e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("projects", "gridisactive");
             }
         }
-
-        #region ControlNames
-        /// <summary>
-        /// ControlNames Assign Values to label and Validators
-        /// </summary>
         private void ControlNames()
         {
             try
             {
-
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_25 ControlNames");
-                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text = RollupText("Projects", "lblListCaption");
                 lblclientname.Text = RollupText("Projects", "lblclientname");
-                lblprojectcode.Text = RollupText("Projects", "lblprojectcode");
-                lblprojectname.Text = RollupText("Projects", "lblprojectname");
-                reqvprojectcode.ErrorMessage = RollupText("Projects", "reqvprojectcode");
-                reqvprojectname.ErrorMessage = RollupText("Projects", "reqvprojectname");
-
-                if (!bitAdd)
-                    createnew.Style.Add("display", "none");
+                reqvClient.ErrorMessage = RollupText("Projects", "reqvClient");
             }
             catch (Exception ex)
             {
-                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
-                    throw;
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
             }
         }
-        #endregion
-        #region Verify Control Rendereing
-        public override void VerifyRenderingInServerForm(Control control)
+
+        protected void btnClear_Click(object sender, EventArgs e)
         {
-            /* Verifies that the control is rendered */
+
         }
 
-        #endregion
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+
+            mpe_projectPopup.Show();
+        }
     }
 }

@@ -148,13 +148,13 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.WebControls.Panel pnlbody;
         
         /// <summary>
-        /// valSumproject control.
+        /// ValProjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary valSumproject;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValProjects;
         
         /// <summary>
         /// lblclientname control.
@@ -166,93 +166,48 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.WebControls.Label lblclientname;
         
         /// <summary>
-        /// ddlRole control.
+        /// ddlClients control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClients;
         
         /// <summary>
-        /// lblprojectcode control.
+        /// reqvClient control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprojectcode;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvClient;
         
         /// <summary>
-        /// txtUserID control.
+        /// pnlfooter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserID;
+        protected global::System.Web.UI.WebControls.Panel pnlfooter;
         
         /// <summary>
-        /// FilteredTextBoxExtender4 control.
+        /// btnClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender4;
+        protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
-        /// reqvprojectcode control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvprojectcode;
-        
-        /// <summary>
-        /// reqvproectcodeUNQ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvproectcodeUNQ;
-        
-        /// <summary>
-        /// lblprojectname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprojectname;
-        
-        /// <summary>
-        /// txtprojectname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtprojectname;
-        
-        /// <summary>
-        /// ccfirstname_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccfirstname_FilteredTextBoxExtender;
-        
-        /// <summary>
-        /// reqvprojectname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvprojectname;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

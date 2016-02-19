@@ -113,7 +113,7 @@ namespace TrackIT.WebApp
             try
             {
                 ControlNames();
-
+                loginpanel.DefaultButton = "btnuserlogin";
                 if (!IsPostBack)
                 {
                     //Unit Testing ID - Login_CS_3
@@ -189,15 +189,10 @@ namespace TrackIT.WebApp
                         objUser.UsersID = Convert.ToInt64(lds_Result.Tables[1].Rows[0]["UsersID"]);
                     else
                         objUser.UsersID = null;
-
-                   // if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Staff_ID"].ToString()))
-                      //  objUser.logged_in_UserID = Convert.ToInt64(lds_Result.Tables[0].Rows[0]["Staff_ID"]);
-                   // else
-                      //  objUser.logged_in_UserID = null;
+                  
 
                     objUser.UserName = lds_Result.Tables[1].Rows[0]["USER_NAME"].ToString();
                     objUser.LoginUserName = lds_Result.Tables[1].Rows[0]["DISPLAY_NAME"].ToString();
-                    //objUser.Password = (byte[])lds_Result.Tables[1].Rows[0]["user_password"];
 
                     if (!string.IsNullOrEmpty(lds_Result.Tables[1].Rows[0]["user_role_key"].ToString()))
                         objUser.RoleID =Convert.ToInt64(lds_Result.Tables[1].Rows[0]["user_role_key"]);
@@ -210,14 +205,8 @@ namespace TrackIT.WebApp
                     else
                         objUser.EmailID = string.Empty;
 
-                   // objUser.UserType = lds_Result.Tables[0].Rows[0]["User_Type"].ToString();
-                  //  objUser.DisplayName = lds_Result.Tables[0].Rows[0]["Display_Name"].ToString();
-                    objUser.RoleName = lds_Result.Tables[0].Rows[0]["Role_Name"].ToString();
-                    objUser.RoleType = lds_Result.Tables[0].Rows[0]["Role_Type"].ToString();
-                    // objUser.IsSuperUser = Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Super_User"].ToString());
-                    // objUser.IsAdminRole = Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Admin_Role"].ToString());
-                    // objUser.DepartmentCode = lds_Result.Tables[0].Rows[0]["Department_Code"].ToString();
-                    // objUser.User_Photo_Path = lds_Result.Tables[0].Rows[0]["User_Photo_Path"].ToString();
+                    objUser.RoleName = lds_Result.Tables[1].Rows[0]["Role_Name"].ToString();
+                    objUser.RoleType = lds_Result.Tables[1].Rows[0]["Role_Type"].ToString();
                     objUser.IsFirstLogin = 0; //Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Is_First_Login"].ToString()) == true ? 1 : 0;
               
 
@@ -247,12 +236,8 @@ namespace TrackIT.WebApp
                         SetSessionValue(SessionItems.User_Display_Name, objUser.DisplayName);
                         SetSessionValue(SessionItems.Role_Name, objUser.RoleName);
                         SetSessionValue(SessionItems.Role_Type, objUser.RoleType);
-                      //  SetSessionValue(SessionItems.Is_Admin_Role, objUser.IsAdminRole);
-                     //   SetSessionValue(SessionItems.User_Photo_Path, objUser.User_Photo_Path);
                         SetSessionValue(SessionItems.Is_First_Login, objUser.IsFirstLogin);
                         
-                        /* Get all the dropdown values and store in the cache */
-                        //LookupCacheManager.CacheLookupValues();
 
                         /*Insert the Login in User Details*/
                         objResult.LoginSessionID = Session.SessionID.ToString();

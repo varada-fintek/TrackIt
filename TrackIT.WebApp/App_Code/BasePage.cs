@@ -68,17 +68,15 @@ namespace TrackIT.WebApp
         public const string GENERATED = "GENERATED";
       
 
-        public string GET_USER_ACCESS = "Security_GetUserAccess";
+       // public string GET_USER_ACCESS = "Security_GetUserAccess";
         public string GET_MODULE_ACCESS_RIGHTS = "Security_GetModuleAccessRights";
         public string GET_SCREEN_ACCESS_RIGHTS = "Security_GetScreenAccessRights";
 
         public string GET_SCREEN_AUTHENTICATION = "Security_GetScreenAuthentication";
-        public string GET_TREEVIEW_MENU_DETAILS = "Security_GetTreeViewMenuDetails";
-        public string GET_PARENT_SCREEN_URL = "Security_GetParentScreenUrl";
+        //public string GET_TREEVIEW_MENU_DETAILS = "Security_GetTreeViewMenuDetails";
 
+        //public string GET_PARENT_SCREEN_URL = "Security_GetParentScreenUrl";
 
-        public const string PREVIOUS = "previous";
-        public const string NEXT = "next";
 
         public const string Log_Only_Policy = "Log_Only_Policy";
         public const string Rethrow_Policy = "Rethrow_Policy";
@@ -102,8 +100,6 @@ namespace TrackIT.WebApp
 
         private Int64? _guidLoggedInUserRoleID;
         private Int64? _guidLoggedInUserID;
-        private Int64? _guidLoggedInFirmID;
-        private Int64? _guidLoggedInStaffID;
         private string _sLoggedInUserName;
         private string _sLoggedInUserDisplayName;
         private string _sLoggedInUserPhotoPath;
@@ -113,35 +109,16 @@ namespace TrackIT.WebApp
         private string _sModuleID;
         private string _sLeftNode;
         private string _sScreenID;
-        private string _sCurrencyCode;
-        private string _isSuperUser;
         private bool   _bitIsAdminRole; 
-        private string _sCurrentPageIndex;        
         private string _sConnectionString;
-        private string _sCtrlAImage;
-        private string _sCurrentCountry;
-        private string _sDepartmentCode;
+     
         //private CreateRequestBO _objCreateRequestBO;
 
         //For Web.Config Keys
         private string _sObjCreator;
-        private string _sPageNavigationSize;
-        private string _sPageSize;
-
-        //For Grid Paging
-        protected int iPageSize;
-        protected int iPageIndex;
-        protected int iTotalPage;
-        //protected int iLastRequestID;
         #endregion
 
-        #region "Protected Variables"
-                
-        //protected string sParameterName = "STAFF";
-        //protected string sCtrlAImage = ConfigurationManager.AppSettings["CtrlAIMAGE"];
-        //protected string sCurrentCountry = ConfigurationManager.AppSettings["CURRENTCOUNTRY"];
-
-        #endregion
+       
 
         #region "Public Variables"
 
@@ -153,9 +130,7 @@ namespace TrackIT.WebApp
         public string sMonthYearFormat = "MMM, yyyy";
         public string sShortYearMonthFormat = "yyyy-MM";
         public string sCurrentDate = DateTime.Now.ToString();
-        public string sNoImage = ConfigurationManager.AppSettings["NOIMAGE"].ToString();
-        public string sUserTypeStudentCode = "STU";
-        public string sUserTypeStaffCode = "STF";
+
 
         public Boolean bitAdd;
         public Boolean bitEdit;
@@ -183,12 +158,7 @@ namespace TrackIT.WebApp
 
         #region "Properties"
 
-        public Int64? LoggedInFirmId
-        {
-            get { return _guidLoggedInFirmID; }
-            set { _guidLoggedInFirmID = value; }
-        }
-
+ 
         public Int64? LoggedInUserRoleId
         {
             get { return _guidLoggedInUserRoleID; }
@@ -201,12 +171,6 @@ namespace TrackIT.WebApp
             set { _guidLoggedInUserID = value; }
         }
 
-        public Int64? LoggedInStaffID
-        {
-            get { return _guidLoggedInStaffID; }
-            set { _guidLoggedInStaffID = value; }
-        }
-
         public string LoggedInUserName
         {
             get { return _sLoggedInUserName; }
@@ -217,12 +181,6 @@ namespace TrackIT.WebApp
         {
             get { return _sLoggedInUserDisplayName; }
             set { _sLoggedInUserDisplayName = value; }
-        }
-
-        public string LoggedInUserPhotoPath
-        {
-            get { return _sLoggedInUserPhotoPath; }
-            set { _sLoggedInUserPhotoPath = value; }
         }
 
         public string LoggedInUserRoleName
@@ -254,63 +212,13 @@ namespace TrackIT.WebApp
             get { return _sScreenID; }
             set { _sScreenID = value; }
         }
-
-        public string CurrencyCode
-        {
-            get { return _sCurrencyCode; }
-            set { _sCurrencyCode = value; }
-        }
-
-        public string IsSuperUser
-        {
-            get { return _isSuperUser; }
-            set { _isSuperUser = value; }
-        }
-
-        public string CurrentPageIndex
-        {
-            get { return _sCurrentPageIndex; }
-            set { _sCurrentPageIndex = value; }
-        }
-
-        public Boolean IsAdminRole
-        {
-            get { return _bitIsAdminRole; }
-            set { _bitIsAdminRole = value; }
-        }
-
+        
         public string ConnectionString
         {
             get { return _sConnectionString; }
             set { _sConnectionString = value; }
         }
-
-        //public string CtrlAImage
-        //{
-        //    get { return _sCtrlAImage; }
-        //    set { _sCtrlAImage = value; }
-        //}
-
-        //public string CurrentCountry
-        //{
-        //    get { return _sCurrentCountry; }
-        //    set { _sCurrentCountry = value; }
-        //}
-
-        //public string DepartmentCode
-        //{
-        //    get { return _sDepartmentCode; }
-        //    set { _sDepartmentCode = value; }
-        //}
-
-       
-
-        //public CreateRequestBO objCreateRequestBO
-        //{
-        //    get { return _objCreateRequestBO; }
-        //    set { _objCreateRequestBO = value; }
-        //}
-
+        
         /* Start - Properties for Web.Config Keys */
         public string ObjectCreatorOption
         {
@@ -318,17 +226,6 @@ namespace TrackIT.WebApp
             set { _sObjCreator = value; }
         }
 
-        public string PageNavigationSize
-        {
-            get { return _sPageNavigationSize; }
-            set { _sPageNavigationSize = value; }
-        }
-
-        public string PageSize
-        {
-            get { return _sPageSize; }
-            set { _sPageSize  = value; }
-        }
 
         /* End - Properties for Web.Config Keys */
 
@@ -350,12 +247,11 @@ namespace TrackIT.WebApp
                         _guidLoggedInUserRoleID = Convert.ToInt64(GetSessionValue(SessionItems.Role_ID).ToString());
 
                         if (GetSessionValue(SessionItems.loggedin_User_ID) != null)
-                            _guidLoggedInStaffID = Convert.ToInt64(GetSessionValue(SessionItems.loggedin_User_ID).ToString());
+                            _guidLoggedInUserID = Convert.ToInt64(GetSessionValue(SessionItems.loggedin_User_ID).ToString());
                         _sLoggedInUserName = StringFunctions.ToString(GetSessionValue(SessionItems.User_Name)).Trim();
                         _sModuleID = StringFunctions.ToString(GetSessionValue(SessionItems.Module_ID)).Trim();
                         _sLeftNode = StringFunctions.ToString(GetSessionValue(SessionItems.Left_Node)).Trim();
                         _sScreenID = StringFunctions.ToString(GetSessionValue(SessionItems.Screen_ID)).Trim();
-                        _isSuperUser = StringFunctions.ToString(GetSessionValue(SessionItems.Super_User)).Trim();
                         _sLoggedInUserDisplayName = StringFunctions.ToString(GetSessionValue(SessionItems.User_Display_Name)).Trim();
                         _sLoggedInUserRoleName = StringFunctions.ToString(GetSessionValue(SessionItems.Role_Name)).Trim();
                         _sLoggedInUserRoleType = StringFunctions.ToString(GetSessionValue(SessionItems.Role_Type)).Trim();
@@ -364,9 +260,6 @@ namespace TrackIT.WebApp
 
                         // Read from Web.config
                         _sObjCreator = Utilities.GetKey("ObjectCreatorOption");
-                        _sPageSize = Utilities.GetKey("PageSize");
-                        if (StringFunctions.IsNullOrEmpty(_sPageSize)) _sPageSize = "1";
-                        _sPageNavigationSize = Utilities.GetKey("PageNavigationSize");
                     }
                     else
                     {
@@ -627,32 +520,25 @@ namespace TrackIT.WebApp
             {
                 if (GetSessionValue(SessionItems.User_ID) != null)
                 {
-                    if (this.IsSuperUser.ToUpper() == "TRUE")
-                    {
-                        bitAdd = true;
-                        bitEdit = true;
-                        bitDelete = true;
-                        bitView = true;
-                    }
-                    else if ((Request.CurrentExecutionFilePath != "/Home.aspx") && (Request.CurrentExecutionFilePath != "/Error.aspx")
+                    //if (this.IsSuperUser.ToUpper() == "TRUE")
+                    //{
+                    //    bitAdd = true;
+                    //    bitEdit = true;
+                    //    bitDelete = true;
+                    //    bitView = true;
+                    //}
+                    //else
+                    if ((Request.CurrentExecutionFilePath != "/Home.aspx") && (Request.CurrentExecutionFilePath != "/Error.aspx")
                              && (Request.CurrentExecutionFilePath != "/Reports/ReportViewer.aspx"))
                     {
                         UserAccessBO objUserAccess = new UserAccessBO(this.ConnectionString);
-                        //objUserAccess.UsersID = this.LoggedInUserId;
                         objUserAccess.RoleID = this.LoggedInUserRoleId;  
                         objUserAccess.FilePath = Request.CurrentExecutionFilePath;
 
                         string[] sRawURL = Request.RawUrl.ToString().Split('&');
                         string sFilePath = sRawURL[0].ToString();
-                        //if (Request.CurrentExecutionFilePath.Equals("/StudentSearch.aspx"))
-                        //    objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
-                        //else if (Request.CurrentExecutionFilePath.Equals("/HCM/StaffsList.aspx"))
-                        //    objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
-                        //else if (Request.CurrentExecutionFilePath.Equals("/HCM/StaffReports.aspx"))
-                        //    objUserAccess.FilePath = sFilePath; //Request.RawUrl.ToString();
 
                         SqlParameter[] objParams = { 
-                        //new SqlParameter ("@UserID",  objUserAccess.UsersID),
                         new SqlParameter ("@RoleID",  objUserAccess.RoleID),
                         new SqlParameter ("@FileUrl",  objUserAccess.FilePath)
                     };

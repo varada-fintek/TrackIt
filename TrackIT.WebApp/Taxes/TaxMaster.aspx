@@ -42,6 +42,31 @@
                      
                  </div>
             </div>
+            <div class="main-content">
+
+                    <div class="page-content">
+
+                        <div class="page-content-area">
+                             <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
+                    <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
+                              <cc1:ModalPopupExtender ID="mpe_taxPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
+                        PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
+                    </cc1:ModalPopupExtender>
+                             <asp:Panel ID="pnlPopup" runat="server" CssClass="modal-dialog" Style="display: none;">
+                                <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
+                                    <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
+                                        <h4 class="modal-title">Taxes</h4>
+                                    </asp:Panel>
+                                     <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
+                                        <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
+                            <div class="form-horizontal">
+                                </div>
+                                     </asp:Panel>
+                                    </asp:Panel>
+                                 </asp:Panel>
+                                          </div>
+                        </div>
+                </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
