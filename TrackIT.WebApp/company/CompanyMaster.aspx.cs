@@ -69,7 +69,8 @@ namespace TrackIT.WebApp.company
 
                 //Unit Testing ID - UserMaster.aspx.cs_25
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_25 ControlNames");
-                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text = RollupText("UserMaster", "lblListCaption");
+                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text =
+                    RollupText("UserMaster", "lblListCaption");
                 lblCreateCompanies.Text = RollupText("Companies", "lblCreateCompanies");
                 lblcompanyname.Text = RollupText("Companies", "lblcompanyname");
                 lblcompanycode.Text = RollupText("Companies", "lblcompanycode");
