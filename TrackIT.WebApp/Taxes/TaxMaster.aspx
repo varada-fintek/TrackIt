@@ -14,7 +14,22 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="adminhead" runat="server">
 </asp:Content>
-<asp:Content ID="tax" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">   
+<asp:Content ID="tax" runat="server" ContentPlaceHolderID="ContentPlaceHolder1"> 
+     <%--   <asp:scriptmanager id="ScriptManager1" runat="server">
+</asp:scriptmanager>--%>
+    <script type="text/javascript">
+
+        function ShowModalPopup() {
+            $find("mpe").show();
+            $find("ctl00_ContentPlaceHolder1_pnlPopup").show();
+            return false;
+        }
+        function HideModalPopup() {
+            $find("mpe").hide();
+            document.getElementById("createnew").style.display = "block";
+            return false;
+        }
+          </script>
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
