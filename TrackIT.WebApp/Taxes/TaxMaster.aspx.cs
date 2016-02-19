@@ -76,6 +76,8 @@ namespace TrackIT.WebApp.Taxes
             lblCreatetaxes.Text = RollupText("Taxes", "lblCreatetaxes");
             lbltaxname.Text = RollupText("Taxes", "lbltaxname");
             lbltaxcode.Text = RollupText("Taxes", "lbltaxcode");
+            reqvtaxcode.ErrorMessage = RollupText("Taxes", "reqvtaxcode");
+            reqvtxttaxname.ErrorMessage = RollupText("Taxes", "reqvtxttaxname");
         }
 
         private void GetTaxDetails()
@@ -90,6 +92,7 @@ namespace TrackIT.WebApp.Taxes
                     iwdg_TaxMasterGrid.DataSource = lds_Result.Tables[0];
                     iwdg_TaxMasterGrid.DataBind();
                 }
+
                 iwdg_TaxDetailsGrid.InitializeRow += iwdg_TaxDetailsGrid_InitializeRow;
                 DataSet lds_taxResult;
                 lds_taxResult = ldbh_QueryExecutors.ExecuteDataSet("select tax_from,tax_to,tax_percent,tax_type,tax_applied_on from prj_taxes_details");

@@ -13,11 +13,13 @@
 
 <%@ Register Assembly="Infragistics4.Web.v14.1, Version=14.1.20141.2328, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="adminhead" runat="server">
 </asp:Content>
 <asp:Content ID="tax" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <%--   <asp:scriptmanager id="ScriptManager1" runat="server">
 </asp:scriptmanager>--%>
+
     <script type="text/javascript">
 
         function ShowModalPopup() {
@@ -73,26 +75,8 @@
                                     <h4 class="modal-title">Taxes</h4>
                                 </asp:Panel>
                                 <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
-                                    <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
+                                    <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" DisplayMode="BulletList" ValidationGroup="vgrpSave" />
                                     <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <asp:Label ID="lbltaxname" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-3">
-                                                <asp:TextBox ID="txttaxname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                            </div>
-                                            <div class="col-md-1" style="display: none;">
-                                                <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
-                                                    runat="server" Enabled="True" TargetControlID="txttaxname"
-                                                    ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                </cc1:FilteredTextBoxExtender>
-                                                <asp:RequiredFieldValidator ID="reqvtxttaxname" runat="server"
-                                                    ControlToValidate="txttaxname" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-                                               
-
-                                            </div>
-                                        </div>
                                         <div class="form-group">
                                             <asp:Label ID="lbltaxcode" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
@@ -111,6 +95,25 @@
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lbltaxname" class="control-label col-md-2" runat="server"></asp:Label>
+                                            <div class="col-md-3">
+                                                <asp:TextBox ID="txttaxname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                            </div>
+                                            <div class="col-md-1" style="display: none;">
+                                                <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
+                                                    runat="server" Enabled="True" TargetControlID="txttaxname"
+                                                    ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                </cc1:FilteredTextBoxExtender>
+                                                <asp:RequiredFieldValidator ID="reqvtxttaxname" runat="server"
+                                                    ControlToValidate="txttaxname" Display="Static" SetFocusOnError="True"
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                               
+
+                                            </div>
+                                        </div>
+                                        
                                         <div class="col-sm-12">
                                             <div runat="server" id="pnl_taxdetailsGrid">
                                             </div>
