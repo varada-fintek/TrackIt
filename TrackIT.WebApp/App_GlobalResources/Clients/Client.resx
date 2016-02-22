@@ -147,10 +147,64 @@
   <data name="gridclientszip" xml:space="preserve">
     <value>Zip Code</value>
   </data>
-  <data name="lblclientname" xml:space="preserve">
-    <value>Client Name</value>
-  </data>
   <data name="lblCreateClients" xml:space="preserve">
     <value>Clients</value>
+  </data>
+  <data name="lblbillinfosame" xml:space="preserve">
+    <value>Bill info same as Address info</value>
+  </data>
+  <data name="lblbilladdress1" xml:space="preserve">
+    <value>Address Line 1</value>
+  </data>
+  <data name="lblbilladdress2" xml:space="preserve">
+    <value>Address Line 2</value>
+  </data>
+  <data name="lblbillcity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="lblclientcode" xml:space="preserve">
+    <value>Client Code*</value>
+  </data>
+  <data name="lblclientname" xml:space="preserve">
+    <value>Client Name*</value>
+  </data>
+  <data name="lblbillstate" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="lblbillzip" xml:space="preserve">
+    <value>Zip</value>
+  </data>
+  <data name="lblbillcountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="lblIsactive" xml:space="preserve">
+    <value>Active*</value>
+  </data>
+  <data name="lbladdresscity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="lbladdresscountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="lbladdressline1" xml:space="preserve">
+    <value>Address Line 1</value>
+  </data>
+  <data name="lbladdressline2" xml:space="preserve">
+    <value>Address Line 2</value>
+  </data>
+  <data name="lbladdressstate" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="lbladdresszip" xml:space="preserve">
+    <value>Zip</value>
+  </data>
+  <data name="lblclientcontactdesignation" xml:space="preserve">
+    <value>Contact Designation</value>
+  </data>
+  <data name="lblclientcontactname" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="reqvUnqclientcode" xml:space="preserve">
+    <value>Client Id Should be Unique</value>
   </data>
 </root>

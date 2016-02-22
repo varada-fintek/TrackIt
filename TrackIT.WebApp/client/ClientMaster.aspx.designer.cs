@@ -103,13 +103,13 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.LinkButton lnkDummy;
         
         /// <summary>
-        /// mpe_ClientsPopup control.
+        /// mpe_clientPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpe_ClientsPopup;
+        protected global::AjaxControlToolkit.ModalPopupExtender mpe_clientPopup;
         
         /// <summary>
         /// pnlPopup control.
@@ -157,24 +157,6 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.ValidationSummary valSumUser;
         
         /// <summary>
-        /// lblclientname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientname;
-        
-        /// <summary>
-        /// txtclintName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclintName;
-        
-        /// <summary>
         /// lblclientcode control.
         /// </summary>
         /// <remarks>
@@ -193,130 +175,319 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtclientCode;
         
         /// <summary>
-        /// lblclientaddress1 control.
+        /// reqvclientIdUNQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientaddress1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvclientIdUNQ;
         
         /// <summary>
-        /// txtclientaddress1 control.
+        /// lblclientname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclientaddress1;
+        protected global::System.Web.UI.WebControls.Label lblclientname;
         
         /// <summary>
-        /// lblclientaddress2 control.
+        /// txtclientName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientaddress2;
+        protected global::System.Web.UI.WebControls.TextBox txtclientName;
         
         /// <summary>
-        /// txtclientaddress2 control.
+        /// lblIsactive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclientaddress2;
+        protected global::System.Web.UI.WebControls.Label lblIsactive;
         
         /// <summary>
-        /// lblclientcity control.
+        /// chkisactive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientcity;
+        protected global::System.Web.UI.WebControls.CheckBox chkisactive;
         
         /// <summary>
-        /// txtclientcity control.
+        /// lbladdressline1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclientcity;
+        protected global::System.Web.UI.WebControls.Label lbladdressline1;
         
         /// <summary>
-        /// lblclientstate control.
+        /// txtaddressline1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientstate;
+        protected global::System.Web.UI.WebControls.TextBox txtaddressline1;
         
         /// <summary>
-        /// txtclientstate control.
+        /// lbladdressline2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclientstate;
+        protected global::System.Web.UI.WebControls.Label lbladdressline2;
         
         /// <summary>
-        /// lblclientzip control.
+        /// txtaddressline2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientzip;
+        protected global::System.Web.UI.WebControls.TextBox txtaddressline2;
         
         /// <summary>
-        /// txtclientzip control.
+        /// lbladdresscity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclientzip;
+        protected global::System.Web.UI.WebControls.Label lbladdresscity;
         
         /// <summary>
-        /// lblcountry control.
+        /// txtaddresscity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcountry;
+        protected global::System.Web.UI.WebControls.TextBox txtaddresscity;
         
         /// <summary>
-        /// ddlRole control.
+        /// lbladdressstate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
+        protected global::System.Web.UI.WebControls.Label lbladdressstate;
         
         /// <summary>
-        /// Label1 control.
+        /// txtaddressstate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox txtaddressstate;
         
         /// <summary>
-        /// TextBox1 control.
+        /// lbladdresszip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Label lbladdresszip;
+        
+        /// <summary>
+        /// txtaddresszip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtaddresszip;
+        
+        /// <summary>
+        /// lbladdresscountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbladdresscountry;
+        
+        /// <summary>
+        /// ddladdresscountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddladdresscountry;
+        
+        /// <summary>
+        /// lblbillinfosame control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbillinfosame;
+        
+        /// <summary>
+        /// chkbillinfosame control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkbillinfosame;
+        
+        /// <summary>
+        /// lblclientcontactname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblclientcontactname;
+        
+        /// <summary>
+        /// txtclientcontactname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtclientcontactname;
+        
+        /// <summary>
+        /// lblclientcontactdesignation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblclientcontactdesignation;
+        
+        /// <summary>
+        /// txtclientcontactdesignation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtclientcontactdesignation;
+        
+        /// <summary>
+        /// lblbilladdress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbilladdress1;
+        
+        /// <summary>
+        /// txtbilladdress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbilladdress1;
+        
+        /// <summary>
+        /// lblbilladdress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbilladdress2;
+        
+        /// <summary>
+        /// txtbilladdress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbilladdress2;
+        
+        /// <summary>
+        /// lblbillcity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbillcity;
+        
+        /// <summary>
+        /// txtbillcity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbillcity;
+        
+        /// <summary>
+        /// lblbillstate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbillstate;
+        
+        /// <summary>
+        /// txtbillstate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbillstate;
+        
+        /// <summary>
+        /// lblbillzip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbillzip;
+        
+        /// <summary>
+        /// txtbillzip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbillzip;
+        
+        /// <summary>
+        /// lblbillcountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbillcountry;
+        
+        /// <summary>
+        /// ddlbillCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlbillCountry;
         
         /// <summary>
         /// pnlfooter control.
@@ -328,13 +499,13 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.Panel pnlfooter;
         
         /// <summary>
-        /// btnClear control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// btnSave control.
@@ -355,12 +526,12 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.HiddenField hdnpop;
         
         /// <summary>
-        /// hdnUserID control.
+        /// hdnClientID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUserID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnClientID;
     }
 }

@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string lblactive {
+            get {
+                return ResourceManager.GetString("lblactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client Name*.
         /// </summary>
         internal static string lblclientname {
@@ -133,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project Kickoff date*.
+        /// </summary>
+        internal static string lblkickdate {
+            get {
+                return ResourceManager.GetString("lblkickdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Code*.
         /// </summary>
         internal static string lblprojectcode {
@@ -142,11 +160,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please Select Clients.
+        ///   Looks up a localized string similar to Project Name*.
         /// </summary>
-        internal static string reqvClient {
+        internal static string lblprojectname {
             get {
-                return ResourceManager.GetString("reqvClient", resourceCulture);
+                return ResourceManager.GetString("lblprojectname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Owner*.
+        /// </summary>
+        internal static string lblprojectowner {
+            get {
+                return ResourceManager.GetString("lblprojectowner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Project Code.
+        /// </summary>
+        internal static string reqvcode {
+            get {
+                return ResourceManager.GetString("reqvcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Project Name.
+        /// </summary>
+        internal static string reqvpname {
+            get {
+                return ResourceManager.GetString("reqvpname", resourceCulture);
             }
         }
     }

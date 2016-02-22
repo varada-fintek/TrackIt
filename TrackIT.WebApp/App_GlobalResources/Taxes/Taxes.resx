@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="detailsgridtaxappliedon" xml:space="preserve">
+    <value>Applied on</value>
+  </data>
+  <data name="detailsgridtaxfrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="detailsgridtaxpercent" xml:space="preserve">
+    <value>Tax %</value>
+  </data>
+  <data name="detailsgridtaxto" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="detailsgridtaxtype" xml:space="preserve">
+    <value>Type</value>
+  </data>
   <data name="gridtaxcode" xml:space="preserve">
     <value>Tax Code</value>
   </data>
@@ -128,5 +143,17 @@
   </data>
   <data name="lblCreatetaxes" xml:space="preserve">
     <value>Tax</value>
+  </data>
+  <data name="lbltaxcode" xml:space="preserve">
+    <value>Tax code*</value>
+  </data>
+  <data name="lbltaxname" xml:space="preserve">
+    <value>Tax Name*</value>
+  </data>
+  <data name="reqvtaxcode" xml:space="preserve">
+    <value>Please Enter Tax Code</value>
+  </data>
+  <data name="reqvtxttaxname" xml:space="preserve">
+    <value>Please Enter Tax Name</value>
   </data>
 </root>

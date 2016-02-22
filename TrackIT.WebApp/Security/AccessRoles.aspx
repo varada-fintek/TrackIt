@@ -261,7 +261,7 @@
                             <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
                                 <div class="form-horizontal">
 
-                                    <asp:ValidationSummary ID="valSumRoles" runat="server" ShowMessageBox="true" ShowSummary="false"  ValidationGroup="vgrpSave" />
+                                    <asp:ValidationSummary ID="valSumRoles" runat="server" ShowMessageBox="false" ShowSummary="true" DisplayMode="List" ValidationGroup="vgrpSave" />
                                     <div class="form-group">
                                         <asp:Label ID="lblRoleCode" class="control-label col-md-2" runat="server"></asp:Label>
                                         <div class="col-md-3">
