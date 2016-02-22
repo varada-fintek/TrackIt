@@ -168,4 +168,4 @@ TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
 TrackIT.WebApp/Properties/PublishProfiles/TrackIT.pubxml
 *.pubxml
 TrackIT.WebApp/TrackIT.WebApp.csproj
-SecurityCommon/TrackIT.Common/TrackIT.Common.csproj
+TrackIT.WebApp/Scripts/_references.js

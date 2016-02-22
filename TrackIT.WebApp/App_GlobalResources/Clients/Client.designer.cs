@@ -320,5 +320,14 @@ namespace Resources {
                 return ResourceManager.GetString("lblIsactive", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client Id Should be Unique.
+        /// </summary>
+        internal static string reqvUnqclientcode {
+            get {
+                return ResourceManager.GetString("reqvUnqclientcode", resourceCulture);
+            }
+        }
     }
 }

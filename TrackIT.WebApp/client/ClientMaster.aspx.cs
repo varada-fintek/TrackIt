@@ -35,35 +35,15 @@ namespace TrackIT.WebApp.client
             ControlNames();            
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
-            TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
-            
-            lwdg_clientMasterGrid.InitializeRow += Lwdg_clientMasterGrid_InitializeRow;
-            lwdg_clientMasterGrid.Columns.Clear();
-            TemplateDataField td = new TemplateDataField();
-            td.ItemTemplate = new CustomItemTemplateView();
-            td.Key = "Edit";
-            td.Width = 30;
-            lwdg_clientMasterGrid.Columns.Add(td);
-
-            DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code,client_name,client_address_1,client_address_2,client_city,client_state,client_zip,client_country,client_contact_name,client_contact_designation from prj_clients");
-            if (lds_Result.Tables[0].Rows.Count > 0)
-            {
-                lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
-                lwdg_clientMasterGrid.DataBind();
-                
-            }
-            
-
+            TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);            
+           
+            GetClientDetails();            
             if (!IsPostBack)
-            {
-                
-
+            {                
                 //Assign all dropdown data User Location Drop Down
                 DataSet lds_ClientLocation = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='CON' and cp.Active = 1 ORDER BY parameter_name");
                 if (lds_ClientLocation.Tables[0].Rows.Count > 0)
-                {
-                    //Unit Testing ID - UserMaster.aspx.cs_4
+                {                   
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_4 userLoaction dataset count" + lds_ClientLocation.Tables[0].Rows.Count);
                     ddlbillCountry.Items.Clear();
                     System.Web.UI.WebControls.ListItem li = new System.Web.UI.WebControls.ListItem("Select", "");
@@ -72,7 +52,6 @@ namespace TrackIT.WebApp.client
                     ddlbillCountry.DataValueField = "Value";
                     ddlbillCountry.DataBind();
                     ddlbillCountry.Items.Insert(0, li);
-
                     ddladdresscountry.Items.Clear();                    
                     ddladdresscountry.DataSource = lds_ClientLocation;
                     ddladdresscountry.DataTextField = "TextValue";
@@ -81,8 +60,14 @@ namespace TrackIT.WebApp.client
                     ddladdresscountry.Items.Insert(0, li);
                 }
             }
-        }
+            if (!string.IsNullOrEmpty(hdnClientID.Value) && hdnpop.Value == "1") 
+            {
+                Int64? lint_clienid = Convert.ToInt64(hdnClientID.Value.ToString());
+                btnSave.Visible = bitEdit;
+                mpe_clientPopup.Show();
 
+            }
+        }
         private void Lwdg_clientMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
             if (e.Row.Index == 0)
@@ -122,7 +107,6 @@ namespace TrackIT.WebApp.client
         {
             try
             {
-
                 lblCreateClient.Text = RollupText("Client", "lblCreateClients");                
                 lblclientname.Text = RollupText("Client", "lblclientname");
                 lblIsactive.Text = RollupText("Client", "lblIsactive");
@@ -142,7 +126,6 @@ namespace TrackIT.WebApp.client
                 lbladdressline2.Text = RollupText("Client", "lbladdressline2");
                 lbladdressstate.Text = RollupText("Client", "lbladdressstate");
                 lbladdresszip.Text = RollupText("Client", "lbladdresszip");               
-
             }
             catch (Exception ex)
             {
@@ -157,24 +140,140 @@ namespace TrackIT.WebApp.client
             mpe_clientPopup.Show();
             if (chkbillinfosame.Checked == true)
             {
-                txtaddresscity.Text = txtbillcity.Text;
-                txtaddressline1.Text = txtbilladdress1.Text;
-                txtaddressline2.Text = txtbilladdress2.Text;
-                txtaddressstate.Text = txtbillstate.Text;
-                txtaddresszip.Text = txtbillzip.Text;
-                ddladdresscountry.SelectedIndex = ddlbillCountry.SelectedIndex;
-
+                txtbillcity.Text = txtaddresscity.Text;
+                txtbilladdress1.Text = txtaddressline1.Text;
+                txtbilladdress2.Text = txtaddressline2.Text;
+                txtbillstate.Text = txtaddressstate.Text;
+                txtbillzip.Text = txtaddresszip.Text;
+                ddlbillCountry.SelectedIndex = ddladdresscountry.SelectedIndex;
             }
             else if (chkbillinfosame.Checked == false)
             {
-                txtaddresscity.Text = "";
-                txtaddressline1.Text = "";
-                txtaddressline2.Text = "";
-                txtaddressstate.Text = "";
-                txtaddresszip.Text = "";
-                ddladdresscountry.SelectedIndex = 0;
-               
+                txtbillcity.Text="";
+                 txtbilladdress1.Text="";
+                 txtbilladdress2.Text="";
+                txtbillstate.Text="";
+                 txtbillzip.Text="";
+                 ddlbillCountry.SelectedIndex = 0;                
             }
         }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            DataSet lds_Result;
+             if (string.IsNullOrEmpty(hdnClientID.Value))
+                {
+                    lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code from prj_clients where  client_code ='" + txtclientCode.Text + "'");
+                    if (lds_Result.Tables[0].Rows.Count > 0)
+                    {
+                        reqvclientIdUNQ.ErrorMessage = RollupText("Client", "reqvUnqclientcode");
+                        ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("Client", "reqvUnqclientcode") + "')</script>", false);
+                        mpe_clientPopup.Show();
+                    }
+                    else
+                    {
+                        InsertorUpdateClientDetails();
+                    }
+             }     
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            mpe_clientPopup.Hide();            
+        }
+
+        protected void InsertorUpdateClientDetails()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(hdnClientID.Value))
+                {
+                    string istr_tablename = "prj_clients";
+                    bool lbool_type = false;
+                    string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                    {                    
+                        {"client_name", txtclientName.Text.Replace("'", "''")},
+                        {"client_code",txtclientCode.Text.Replace("'", "''")},
+                        {"client_address_1",txtaddressline1.Text.Replace("'", "''")},
+                        {"client_address_2",txtaddressline2.Text.Replace("'", "''")},
+                        {"client_city",txtaddresscity.Text.Replace("'", "''")},
+                        {"client_state",txtaddressstate.Text.Replace("'", "''")},
+                        {"client_zip",txtaddresszip.Text.Replace("'", "''")},
+                        {"client_country", ddladdresscountry.SelectedValue},                       
+                        {"client_billinginfo_same", (chkbillinfosame.Checked ? 1 : 0).ToString()},
+                        {"client_contact_name",txtclientcontactname.Text.Replace("'", "''")},
+                        {"client_contact_designation",txtclientcontactdesignation.Text.Replace("'", "''")},
+                        {"client_bill_address_1",txtbilladdress1.Text.Replace("'", "''")},
+                        {"client_bill_address_2",txtbilladdress2.Text.Replace("'", "''")},
+                        {"client_bill_city",txtbillcity.Text.Replace("'", "''")},
+                        {"client_bill_state",txtbillstate.Text.Replace("'", "''")},
+                        {"client_bill_zip",txtbillzip.Text.Replace("'", "''")},
+                        {"client_bill_country",ddlbillCountry.SelectedValue},
+                        {"is_active", (chkisactive.Checked ? 1 : 0).ToString()},
+                        {"Created_By", this.LoggedInUserId },
+                        {"Created_Date", DateTime.Now},
+                        {"last_modified_By", this.LoggedInUserId },
+                        {"last_modified_date", DateTime.Now}
+                      }
+                           , lbool_type);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+            finally
+            {
+            }
+        }
+        private void GetClientDetails() 
+        {
+            try
+            {                
+                 lwdg_clientMasterGrid.InitializeRow += Lwdg_clientMasterGrid_InitializeRow;
+            lwdg_clientMasterGrid.Columns.Clear();
+            TemplateDataField td = new TemplateDataField();
+            td.ItemTemplate = new CustomItemTemplateView();
+            td.Key = "Edit";
+            td.Width = 30;
+            lwdg_clientMasterGrid.Columns.Add(td);
+            DataSet lds_Result;
+            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code,client_name,client_address_1,client_address_2,client_city,client_state,client_zip,client_country,client_contact_name,client_contact_designation from prj_clients");
+            if (lds_Result.Tables[0].Rows.Count > 0)    
+            {
+                lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
+                lwdg_clientMasterGrid.DataBind();
+            
+                            DataColumn[] keyColumns = new DataColumn[1];
+                            DataTable ldt_dt = lds_Result.Tables[0];
+                            lwdg_clientMasterGrid.DataKeyFields = "client_key";
+                            keyColumns[0] = ldt_dt.Columns["client_key"];
+                            ldt_dt.PrimaryKey = keyColumns;
+                            lwdg_clientMasterGrid.Visible = true;
+            }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+            finally
+            {
+                // if (objUserBO != null) objUserBO = null;
+            }
+        }
+
+        private void lwdg_clientMasterGrid_InitializeRow(object sender, RowEventArgs e)
+        {
+            try { }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
+
     }
 }
