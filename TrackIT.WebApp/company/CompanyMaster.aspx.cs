@@ -33,8 +33,6 @@ namespace TrackIT.WebApp.company
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
             ControlNames();
             lwdg_companyMasterGrid = new WebDataGrid();
             pnl_companyGrid.Controls.Add(lwdg_companyMasterGrid);
@@ -49,47 +47,7 @@ namespace TrackIT.WebApp.company
                 lwdg_companyMasterGrid.DataBind();
 
             }
-             if (!IsPostBack)
-                {
-                    //Unit Testing ID - UserMaster.aspx.cs_2
-                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_2 PageLoad IsPostBack  ");
-                    //Assign all dropdown data Roles Drop Down
-                    DataSet lds_cou = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='CON' and cp.Active = 1 ORDER BY parameter_name");
-                    if (lds_cou.Tables[0].Rows.Count > 0)
-                    {
-                        //Unit Testing ID - UserMaster.aspx.cs_3
-
-                        ddlcountry.Items.Clear();
-                        System.Web.UI.WebControls.ListItem li = new System.Web.UI.WebControls.ListItem("Select", "");
-                        ddlcountry.DataSource = lds_cou;
-                        ddlcountry.DataTextField = "TextValue";
-                        ddlcountry.DataValueField = "Value";
-                        ddlcountry.DataBind();
-                        ddlcountry.Items.Insert(0, li);
-                    }
-                    DataSet lds_bilcou = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='CON' and cp.Active = 1 ORDER BY parameter_name");
-                    if (lds_bilcou.Tables[0].Rows.Count > 0)
-                    {
-                        //Unit Testing ID - UserMaster.aspx.cs_3
-
-                        ddlbillcountry.Items.Clear();
-                        System.Web.UI.WebControls.ListItem li = new System.Web.UI.WebControls.ListItem("Select", "");
-                        ddlbillcountry.DataSource = lds_bilcou;
-                        ddlbillcountry.DataTextField = "TextValue";
-                        ddlbillcountry.DataValueField = "Value";
-                        ddlbillcountry.DataBind();
-                        ddlbillcountry.Items.Insert(0, li);
-                    }
-             }
-            }
-           catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                Response.Redirect("~/Error.aspx", false);
-            }
         }
-
-        
         private void Lwdg_companyMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
             if (e.Row.Index == 0)
@@ -111,7 +69,8 @@ namespace TrackIT.WebApp.company
 
                 //Unit Testing ID - UserMaster.aspx.cs_25
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_25 ControlNames");
-                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text = RollupText("UserMaster", "lblListCaption");
+                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text =
+                    RollupText("UserMaster", "lblListCaption");
                 lblCreateCompanies.Text = RollupText("Companies", "lblCreateCompanies");
                 lblcompanyname.Text = RollupText("Companies", "lblcompanyname");
                 lblcompanycode.Text = RollupText("Companies", "lblcompanycode");
@@ -124,7 +83,7 @@ namespace TrackIT.WebApp.company
                 lblcountry.Text = RollupText("Companies", "lblcountry");
                 lblname.Text = RollupText("Companies", "lblname");
                 lbldesigination.Text = RollupText("Companies", "lbldesigination");
-                lblbilladdressline1.Text = RollupText("Companies", "lblbilladdressline1");
+                lblbilladdressline1.Text = RollupText("Companies", "lblbillddressline1");
                 lblbilladdressline2.Text = RollupText("Companies", "lblbilladdressline2");
                 lblbillcity.Text = RollupText("Companies", "lblbillcity");
                 lblbillstate.Text = RollupText("Companies", "lblbillstate");

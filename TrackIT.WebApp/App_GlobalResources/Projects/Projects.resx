@@ -144,28 +144,4 @@
   <data name="lblprojectcode" xml:space="preserve">
     <value>Project Code*</value>
   </data>
-  <data name="reqvClient" xml:space="preserve">
-    <value>Please Select Clients</value>
-  </data>
-  <data name="lblactive" xml:space="preserve">
-    <value>Active*</value>
-  </data>
-  <data name="lblkickdate" xml:space="preserve">
-    <value>Project KickOff Date*</value>
-  </data>
-  <data name="lblprojectname" xml:space="preserve">
-    <value>Project Name*</value>
-  </data>
-  <data name="lblprojectowner" xml:space="preserve">
-    <value>Project Owner*</value>
-  </data>
-  <data name="Reqowner" xml:space="preserve">
-    <value>Please Enter the Owner</value>
-  </data>
-  <data name="reqvcode" xml:space="preserve">
-    <value>Please Enter the Project Code</value>
-  </data>
-  <data name="reqvpname" xml:space="preserve">
-    <value>Please enter the Project Name</value>
-  </data>
 </root>

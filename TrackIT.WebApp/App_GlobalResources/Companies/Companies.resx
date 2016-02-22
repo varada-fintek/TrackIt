@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblactive" xml:space="preserve">
-    <value>Active*</value>
+    <value>Active</value>
   </data>
   <data name="lbladdressline1" xml:space="preserve">
-    <value>Address Line1*</value>
+    <value>Address Line1</value>
   </data>
   <data name="lbladdressline2" xml:space="preserve">
     <value>Address Line2</value>
   </data>
   <data name="lblbilladdressline1" xml:space="preserve">
-    <value>Address Line1*</value>
+    <value>Address Line1</value>
   </data>
   <data name="lblbilladdressline2" xml:space="preserve">
     <value>Address Line2</value>
@@ -148,10 +148,10 @@
     <value>City</value>
   </data>
   <data name="lblcompanycode" xml:space="preserve">
-    <value>Company Code*</value>
+    <value>Company Code</value>
   </data>
   <data name="lblcompanyname" xml:space="preserve">
-    <value>Company Name*</value>
+    <value>Company Name</value>
   </data>
   <data name="lblcountry" xml:space="preserve">
     <value>Country</value>
@@ -160,10 +160,10 @@
     <value>Company</value>
   </data>
   <data name="lbldesigination" xml:space="preserve">
-    <value>Desigination*</value>
+    <value>Desigination</value>
   </data>
   <data name="lblname" xml:space="preserve">
-    <value>Name*</value>
+    <value>Name</value>
   </data>
   <data name="lblsameinfo" xml:space="preserve">
     <value>Billing Address Same as Company Address</value>

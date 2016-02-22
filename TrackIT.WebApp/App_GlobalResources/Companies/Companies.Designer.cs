@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active*.
+        ///   Looks up a localized string similar to Active.
         /// </summary>
         internal static string lblactive {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address Line1*.
+        ///   Looks up a localized string similar to Address Line1.
         /// </summary>
         internal static string lbladdressline1 {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address Line1*.
+        ///   Looks up a localized string similar to Address Line1.
         /// </summary>
         internal static string lblbilladdressline1 {
             get {
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Code*.
+        ///   Looks up a localized string similar to Company Code.
         /// </summary>
         internal static string lblcompanycode {
             get {
@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Name*.
+        ///   Looks up a localized string similar to Company Name.
         /// </summary>
         internal static string lblcompanyname {
             get {
@@ -187,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Desigination*.
+        ///   Looks up a localized string similar to Desigination.
         /// </summary>
         internal static string lbldesigination {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name*.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string lblname {
             get {
