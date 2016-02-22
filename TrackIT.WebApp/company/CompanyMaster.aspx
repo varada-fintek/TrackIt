@@ -157,38 +157,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblname" class="control-label col-md-2" runat="server"></asp:Label>
-                                                <div class="col-md-3">
-                                                    <asp:TextBox ID="txtname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
-                                                </div>
-                                                <div class="col-md-1" style="display: none;">
-                                                    <cc1:FilteredTextBoxExtender ID="ccname_FilteredTextBoxExtender"
-                                                        runat="server" Enabled="True" TargetControlID="txtname"
-                                                        ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                    </cc1:FilteredTextBoxExtender>
-                                                    <asp:RequiredFieldValidator ID="reqvtxtname" runat="server"
-                                                        ControlToValidate="txtname" Display="Dynamic" SetFocusOnError="True"
-                                                        ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lbldesigination" class="control-label col-md-2" runat="server"></asp:Label>
-                                                <div class="col-md-3">
-                                                    <asp:TextBox ID="txtdesigination" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
-                                                </div>
 
-                                                <div class="col-md-1" style="display: none;">
-                                                    <cc1:FilteredTextBoxExtender ID="cc_desiginationFilteredTextBoxExtender"
-                                                        runat="server" Enabled="True" TargetControlID="txtdesigination"
-                                                        ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                    </cc1:FilteredTextBoxExtender>
-                                                    <asp:RequiredFieldValidator ID="reqvtxtdesigination" runat="server"
-                                                        ControlToValidate="txtdesigination" Display="Dynamic" SetFocusOnError="True"
-                                                        ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                </div>
-                                            </div>
-                                           
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label ID="lbladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
@@ -283,8 +252,40 @@
                                                 </div>
 
                                             </div>
-                                           
+                                    
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">
+                                                        <cc1:FilteredTextBoxExtender ID="ccname_FilteredTextBoxExtender"
+                                                            runat="server" Enabled="True" TargetControlID="txtname"
+                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                        </cc1:FilteredTextBoxExtender>
+                                                        <asp:RequiredFieldValidator ID="reqvtxtname" runat="server"
+                                                            ControlToValidate="txtname" Display="Dynamic" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lbldesigination" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="txtdesigination" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                    </div>
 
+                                                    <div class="col-md-1" style="display: none;">
+                                                        <cc1:FilteredTextBoxExtender ID="cc_desiginationFilteredTextBoxExtender"
+                                                            runat="server" Enabled="True" TargetControlID="txtdesigination"
+                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                        </cc1:FilteredTextBoxExtender>
+                                                        <asp:RequiredFieldValidator ID="reqvtxtdesigination" runat="server"
+                                                            ControlToValidate="txtdesigination" Display="Dynamic" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+                                    
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbilladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
@@ -369,7 +370,7 @@
                                                 </div>
 
                                             </div>
-                                            </div>
+                                        </div>
                                     </asp:Panel>
 
                                     <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
@@ -404,10 +405,10 @@
         </Triggers>
     </asp:UpdatePanel>
     <script type="text/javascript">
-            $(document).ready(function () {
-                $(".e1").select2();
-                $(".e1").css("border", "none");
-            });
+        $(document).ready(function () {
+            $(".e1").select2();
+            $(".e1").css("border", "none");
+        });
     </script>
 </asp:Content>
 
