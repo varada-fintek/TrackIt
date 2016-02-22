@@ -99,7 +99,8 @@
                                             <asp:Label ID="lbltaxname" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
                                                 <asp:TextBox ID="txttaxname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                            </div>
+                                               
+                                                    </div>
                                             <div class="col-md-1" style="display: none;">
                                                 <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
                                                     runat="server" Enabled="True" TargetControlID="txttaxname"
@@ -113,7 +114,8 @@
 
                                             </div>
                                         </div>
-                                        
+                                        <div style="display:none">
+                                        <input type="date" id="datefrom"  class="form-control" /></div>
                                         <div class="col-sm-12">
                                             <div runat="server" id="pnl_taxdetailsGrid">
                                             </div>

@@ -271,7 +271,7 @@ namespace TrackIT.WebApp.project {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.EditorControls.WebDatePicker igwdp_kickoffdate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl igwdp_kickoffdate;
         
         /// <summary>
         /// lblprojectowner control.

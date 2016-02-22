@@ -102,7 +102,9 @@ namespace TrackIT.WebApp.Taxes
 
                 // Create an editor provider
                 DatePickerProvider taxfromdate = new DatePickerProvider();
+               
                 taxfromdate.ID = "taxfromdateID";
+                
 
                 // Add to collection
                 this.iwdg_TaxDetailsGrid.EditorProviders.Add(taxfromdate);
@@ -132,6 +134,7 @@ namespace TrackIT.WebApp.Taxes
 
                 // Assign editor for column to use
                 columnSettingto.EditorID = taxtodate.ID;
+                taxfromdate.EditorControl.CssClass = "chzn-container";
 
                 // Add column setting
                 this.iwdg_TaxDetailsGrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(columnSettingto);
