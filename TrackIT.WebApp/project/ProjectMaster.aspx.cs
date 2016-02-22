@@ -34,22 +34,18 @@ namespace TrackIT.WebApp.project
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            { 
-            ControlNames();
+            {
+                iwdg_projectMasterGrid = new WebDataGrid();
+                pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
+                ControlNames();
             clearcontrols();
             lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
             iwdg_projectMasterGrid = new WebDataGrid();
             pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
 
-            iwdg_projectMasterGrid.InitializeRow += iwdg_projectMasterGrid_InitializeRow;
-            DataSet lds_Result;
-            lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select pc.client_name, pp.project_code,pp.project_name,pp.project_kickoff_date,pp.project_owner,pp.is_active from prj_projects pp inner join prj_clients pc on pc.client_key=pp.client_key");
-            if (lds_Result.Tables[0].Rows.Count > 0)
-            {
-                iwdg_projectMasterGrid.DataSource = lds_Result.Tables[0];
-                iwdg_projectMasterGrid.DataBind();
-            }
+   
             if (!IsPostBack)
             {
                 DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients (NOLOCK) WHERE is_active = 1 ORDER BY client_name");
@@ -78,9 +74,22 @@ namespace TrackIT.WebApp.project
                     ddlowner.DataBind();
                     ddlowner.Items.Insert(0, llstm_li);
                 }
+                   
+
+                }
+                GetprojectDetails();
+                if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
+                {
+                    //Edit User Details
+                   Int64? lint_projectid = Convert.ToInt64(hdnprjID.Value.ToString());
+                    EditprojectDetails(lint_projectid);
+                    btnSave.Visible = bitEdit;
+                   
+                    // System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                    mpe_projectPopup.Show(); 
+                }
 
             }
-        }
              catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, Log_Only_Policy);
@@ -93,7 +102,7 @@ namespace TrackIT.WebApp.project
             //throw new NotImplementedException();
             if (e.Row.Index == 0)
             {
-
+                e.Row.Items.FindItemByKey("project_key").Column.Hidden = true;
                 e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("projects", "gridclientname");
                 e.Row.Items.FindItemByKey("project_code").Column.Header.Text = RollupText("projects", "gridprojectcode");
                 e.Row.Items.FindItemByKey("project_name").Column.Header.Text = RollupText("projects", "gridprojectname");
@@ -134,6 +143,7 @@ namespace TrackIT.WebApp.project
                     throw;
             }
         }
+    
 
         protected void InsertorUpdateProjectDetails()
         {
@@ -163,17 +173,138 @@ namespace TrackIT.WebApp.project
                     throw;
             }
         }
+        private void GetprojectDetails()
+        {
+            try
+            {
+
+                //Unit Testing ID - UserMaster.aspx.cs_18
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_18 GetUserDetails");
+                //if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
+                iwdg_projectMasterGrid.InitializeRow += iwdg_projectMasterGrid_InitializeRow;
+                iwdg_projectMasterGrid.Columns.Clear();
+                TemplateDataField td = new TemplateDataField();
+                td.ItemTemplate = new CustomItemTemplateView();
+                td.Key = "Action";
+                td.Width = 30;
+                iwdg_projectMasterGrid.Columns.Add(td);
+                //Query to Get Landing Page Grid Details
+                DataSet lds_Result;
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select pp.project_key,pc.client_name,pp.project_code,pp.project_name,pp.project_kickoff_date,pp.project_owner,pp.is_active from prj_projects pp inner join prj_clients pc on pc.client_key = pp.client_key "); 
+                iwdg_projectMasterGrid.Visible = false;
+
+                if (lds_Result != null)
+                {
+                    if (lds_Result.Tables.Count > 0)
+                    {
+                        //Unit Testing ID - UserMaster.aspx.cs_19
+                        System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_19 lds_Result set" + lds_Result.Tables.Count);
+                        if (lds_Result.Tables[0].Rows.Count > 0)
+                        {
+                            ViewState["export"] = (DataTable)lds_Result.Tables[0];
+                            iwdg_projectMasterGrid.DataSource = lds_Result.Tables[0];
+                            iwdg_projectMasterGrid.DataBind();
+                            DataColumn[] keyColumns = new DataColumn[1];
+                            DataTable ldt_dt = lds_Result.Tables[0];
+                            iwdg_projectMasterGrid.DataKeyFields = "project_key";
+                            keyColumns[0] = ldt_dt.Columns["project_key"];
+                            ldt_dt.PrimaryKey = keyColumns;
+                            iwdg_projectMasterGrid.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+            finally
+            {
+                // if (objUserBO != null) objUserBO = null;
+            }
+        }
+        private void EditprojectDetails(Int64? aint_UserID)
+        {
+            try
+            {
+
+              
+                Int64? lint_projectID = aint_UserID;
+              
+               
+                DataSet lds_projectdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_projects pp where pp.project_key='" + lint_projectID + "'");
+                if (lds_projectdetail.Tables[0].Rows.Count > 0)
+                {
+                   
+
+                   
+
+                    
+
+                    if (lds_projectdetail.Tables[0].Rows[0]["project_owner"] != null)
+                    {
+                        if (ddlowner.Items.FindByValue((lds_projectdetail.Tables[0].Rows[0]["project_owner"]).ToString().ToLower()) != null)
+                        {
+                            ddlowner.SelectedValue = lds_projectdetail.Tables[0].Rows[0]["project_owner"].ToString();
+                        }
+                        else
+                            ddlowner.SelectedIndex = 0;
+                    }
+                    else
+                        ddlowner.SelectedIndex = 0;
+                    if (lds_projectdetail.Tables[0].Rows[0]["client_key"] != null)
+                    {
+                        if (ddlClients.Items.FindByValue((lds_projectdetail.Tables[0].Rows[0]["client_key"]).ToString().ToLower()) != null)
+                        {
+                            ddlClients.SelectedValue = lds_projectdetail.Tables[0].Rows[0]["client_key"].ToString();
+                        }
+                        else
+                            ddlClients.SelectedIndex = 0;
+                    }
+                    else
+                        ddlClients.SelectedIndex = 0;
+
+                    hdnprjID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]).Trim() : string.Empty;
+                    
+                    
+                  txtprojectcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]).Trim() : string.Empty;
+                    txtprojectname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_name"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_name"]).Trim() : string.Empty;
+                   
+                    
+                   
+                    igwdp_kickoffdate.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]).Trim() : string.Empty;
+                    chkinactive.Checked = Convert.ToInt32(lds_projectdetail.Tables[0].Rows[0]["is_active"]) == 1 ? true : false;
+                    chkinactive.Enabled = true;
+
+                }
+                else
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+            finally
+            {
+                // if (objUserBO != null) objUserBO = null;
+            }
+        }
 
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            mpe_projectPopup.Hide();
 
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             InsertorUpdateProjectDetails();
-            mpe_projectPopup.Show();
+           // mpe_projectPopup.Show();
         }
     }
 }

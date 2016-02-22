@@ -30,6 +30,24 @@
             document.getElementById("createnew").style.display = "block";
             return false;
         }
+        function editRow(obj) {
+            //Unit Testing- Security_ASPX_001
+            var grid = $find("lwdg_ProjectMasterGrid");
+            var row = $(obj).parents("tr[type='row']").get(0);
+            var rowid = row.cells[1].innerHTML;
+            var pop_open = '1';
+           
+            document.getElementById("hdnprjID").value = rowid;
+            document.getElementById("hdnpop").value = pop_open;
+            //$find("mpe").show();
+            return true;
+        }
+        function removequery() {
+            //alert();
+            var pop_open = '0';
+            document.getElementById("hdnpop").value = pop_open;
+        }
+
     </script>
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
@@ -54,6 +72,15 @@
                     </h1>
                 </div>
                 <div runat="server" id="pnl_projectGrid">
+                      <script type="text/javascript">
+                    try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+                </script>
+                <style type="text/css">
+                    .Datealign {
+                        text-align: center !important;
+                    }
+                </style>
+
                 </div>
             </div>
             <div class="main-content">
