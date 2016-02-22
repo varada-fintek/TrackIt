@@ -94,6 +94,83 @@ namespace TrackIT.WebApp.Taxes
                 }
 
                 iwdg_TaxDetailsGrid.InitializeRow += iwdg_TaxDetailsGrid_InitializeRow;
+
+
+                // Enable cell editing
+                this.iwdg_TaxDetailsGrid.Behaviors.CreateBehavior<EditingCore>();
+                this.iwdg_TaxDetailsGrid.Behaviors.EditingCore.Behaviors.CreateBehavior<CellEditing>();
+
+                // Create an editor provider
+                DatePickerProvider taxfromdate = new DatePickerProvider();
+                taxfromdate.ID = "taxfromdateID";
+
+                // Add to collection
+                this.iwdg_TaxDetailsGrid.EditorProviders.Add(taxfromdate);
+
+                // Create a column setting to use the editor provider
+                EditingColumnSetting columnSetting = new EditingColumnSetting();
+                columnSetting.ColumnKey = "tax_from";
+
+                // Assign editor for column to use
+                columnSetting.EditorID = taxfromdate.ID;
+
+                // Add column setting
+                this.iwdg_TaxDetailsGrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(columnSetting);
+                
+               
+
+                // Create an editor provider
+                DatePickerProvider taxtodate = new DatePickerProvider();
+                taxtodate.ID = "taxtodateID";
+
+                // Add to collection
+                this.iwdg_TaxDetailsGrid.EditorProviders.Add(taxtodate);
+
+                // Create a column setting to use the editor provider
+                EditingColumnSetting columnSettingto = new EditingColumnSetting();
+                columnSettingto.ColumnKey = "tax_to";
+
+                // Assign editor for column to use
+                columnSettingto.EditorID = taxtodate.ID;
+
+                // Add column setting
+                this.iwdg_TaxDetailsGrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(columnSettingto);
+
+                DataSet lds_taxtype = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TYP' and cp.Active = 1 ORDER BY parameter_name");
+                
+                //Adding dropdown to DetailsGrid
+                DropDownProvider ddl_taxtype = new DropDownProvider();
+                ddl_taxtype.ID = "taxtypedropdown";
+                this.iwdg_TaxDetailsGrid.EditorProviders.Add(ddl_taxtype);
+                EditingColumnSetting columnSettingtaxtype = new EditingColumnSetting();
+                columnSettingtaxtype.ColumnKey = "tax_type";
+                columnSettingtaxtype.EditorID = ddl_taxtype.ID;
+                ddl_taxtype.EditorControl.ValueField = "Value";
+                ddl_taxtype.EditorControl.TextField = "TextValue";
+                ddl_taxtype.EditorControl.DataSource = lds_taxtype.Tables[0];
+
+                this.iwdg_TaxDetailsGrid.EditorProviders.Add(ddl_taxtype);
+                
+                this.iwdg_TaxDetailsGrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(columnSettingtaxtype);
+
+                DataSet lds_taxappliedon = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TAO' and cp.Active = 1 ORDER BY parameter_name");
+
+                DropDownProvider ddl_taxappliedon = new DropDownProvider();
+                ddl_taxappliedon.ID = "taxappliedondropdown";
+                this.iwdg_TaxDetailsGrid.EditorProviders.Add(ddl_taxappliedon);
+                EditingColumnSetting columnSettingtaxappliedon = new EditingColumnSetting();
+                columnSettingtaxappliedon.ColumnKey = "tax_applied_on";
+                columnSettingtaxappliedon.EditorID = ddl_taxappliedon.ID;
+                ddl_taxappliedon.EditorControl.ValueField = "Value";
+                ddl_taxappliedon.EditorControl.TextField = "TextValue";
+                ddl_taxappliedon.EditorControl.DataSource = lds_taxappliedon.Tables[0];
+
+                this.iwdg_TaxDetailsGrid.EditorProviders.Add(ddl_taxappliedon);
+
+                this.iwdg_TaxDetailsGrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(columnSettingtaxappliedon);
+               
+               
+                
                 DataSet lds_taxResult;
                 lds_taxResult = ldbh_QueryExecutors.ExecuteDataSet("select tax_from,tax_to,tax_percent,tax_type,tax_applied_on from prj_taxes_details");
                 if (lds_taxResult.Tables[0].Rows.Count > 0)
@@ -121,6 +198,7 @@ namespace TrackIT.WebApp.Taxes
                     {"tax_tax_code",txttaxcode.Text.Replace("'","''")},
                 }, lbool_type
                 );
+                 
             }
             catch (Exception ex)
             {
@@ -129,9 +207,10 @@ namespace TrackIT.WebApp.Taxes
                     throw;
             }
         }
+        
         protected void btnClear_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
