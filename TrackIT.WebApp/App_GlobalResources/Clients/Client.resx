@@ -204,4 +204,7 @@
   <data name="lblclientcontactname" xml:space="preserve">
     <value>Contact Name</value>
   </data>
+  <data name="reqvUnqclientcode" xml:space="preserve">
+    <value>Client Id Should be Unique</value>
+  </data>
 </root>

@@ -157,24 +157,6 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.ValidationSummary valSumUser;
         
         /// <summary>
-        /// lblclientname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblclientname;
-        
-        /// <summary>
-        /// txtclintName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtclintName;
-        
-        /// <summary>
         /// lblclientcode control.
         /// </summary>
         /// <remarks>
@@ -191,6 +173,33 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtclientCode;
+        
+        /// <summary>
+        /// reqvclientIdUNQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvclientIdUNQ;
+        
+        /// <summary>
+        /// lblclientname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblclientname;
+        
+        /// <summary>
+        /// txtclientName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtclientName;
         
         /// <summary>
         /// lblIsactive control.
@@ -490,13 +499,13 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.Panel pnlfooter;
         
         /// <summary>
-        /// btnClear control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// btnSave control.
@@ -517,12 +526,12 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.HiddenField hdnpop;
         
         /// <summary>
-        /// hdnUserID control.
+        /// hdnClientID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUserID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnClientID;
     }
 }
