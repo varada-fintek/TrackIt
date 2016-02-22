@@ -202,7 +202,6 @@ namespace TrackIT.WebApp.Taxes
             }
             catch (Exception ex)
             {
-
                 if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
                     throw;
             }
