@@ -238,6 +238,15 @@ namespace TrackIT.WebApp.Taxes {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxttaxname;
         
         /// <summary>
+        /// lnkAddrow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAddrow;
+        
+        /// <summary>
         /// pnl_taxdetailsGrid control.
         /// </summary>
         /// <remarks>

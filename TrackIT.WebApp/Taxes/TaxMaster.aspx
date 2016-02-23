@@ -114,8 +114,7 @@
 
                                             </div>
                                         </div>
-                                        <div style="display:none">
-                                        <input type="date" id="datefrom"  class="form-control" /></div>
+                                        <asp:LinkButton ID="lnkAddrow" runat="server" CssClass="label" OnClick="lnkAddrow_Click"></asp:LinkButton>
                                         <div class="col-sm-12">
                                             <div runat="server" id="pnl_taxdetailsGrid">
                                             </div>

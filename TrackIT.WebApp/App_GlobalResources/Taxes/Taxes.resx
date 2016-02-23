@@ -150,8 +150,14 @@
   <data name="lbltaxname" xml:space="preserve">
     <value>Tax Name*</value>
   </data>
+  <data name="lnkAddrow" xml:space="preserve">
+    <value>+Add </value>
+  </data>
   <data name="reqvtaxcode" xml:space="preserve">
     <value>Please Enter Tax Code</value>
+  </data>
+  <data name="reqvtaxcodeUNQ" xml:space="preserve">
+    <value>Tax Code must be unique.Please enter a unique tax code</value>
   </data>
   <data name="reqvtxttaxname" xml:space="preserve">
     <value>Please Enter Tax Name</value>
