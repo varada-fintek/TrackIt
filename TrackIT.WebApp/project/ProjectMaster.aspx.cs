@@ -63,8 +63,7 @@ namespace TrackIT.WebApp.project
                 DataSet lds_projowners = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
                 if (lds_projowners.Tables[0].Rows.Count > 0)
                 {
-                    //Unit Testing ID - UserMaster.aspx.cs_3
-                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_3 Roles dataset count" + lds_projowners.Tables[0].Rows.Count);
+                   
                     ddlowner.Items.Clear();
                     System.Web.UI.WebControls.ListItem llstm_li = new System.Web.UI.WebControls.ListItem("Select", "");
                     ddlowner.DataSource = lds_projowners;
@@ -80,11 +79,11 @@ namespace TrackIT.WebApp.project
                 GetProjectDetails();
                 if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
                 {
-                    //Edit User Details
+                   
                     Int64? lint_projid = Convert.ToInt64(hdnprjID.Value.ToString());
                     btnSave.Visible = bitEdit;
                     EditProjectDetails(lint_projid);
-                    // System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                   
                     mpe_projectPopup.Show();
                 }
             }
@@ -123,8 +122,50 @@ namespace TrackIT.WebApp.project
         #region button Save click
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            InsertorUpdateProjectDetails();
-            mpe_projectPopup.Show();
+            try
+            {
+                DataSet lds_Result;
+               
+                if (string.IsNullOrEmpty(hdnprjID.Value))
+                {
+                    lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select project_code from prj_projects where is_active=1 and project_code='" + txtprojectcode.Text + "'");
+                    if (lds_Result.Tables[0].Rows.Count > 0)
+                    {
+                        reqvprojectIdUNQ.ErrorMessage = RollupText("ProjectMaster", "reqvprojectIdUNQ");
+                        ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("ProjectMaster", "reqvprojectIdUNQ") + "')</script>", false);
+                        mpe_projectPopup.Show();
+                        reqvprojectIdUNQ.Enabled = true;
+                        reqvprojectIdUNQ.Visible = true;
+                     
+                    }
+                    else
+                    {
+
+
+                        InsertorUpdateProjectDetails(); 
+                       
+                    }
+                }
+                else
+                {
+
+
+                    InsertorUpdateProjectDetails(); 
+                    
+                }
+
+
+                
+               
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
+
+           
         }
         #endregion
 
@@ -175,9 +216,14 @@ namespace TrackIT.WebApp.project
         {
             try
             {
+                string astr_project_ID = Convert.ToString(Guid.NewGuid());
                 istr_tablename = "prj_projects";
                 Boolean lbool_type = true;
-                string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename,new System.Collections.Generic.Dictionary<string, object>
+                string lstr_outMessage = string.Empty;
+                if (string.IsNullOrEmpty(hdnprjID.Value))
+                {
+                   
+                    string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
                 {
                     {"project_code",txtprojectcode.Text.Replace("'", "''") },
                     {"project_name",txtprojectname.Text.Replace("'", "''") },
@@ -189,8 +235,56 @@ namespace TrackIT.WebApp.project
                     {"Created_Date", DateTime.Now},
                     {"last_modified_By", this.LoggedInUserId },
                     {"last_modified_date", DateTime.Now}
-                },lbool_type
-                );
+                }, lbool_type
+                    );
+                }
+                else
+                {
+
+                   
+                    lbool_type = false;
+
+                    istr_tablename = "prj_projects";
+                    string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                {
+                    {"project_code",txtprojectcode.Text.Replace("'", "''") },
+                    {"project_name",txtprojectname.Text.Replace("'", "''") },
+                    {"client_key",ddlClients.SelectedValue },
+                    { "project_kickoff_date",igwdp_kickoffdate.Value},
+                    {"project_owner",ddlowner.SelectedValue },
+                    { "is_active",(chkinactive.Checked ? 1 : 0).ToString()},
+                    {"last_modified_By", this.LoggedInUserId },
+                    {"last_modified_date", DateTime.Now}
+                },
+                new System.Collections.Generic.Dictionary<string, object>()
+                     {
+                         {"project_key", hdnprjID.Value},
+                     },
+                lbool_type
+                   );
+
+                    lstr_outMessage = "SUCCESS";
+                }
+
+               
+                if (lstr_outMessage.Contains("SUCCESS"))
+                {
+
+                    string[] sBUID = lstr_outMessage.Split('^');
+                    GetProjectDetails();
+                    SaveMessage();
+                   // ClearControls();
+                    mpe_projectPopup.Hide();
+                    return;
+                }
+                else
+                {
+                   
+                    
+                    Response.Redirect("~/project/ProjectMaster.aspx", false);
+                }
+            
+
             }
             catch (Exception ex)
             {
@@ -265,8 +359,12 @@ namespace TrackIT.WebApp.project
                     ddlowner.SelectedIndex = 0;
 
                 hdnprjID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]).Trim() : string.Empty;
-                txtprojectcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]).Trim() : string.Empty;
+                 txtprojectcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]).Trim() : string.Empty;
                 txtprojectname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_name"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_name"]).Trim() : string.Empty;
+                string lstr_kickoffdate= (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]).Trim() : string.Empty;
+                DateTime ldt = Convert.ToDateTime(lstr_kickoffdate);
+                igwdp_kickoffdate.Value = ldt.ToString("yyyy-MM-dd");
+               
                 chkinactive.Checked = Convert.ToInt32(lds_projectdetail.Tables[0].Rows[0]["is_active"]) == 1 ? true : false;
                 chkinactive.Enabled = true;
 

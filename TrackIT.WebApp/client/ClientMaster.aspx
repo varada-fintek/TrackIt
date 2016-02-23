@@ -19,18 +19,22 @@
 <asp:Content ID="client" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <script type="text/javascript">
         function editRow(obj)
-        {
-            //Unit Testing- Security_ASPX_001
+        {            
             var grid = $find("lwdg_FundMasterGrid");
             var row = $(obj).parents("tr[type='row']").get(0);
-            var rowid = row.cells[1].innerHTML;
-            alert('r id= '+rowid );            
+            var rowid = row.cells[1].innerHTML;          
             var pop_open = '1';
-            document.getElementById("hdnUserID").value = rowid;
+            document.getElementById("hdnClientID").value = rowid;
             document.getElementById("hdnpop").value = pop_open;
-            //$find("mpe").show();
+           // $find("mpe").show();
             return true;
         }
+        function removequery() {
+            //alert();
+            var pop_open = '0';
+            document.getElementById("hdnpop").value = pop_open;
+        }
+
   
         function ShowModalPopup() {
             $find("mpe").show();
@@ -59,7 +63,6 @@
                     </div>
                     <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource" Format="PDF" />
                     <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource" />
-
                     <h1>
                         <i class="menu-icon fa fa-lg fa-fw fa-user"></i>
                         <i class="icon-angle-right"></i>
