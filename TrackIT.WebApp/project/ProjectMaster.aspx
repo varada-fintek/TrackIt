@@ -122,6 +122,9 @@
                                                         <asp:RequiredFieldValidator ID="reqvcode" runat="server"
                                                             ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                        <asp:RequiredFieldValidator ID="reqvprojectIdUNQ" runat="server"
+                                                            ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
                                         

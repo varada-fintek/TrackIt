@@ -220,6 +220,15 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvcode;
         
         /// <summary>
+        /// reqvprojectIdUNQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvprojectIdUNQ;
+        
+        /// <summary>
         /// lblprojectname control.
         /// </summary>
         /// <remarks>
