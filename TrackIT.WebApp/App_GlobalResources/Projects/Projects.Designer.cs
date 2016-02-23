@@ -194,5 +194,14 @@ namespace Resources {
                 return ResourceManager.GetString("reqvpname", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to project code should be unique.
+        /// </summary>
+        internal static string reqvprojectIdUNQ {
+            get {
+                return ResourceManager.GetString("reqvprojectIdUNQ", resourceCulture);
+            }
+        }
     }
 }
