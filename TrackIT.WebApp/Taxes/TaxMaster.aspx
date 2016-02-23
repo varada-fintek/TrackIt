@@ -118,6 +118,64 @@
                                         <div class="col-sm-12">
                                             <div runat="server" id="pnl_taxdetailsGrid">
                                             </div>
+
+        <ig:WebDataGrid ID="checkgrid" runat="server"
+         AutoGenerateColumns="true" Width="1000px">
+        <EditorProviders>
+            <ig:DatePickerProvider ID="FromdateProvider" />
+            <ig:DatePickerProvider ID="TodateProvider" />
+            <ig:TextBoxProvider ID="Taxpercentage"/>
+
+            <ig:DropDownProvider ID="TaxtypeProvider">
+                <EditorControl ID="taxdetailsEditorControl" runat="server" DisplayMode="DropDownList" />
+            </ig:DropDownProvider>
+
+            <ig:DropDownProvider ID="TaxappliedonProvider">
+                <EditorControl ID="taxappliedEditorControl" runat="server" DisplayMode="DropDownList"  />
+            </ig:DropDownProvider>
+        </EditorProviders>
+
+       <%-- <Columns>
+            <ig:BoundDataField DataFieldName="OrderID" Key="OrderID" Width="50px">
+                <Header Text="<%$ Resources:WebDataGrid, EditorColumnOrderID %>" />
+            </ig:BoundDataField>
+            <ig:BoundDataField DataFieldName="ContactName" Key="CustomerID" Width="120px">
+                <Header Text="<%$ Resources:WebDataGrid, EditorColumnContactName %>" />
+            </ig:BoundDataField>
+            <ig:BoundDataField Key="OrderDate" DataFormatString="{0:d}">
+                <Header Text="<%$ Resources:WebDataGrid, EditorColumnOrderDate %>" />
+            </ig:BoundDataField>
+            <ig:BoundDataField Key="ShippedDate" DataFormatString="{0:d}">
+                <Header Text="<%$ Resources:WebDataGrid, EditorColumnShippingDate %>" />
+            </ig:BoundDataField>
+            <ig:BoundDataField DataFieldName="ShippingCompany" Key="ShipperID" Width="120px">
+                <Header Text="<%$ Resources:WebDataGrid, EditorColumnShippingCompany %>" />
+            </ig:BoundDataField>
+            <ig:BoundDataField DataFieldName="Freight" Key="Freight" Width="60px">
+                <Header Text="<%$ Resources:WebDataGrid, ColumnHeaderFreight %>" />
+            </ig:BoundDataField>
+            <ig:BoundDataField DataFieldName="Phone" Key="Phone" Width="110px">
+                <Header Text="<%$ Resources:WebDataGrid, ColumnHeaderPhone %>" />
+            </ig:BoundDataField>
+        </Columns>--%>
+
+       <%-- <Behaviors>
+            <ig:EditingCore>
+                <Behaviors>
+                    <ig:CellEditing Enabled="true">
+                        <ColumnSettings>
+                            <ig:EditingColumnSetting ColumnKey="CustomerID" EditorID="FromdateProvider" />
+                            <ig:EditingColumnSetting ColumnKey="ShipperID" EditorID="ShipperProvider" />
+                            <ig:EditingColumnSetting ColumnKey="OrderDate" EditorID="DateInputProvider" />
+                            <ig:EditingColumnSetting ColumnKey="ShippedDate" EditorID="DateInputProvider" />
+                            <ig:EditingColumnSetting ColumnKey="Freight" EditorID="FreightValueProvider" />
+                            <ig:EditingColumnSetting ColumnKey="Phone" EditorID="PhoneInputProvider" />
+                        </ColumnSettings>
+                    </ig:CellEditing>
+                </Behaviors>
+            </ig:EditingCore>
+        </Behaviors>--%>
+    </ig:WebDataGrid>
                                         </div>
 
 

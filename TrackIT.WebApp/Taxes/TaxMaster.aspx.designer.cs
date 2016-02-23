@@ -256,6 +256,60 @@ namespace TrackIT.WebApp.Taxes {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_taxdetailsGrid;
         
         /// <summary>
+        /// checkgrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.WebDataGrid checkgrid;
+        
+        /// <summary>
+        /// FromdateProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider FromdateProvider;
+        
+        /// <summary>
+        /// TodateProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider TodateProvider;
+        
+        /// <summary>
+        /// Taxpercentage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider Taxpercentage;
+        
+        /// <summary>
+        /// TaxtypeProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider TaxtypeProvider;
+        
+        /// <summary>
+        /// TaxappliedonProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider TaxappliedonProvider;
+        
+        /// <summary>
         /// pnlfooter control.
         /// </summary>
         /// <remarks>
