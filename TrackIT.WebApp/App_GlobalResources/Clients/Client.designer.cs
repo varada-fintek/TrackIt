@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active Status.
+        /// </summary>
+        internal static string gridclientsactive {
+            get {
+                return ResourceManager.GetString("gridclientsactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address 1.
         /// </summary>
         internal static string gridclientsaddress1 {

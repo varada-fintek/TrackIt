@@ -160,11 +160,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to +Add .
+        /// </summary>
+        internal static string lnkAddrow {
+            get {
+                return ResourceManager.GetString("lnkAddrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Enter Tax Code.
         /// </summary>
         internal static string reqvtaxcode {
             get {
                 return ResourceManager.GetString("reqvtaxcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Code must be unique.Please enter a unique tax code.
+        /// </summary>
+        internal static string reqvtaxcodeUNQ {
+            get {
+                return ResourceManager.GetString("reqvtaxcodeUNQ", resourceCulture);
             }
         }
         
