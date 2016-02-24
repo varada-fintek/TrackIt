@@ -209,13 +209,13 @@
         }
 
     </script>
-       <style>
+       <%--<style>
 
         .modal-body{
                 max-height: 560px !important;
                 top:0;
         }
-    </style>
+    </style>--%>
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">

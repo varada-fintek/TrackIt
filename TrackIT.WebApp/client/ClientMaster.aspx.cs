@@ -331,6 +331,8 @@ namespace TrackIT.WebApp.client
             txtclientName.Text = string.Empty;
             chkbillinfosame.Checked = false;
             chkisactive.Checked = false;
+            hdnClientID.Value = string.Empty;
+
         }
         private void EditClientDetails(Int64? aint_ClientKey)
         {

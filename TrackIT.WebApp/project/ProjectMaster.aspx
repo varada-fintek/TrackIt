@@ -47,11 +47,12 @@
         }
 
     </script>
+    
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
                 <div class="page-header">
-                       
+
                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"></asp:ImageButton>
                         &nbsp;&nbsp;                       
@@ -59,9 +60,9 @@
                         &nbsp;&nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="show(); ShowModalPopup();"></a></span>
-                        
+
                     </div>
-                    
+
                     <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource" Format="PDF" />
                     <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource" />
 
@@ -77,10 +78,10 @@
             <div class="main-content">
 
                 <div class="page-content">
-                                   
-                    
+
+
                     <div class="page-content-area">
-                         
+
                         <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
                         <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
                         <cc1:ModalPopupExtender ID="mpe_projectPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
@@ -91,11 +92,12 @@
                                 <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
                                     <h4 class="modal-title">project</h4>
                                 </asp:Panel>
+
                                 <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
-                     
-                                 <asp:ValidationSummary ID="ValProjects" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
+
+                                    <asp:ValidationSummary ID="ValProjects" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                                     <div class="form-horizontal">
-                                        
+
                                         <div class="form-group">
                                             <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-6">
@@ -105,59 +107,54 @@
                                             <div class="col-md-1" style="display: none;">
                                                 <asp:RequiredFieldValidator ID="reqvClient" runat="server"
                                                     ControlToValidate="ddlClients" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue="" ></asp:RequiredFieldValidator>
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                                    <asp:Label ID="lblprojectcode" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtprojectcode" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                                    </div>
+                                            <asp:Label ID="lblprojectcode" class="control-label col-md-2" runat="server"></asp:Label>
+                                            <div class="col-md-3">
+                                                <asp:TextBox ID="txtprojectcode" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                            </div>
 
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
-                                                            runat="server" Enabled="True" TargetControlID="txtprojectcode"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvcode" runat="server"
-                                                            ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                        <asp:RequiredFieldValidator ID="reqvprojectIdUNQ" runat="server"
-                                                            ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                        
-                                        
-
+                                            <div class="col-md-1" style="display: none;">
+                                                <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
+                                                    runat="server" Enabled="True" TargetControlID="txtprojectcode"
+                                                    ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                </cc1:FilteredTextBoxExtender>
+                                                <asp:RequiredFieldValidator ID="reqvcode" runat="server"
+                                                    ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="reqvprojectIdUNQ" runat="server"
+                                                    ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                         
+                                            <asp:Label ID="lblprojectname" class="control-label col-md-2" runat="server"></asp:Label>
+                                            <div class="col-md-3">
+                                                <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                            </div>
 
-                                                    <asp:Label ID="lblprojectname" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                                    </div>
+                                            <div class="col-md-1" style="display: none;">
+                                                <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1"
+                                                    runat="server" Enabled="True" TargetControlID="txtprojectname"
+                                                    ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                </cc1:FilteredTextBoxExtender>
+                                                <asp:RequiredFieldValidator ID="reqvpname" runat="server"
+                                                    ControlToValidate="txtprojectname" Display="Static" SetFocusOnError="True"
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
 
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1"
-                                                            runat="server" Enabled="True" TargetControlID="txtprojectname"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvpname" runat="server"
-                                                            ControlToValidate="txtprojectname" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
 
-                                                     
 
-                                                    </div>
+                                            </div>
 
-                                                </div>
-                                          <div class="form-group">
-                                              <asp:Label ID="lblkickdate" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <input type="date" ID="igwdp_kickoffdate"  runat="server"></input>
-                                                        </div>
-                                              </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lblkickdate" class="control-label col-md-2" runat="server"></asp:Label>
+                                            <div class="col-md-3">
+                                                <input type="date" id="igwdp_kickoffdate" runat="server"></input>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <asp:Label ID="lblprojectowner" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-6">
@@ -167,21 +164,26 @@
                                             <div class="col-md-1" style="display: none;">
                                                 <asp:RequiredFieldValidator ID="Reqowner" runat="server"
                                                     ControlToValidate="ddlowner" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue="" ></asp:RequiredFieldValidator>
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                         <div class="form-group">
-                                                    <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-1">
-                                                        <span class="input-icon">
-                                                            <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="11" />
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                             
+                                        <div class="form-group">
+                                            <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
+                                            <div class="col-md-1">
+                                                <span class="input-icon">
+                                                    <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="11" />
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col=sm-10">
+                                        <div runat="server" id="popnl_projectGrid">
+                                                         </div>
+                                        </div>
                                     </div>
-                                      <div runat="server" id="popnl_projectGrid">
-                </div>
+
+
+
                                 </asp:Panel>
                                 <asp:Panel ID="pnlfooter" CssClass="modal-footer" runat="server">
 
@@ -193,16 +195,16 @@
                                             <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                         </div>
                                     </div>
-                                   
+
                                 </asp:Panel>
                             </asp:Panel>
                         </asp:Panel>
-                                       
+
                     </div>
                 </div>
             </div>
             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
-                <asp:HiddenField ID="hdnprjID" runat="server" ClientIDMode="Static" />
+            <asp:HiddenField ID="hdnprjID" runat="server" ClientIDMode="Static" />
         </ContentTemplate>
     </asp:UpdatePanel>
 

@@ -41,8 +41,7 @@ namespace TrackIT.WebApp.project
             try
             {
                 ControlNames();
-                clearcontrols();
-                lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
+              
                 iwdg_projectMasterGrid = new WebDataGrid();
                 iwdg_panelGrid = new WebDataGrid();
 
@@ -79,21 +78,19 @@ namespace TrackIT.WebApp.project
 
 
                     }
+                    clearcontrols();
+                }
 
+                GetProjectDetails();
+                GetPanelDetails();
+                if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
+                {
 
+                    Int64? lint_projid = Convert.ToInt64(hdnprjID.Value.ToString());
+                    btnSave.Visible = bitEdit;
+                    EditProjectDetails(lint_projid);
 
-
-                    GetProjectDetails();
-                    GetPanelDetails();
-                    if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
-                    {
-
-                        Int64? lint_projid = Convert.ToInt64(hdnprjID.Value.ToString());
-                        btnSave.Visible = bitEdit;
-                        EditProjectDetails(lint_projid);
-
-                        mpe_projectPopup.Show();
-                    }
+                    mpe_projectPopup.Show();
                 }
             }
             catch (Exception ex)
@@ -120,16 +117,14 @@ namespace TrackIT.WebApp.project
             }
         }
         #endregion
+
         #region Panel Master Grid initilizerow event
-        private void iwdg_panelGrid_InitializeRow(object sender, RowEventArgs e)
+        private void Iwdg_panelGrid_InitializeRow(object sender, RowEventArgs e)
         {
-          
             if (e.Row.Index == 0)
             {
-                e.Row.Items.FindItemByKey("value").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("PHA").Column.Header.Text = RollupText("projects", "gridphases");
-
-
+                e.Row.Items.FindItemByKey("Value").Column.Hidden = true;
+                e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = RollupText("projects", "gridphases");
             }
         }
         #endregion
@@ -137,6 +132,8 @@ namespace TrackIT.WebApp.project
         #region Button Clear click
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            clearcontrols();
+            GetProjectDetails();
             mpe_projectPopup.Hide();
         }
         #endregion
@@ -162,23 +159,14 @@ namespace TrackIT.WebApp.project
                     }
                     else
                     {
-
-
                         InsertorUpdateProjectDetails(); 
                        
                     }
                 }
                 else
                 {
-
-
                     InsertorUpdateProjectDetails(); 
-                    
                 }
-
-
-                
-               
 
             }
             catch (Exception ex)
@@ -200,6 +188,7 @@ namespace TrackIT.WebApp.project
         {
             try
             {
+                lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
                 lblactive.Text = RollupText("Projects", "lblactive");
                 lblclientname.Text = RollupText("Projects", "lblclientname");
                 lblprojectcode.Text = RollupText("Projects", "lblprojectcode");
@@ -222,6 +211,11 @@ namespace TrackIT.WebApp.project
         {
             try
             {
+                txtprojectcode.Text = string.Empty;
+                txtprojectname.Text = string.Empty;
+                ddlClients.SelectedIndex = -1;
+                ddlowner.SelectedIndex = -1;
+                igwdp_kickoffdate.Value = string.Empty;
                 chkinactive.Checked = true;
                 chkinactive.Enabled = false;
             }
@@ -342,16 +336,15 @@ namespace TrackIT.WebApp.project
         {
             try
             {
-               
-               
-
                 DataSet lds_Result;
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
+                iwdg_panelGrid.InitializeRow += Iwdg_panelGrid_InitializeRow;
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
                     iwdg_panelGrid.DataSource = lds_Result.Tables[0];
                     iwdg_panelGrid.DataBind();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -359,6 +352,8 @@ namespace TrackIT.WebApp.project
                     throw;
             }
         }
+
+        
 
         #region EditProjectDetails
         private void EditProjectDetails(Int64? aint_ProjectID)

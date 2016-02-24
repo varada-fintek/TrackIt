@@ -6019,6 +6019,8 @@ button.close {
     width:100%;
     min-height:503px;
     overflow:auto;
+       max-height: 560px !important;
+                top:0;
 }
 
 .modal-body-small {
