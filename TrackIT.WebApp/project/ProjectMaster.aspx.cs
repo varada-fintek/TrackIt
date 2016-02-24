@@ -29,6 +29,7 @@ namespace TrackIT.WebApp.project
         #region Declarations
         DBHelper.DBConnect ldbh_QueryExecutors = new DBHelper.DBConnect();
         WebDataGrid iwdg_projectMasterGrid;
+        WebDataGrid iwdg_panelGrid;
         private static string istr_tablename = string.Empty;
         #endregion
 
@@ -38,56 +39,64 @@ namespace TrackIT.WebApp.project
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            { 
-            ControlNames();
-            clearcontrols();
-            lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
-            iwdg_projectMasterGrid = new WebDataGrid();
-            pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
-            TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
-            if (!IsPostBack)
             {
-                DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients (NOLOCK) WHERE is_active = 1 ORDER BY client_name");
-                if (lds_Client.Tables[0].Rows.Count > 0)
-                {
-                    //Unit Testing ID - UserMaster.aspx.cs_3
-                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_3 Roles dataset count" + lds_Client.Tables[0].Rows.Count);
-                    ddlClients.Items.Clear();
-                    System.Web.UI.WebControls.ListItem llstm_li = new System.Web.UI.WebControls.ListItem("Select", "");
-                    ddlClients.DataSource = lds_Client;
-                    ddlClients.DataTextField = "TextValue";
-                    ddlClients.DataValueField = "Value";
-                    ddlClients.DataBind();
-                    ddlClients.Items.Insert(0, llstm_li);
-                }
-                DataSet lds_projowners = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
-                if (lds_projowners.Tables[0].Rows.Count > 0)
-                {
-                   
-                    ddlowner.Items.Clear();
-                    System.Web.UI.WebControls.ListItem llstm_li = new System.Web.UI.WebControls.ListItem("Select", "");
-                    ddlowner.DataSource = lds_projowners;
-                    ddlowner.DataTextField = "TextValue";
-                    ddlowner.DataValueField = "Value";
-                    ddlowner.DataBind();
-                    ddlowner.Items.Insert(0, llstm_li);
-                        
-                       
-                }
+                ControlNames();
+                clearcontrols();
+                lblCreateProjects.Text = RollupText("Projects", "lblCreateProjects");
+                iwdg_projectMasterGrid = new WebDataGrid();
+                iwdg_panelGrid = new WebDataGrid();
 
-           }
-                GetProjectDetails();
-                if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
+                pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
+                popnl_projectGrid.Controls.Add(iwdg_panelGrid);
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_panelGrid);
+                if (!IsPostBack)
                 {
-                   
-                    Int64? lint_projid = Convert.ToInt64(hdnprjID.Value.ToString());
-                    btnSave.Visible = bitEdit;
-                    EditProjectDetails(lint_projid);
-                   
-                    mpe_projectPopup.Show();
+                    DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients (NOLOCK) WHERE is_active = 1 ORDER BY client_name");
+                    if (lds_Client.Tables[0].Rows.Count > 0)
+                    {
+                        //Unit Testing ID - UserMaster.aspx.cs_3
+                        System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_3 Roles dataset count" + lds_Client.Tables[0].Rows.Count);
+                        ddlClients.Items.Clear();
+                        System.Web.UI.WebControls.ListItem llstm_li = new System.Web.UI.WebControls.ListItem("Select", "");
+                        ddlClients.DataSource = lds_Client;
+                        ddlClients.DataTextField = "TextValue";
+                        ddlClients.DataValueField = "Value";
+                        ddlClients.DataBind();
+                        ddlClients.Items.Insert(0, llstm_li);
+                    }
+                    DataSet lds_projowners = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
+                    if (lds_projowners.Tables[0].Rows.Count > 0)
+                    {
+
+                        ddlowner.Items.Clear();
+                        System.Web.UI.WebControls.ListItem llstm_li = new System.Web.UI.WebControls.ListItem("Select", "");
+                        ddlowner.DataSource = lds_projowners;
+                        ddlowner.DataTextField = "TextValue";
+                        ddlowner.DataValueField = "Value";
+                        ddlowner.DataBind();
+                        ddlowner.Items.Insert(0, llstm_li);
+
+
+                    }
+
+
+
+
+                    GetProjectDetails();
+                    GetPanelDetails();
+                    if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
+                    {
+
+                        Int64? lint_projid = Convert.ToInt64(hdnprjID.Value.ToString());
+                        btnSave.Visible = bitEdit;
+                        EditProjectDetails(lint_projid);
+
+                        mpe_projectPopup.Show();
+                    }
                 }
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, Log_Only_Policy);
                 Response.Redirect("~/Error.aspx", false);
@@ -108,6 +117,19 @@ namespace TrackIT.WebApp.project
                 e.Row.Items.FindItemByKey("project_kickoff_date").Column.Header.Text = RollupText("projects", "gridprojectkickoffdate");
                 e.Row.Items.FindItemByKey("project_owner").Column.Header.Text = RollupText("projects", "gridprojectowner");
                 e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("projects", "gridisactive");
+            }
+        }
+        #endregion
+        #region Panel Master Grid initilizerow event
+        private void iwdg_panelGrid_InitializeRow(object sender, RowEventArgs e)
+        {
+          
+            if (e.Row.Index == 0)
+            {
+                e.Row.Items.FindItemByKey("value").Column.Hidden = true;
+                e.Row.Items.FindItemByKey("PHA").Column.Header.Text = RollupText("projects", "gridphases");
+
+
             }
         }
         #endregion
@@ -265,8 +287,6 @@ namespace TrackIT.WebApp.project
 
                     lstr_outMessage = "SUCCESS";
                 }
-
-               
                 if (lstr_outMessage.Contains("SUCCESS"))
                 {
 
@@ -279,16 +299,11 @@ namespace TrackIT.WebApp.project
                 }
                 else
                 {
-                   
-                    
                     Response.Redirect("~/project/ProjectMaster.aspx", false);
                 }
-            
-
             }
             catch (Exception ex)
             {
-
                 if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
                     throw;
             }
@@ -323,6 +338,27 @@ namespace TrackIT.WebApp.project
             }
         }
         #endregion
+        private void GetPanelDetails()
+        {
+            try
+            {
+               
+               
+
+                DataSet lds_Result;
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
+                if (lds_Result.Tables[0].Rows.Count > 0)
+                {
+                    iwdg_panelGrid.DataSource = lds_Result.Tables[0];
+                    iwdg_panelGrid.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
 
         #region EditProjectDetails
         private void EditProjectDetails(Int64? aint_ProjectID)

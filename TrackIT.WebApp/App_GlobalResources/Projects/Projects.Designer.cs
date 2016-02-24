@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phase Owner.
+        /// </summary>
+        internal static string gridOwners {
+            get {
+                return ResourceManager.GetString("gridOwners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phases.
+        /// </summary>
+        internal static string gridphases {
+            get {
+                return ResourceManager.GetString("gridphases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Code.
         /// </summary>
         internal static string gridprojectcode {
@@ -111,6 +129,15 @@ namespace Resources {
         internal static string gridprojectowner {
             get {
                 return ResourceManager.GetString("gridprojectowner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        internal static string gridresources {
+            get {
+                return ResourceManager.GetString("gridresources", resourceCulture);
             }
         }
         
