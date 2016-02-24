@@ -32,6 +32,24 @@
             document.getElementById("createnew").style.display = "block";
             return false;
         }
+        function editRow(obj) {
+            //Unit Testing- Security_ASPX_001
+            var grid = $find("iwdg_TaxDetailsGrid");
+            var row = $(obj).parents("tr[type='row']").get(0);
+            var rowid = row.cells[1].innerHTML;
+            var pop_open = '1';
+            //alert("ID="+rowid);
+            document.getElementById("hdntaxkey").value = rowid;
+            document.getElementById("hdnpop").value = pop_open;
+            //$find("mpe").show();
+            return true;
+        }
+        function removequery() {
+            //alert();
+            var pop_open = '0';
+            document.getElementById("hdnpop").value = pop_open;
+        }
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -185,10 +203,10 @@
                                 <asp:Panel ID="pnlfooter" CssClass="modal-footer" runat="server">
                                 <div class="form-group">
                                             <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClick="btnClear_Click" CausesValidation="false" />
+                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClientClick="removequery();" OnClick="btnClear_Click" CausesValidation="false" />
                                             </div>
                                             <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
+                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();"  ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                             </div>
                                         </div>
                                 </asp:Panel>
@@ -198,6 +216,8 @@
                     </div>
                 </div>
             </div>
+            <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
+            <asp:HiddenField ID="hdntaxkey" runat="server" ClientIDMode="Static" />
 
         </ContentTemplate>
     </asp:UpdatePanel>
