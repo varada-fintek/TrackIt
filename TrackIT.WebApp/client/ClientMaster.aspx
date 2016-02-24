@@ -29,7 +29,7 @@
            // $find("mpe").show();
             return true;
         }
-        function removequery() {
+        function ClosePopup() {
             //alert();
             var pop_open = '0';
             document.getElementById("hdnpop").value = pop_open;
@@ -54,9 +54,9 @@
                 <div class="page-header">
                     
                      <div class="floatright pull_right">
-                        <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"></asp:ImageButton>
+                        <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png" OnClick="btnExportExcel_Click"></asp:ImageButton>
                         &nbsp;&nbsp;                       
-                        <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png"></asp:ImageButton>
+                        <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>
                         &nbsp;&nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="ShowModalPopup();"></a></span>
@@ -299,10 +299,10 @@
                                  <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
                                         <div class="form-group">
                                             <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnCancel" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" CausesValidation="false" OnClick="btnCancel_Click" />
+                                                <asp:Button ID="btnCancel" Text="Cancel" runat="server" CssClass=" btn btn-orange" OnClientClick="ClosePopup();" TabIndex="8" CausesValidation="false" OnClick="btnCancel_Click" />
                                             </div>
                                             <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" OnClick="btnSave_Click" ValidationGroup="vgrpSave" />
+                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClick="btnSave_Click" ValidationGroup="vgrpSave" />
                                             </div>
                                         </div>
                                     </asp:Panel>

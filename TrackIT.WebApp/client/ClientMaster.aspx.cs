@@ -30,13 +30,14 @@ namespace TrackIT.WebApp.client
         WebDataGrid lwdg_clientMasterGrid;
         #endregion
 
+        #region page load
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ControlNames();
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
-
             GetClientDetails();
             if (!IsPostBack)
             {
@@ -64,9 +65,14 @@ namespace TrackIT.WebApp.client
                 Int64? lint_Clientid = Convert.ToInt64(hdnClientID.Value.ToString());
                 btnSave.Visible = bitEdit;
                 EditClientDetails(lint_Clientid);
+                hdnpop.Value = string.Empty;
                 mpe_clientPopup.Show();
+                
             }
         }
+        #endregion
+
+        #region Post Back Events
         private void Lwdg_clientMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
             if (e.Row.Index == 0)
@@ -91,6 +97,63 @@ namespace TrackIT.WebApp.client
                 }
             }
         }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            DataSet lds_Result;
+            if (string.IsNullOrEmpty(hdnClientID.Value))
+            {
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code from prj_clients where  client_code ='" + txtclientCode.Text + "'");
+                if (lds_Result.Tables[0].Rows.Count > 0)
+                {
+                    reqvclientIdUNQ.ErrorMessage = RollupText("Client", "reqvUnqclientcode");
+                    ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("Client", "reqvUnqclientcode") + "')</script>", false);
+                    mpe_clientPopup.Show();
+                }
+                else
+                {
+                    InsertorUpdateClientDetails();
+                }
+            }
+            else
+            {
+                InsertorUpdateClientDetails();
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClearControls();
+            mpe_clientPopup.Hide();
+        }
+        
+        protected void chkbillinfosame_CheckedChanged(object sender, EventArgs e)
+        {
+            mpe_clientPopup.Show();
+            if (chkbillinfosame.Checked == true)
+            {
+                txtbillcity.Text = txtaddresscity.Text;
+                txtbilladdress1.Text = txtaddressline1.Text;
+                txtbilladdress2.Text = txtaddressline2.Text;
+                txtbillstate.Text = txtaddressstate.Text;
+                txtbillzip.Text = txtaddresszip.Text;
+                ddlbillCountry.SelectedIndex = ddladdresscountry.SelectedIndex;
+            }
+            else if (chkbillinfosame.Checked == false)
+            {
+                txtbillcity.Text = "";
+                txtbilladdress1.Text = "";
+                txtbilladdress2.Text = "";
+                txtbillstate.Text = "";
+                txtbillzip.Text = "";
+                ddlbillCountry.SelectedIndex = 0;
+            }
+            
+        }
+
+        #endregion
+
+        #region user defined functions
         private void ControlNames()
         {
             try
@@ -121,62 +184,16 @@ namespace TrackIT.WebApp.client
                     throw;
             }
         }
-        protected void chkbillinfosame_CheckedChanged(object sender, EventArgs e)
-        {
-            mpe_clientPopup.Show();
-            if (chkbillinfosame.Checked == true)
-            {
-                txtbillcity.Text = txtaddresscity.Text;
-                txtbilladdress1.Text = txtaddressline1.Text;
-                txtbilladdress2.Text = txtaddressline2.Text;
-                txtbillstate.Text = txtaddressstate.Text;
-                txtbillzip.Text = txtaddresszip.Text;
-                ddlbillCountry.SelectedIndex = ddladdresscountry.SelectedIndex;
-            }
-            else if (chkbillinfosame.Checked == false)
-            {
-                txtbillcity.Text = "";
-                txtbilladdress1.Text = "";
-                txtbilladdress2.Text = "";
-                txtbillstate.Text = "";
-                txtbillzip.Text = "";
-                ddlbillCountry.SelectedIndex = 0;
-            }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            DataSet lds_Result;
-            if (string.IsNullOrEmpty(hdnClientID.Value))
-            {
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code from prj_clients where  client_code ='" + txtclientCode.Text + "'");
-                if (lds_Result.Tables[0].Rows.Count > 0)
-                {
-                    reqvclientIdUNQ.ErrorMessage = RollupText("Client", "reqvUnqclientcode");
-                    ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("Client", "reqvUnqclientcode") + "')</script>", false);
-                    mpe_clientPopup.Show();
-                }
-                else
-                {
-                    InsertorUpdateClientDetails();
-                }
-            }
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ClearControls();
-            mpe_clientPopup.Hide();
-        }
-
         protected void InsertorUpdateClientDetails()
         {
             try
             {
+                string lstr_outMessage = string.Empty;
+                 string istr_tablename = "prj_clients";
+                 bool lbool_type = false;
                 if (string.IsNullOrEmpty(hdnClientID.Value))
-                {
-                    string istr_tablename = "prj_clients";
-                    bool lbool_type = false;
+                {                   
+                   
                     string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                     {                    
                         {"client_name", txtclientName.Text.Replace("'", "''")},
@@ -203,15 +220,63 @@ namespace TrackIT.WebApp.client
                         {"last_modified_date", DateTime.Now}
                       }
                            , lbool_type);
+                    lstr_outMessage = "SUCCESS";
+                }
+                else
+                {
+                    lbool_type=false;
+                    istr_tablename = "prj_clients";
+                     string id=ldbh_QueryExecutors.SqlUpdate(istr_tablename,new System.Collections.Generic.Dictionary<string,object>()
+                        {
+                        {"client_name", txtclientName.Text.Replace("'", "''")},
+                        {"client_code",txtclientCode.Text.Replace("'", "''")},
+                        {"client_address_1",txtaddressline1.Text.Replace("'", "''")},
+                        {"client_address_2",txtaddressline2.Text.Replace("'", "''")},
+                        {"client_city",txtaddresscity.Text.Replace("'", "''")},
+                        {"client_state",txtaddressstate.Text.Replace("'", "''")},
+                        {"client_zip",txtaddresszip.Text.Replace("'", "''")},
+                        {"client_country", ddladdresscountry.SelectedValue},                       
+                        {"client_billinginfo_same", (chkbillinfosame.Checked ? 1 : 0).ToString()},
+                        {"client_contact_name",txtclientcontactname.Text.Replace("'", "''")},
+                        {"client_contact_designation",txtclientcontactdesignation.Text.Replace("'", "''")},
+                        {"client_bill_address_1",txtbilladdress1.Text.Replace("'", "''")},
+                        {"client_bill_address_2",txtbilladdress2.Text.Replace("'", "''")},
+                        {"client_bill_city",txtbillcity.Text.Replace("'", "''")},
+                        {"client_bill_state",txtbillstate.Text.Replace("'", "''")},
+                        {"client_bill_zip",txtbillzip.Text.Replace("'", "''")},
+                        {"client_bill_country",ddlbillCountry.SelectedValue},
+                        {"is_active", (chkisactive.Checked ? 1 : 0).ToString()}, 
+                        {"last_modified_By", this.LoggedInUserId },
+                        {"last_modified_date", DateTime.Now}
+
+                        },
+                         new System.Collections.Generic.Dictionary<string, object>()
+                     {
+                         {"client_key", hdnClientID.Value},
+                     },
+                     lbool_type);
+                     lstr_outMessage = "SUCCESS";
+                }
+                if (lstr_outMessage.Contains("SUCCESS"))
+                {   
+                    string[] sBUID = lstr_outMessage.Split('^');
+                    GetClientDetails();
+                    SaveMessage();
+                    ClearControls();
+                    mpe_clientPopup.Hide();
+                    return;
+                }
+                else
+                {
+                    //Unit Testing ID - UserMaster.aspx.cs_16
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_16 ErrorMessage");
+                    Response.Redirect("~/Setup/UserMaster.aspx", false);
                 }
             }
             catch (Exception ex)
             {
                 if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
                     throw;
-            }
-            finally
-            {
             }
         }
         private void GetClientDetails()
@@ -343,7 +408,50 @@ namespace TrackIT.WebApp.client
                     throw;
             }
         }
+        #endregion
 
+        #region  Export to Excel And PDF
+        protected void btnExportExcel_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
+                lwdg_clientMasterGrid.DataSource = ldt_ExcelExp;
+                lwdg_clientMasterGrid.DataBind();
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebExcelExporter.Export(lwdg_clientMasterGrid);
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebExcelExporter.Export(this.lwdg_clientMasterGrid);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                //Response.Redirect("~/Error.aspx", false);
+            }
+        }
+
+        protected void btnExportPDF_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                DataTable ldt_PdfExp = (DataTable)ViewState["export"];
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
+                lwdg_clientMasterGrid.DataSource = ldt_PdfExp;
+                lwdg_clientMasterGrid.DataBind();
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebPDFExporter.Export(lwdg_clientMasterGrid);
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebPDFExporter.Export(this.lwdg_clientMasterGrid);
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                //Response.Redirect("~/Error.aspx", false);
+            }
+
+        }
+        #endregion
     }
 }
                  
