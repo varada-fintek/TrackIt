@@ -162,4 +162,7 @@
   <data name="reqvpname" xml:space="preserve">
     <value>Please Enter Project Name</value>
   </data>
+  <data name="reqvprojectIdUNQ" xml:space="preserve">
+    <value>project code should be unique</value>
+  </data>
 </root>

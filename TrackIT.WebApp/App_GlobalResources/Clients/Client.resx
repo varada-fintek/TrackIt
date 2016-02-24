@@ -207,4 +207,7 @@
   <data name="reqvUnqclientcode" xml:space="preserve">
     <value>Client Id Should be Unique</value>
   </data>
+  <data name="gridclientsactive" xml:space="preserve">
+    <value>Active Status</value>
+  </data>
 </root>
