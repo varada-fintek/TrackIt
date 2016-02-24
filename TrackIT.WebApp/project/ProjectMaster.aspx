@@ -180,6 +180,8 @@
                                                 </div>
                                              
                                     </div>
+                                      <div runat="server" id="popnl_projectGrid">
+                </div>
                                 </asp:Panel>
                                 <asp:Panel ID="pnlfooter" CssClass="modal-footer" runat="server">
 
@@ -191,6 +193,7 @@
                                             <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                         </div>
                                     </div>
+                                   
                                 </asp:Panel>
                             </asp:Panel>
                         </asp:Panel>

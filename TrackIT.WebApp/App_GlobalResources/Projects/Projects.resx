@@ -165,4 +165,13 @@
   <data name="reqvprojectIdUNQ" xml:space="preserve">
     <value>project code should be unique</value>
   </data>
+  <data name="gridOwners" xml:space="preserve">
+    <value>Phase Owner</value>
+  </data>
+  <data name="gridphases" xml:space="preserve">
+    <value>Phases</value>
+  </data>
+  <data name="gridresources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
 </root>

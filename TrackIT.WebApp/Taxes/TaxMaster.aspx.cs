@@ -30,31 +30,51 @@ namespace TrackIT.WebApp.Taxes
         WebDataGrid iwdg_TaxDetailsGrid;
         private static string istr_tablename = string.Empty;
         #endregion
+
         #region Page Load
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-            ControlNames();
-            iwdg_TaxMasterGrid = new WebDataGrid();
-            pnl_taxGrid.Controls.Add(iwdg_TaxMasterGrid);
-            TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxMasterGrid);
-
-            iwdg_TaxDetailsGrid = new WebDataGrid();
-            pnl_taxdetailsGrid.Controls.Add(iwdg_TaxDetailsGrid);
-            TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxDetailsGrid);
-            GetTaxDetails();
-            
-            if(!IsPostBack)
+            try
             {
-                GetTaxinfoDetails();  
+                ControlNames();
+                iwdg_TaxMasterGrid = new WebDataGrid();
+                pnl_taxGrid.Controls.Add(iwdg_TaxMasterGrid);
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxMasterGrid);
+
+                iwdg_TaxDetailsGrid = new WebDataGrid();
+                pnl_taxdetailsGrid.Controls.Add(iwdg_TaxDetailsGrid);
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxDetailsGrid);
+                GetTaxDetails();
+
+                if (!string.IsNullOrEmpty(hdntaxkey.Value) && hdnpop.Value == "1")
+                {
+                    Int64? lint_TaxID = Convert.ToInt64(hdntaxkey.Value.ToString());
+                    txttaxcode.Enabled = false;
+                    btnSave.Visible = bitEdit;
+                    EditTaxDetails(lint_TaxID);
+                    // System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "show();", true);
+                    mpe_taxPopup.Show();
+
+                }
+
+
+                if (!IsPostBack)
+                {
+                    GetTaxinfoDetails();  
+                }
             }
-
-
-
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
         }
         #endregion
+
+        #region User Defined Functions
+
         #region Intialize Row for Grids
         private void iwdg_TaxDetailsGrid_InitializeRow(object sender, RowEventArgs e)
         {
@@ -73,14 +93,14 @@ namespace TrackIT.WebApp.Taxes
             //throw new NotImplementedException();
             if (e.Row.Index == 0)
             {
-
-                e.Row.Items.FindItemByKey("tax_tax_name").Column.Header.Text = RollupText("Taxes", "gridtaxname");
+                e.Row.Items.FindItemByKey("tax_key").Column.Hidden = true;
                 e.Row.Items.FindItemByKey("tax_tax_code").Column.Header.Text = RollupText("Taxes", "gridtaxcode");
+                e.Row.Items.FindItemByKey("tax_tax_name").Column.Header.Text = RollupText("Taxes", "gridtaxname");
             }
         }
         #endregion
 
-        #region User Defined Functions
+        #region Control Names
         private void ControlNames()
         {
             lblCreatetaxes.Text = RollupText("Taxes", "lblCreatetaxes");
@@ -91,14 +111,22 @@ namespace TrackIT.WebApp.Taxes
             reqvtxttaxname.ErrorMessage = RollupText("Taxes", "reqvtxttaxname");
             reqvtaxcodeUNQ.ErrorMessage = RollupText("Taxes", "reqvtaxcodeUNQ");
         }
+        #endregion
 
+        #region Get Tax Details
         private void GetTaxDetails()
         {
             try
             {
                 iwdg_TaxMasterGrid.InitializeRow += iwdg_TaxMasterGrid_InitializeRow;
+                iwdg_TaxMasterGrid.Columns.Clear();
+                TemplateDataField td = new TemplateDataField();
+                td.ItemTemplate = new CustomItemTemplateView();
+                td.Key = "Action";
+                td.Width = 30;
+                iwdg_TaxMasterGrid.Columns.Add(td);
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select tax_tax_name,tax_tax_code from prj_taxes");
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select tax_key,tax_tax_code,tax_tax_name from prj_taxes");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
                     iwdg_TaxMasterGrid.DataSource = lds_Result.Tables[0];
@@ -113,6 +141,35 @@ namespace TrackIT.WebApp.Taxes
                     throw;
             }
         }
+        #endregion
+
+        #region Edit Tax Details
+        private void EditTaxDetails(Int64? aint_TaxID)
+        {
+            try
+            {
+                Int64? lint_TaxID = aint_TaxID;
+
+                //Fetch Single Record from table and assign to Edit
+                DataSet lds_taxdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_taxes pt where pt.tax_key='" + aint_TaxID + "'");
+
+                if (lds_taxdetail.Tables[0].Rows[0]["tax_key"] != null)
+                {
+                    hdntaxkey.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_taxdetail.Tables[0].Rows[0]["tax_key"]))) ? Convert.ToString(lds_taxdetail.Tables[0].Rows[0]["tax_key"]).Trim() : string.Empty;
+                    txttaxcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_taxdetail.Tables[0].Rows[0]["tax_tax_code"]))) ? Convert.ToString(lds_taxdetail.Tables[0].Rows[0]["tax_tax_code"]).Trim() : string.Empty;
+                    txttaxname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_taxdetail.Tables[0].Rows[0]["tax_tax_name"]))) ? Convert.ToString(lds_taxdetail.Tables[0].Rows[0]["tax_tax_name"]).Trim() : string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
+        }
+
+        #endregion
+
+        #region Get Tax info Details
         private void GetTaxinfoDetails()
         {
             try
@@ -124,14 +181,26 @@ namespace TrackIT.WebApp.Taxes
                     if (lds_taxResult.Tables[0].Rows.Count > 0)
                     {
                        
-                        iwdg_TaxDetailsGrid.DataSource = lds_taxResult.Tables[0];
-                        iwdg_TaxDetailsGrid.DataBind();
-                        checkgrid.DataSource = lds_taxResult.Tables[0];
-                        iwdg_TaxDetailsGrid.DataBind();
+                        //iwdg_TaxDetailsGrid.DataSource = lds_taxResult.Tables[0];
+                        //iwdg_TaxDetailsGrid.DataBind();
+                        DataTable ldt_sessiontax=(DataTable)ViewState["vsTaxdetails"];
+                        if (ldt_sessiontax != null)
+                        {
+                            if (ldt_sessiontax.Rows.Count > 0)
+                            {
+                                checkgrid.DataSource = ldt_sessiontax;
+                            }
+                        }
+                        else
+                        {
+                            checkgrid.DataSource = lds_taxResult.Tables[0];
+                        }
+                        checkgrid.DataBind();
+                        //iwdg_TaxDetailsGrid.DataBind();
                         ViewState["vsTaxdetails"] = (DataTable)lds_taxResult.Tables[0];
                     }
 
-                    iwdg_TaxDetailsGrid.InitializeRow += iwdg_TaxDetailsGrid_InitializeRow;
+                    //iwdg_TaxDetailsGrid.InitializeRow += iwdg_TaxDetailsGrid_InitializeRow;
                     checkgrid.InitializeRow +=iwdg_TaxDetailsGrid_InitializeRow;
                     // Enable cell editing
                     this.checkgrid.Behaviors.CreateBehavior<EditingCore>();
@@ -143,6 +212,7 @@ namespace TrackIT.WebApp.Taxes
 
                     EditingColumnSetting fromdatecolumn = new EditingColumnSetting();
                     fromdatecolumn.ColumnKey = "tax_from";
+                    
                     fromdatecolumn.EditorID = FromdateProvider.ID;
 
                     EditingColumnSetting todatecolumn = new EditingColumnSetting();
@@ -260,20 +330,65 @@ namespace TrackIT.WebApp.Taxes
                     throw;
             }
         }
-        
+        #endregion
+
         #region InsertorUpdate
         protected void InsertorUpdateTaxDetails()
         {
             try
             {
+                string astr_tax_key = Convert.ToString(Guid.NewGuid());
                 istr_tablename = "prj_taxes";
                 Boolean lbool_type = true;
-                string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object> 
+                string lstr_outMessage = string.Empty;
+                if (string.IsNullOrEmpty(hdntaxkey.Value))
+                {
+
+                    string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object> 
                 {
                     {"tax_tax_name",txttaxname.Text.Replace("'","''")},
                     {"tax_tax_code",txttaxcode.Text.Replace("'","''")},
                 }, lbool_type
-                );
+                    );
+                }
+                else
+                {
+                    lbool_type = false;
+
+                    istr_tablename = "prj_taxes";
+                    string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                    {
+                        {"tax_tax_name",txttaxname.Text.Replace("'", "''") },
+                        {"tax_tax_code",txttaxcode.Text.Replace("'", "''") }
+                    },
+                    new System.Collections.Generic.Dictionary<string, object>()
+                     {
+                         {"tax_key", hdntaxkey.Value},
+                     },
+                    lbool_type
+                   );
+
+                    lstr_outMessage = "SUCCESS";
+                }
+                
+                if (lstr_outMessage.Contains("SUCCESS"))
+                {
+
+                    string[] sBUID = lstr_outMessage.Split('^');
+                    GetTaxDetails();
+                    SaveMessage();
+                   // ClearControls();
+                    mpe_taxPopup.Hide();
+                    return;
+                }
+                else
+                {
+                   
+                    
+                    Response.Redirect("~/Taxes/TaxMaster.aspx", false);
+                }
+            
+                
                  
             }
             catch (Exception ex)
@@ -290,7 +405,6 @@ namespace TrackIT.WebApp.Taxes
             {
                 txttaxcode.Text = string.Empty;
                 txttaxname.Text = string.Empty;
-                iwdg_TaxDetailsGrid.DataSource = null;
                 btnSave.Visible = bitAdd;
                 
             }
@@ -301,10 +415,11 @@ namespace TrackIT.WebApp.Taxes
             }
         }
         #endregion
+
         #endregion
 
-
         #region Postback Events
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ClearControls();
@@ -325,8 +440,11 @@ namespace TrackIT.WebApp.Taxes
             DataRow toInsert = lds_taxResult.NewRow();
             toInsert["tax_from"] = DateTime.Now;
             toInsert["tax_to"] = DateTime.Now;
-            toInsert["tax"]
+            toInsert["tax_percent"] = string.Empty;
+            toInsert["tax_type"] = -1;
+            toInsert["tax_applied_on"] = -1;
             lds_taxResult.Rows.InsertAt(toInsert, lds_taxResult.Rows.Count);
+            ViewState["vsTaxdetails"] = (DataTable)lds_taxResult;
             GetTaxinfoDetails();
             iwdg_TaxDetailsGrid.DataSource = lds_taxResult;
             iwdg_TaxDetailsGrid.DataBind();
