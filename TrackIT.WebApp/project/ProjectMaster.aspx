@@ -30,18 +30,15 @@
             return false;
         }
         function editRow(obj) {
-            //Unit Testing- Security_ASPX_001
             var grid = $find("lwdg_FundMasterGrid");
             var row = $(obj).parents("tr[type='row']").get(0);
             var rowid = row.cells[1].innerHTML;
             var pop_open = '1';
             document.getElementById("hdnprjID").value = rowid;
             document.getElementById("hdnpop").value = pop_open;
-            //$find("mpe").show();
             return true;
         }
         function removequery() {
-            //alert();
             var pop_open = '0';
             document.getElementById("hdnpop").value = pop_open;
         }
