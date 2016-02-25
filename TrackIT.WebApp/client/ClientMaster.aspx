@@ -122,7 +122,7 @@
                                                         <asp:TextBox ID="txtclientName" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                     </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                        
                                                     </div>
                                               </div>                                     
                                               <div class="form-group">
@@ -143,7 +143,7 @@
                                                     <asp:TextBox ID="txtaddressline1" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
                                                     </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                       
                                                     </div>
                                               </div>
                                               <div class="form-group">
@@ -162,7 +162,7 @@
                                                     <asp:TextBox ID="txtaddresscity" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                     </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                      
                                                     </div>
                                               </div>
 
@@ -172,7 +172,7 @@
                                                     <asp:TextBox ID="txtaddressstate" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                     </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                          
                                                     </div>
                                               </div>
 
@@ -192,7 +192,7 @@
                                                 </asp:DropDownList>
                                                     </div>
                                             <div class="col-md-1" style="display: none;">
-                                                FOR VALIDATIONS                                                       
+                                                                                                   
                                                     </div>
                                               </div>
                                                 <div class="form-group">
@@ -213,7 +213,7 @@
                                                     <asp:TextBox ID="txtclientcontactname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                     </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                      
                                                     </div>
                                               </div>
 
@@ -237,7 +237,7 @@
                                                     <asp:TextBox ID="txtbilladdress1" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                        
                                                 </div>
                                           </div>
 
@@ -257,7 +257,7 @@
                                                     <asp:TextBox ID="txtbillcity" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                       
                                                 </div>
                                             </div>
             
@@ -267,7 +267,7 @@
                                                     <asp:TextBox ID="txtbillstate" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                 
                                                 </div>
                                             </div>
 
@@ -277,7 +277,7 @@
                                                     <asp:TextBox ID="txtbillzip" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
-                                                    FOR VALIDATIONS                                                       
+                                                                                                     
                                                 </div>
                                             </div>  
 
@@ -288,7 +288,7 @@
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-md-1" style="display: none;">
-                                                FOR VALIDATIONS                                                       
+                                                                                                   
                                             </div>
                                         </div>                           
 
