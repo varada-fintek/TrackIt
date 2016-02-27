@@ -141,7 +141,7 @@
                                             </div>
 
                                             <ig:WebDataGrid ID="iwdg_Taxdetailsinfo" runat="server"
-                                                AutoGenerateColumns="true" Width="1000px">
+                                                AutoGenerateColumns="true" Width="1000px" EnableClientRendering="True">
                                                 <EditorProviders>
                                                     <ig:DatePickerProvider ID="FromdateProvider" />
                                                     <ig:DatePickerProvider ID="TodateProvider" />
@@ -155,49 +155,59 @@
                                                         <EditorControl ID="taxappliedEditorControl" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
                                                 </EditorProviders>
-                                                <Behaviors>
-                                                    <ig:Activation>
-                                                    </ig:Activation>
-                                                    <ig:EditingCore>
-                                                        <Behaviors>
-                                                            <ig:RowAdding Alignment="Bottom" EditModeActions-EnableOnActive="true" EditModeActions-MouseClick="Single"
-                                                                Enabled="true">
-                                                                <AddNewRowClientEvents ExitedEditMode="WebDataGridView_ExitedEditMode" />
-                                                            </ig:RowAdding>
-                                                        </Behaviors>
-                                                    </ig:EditingCore>
-                                                </Behaviors>
+
                                             </ig:WebDataGrid>
 
-                                            <ig:WebDataGrid ID="check_grid"  runat="server" AutoGenerateColumns="true"
-                                               EnableAjax="true" OnRowAdded="check_grid_RowAdded"
+                                            <ig:WebDataGrid ID="check_grid" runat="server" AutoGenerateColumns="true"
+                                                EnableAjax="true" OnRowAdded="check_grid_RowAdded"
                                                 OnRowAdding="check_grid_RowAdding" Width="100%">
-                                                <Behaviors>
-                                                    <ig:Activation>
-                                                    </ig:Activation>
-                                                    <ig:EditingCore>
-                                                        <Behaviors>
-                                                            <ig:RowAdding Alignment="Top" EditModeActions-EnableOnActive="true" EditModeActions-MouseClick="Single"
-                                                                Enabled="true">
-                                                               <%-- <AddNewRowClientEvents ExitedEditMode="WebDataGridView_ExitedEditMode" />--%>
-                                                            </ig:RowAdding>
-                                                        </Behaviors>
-                                                    </ig:EditingCore>
-                                                </Behaviors>
                                                 <EditorProviders>
-                                                    <ig:DatePickerProvider ID="dppfromdate" />
-                                                    <ig:DatePickerProvider ID="ddptodate" />
-                                                    <ig:TextBoxProvider ID="txtptax" />
-
-                                                    <ig:DropDownProvider ID="ddptype">
+                                                    <ig:DatePickerProvider ID="dpptaxfrom" />
+                                                    <ig:DatePickerProvider ID="dpptaxto" />
+                                                    <ig:TextBoxProvider ID="tbptaxpercentage" />
+                                                    <ig:DropDownProvider ID="ddptaxestype">
                                                         <EditorControl ID="EditorControl1" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
-
-                                                    <ig:DropDownProvider ID="ddpappliedon">
+                                                    <ig:DropDownProvider ID="ddpappliedon" EditorControl-DropDownContainerWidth="135px">
                                                         <EditorControl ID="EditorControl2" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
                                                 </EditorProviders>
-                                                <ClientEvents AJAXResponse="WebDataGridView_AJAXResponse" />
+                                                <Columns>
+                                                    <ig:BoundDataField DataFieldName="tax_from" Key="From" Width="50px">
+                                                       
+                                                    </ig:BoundDataField>
+                                                    <ig:BoundDataField DataFieldName="tax_to" Key="To" Width="120px">
+                                                       
+                                                    </ig:BoundDataField>
+                                                    <ig:BoundDataField Key="tax_percentage">
+                                                      
+                                                    </ig:BoundDataField>
+                                                    <ig:BoundDataField DataFieldName="tax_type" Key="type">
+                                                       
+                                                    </ig:BoundDataField>
+
+                                                    <ig:BoundDataField DataFieldName="tax_applied_on" Key="applied">
+                                                        
+                                                    </ig:BoundDataField>
+                                                   
+                                                </Columns>
+                                                <Behaviors>
+                                                    <ig:EditingCore>
+                                                        <Behaviors>
+                                                            <ig:CellEditing Enabled="true">
+                                                                <ColumnSettings>
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_from" EditorID="dpptaxfrom" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_to" EditorID="dpptaxto" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_percentage" EditorID="tbptaxpercentage" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_type" EditorID="ddptaxestype" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_applied_on" EditorID="ddpappliedon" />
+                                                                    
+                                                                </ColumnSettings>
+                                                            </ig:CellEditing>
+                                                        </Behaviors>
+                                                    </ig:EditingCore>
+                                                    <ig:Paging PageSize="20" PagerAppearance="Bottom" />
+                                                </Behaviors>
                                             </ig:WebDataGrid>
 
                                         </div>
@@ -226,20 +236,8 @@
             <asp:HiddenField ID="hdntaxkey" runat="server" ClientIDMode="Static" />
             <script type="text/javascript">
 
-                function WebDataGridView_AJAXResponse(webDataGrid, evntArgs) {
-                    var errorMessage;
-                    if (evntArgs.get_browserResponseObject().status == 200)
-                        errorMessage = evntArgs.get_gridResponseObject().Message;
-                    else
-                        errorMessage = evntArgs.get_browserResponseObject().responseText;
-                    $get("eventList").innerHTML = errorMessage;
-                }
 
-                function WebDataGridView_ExitedEditMode(webDataGrid, evntArgs) {
-                    $get("eventList").innerHTML = "";
-                }
-
-    </script>
+            </script>
         </ContentTemplate>
     </asp:UpdatePanel>
 
