@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address Line 1.
+        ///   Looks up a localized string similar to Address Line 1*.
         /// </summary>
         internal static string lbladdressline1 {
             get {
@@ -214,7 +214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address Line 1.
+        ///   Looks up a localized string similar to Address Line 1*.
         /// </summary>
         internal static string lblbilladdress1 {
             get {
@@ -286,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact Designation.
+        ///   Looks up a localized string similar to Contact Designation*.
         /// </summary>
         internal static string lblclientcontactdesignation {
             get {
@@ -295,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact Name.
+        ///   Looks up a localized string similar to Contact Name*.
         /// </summary>
         internal static string lblclientcontactname {
             get {
@@ -331,11 +331,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Enter Client Code.
+        /// </summary>
+        internal static string reqvclientcode {
+            get {
+                return ResourceManager.GetString("reqvclientcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client Id Should be Unique.
         /// </summary>
-        internal static string reqvUnqclientcode {
+        internal static string reqvclientcodeUNQ {
             get {
-                return ResourceManager.GetString("reqvUnqclientcode", resourceCulture);
+                return ResourceManager.GetString("reqvclientcodeUNQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Country.
+        /// </summary>
+        internal static string reqvcountry {
+            get {
+                return ResourceManager.GetString("reqvcountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Bill Country.
+        /// </summary>
+        internal static string reqvddlbillcountry {
+            get {
+                return ResourceManager.GetString("reqvddlbillcountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Address Line 1.
+        /// </summary>
+        internal static string reqvtxtaddressLine1 {
+            get {
+                return ResourceManager.GetString("reqvtxtaddressLine1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Bill Address Line 1.
+        /// </summary>
+        internal static string reqvtxtbilladdressline1 {
+            get {
+                return ResourceManager.GetString("reqvtxtbilladdressline1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Client Designation.
+        /// </summary>
+        internal static string reqvtxtclientcontactdesignation {
+            get {
+                return ResourceManager.GetString("reqvtxtclientcontactdesignation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Client Contact Name .
+        /// </summary>
+        internal static string reqvtxtclientcontactname {
+            get {
+                return ResourceManager.GetString("reqvtxtclientcontactname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Client Name .
+        /// </summary>
+        internal static string reqvtxtclientname {
+            get {
+                return ResourceManager.GetString("reqvtxtclientname", resourceCulture);
             }
         }
     }

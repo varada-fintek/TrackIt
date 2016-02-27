@@ -59,6 +59,7 @@ namespace TrackIT.WebApp.client
                     ddladdresscountry.DataBind();
                     ddladdresscountry.Items.Insert(0, li);
                 }
+                ClearControls();
             }
             if (!string.IsNullOrEmpty(hdnClientID.Value) && hdnpop.Value == "1")
             {
@@ -106,7 +107,7 @@ namespace TrackIT.WebApp.client
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_code from prj_clients where  client_code ='" + txtclientCode.Text + "'");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
-                    reqvclientIdUNQ.ErrorMessage = RollupText("Client", "reqvUnqclientcode");
+                    reqvclientcodeUNQ.ErrorMessage = RollupText("Client", "reqvUnqclientcode");
                     ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("Client", "reqvUnqclientcode") + "')</script>", false);
                     mpe_clientPopup.Show();
                 }
@@ -177,6 +178,17 @@ namespace TrackIT.WebApp.client
                 lbladdressline2.Text = RollupText("Client", "lbladdressline2");
                 lbladdressstate.Text = RollupText("Client", "lbladdressstate");
                 lbladdresszip.Text = RollupText("Client", "lbladdresszip");
+
+
+                reqvclientcode.ErrorMessage = RollupText("Client", "reqvclientcode");
+                reqvclientcodeUNQ.ErrorMessage = RollupText("Client", "reqvclientcodeUNQ");
+                reqvtxtclientname.ErrorMessage = RollupText("Client", "reqvtxtclientname");
+                reqvtxtclientcontactname.ErrorMessage = RollupText("Client", "reqvtxtclientcontactname");
+                reqvtxtclientcontactdesignation.ErrorMessage = RollupText("Client", "reqvtxtclientcontactdesignation");
+                reqvtxtbilladdressline1.ErrorMessage = RollupText("Client", "reqvtxtbilladdressline1");
+                reqvtxtaddressLine1.ErrorMessage = RollupText("Client", "reqvtxtaddressLine1");
+                reqvddlbillcountry.ErrorMessage = RollupText("Client", "reqvddlbillcountry");
+                reqvcountry.ErrorMessage = RollupText("Client", "reqvcountry");
             }
             catch (Exception ex)
             {
@@ -330,7 +342,8 @@ namespace TrackIT.WebApp.client
             txtclientcontactname.Text = string.Empty;
             txtclientName.Text = string.Empty;
             chkbillinfosame.Checked = false;
-            chkisactive.Checked = false;
+            chkisactive.Checked = true;
+            chkisactive.Enabled = false;
             hdnClientID.Value = string.Empty;
 
         }
@@ -395,6 +408,7 @@ namespace TrackIT.WebApp.client
                     txtbillstate.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_clientdetail.Tables[0].Rows[0]["client_bill_state"]))) ? Convert.ToString(lds_clientdetail.Tables[0].Rows[0]["client_bill_state"]).Trim() : string.Empty;
                     txtbillzip.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_clientdetail.Tables[0].Rows[0]["client_bill_zip"]))) ? Convert.ToString(lds_clientdetail.Tables[0].Rows[0]["client_bill_zip"]).Trim() : string.Empty;
                     chkisactive.Checked = Convert.ToInt32(lds_clientdetail.Tables[0].Rows[0]["is_active"]) == 1 ? true : false;
+                    chkisactive.Enabled = true;
 
                 }
                 else

@@ -175,13 +175,31 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtclientCode;
         
         /// <summary>
-        /// reqvclientIdUNQ control.
+        /// FilteredTextBoxExtender5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvclientIdUNQ;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender5;
+        
+        /// <summary>
+        /// reqvclientcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvclientcode;
+        
+        /// <summary>
+        /// reqvclientcodeUNQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvclientcodeUNQ;
         
         /// <summary>
         /// lblclientname control.
@@ -200,6 +218,24 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtclientName;
+        
+        /// <summary>
+        /// ftbextxtclientname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ftbextxtclientname;
+        
+        /// <summary>
+        /// reqvtxtclientname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtclientname;
         
         /// <summary>
         /// lblIsactive control.
@@ -238,6 +274,24 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtaddressline1;
         
         /// <summary>
+        /// ccaddressline1_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccaddressline1_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// reqvtxtaddressLine1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtaddressLine1;
+        
+        /// <summary>
         /// lbladdressline2 control.
         /// </summary>
         /// <remarks>
@@ -254,6 +308,15 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtaddressline2;
+        
+        /// <summary>
+        /// ccaddressline2_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccaddressline2_FilteredTextBoxExtender;
         
         /// <summary>
         /// lbladdresscity control.
@@ -274,6 +337,15 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtaddresscity;
         
         /// <summary>
+        /// cccity_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender cccity_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// lbladdressstate control.
         /// </summary>
         /// <remarks>
@@ -290,6 +362,15 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtaddressstate;
+        
+        /// <summary>
+        /// ccstate_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccstate_FilteredTextBoxExtender;
         
         /// <summary>
         /// lbladdresszip control.
@@ -310,6 +391,15 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtaddresszip;
         
         /// <summary>
+        /// cctxtaddresszip_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender cctxtaddresszip_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// lbladdresscountry control.
         /// </summary>
         /// <remarks>
@@ -326,6 +416,15 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddladdresscountry;
+        
+        /// <summary>
+        /// reqvcountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvcountry;
         
         /// <summary>
         /// lblbillinfosame control.
@@ -364,6 +463,24 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtclientcontactname;
         
         /// <summary>
+        /// ccclientcontactnam_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccclientcontactnam_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// reqvtxtclientcontactname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtclientcontactname;
+        
+        /// <summary>
         /// lblclientcontactdesignation control.
         /// </summary>
         /// <remarks>
@@ -380,6 +497,24 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtclientcontactdesignation;
+        
+        /// <summary>
+        /// cc_clientcontactdesignationFilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender cc_clientcontactdesignationFilteredTextBoxExtender;
+        
+        /// <summary>
+        /// reqvtxtclientcontactdesignation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtclientcontactdesignation;
         
         /// <summary>
         /// lblbilladdress1 control.
@@ -400,6 +535,24 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtbilladdress1;
         
         /// <summary>
+        /// ccbilladdressline1_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccbilladdressline1_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// reqvtxtbilladdressline1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtbilladdressline1;
+        
+        /// <summary>
         /// lblbilladdress2 control.
         /// </summary>
         /// <remarks>
@@ -416,6 +569,15 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbilladdress2;
+        
+        /// <summary>
+        /// ccbilladdressline2_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccbilladdressline2_FilteredTextBoxExtender;
         
         /// <summary>
         /// lblbillcity control.
@@ -436,6 +598,15 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtbillcity;
         
         /// <summary>
+        /// ccbillcity_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccbillcity_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// lblbillstate control.
         /// </summary>
         /// <remarks>
@@ -452,6 +623,15 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbillstate;
+        
+        /// <summary>
+        /// ccbillstate_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccbillstate_FilteredTextBoxExtender;
         
         /// <summary>
         /// lblbillzip control.
@@ -472,6 +652,15 @@ namespace TrackIT.WebApp.client {
         protected global::System.Web.UI.WebControls.TextBox txtbillzip;
         
         /// <summary>
+        /// ccbillzip_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccbillzip_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// lblbillcountry control.
         /// </summary>
         /// <remarks>
@@ -488,6 +677,15 @@ namespace TrackIT.WebApp.client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlbillCountry;
+        
+        /// <summary>
+        /// reqvddlbillcountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvddlbillcountry;
         
         /// <summary>
         /// pnlfooter control.

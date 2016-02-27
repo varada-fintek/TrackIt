@@ -50,6 +50,7 @@
             document.getElementById("hdnpop").value = pop_open;
         }
 
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -95,7 +96,7 @@
                                 <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
                                     <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" DisplayMode="BulletList" ValidationGroup="vgrpSave" />
                                     <div class="form-horizontal">
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lbltaxcode" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
                                                 <asp:TextBox ID="txttaxcode" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100"></asp:TextBox>
@@ -113,7 +114,7 @@
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lbltaxname" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
                                                 <asp:TextBox ID="txttaxname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
@@ -139,7 +140,7 @@
                                             <div runat="server" id="pnl_taxdetailsGrid">
                                             </div>
 
-                                            <ig:WebDataGrid ID="checkgrid" runat="server"
+                                            <ig:WebDataGrid ID="iwdg_Taxdetailsinfo" runat="server"
                                                 AutoGenerateColumns="true" Width="1000px">
                                                 <EditorProviders>
                                                     <ig:DatePickerProvider ID="FromdateProvider" />
@@ -154,7 +155,51 @@
                                                         <EditorControl ID="taxappliedEditorControl" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
                                                 </EditorProviders>
+                                                <Behaviors>
+                                                    <ig:Activation>
+                                                    </ig:Activation>
+                                                    <ig:EditingCore>
+                                                        <Behaviors>
+                                                            <ig:RowAdding Alignment="Bottom" EditModeActions-EnableOnActive="true" EditModeActions-MouseClick="Single"
+                                                                Enabled="true">
+                                                                <AddNewRowClientEvents ExitedEditMode="WebDataGridView_ExitedEditMode" />
+                                                            </ig:RowAdding>
+                                                        </Behaviors>
+                                                    </ig:EditingCore>
+                                                </Behaviors>
                                             </ig:WebDataGrid>
+
+                                            <ig:WebDataGrid ID="check_grid"  runat="server" AutoGenerateColumns="true"
+                                               EnableAjax="true" OnRowAdded="check_grid_RowAdded"
+                                                OnRowAdding="check_grid_RowAdding" Width="100%">
+                                                <Behaviors>
+                                                    <ig:Activation>
+                                                    </ig:Activation>
+                                                    <ig:EditingCore>
+                                                        <Behaviors>
+                                                            <ig:RowAdding Alignment="Top" EditModeActions-EnableOnActive="true" EditModeActions-MouseClick="Single"
+                                                                Enabled="true">
+                                                               <%-- <AddNewRowClientEvents ExitedEditMode="WebDataGridView_ExitedEditMode" />--%>
+                                                            </ig:RowAdding>
+                                                        </Behaviors>
+                                                    </ig:EditingCore>
+                                                </Behaviors>
+                                                <EditorProviders>
+                                                    <ig:DatePickerProvider ID="dppfromdate" />
+                                                    <ig:DatePickerProvider ID="ddptodate" />
+                                                    <ig:TextBoxProvider ID="txtptax" />
+
+                                                    <ig:DropDownProvider ID="ddptype">
+                                                        <EditorControl ID="EditorControl1" runat="server" DisplayMode="DropDownList" />
+                                                    </ig:DropDownProvider>
+
+                                                    <ig:DropDownProvider ID="ddpappliedon">
+                                                        <EditorControl ID="EditorControl2" runat="server" DisplayMode="DropDownList" />
+                                                    </ig:DropDownProvider>
+                                                </EditorProviders>
+                                                <ClientEvents AJAXResponse="WebDataGridView_AJAXResponse" />
+                                            </ig:WebDataGrid>
+
                                         </div>
 
 
@@ -179,7 +224,22 @@
             </div>
             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
             <asp:HiddenField ID="hdntaxkey" runat="server" ClientIDMode="Static" />
+            <script type="text/javascript">
 
+                function WebDataGridView_AJAXResponse(webDataGrid, evntArgs) {
+                    var errorMessage;
+                    if (evntArgs.get_browserResponseObject().status == 200)
+                        errorMessage = evntArgs.get_gridResponseObject().Message;
+                    else
+                        errorMessage = evntArgs.get_browserResponseObject().responseText;
+                    $get("eventList").innerHTML = errorMessage;
+                }
+
+                function WebDataGridView_ExitedEditMode(webDataGrid, evntArgs) {
+                    $get("eventList").innerHTML = "";
+                }
+
+    </script>
         </ContentTemplate>
     </asp:UpdatePanel>
 

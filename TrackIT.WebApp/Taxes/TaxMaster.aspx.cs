@@ -27,7 +27,7 @@ namespace TrackIT.WebApp.Taxes
         #region Declarations
         DBHelper.DBConnect ldbh_QueryExecutors = new DBHelper.DBConnect();
         WebDataGrid iwdg_TaxMasterGrid;
-        WebDataGrid iwdg_TaxDetailsGrid;
+        //WebDataGrid iwdg_TaxDetailsGrid;
         private static string istr_tablename = string.Empty;
         #endregion
 
@@ -44,21 +44,23 @@ namespace TrackIT.WebApp.Taxes
                 pnl_taxGrid.Controls.Add(iwdg_TaxMasterGrid);
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxMasterGrid);
 
-                iwdg_TaxDetailsGrid = new WebDataGrid();
-                pnl_taxdetailsGrid.Controls.Add(iwdg_TaxDetailsGrid);
-                iwdg_TaxDetailsGrid.Visible = false;
-                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxDetailsGrid);
+               // iwdg_TaxDetailsGrid = new WebDataGrid();
+               // pnl_taxdetailsGrid.Controls.Add(iwdg_TaxDetailsGrid);
+              //  iwdg_TaxDetailsGrid.Visible = false;
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_Taxdetailsinfo);
                 GetTaxDetails();
                 if (!IsPostBack)
                 {
-                    GetTaxinfoDetails();
+                    //GetTaxinfoDetails();
                 }
                 if (!string.IsNullOrEmpty(hdntaxkey.Value) && hdnpop.Value == "1")
                 {
                     Int64? lint_TaxID = Convert.ToInt64(hdntaxkey.Value.ToString());
                     txttaxcode.Enabled = false;
                     btnSave.Visible = bitEdit;
+                    GetTaxinfoDetails();
                     EditTaxDetails(lint_TaxID);
+                    hdnpop.Value = string.Empty;
                     mpe_taxPopup.Show();
                 }
                
@@ -92,18 +94,18 @@ namespace TrackIT.WebApp.Taxes
         {
             // GetTaxinfoDetails();
 
-            DataTable lds_taxResult = (DataTable)ViewState["vsTaxdetails"];
-            DataRow toInsert = lds_taxResult.NewRow();
-            toInsert["tax_from"] = DateTime.Now;
-            toInsert["tax_to"] = DateTime.Now;
-            toInsert["tax_percent"] = string.Empty;
-            toInsert["tax_type"] = 0;
-            toInsert["tax_applied_on"] = 0;
-            lds_taxResult.Rows.InsertAt(toInsert, lds_taxResult.Rows.Count+1);
-            ViewState["vsTaxdetails"] = (DataTable)lds_taxResult;
+            DataSet lds_taxResult = (DataSet)ViewState["vsTaxdetails"];
+            DataRow toInsert = lds_taxResult.Tables[0].NewRow();
+            //toInsert["tax_from"] = DateTime.Now;
+            //toInsert["tax_to"] = DateTime.Now;
+            //toInsert["tax_percent"] = string.Empty;
+            //toInsert["tax_type"] = 0;
+            //toInsert["tax_applied_on"] = 0;
+            lds_taxResult.Tables[0].Rows.InsertAt(toInsert, lds_taxResult.Tables[0].Rows.Count+1);
+            ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
             GetTaxinfoDetails();
-            iwdg_TaxDetailsGrid.DataSource = lds_taxResult;
-            iwdg_TaxDetailsGrid.DataBind();
+            //iwdg_TaxDetailsGrid.DataSource = lds_taxResult;
+            //iwdg_TaxDetailsGrid.DataBind();
             mpe_taxPopup.Show();
         }
         #endregion
@@ -217,31 +219,34 @@ namespace TrackIT.WebApp.Taxes
                     
                     if (lds_taxResult.Tables[0].Rows.Count > 0)
                     {
-                       
-                        DataTable ldt_sessiontax=(DataTable)ViewState["vsTaxdetails"];
-                        if (ldt_sessiontax != null)
+                        lds_taxResult.Tables[0].Columns[0].DataType = typeof(System.DateTime);
+                       // DataTable ldt_sessiontax=(DataTable)ViewState["vsTaxdetails"];
+                        if (ViewState["vsTaxdetails"]!=null)
                         {
-                            if (ldt_sessiontax.Rows.Count > 0)
-                            {
-                                checkgrid.DataSource = ldt_sessiontax;
-                            }
+                           lds_taxResult.Tables.Remove(lds_taxResult.Tables[0]);
+                           lds_taxResult = (DataSet)ViewState["vsTaxdetails"];
+                           lds_taxResult.Tables[0].Columns[0].DataType = typeof(System.DateTime);
+                           iwdg_Taxdetailsinfo.DataSource = lds_taxResult;
+                           ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
                         }
                         else
                         {
-                            checkgrid.DataSource = lds_taxResult.Tables[0];
+                            iwdg_Taxdetailsinfo.DataSource = lds_taxResult.Tables[0];
+                            ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
+                            check_grid.InitializeRow += iwdg_TaxDetailsGrid_InitializeRow;
+                            check_grid.DataSource = lds_taxResult;
+                            check_grid.DataBind();
                         }
-                        checkgrid.DataBind();
-                        ViewState["vsTaxdetails"] = (DataTable)lds_taxResult.Tables[0];
                     }
 
-                    checkgrid.InitializeRow +=iwdg_TaxDetailsGrid_InitializeRow;
+                    iwdg_Taxdetailsinfo.InitializeRow+=iwdg_TaxDetailsGrid_InitializeRow;
                     // Enable cell editing
-                    this.checkgrid.Behaviors.CreateBehavior<EditingCore>();
-                    this.checkgrid.Behaviors.EditingCore.Behaviors.CreateBehavior<CellEditing>();
-                    this.checkgrid.EditorProviders.Add(FromdateProvider);
-                    this.checkgrid.EditorProviders.Add(TodateProvider);
+                    this.iwdg_Taxdetailsinfo.Behaviors.CreateBehavior<EditingCore>();
+                    this.iwdg_Taxdetailsinfo.Behaviors.EditingCore.Behaviors.CreateBehavior<CellEditing>();
+                    this.iwdg_Taxdetailsinfo.EditorProviders.Add(FromdateProvider);
+                    this.iwdg_Taxdetailsinfo.EditorProviders.Add(TodateProvider);
                     
-                    this.checkgrid.EditorProviders.Add(TaxappliedonProvider);
+                    this.iwdg_Taxdetailsinfo.EditorProviders.Add(TaxappliedonProvider);
 
                     EditingColumnSetting fromdatecolumn = new EditingColumnSetting();
                     fromdatecolumn.ColumnKey = "tax_from";
@@ -253,30 +258,30 @@ namespace TrackIT.WebApp.Taxes
                     todatecolumn.EditorID = TodateProvider.ID;
 
 
-                    this.checkgrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(fromdatecolumn);
-                    this.checkgrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(todatecolumn);
+                    this.iwdg_Taxdetailsinfo.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(fromdatecolumn);
+                    this.iwdg_Taxdetailsinfo.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(todatecolumn);
 
 
                     DataSet lds_taxtyperesult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TYP' and cp.Active = 1 ORDER BY parameter_name");
-                    this.checkgrid.EditorProviders.Add(TaxtypeProvider);
+                    this.iwdg_Taxdetailsinfo.EditorProviders.Add(TaxtypeProvider);
                     EditingColumnSetting taxtypecolumn = new EditingColumnSetting();
                     taxtypecolumn.ColumnKey = "tax_type";
                     taxtypecolumn.EditorID = TaxtypeProvider.ID;
                     TaxtypeProvider.EditorControl.ValueField = "Value";
                     TaxtypeProvider.EditorControl.TextField = "TextValue";
                     TaxtypeProvider.EditorControl.DataSource = lds_taxtyperesult.Tables[0];
-                    this.checkgrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(taxtypecolumn);
+                    this.iwdg_Taxdetailsinfo.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(taxtypecolumn);
 
                     DataSet lds_taxappliedonresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='TAO' and cp.Active = 1 ORDER BY parameter_name");
-                    this.checkgrid.EditorProviders.Add(TaxtypeProvider);
+                    this.iwdg_Taxdetailsinfo.EditorProviders.Add(TaxtypeProvider);
                     EditingColumnSetting taxappliedoncolumn = new EditingColumnSetting();
                     taxappliedoncolumn.ColumnKey = "tax_applied_on";
                     taxappliedoncolumn.EditorID = TaxappliedonProvider.ID;
                     TaxappliedonProvider.EditorControl.ValueField = "Value";
                     TaxappliedonProvider.EditorControl.TextField = "TextValue";
                     TaxappliedonProvider.EditorControl.DataSource = lds_taxappliedonresult.Tables[0];
-                    this.checkgrid.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(taxappliedoncolumn);
-                
+                    this.iwdg_Taxdetailsinfo.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(taxappliedoncolumn);
+                    iwdg_Taxdetailsinfo.DataBind();
             }
             catch (Exception ex)
             {
@@ -370,7 +375,17 @@ namespace TrackIT.WebApp.Taxes
         }
         #endregion
 
+        protected void check_grid_RowAdded(object sender, RowAddedEventArgs e)
+        {
+
+        }
+
         #endregion
+
+        protected void check_grid_RowAdding(object sender, RowAddingEventArgs e)
+        {
+
+        }
 
       
     }

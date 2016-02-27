@@ -2770,6 +2770,9 @@ input[type=date], input[type=time], input[type=datetime-local], input[type=month
     margin-bottom: 15px;
 }
 
+.align-popcontent{
+    margin-left:15% !important; 
+}
 .radio, .checkbox {
     position: relative;
     display: block;

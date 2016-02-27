@@ -154,7 +154,7 @@
     <value>Bill info same as Address info</value>
   </data>
   <data name="lblbilladdress1" xml:space="preserve">
-    <value>Address Line 1</value>
+    <value>Address Line 1*</value>
   </data>
   <data name="lblbilladdress2" xml:space="preserve">
     <value>Address Line 2</value>
@@ -187,7 +187,7 @@
     <value>Country</value>
   </data>
   <data name="lbladdressline1" xml:space="preserve">
-    <value>Address Line 1</value>
+    <value>Address Line 1*</value>
   </data>
   <data name="lbladdressline2" xml:space="preserve">
     <value>Address Line 2</value>
@@ -199,15 +199,39 @@
     <value>Zip</value>
   </data>
   <data name="lblclientcontactdesignation" xml:space="preserve">
-    <value>Contact Designation</value>
+    <value>Contact Designation*</value>
   </data>
   <data name="lblclientcontactname" xml:space="preserve">
-    <value>Contact Name</value>
+    <value>Contact Name*</value>
   </data>
-  <data name="reqvUnqclientcode" xml:space="preserve">
+  <data name="reqvclientcodeUNQ" xml:space="preserve">
     <value>Client Id Should be Unique</value>
   </data>
   <data name="gridclientsactive" xml:space="preserve">
     <value>Active Status</value>
+  </data>
+  <data name="reqvclientcode" xml:space="preserve">
+    <value>Please Enter Client Code</value>
+  </data>
+  <data name="reqvcountry" xml:space="preserve">
+    <value>Please Select Country</value>
+  </data>
+  <data name="reqvddlbillcountry" xml:space="preserve">
+    <value>Please Select Bill Country</value>
+  </data>
+  <data name="reqvtxtaddressLine1" xml:space="preserve">
+    <value>Please Enter Address Line 1</value>
+  </data>
+  <data name="reqvtxtbilladdressline1" xml:space="preserve">
+    <value>Please Enter Bill Address Line 1</value>
+  </data>
+  <data name="reqvtxtclientcontactdesignation" xml:space="preserve">
+    <value>Please Enter Client Designation</value>
+  </data>
+  <data name="reqvtxtclientcontactname" xml:space="preserve">
+    <value>Please Enter Client Contact Name </value>
+  </data>
+  <data name="reqvtxtclientname" xml:space="preserve">
+    <value>Please Enter Client Name </value>
   </data>
 </root>

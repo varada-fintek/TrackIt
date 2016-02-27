@@ -43,8 +43,9 @@
             document.getElementById("hdnpop").value = pop_open;
         }
 
+
     </script>
-    
+
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
@@ -95,7 +96,7 @@
                                     <asp:ValidationSummary ID="ValProjects" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                                     <div class="form-horizontal">
 
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlClients" runat="server" TabIndex="1" CssClass="form-control chzn-select" AutoPostBack="false">
@@ -107,10 +108,10 @@
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lblprojectcode" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
-                                                <asp:TextBox ID="txtprojectcode" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                <asp:TextBox ID="txtprojectcode" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
                                             </div>
 
                                             <div class="col-md-1" style="display: none;">
@@ -126,10 +127,10 @@
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lblprojectname" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
-                                                <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
                                             </div>
 
                                             <div class="col-md-1" style="display: none;">
@@ -146,36 +147,68 @@
                                             </div>
 
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lblkickdate" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
                                                 <input type="date" id="igwdp_kickoffdate" runat="server"></input>
                                             </div>
+                                            <div class="col-md-1" style="display: none;">
+                                                <asp:RequiredFieldValidator ID="reqvkickoffdate" runat="server"
+                                                    ControlToValidate="igwdp_kickoffdate" Display="Static" SetFocusOnError="True"
+                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lblprojectowner" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlowner" runat="server" TabIndex="1" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                <asp:DropDownList ID="ddlowner" runat="server" TabIndex="4" CssClass="form-control chzn-select" AutoPostBack="false">
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-md-1" style="display: none;">
-                                                <asp:RequiredFieldValidator ID="Reqowner" runat="server"
+                                                <asp:RequiredFieldValidator ID="reqvowner" runat="server"
                                                     ControlToValidate="ddlowner" Display="Static" SetFocusOnError="True"
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group align-popcontent">
                                             <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-1">
                                                 <span class="input-icon">
-                                                    <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="11" />
+                                                    <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="5" />
                                                 </span>
                                             </div>
                                         </div>
 
                                         <div class="col=sm-10">
-                                        <div runat="server" id="popnl_projectGrid">
-                                                         </div>
+                                            <div runat="server" id="popnl_projectGrid">
+                                            </div>
+                                            <ig:WebDataGrid ID="iwdg_projectphases" runat="server" Height="400px"
+                                                Width="100%" AutoGenerateColumns="false"  
+                                                EnableAjax="true" EnableAjaxViewState="true">
+                                                <AjaxIndicator Enabled="True" />
+                                                <Columns>
+                                                    <ig:UnboundCheckBoxField Key="Check" HeaderChecked="False" />
+                                                </Columns>
+                                                <EditorProviders>
+                                                    <ig:DropDownProvider ID="ddpPhaseprovider">
+                                                        <EditorControl ID="edcphaseowner" runat="server" DisplayMode="DropDownList" />
+                                                    </ig:DropDownProvider>
+
+                                                    <ig:DropDownProvider ID="ddpPhaseowner">
+                                                        <EditorControl ID="edcphaseresource" runat="server" DisplayMode="DropDownList" />
+                                                    </ig:DropDownProvider>
+                                                </EditorProviders>
+                                                <Behaviors>
+                                                    <ig:EditingCore>
+                                                        <Behaviors>
+                                                            <ig:CellEditing>
+                                                                <ColumnSettings>
+                                                                </ColumnSettings>
+                                                            </ig:CellEditing>
+                                                        </Behaviors>
+                                                    </ig:EditingCore>
+                                                </Behaviors>
+                                            </ig:WebDataGrid>
                                         </div>
                                     </div>
 

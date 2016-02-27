@@ -230,5 +230,59 @@ namespace Resources {
                 return ResourceManager.GetString("lblzip", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Company Code.
+        /// </summary>
+        internal static string reqvcompanycode {
+            get {
+                return ResourceManager.GetString("reqvcompanycode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Address Line1.
+        /// </summary>
+        internal static string reqvtxtaddressline1 {
+            get {
+                return ResourceManager.GetString("reqvtxtaddressline1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pleser Enter Billing Adress Line1.
+        /// </summary>
+        internal static string reqvtxtbilladdressline1 {
+            get {
+                return ResourceManager.GetString("reqvtxtbilladdressline1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Comapany Name .
+        /// </summary>
+        internal static string reqvtxtcompanyname {
+            get {
+                return ResourceManager.GetString("reqvtxtcompanyname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Designation.
+        /// </summary>
+        internal static string reqvtxtdesigination {
+            get {
+                return ResourceManager.GetString("reqvtxtdesigination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Name.
+        /// </summary>
+        internal static string reqvtxtname {
+            get {
+                return ResourceManager.GetString("reqvtxtname", resourceCulture);
+            }
+        }
     }
 }

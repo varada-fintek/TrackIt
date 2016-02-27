@@ -174,4 +174,22 @@
   <data name="lblzip" xml:space="preserve">
     <value>Zip</value>
   </data>
+  <data name="reqvcompanycode" xml:space="preserve">
+    <value>Please Enter Company Code</value>
+  </data>
+  <data name="reqvtxtaddressline1" xml:space="preserve">
+    <value>Please Enter Address Line1</value>
+  </data>
+  <data name="reqvtxtbilladdressline1" xml:space="preserve">
+    <value>Pleser Enter Billing Adress Line1</value>
+  </data>
+  <data name="reqvtxtcompanyname" xml:space="preserve">
+    <value>Please Enter Comapany Name </value>
+  </data>
+  <data name="reqvtxtdesigination" xml:space="preserve">
+    <value>Please Enter Designation</value>
+  </data>
+  <data name="reqvtxtname" xml:space="preserve">
+    <value>Please Enter Name</value>
+  </data>
 </root>

@@ -283,6 +283,15 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl igwdp_kickoffdate;
         
         /// <summary>
+        /// reqvkickoffdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvkickoffdate;
+        
+        /// <summary>
         /// lblprojectowner control.
         /// </summary>
         /// <remarks>
@@ -301,13 +310,13 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.WebControls.DropDownList ddlowner;
         
         /// <summary>
-        /// Reqowner control.
+        /// reqvowner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Reqowner;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvowner;
         
         /// <summary>
         /// lblactive control.
@@ -335,6 +344,33 @@ namespace TrackIT.WebApp.project {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl popnl_projectGrid;
+        
+        /// <summary>
+        /// iwdg_projectphases control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.WebDataGrid iwdg_projectphases;
+        
+        /// <summary>
+        /// ddpPhaseprovider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpPhaseprovider;
+        
+        /// <summary>
+        /// ddpPhaseowner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpPhaseowner;
         
         /// <summary>
         /// pnlfooter control.

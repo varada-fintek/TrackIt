@@ -103,13 +103,13 @@ namespace TrackIT.WebApp.company {
         protected global::System.Web.UI.WebControls.LinkButton lnkDummy;
         
         /// <summary>
-        /// mpe_UserPopup control.
+        /// mpe_CompanyPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpe_UserPopup;
+        protected global::AjaxControlToolkit.ModalPopupExtender mpe_CompanyPopup;
         
         /// <summary>
         /// pnlPopup control.
@@ -157,51 +157,6 @@ namespace TrackIT.WebApp.company {
         protected global::System.Web.UI.WebControls.ValidationSummary valSumUser;
         
         /// <summary>
-        /// lblcompanyname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcompanyname;
-        
-        /// <summary>
-        /// txtcompanyname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcompanyname;
-        
-        /// <summary>
-        /// FilteredTextBoxExtender4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender4;
-        
-        /// <summary>
-        /// reqvtxtcompanyname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtcompanyname;
-        
-        /// <summary>
-        /// reqvcompanynameUNQ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvcompanynameUNQ;
-        
-        /// <summary>
         /// lblcompanycode control.
         /// </summary>
         /// <remarks>
@@ -247,6 +202,51 @@ namespace TrackIT.WebApp.company {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvcompanycodeUNQ;
         
         /// <summary>
+        /// lblcompanyname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcompanyname;
+        
+        /// <summary>
+        /// txtcompanyname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtcompanyname;
+        
+        /// <summary>
+        /// FilteredTextBoxExtender4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender4;
+        
+        /// <summary>
+        /// reqvtxtcompanyname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtcompanyname;
+        
+        /// <summary>
+        /// reqvcompanynameUNQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvcompanynameUNQ;
+        
+        /// <summary>
         /// lblactive control.
         /// </summary>
         /// <remarks>
@@ -263,78 +263,6 @@ namespace TrackIT.WebApp.company {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkactive;
-        
-        /// <summary>
-        /// lblname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblname;
-        
-        /// <summary>
-        /// txtname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtname;
-        
-        /// <summary>
-        /// ccname_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccname_FilteredTextBoxExtender;
-        
-        /// <summary>
-        /// reqvtxtname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtname;
-        
-        /// <summary>
-        /// lbldesigination control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldesigination;
-        
-        /// <summary>
-        /// txtdesigination control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdesigination;
-        
-        /// <summary>
-        /// cc_desiginationFilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender cc_desiginationFilteredTextBoxExtender;
-        
-        /// <summary>
-        /// reqvtxtdesigination control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtdesigination;
         
         /// <summary>
         /// lbladdressline1 control.
@@ -524,6 +452,78 @@ namespace TrackIT.WebApp.company {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chksameinfo;
+        
+        /// <summary>
+        /// lblname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblname;
+        
+        /// <summary>
+        /// txtname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtname;
+        
+        /// <summary>
+        /// ccname_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ccname_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// reqvtxtname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtname;
+        
+        /// <summary>
+        /// lbldesigination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldesigination;
+        
+        /// <summary>
+        /// txtdesigination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdesigination;
+        
+        /// <summary>
+        /// cc_desiginationFilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender cc_desiginationFilteredTextBoxExtender;
+        
+        /// <summary>
+        /// reqvtxtdesigination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqvtxtdesigination;
         
         /// <summary>
         /// lblbilladdressline1 control.
@@ -733,12 +733,12 @@ namespace TrackIT.WebApp.company {
         protected global::System.Web.UI.WebControls.HiddenField hdnpop;
         
         /// <summary>
-        /// hdnUserID control.
+        /// hdnCompID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUserID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCompID;
     }
 }

@@ -96,7 +96,14 @@
     $(window).bind('resize', function () {
         $('#sidebarLeftToggle').addClass('nav-button', '0');
     });
+    $(document).keydown(function (e) {
+        // ESCAPE key pressed
 
+        if (e.keyCode == 27) {
+            $find("mpe").hide();
+            location.reload();
+        }
+    });
         //Navigation show-hide menus
         $(document).ready(function () {
             //For Main menus

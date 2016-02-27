@@ -125,6 +125,7 @@ namespace TrackIT.WebApp.project
             {
                 e.Row.Items.FindItemByKey("Value").Column.Hidden = true;
                 e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = RollupText("projects", "gridphases");
+                
             }
         }
         #endregion
@@ -194,9 +195,15 @@ namespace TrackIT.WebApp.project
                 lblprojectcode.Text = RollupText("Projects", "lblprojectcode");
                 lblprojectname.Text = RollupText("Projects", "lblprojectname");
                 lblprojectowner.Text = RollupText("Projects", "lblprojectowner");
-                reqvClient.ErrorMessage = RollupText("Projects", "reqvcode");
-                reqvpname.ErrorMessage = RollupText("Projects", "reqvpname");
                 lblkickdate.Text = RollupText("Projects", "lblkickdate");
+
+                reqvClient.ErrorMessage = RollupText("Projects", "reqvClient");
+                reqvpname.ErrorMessage = RollupText("Projects", "reqvpname");
+                reqvcode.ErrorMessage = RollupText("Projects", "reqvcode");
+                reqvprojectIdUNQ.ErrorMessage = RollupText("Projects", "reqvprojectIdUNQ");
+                reqvowner.ErrorMessage = RollupText("Projects", "reqvowner");
+                reqvkickoffdate.ErrorMessage = RollupText("Projects", "reqvkickoffdate");
+               
             }
             catch (Exception ex)
             {
@@ -337,13 +344,39 @@ namespace TrackIT.WebApp.project
             try
             {
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,'' as Phases,'' as Phaseowners FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
                 iwdg_panelGrid.InitializeRow += Iwdg_panelGrid_InitializeRow;
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
                     iwdg_panelGrid.DataSource = lds_Result.Tables[0];
                     iwdg_panelGrid.DataBind();
+                    iwdg_projectphases.DataSource = lds_Result.Tables[0];
+
                 }
+                // Enable cell editing
+                this.iwdg_projectphases.Behaviors.CreateBehavior<EditingCore>();
+                this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CreateBehavior<CellEditing>();
+
+                DataSet lds_taxtyperesult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
+                this.iwdg_projectphases.EditorProviders.Add(ddpPhaseowner);
+                EditingColumnSetting phaseownerecolumn = new EditingColumnSetting();
+                phaseownerecolumn.ColumnKey = "Phases";
+                phaseownerecolumn.EditorID = ddpPhaseowner.ID;
+                ddpPhaseowner.EditorControl.ValueField = "Value";
+                ddpPhaseowner.EditorControl.TextField = "TextValue";
+                ddpPhaseowner.EditorControl.DataSource = lds_taxtyperesult.Tables[0];
+                this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(phaseownerecolumn);
+
+                DataSet lds_taxappliedonresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='RES' and cp.Active = 1 ORDER BY parameter_name");
+                this.iwdg_projectphases.EditorProviders.Add(ddpPhaseprovider);
+                EditingColumnSetting phaseresourcecolumn = new EditingColumnSetting();
+                phaseresourcecolumn.ColumnKey = "Phasesowneres";
+                phaseresourcecolumn.EditorID = ddpPhaseprovider.ID;
+                ddpPhaseprovider.EditorControl.ValueField = "Value";
+                ddpPhaseprovider.EditorControl.TextField = "TextValue";
+                ddpPhaseprovider.EditorControl.DataSource = lds_taxappliedonresult.Tables[0];
+                this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(phaseresourcecolumn);
+                iwdg_projectphases.DataBind();
                 
             }
             catch (Exception ex)
@@ -408,6 +441,8 @@ namespace TrackIT.WebApp.project
         }
 
         #endregion
+
+        
 
         #endregion
 

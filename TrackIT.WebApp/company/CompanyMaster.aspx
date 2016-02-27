@@ -31,11 +31,11 @@
         }
         function editRow(obj) {
             //Unit Testing- Security_ASPX_001
-            var grid = $find("lwdg_FundMasterGrid");
+            var grid = $find("lwdg_companyMasterGrid");
             var row = $(obj).parents("tr[type='row']").get(0);
             var rowid = row.cells[1].innerHTML;
             var pop_open = '1';
-            document.getElementById("hdnUserID").value = rowid;
+            document.getElementById("hdnCompID").value = rowid;
             document.getElementById("hdnpop").value = pop_open;
             //$find("mpe").show();
             return true;
@@ -92,7 +92,7 @@
                             <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" Visible="false" OnClientClick="return ShowModalPopup()" />
                             <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
 
-                            <cc1:ModalPopupExtender ID="mpe_UserPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
+                            <cc1:ModalPopupExtender ID="mpe_CompanyPopup" BehaviorID="mpe" runat="server" CancelControlID="lnkDummy"
                                 PopupControlID="pnlPopup" TargetControlID="createnew" BackgroundCssClass="modal-backdrop">
                             </cc1:ModalPopupExtender>
 
@@ -108,29 +108,7 @@
                                         <asp:ValidationSummary ID="valSumUser" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                                         <div class="form-horizontal">
 
-
-                                            <div class="form-group">
-                                                <asp:Label ID="lblcompanyname" class="control-label col-md-2" runat="server"></asp:Label>
-                                                <div class="col-md-3">
-                                                    <asp:TextBox ID="txtcompanyname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                                </div>
-                                                
-                                                <div class="col-md-1" style="display: none;">
-                                                    <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
-                                                        runat="server" Enabled="True" TargetControlID="txtcompanyname"
-                                                        ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                    </cc1:FilteredTextBoxExtender>
-                                                    <asp:RequiredFieldValidator ID="reqvtxtcompanyname" runat="server"
-                                                        ControlToValidate="txtcompanyname" Display="Static" SetFocusOnError="True"
-                                                        ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-                                                    <asp:RequiredFieldValidator ID="reqvcompanynameUNQ" runat="server"
-                                                        ControlToValidate="txtcompanyname" Display="Static" SetFocusOnError="True"
-                                                        ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
+                                            <div class="form-group align-popcontent">
                                                 <asp:Label ID="lblcompanycode" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
                                                     <asp:TextBox ID="txtcompanycode" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
@@ -150,7 +128,30 @@
 
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+
+                                            <div class="form-group align-popcontent">
+                                                <asp:Label ID="lblcompanyname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                <div class="col-md-3">
+                                                    <asp:TextBox ID="txtcompanyname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                </div>
+
+                                                <div class="col-md-1" style="display: none;">
+                                                    <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
+                                                        runat="server" Enabled="True" TargetControlID="txtcompanyname"
+                                                        ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                    </cc1:FilteredTextBoxExtender>
+                                                    <asp:RequiredFieldValidator ID="reqvtxtcompanyname" runat="server"
+                                                        ControlToValidate="txtcompanyname" Display="Static" SetFocusOnError="True"
+                                                        ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                    <asp:RequiredFieldValidator ID="reqvcompanynameUNQ" runat="server"
+                                                        ControlToValidate="txtcompanyname" Display="Static" SetFocusOnError="True"
+                                                        ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group align-popcontent">
                                                 <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-1">
                                                     <span class="input-icon">
@@ -158,40 +159,12 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                    <asp:Label ID="lblname" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="ccname_FilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtname"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvtxtname" runat="server"
-                                                            ControlToValidate="txtname" Display="Dynamic" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                            <div class="form-group">
-                                                    <asp:Label ID="lbldesigination" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtdesigination" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
-                                                    </div>
 
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="cc_desiginationFilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtdesigination"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvtxtdesigination" runat="server"
-                                                            ControlToValidate="txtdesigination" Display="Dynamic" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
+                                            <hr />
+                                            
 
-
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
+                                                <h3>Address info  </h3>
                                                 <div class="form-group">
                                                     <asp:Label ID="lbladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
@@ -255,14 +228,14 @@
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="cczip_FilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtcity"
+                                                            runat="server" Enabled="True" TargetControlID="txtzip"
                                                             ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
                                                         </cc1:FilteredTextBoxExtender>
 
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group" style="padding-bottom: 10px;">
+                                                <div class="form-group">
                                                     <asp:Label ID="lblcountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-6">
                                                         <asp:DropDownList ID="ddlcountry" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
@@ -285,10 +258,44 @@
                                                 </div>
 
                                             </div>
-                                              
 
-                                    
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
+                                                <h3>Contact Info  </h3>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-md-1" style="display: none;">
+                                                        <cc1:FilteredTextBoxExtender ID="ccname_FilteredTextBoxExtender"
+                                                            runat="server" Enabled="True" TargetControlID="txtname"
+                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                        </cc1:FilteredTextBoxExtender>
+                                                        <asp:RequiredFieldValidator ID="reqvtxtname" runat="server"
+                                                            ControlToValidate="txtname" Display="Dynamic" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lbldesigination" class="control-label col-md-2" runat="server"></asp:Label>
+                                                    <div class="col-md-3">
+                                                        <asp:TextBox ID="txtdesigination" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                    </div>
+
+                                                    <div class="col-md-1" style="display: none;">
+                                                        <cc1:FilteredTextBoxExtender ID="cc_desiginationFilteredTextBoxExtender"
+                                                            runat="server" Enabled="True" TargetControlID="txtdesigination"
+                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                        </cc1:FilteredTextBoxExtender>
+                                                        <asp:RequiredFieldValidator ID="reqvtxtdesigination" runat="server"
+                                                            ControlToValidate="txtdesigination" Display="Dynamic" SetFocusOnError="True"
+                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <h3>Billing Info </h3>
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbilladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
@@ -358,7 +365,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group" style="padding-bottom: 10px;">
+                                                <div class="form-group">
                                                     <asp:Label ID="lblbillcountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-6">
                                                         <asp:DropDownList ID="ddlbillcountry" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
@@ -372,6 +379,7 @@
                                                 </div>
 
                                             </div>
+
                                         </div>
                                     </asp:Panel>
 
@@ -397,7 +405,7 @@
                     </a>
                 </div>
                 <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
-                <asp:HiddenField ID="hdnUserID" runat="server" ClientIDMode="Static" />
+                <asp:HiddenField ID="hdnCompID" runat="server" ClientIDMode="Static" />
             </div>
 
         </ContentTemplate>

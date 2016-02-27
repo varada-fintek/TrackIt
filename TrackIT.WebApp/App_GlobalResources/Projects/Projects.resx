@@ -174,4 +174,13 @@
   <data name="gridresources" xml:space="preserve">
     <value>Resources</value>
   </data>
+  <data name="reqvClient" xml:space="preserve">
+    <value>Please Select Client Name</value>
+  </data>
+  <data name="reqvkickoffdate" xml:space="preserve">
+    <value>Please Select Project Kickoff date</value>
+  </data>
+  <data name="reqvowner" xml:space="preserve">
+    <value>Please select Project owner</value>
+  </data>
 </root>

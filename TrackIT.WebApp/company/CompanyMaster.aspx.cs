@@ -62,8 +62,18 @@ namespace TrackIT.WebApp.company
                     ddlbillcountry.DataBind();
                     ddlbillcountry.Items.Insert(0, li);
                 }
+                ClearControls();
             }
             GetComapnyDetails();
+            if (!string.IsNullOrEmpty(hdnCompID.Value) && hdnpop.Value == "1")
+            {
+                Int64? lint_Compid = Convert.ToInt64(hdnCompID.Value.ToString());
+                btnSave.Visible = bitEdit;
+                EditCompanyDetails(lint_Compid);
+                hdnpop.Value = string.Empty;
+                mpe_CompanyPopup.Show();
+            }
+
         }
         #endregion
 
@@ -72,6 +82,7 @@ namespace TrackIT.WebApp.company
         {
             if (e.Row.Index == 0)
             {
+                e.Row.Items.FindItemByKey("company_key").Column.Hidden = true;
                 e.Row.Items.FindItemByKey("company_name").Column.Header.Text = RollupText("Companies", "lblCreateCompanyName");
                 e.Row.Items.FindItemByKey("company_code").Column.Header.Text = RollupText("Companies", "lblCreateCompanyCode");
                 e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("Companies", "lblCreateCompanyActive");
@@ -91,7 +102,8 @@ namespace TrackIT.WebApp.company
         #region btn clear
         protected void btnClear_Click(object sender, EventArgs e)
         {
-
+            ClearControls();
+            mpe_CompanyPopup.Hide();
         }
         #endregion
 
@@ -116,7 +128,7 @@ namespace TrackIT.WebApp.company
                 txtbillzip.Text = string.Empty;
                 ddlbillcountry.SelectedIndex = -1;
             }
-            mpe_UserPopup.Show();
+            mpe_CompanyPopup.Show();
         }
         #endregion
 
@@ -132,11 +144,11 @@ namespace TrackIT.WebApp.company
                 string istr_tablename, lstr_outMessage = string.Empty;
                 bool lbool_type = false;
 
-                if (string.IsNullOrEmpty(hdnUserID.Value))
+                if (string.IsNullOrEmpty(hdnCompID.Value))
                 {
 
                     istr_tablename = "bil_companies";
-                    string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                    lstr_outMessage = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                     {
 
                         {"company_name", txtcompanyname.Text.Replace("'", "''")},
@@ -144,10 +156,10 @@ namespace TrackIT.WebApp.company
                         {"is_active", (chkactive.Checked ? 1 : 0).ToString()},
                         {"company_address_1", txtaddressline1.Text.Replace("'", "''")},
                         {"company_address_2", txtaddressline2.Text.Replace("'", "''")},
-                        {"company_city", ddlcountry.SelectedValue},
-                        {"company_state", txtcity.Text.Replace("'", "''")},
-                        {"company_zip", txtstate.Text.Replace("'", "''")},
-                        {"company_country", txtzip.Text.Replace("'", "''")},
+                        {"company_city", txtcity.Text.Replace("'", "''")},
+                        {"company_state",   txtstate.Text.Replace("'", "''") },
+                        {"company_zip",   txtzip.Text.Replace("'", "''")},
+                        {"company_country",  ddlcountry.SelectedValue},
                         {"company_billinginfo_same", (chksameinfo.Checked ? 1 : 0).ToString()},
 
                         {"company_contact_name", txtname.Text.Replace("'", "''")},
@@ -165,24 +177,22 @@ namespace TrackIT.WebApp.company
 
                       }
                            , lbool_type);
-                    lstr_outMessage = "SUCCESS";
-
                 }
                 else
                 {
                     lbool_type = false;
                     istr_tablename = "bil_companies";
-                    string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                    lstr_outMessage = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                 {
-                    {"company_name", txtcompanyname.Text.Replace("'", "''")},
+                     {"company_name", txtcompanyname.Text.Replace("'", "''")},
                         {"company_code", txtcompanycode.Text.Replace("'", "''")},
                         {"is_active", (chkactive.Checked ? 1 : 0).ToString()},
                         {"company_address_1", txtaddressline1.Text.Replace("'", "''")},
                         {"company_address_2", txtaddressline2.Text.Replace("'", "''")},
-                        {"company_city", ddlcountry.SelectedValue},
-                        {"company_state", txtcity.Text.Replace("'", "''")},
-                        {"company_zip", txtstate.Text.Replace("'", "''")},
-                        {"company_country", txtzip.Text.Replace("'", "''")},
+                        {"company_city",  txtcity.Text.Replace("'", "''")},
+                        {"company_state", txtstate.Text.Replace("'", "''")},
+                        {"company_zip", txtzip.Text.Replace("'", "''")  },
+                        {"company_country", ddlcountry.SelectedValue},
                         {"company_billinginfo_same", (chksameinfo.Checked ? 1 : 0).ToString()},
 
                         {"company_contact_name", txtname.Text.Replace("'", "''")},
@@ -198,21 +208,19 @@ namespace TrackIT.WebApp.company
                      },
                          new System.Collections.Generic.Dictionary<string, object>()
                      {
-                         {"company_key", hdnUserID.Value},
+                         {"company_key", hdnCompID.Value},
                      },
                          lbool_type);
 
-                    lstr_outMessage = "SUCCESS";
                 }
 
                 //Sucess Message After Insert/Update
                 if (lstr_outMessage.Contains("SUCCESS"))
                 {
-
-                    string[] sBUID = lstr_outMessage.Split('^');
                     SaveMessage();
-                    mpe_UserPopup.Hide();
+                    mpe_CompanyPopup.Hide();
                     GetComapnyDetails();
+                    ClearControls();
                     return;
                 }
                 else
@@ -233,9 +241,15 @@ namespace TrackIT.WebApp.company
         {
             try
             {
-                lwdg_companyMasterGrid.InitializeRow += Lwdg_companyMasterGrid_InitializeRow; ;
+                lwdg_companyMasterGrid.InitializeRow += Lwdg_companyMasterGrid_InitializeRow;
+                lwdg_companyMasterGrid.Columns.Clear();
+                TemplateDataField td = new TemplateDataField();
+                td.ItemTemplate = new CustomItemTemplateView();
+                td.Key = "Action";
+                td.Width = 30;
+                lwdg_companyMasterGrid.Columns.Add(td);
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select company_name,company_code,is_active from bil_companies");
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select company_key,company_name,company_code,is_active from bil_companies");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
                     lwdg_companyMasterGrid.DataSource = lds_Result.Tables[0];
@@ -251,6 +265,82 @@ namespace TrackIT.WebApp.company
             }
         }
         #endregion
+
+        #region EditUserDetails on Edit
+        /// <summary>
+        /// Get User Details on Edit
+        /// </summary>
+        private void EditCompanyDetails(Int64? aint_CompID)
+        {
+            try
+            {
+                Int64? lint_UserID = aint_CompID;
+               
+                //Fetch Single Record from table and assign to Edit
+                DataSet lds_companydetails = ldbh_QueryExecutors.ExecuteDataSet("select * from bil_companies bc where bc.company_key='" + aint_CompID + "'");
+                if (lds_companydetails.Tables[0].Rows.Count > 0)
+                {
+                    if (lds_companydetails.Tables[0].Rows[0]["company_country"] != null)
+                    {
+                        if (ddlcountry.Items.FindByValue((lds_companydetails.Tables[0].Rows[0]["company_country"]).ToString().ToLower()) != null)
+                        {
+                            ddlcountry.SelectedValue = lds_companydetails.Tables[0].Rows[0]["company_country"].ToString();
+                        }
+                        else
+                            ddlcountry.SelectedIndex = 0;
+                    }
+                    else
+                        ddlcountry.SelectedIndex = 0;
+
+                    if (lds_companydetails.Tables[0].Rows[0]["company_bill_country"] != null)
+                    {
+                        if (ddlbillcountry.Items.FindByValue((lds_companydetails.Tables[0].Rows[0]["company_bill_country"]).ToString().ToLower()) != null)
+                        {
+                            ddlbillcountry.SelectedValue = lds_companydetails.Tables[0].Rows[0]["company_bill_country"].ToString();
+                        }
+                        else
+                            ddlbillcountry.SelectedIndex = 0;
+                    }
+                    else
+                        ddlbillcountry.SelectedIndex = 0;
+
+                    hdnCompID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_key"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_key"]).Trim() : string.Empty;
+                    txtcompanycode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_code"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_code"]).Trim() : string.Empty;
+                    txtcompanyname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_name"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_name"]).Trim() : string.Empty;
+                    txtname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_contact_name"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_contact_name"]).Trim() : string.Empty;
+                    txtdesigination.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_contact_designation"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_contact_designation"]).Trim() : string.Empty;
+                    txtaddressline1.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_address_1"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_address_1"]).Trim() : string.Empty;
+                    txtaddressline2.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_address_2"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_address_2"]).Trim() : string.Empty;
+                    txtcity.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_city"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_city"]).Trim() : string.Empty;
+                    txtstate.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_state"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_state"]).Trim() : string.Empty;
+                    txtzip.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_zip"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_zip"]).Trim() : string.Empty;
+                    txtbilladdressline1.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_address_1"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_address_1"]).Trim() : string.Empty;
+                    txtbilladdressline2.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_address_2"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_address_2"]).Trim() : string.Empty;
+                    txtbillcity.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_city"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_city"]).Trim() : string.Empty;
+                    txtbillstate.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_state"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_state"]).Trim() : string.Empty;
+                    txtbillzip.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_zip"]))) ? Convert.ToString(lds_companydetails.Tables[0].Rows[0]["company_bill_zip"]).Trim() : string.Empty;
+                    chksameinfo.Checked = Convert.ToInt32(lds_companydetails.Tables[0].Rows[0]["company_billinginfo_same"]) == 1 ? true : false;
+                    chkactive.Checked = Convert.ToInt32(lds_companydetails.Tables[0].Rows[0]["is_active"]) == 1 ? true : false;
+                    chkactive.Enabled = true;
+
+                }
+                else
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+            finally
+            {
+                // if (objUserBO != null) objUserBO = null;
+            }
+        }
+        #endregion
+
 
         #region ControlNames
         /// <summary>
@@ -291,10 +381,44 @@ namespace TrackIT.WebApp.company
                 reqvtxtname.ErrorMessage = RollupText("Companies", "reqvtxtname");
                 reqvtxtdesigination.ErrorMessage = RollupText("Companies", "reqvtxtdesigination");
                 reqvtxtbilladdressline1.ErrorMessage = RollupText("Companies", "reqvtxtbilladdressline1");
-
-
                 if (!bitAdd)
                     createnew.Style.Add("display", "none");
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
+        #endregion
+        #region ClearControls
+        /// <summary>
+        /// Clear Each Control in the Screen on PageLoad
+        /// </summary>
+        private void ClearControls()
+        {
+            try
+            {
+                hdnpop.Value = string.Empty;
+
+                txtcompanycode.Text = string.Empty;
+                txtcompanyname.Text = string.Empty;
+                txtname.Text = string.Empty;
+                txtdesigination.Text = string.Empty;
+                txtaddressline1.Text = string.Empty;
+                txtaddressline2.Text = string.Empty;
+                txtbilladdressline1.Text = string.Empty;
+                txtbilladdressline1.Text = string.Empty;
+                txtzip.Text = string.Empty;
+                txtbillzip.Text = string.Empty;
+                txtcity.Text = string.Empty;
+                txtbillcity.Text = string.Empty;
+                txtbillstate.Text = string.Empty;
+                txtstate.Text = string.Empty;
+                chksameinfo.Checked = false;
+                
+                chkactive.Checked = true;
+                chkactive.Enabled = false;
             }
             catch (Exception ex)
             {
