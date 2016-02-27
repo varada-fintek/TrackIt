@@ -180,22 +180,24 @@
                                         </div>
 
                                         <div class="col=sm-10">
-                                            <ig:WebDataGrid ID="iwdg_projectphases" runat="server" Height="400px"
-                                                Width="100%" AutoGenerateColumns="true"  
+                                            <ig:WebDataGrid ID="iwdg_projectphases" runat="server" Width="100%"
+                                               AutoGenerateColumns="true"  
                                                 EnableAjax="true" EnableAjaxViewState="true">
                                                 <AjaxIndicator Enabled="True" />
                                                 <Columns>
                                                     <ig:UnboundCheckBoxField Key="Check" HeaderChecked="False" />
                                                 </Columns>
-                                               <EditorProviders>
-                                                    <ig:DropDownProvider ID="ddpPhaseprovider">
-                                                        <EditorControl ID="edcphaseowner" runat="server" DisplayMode="DropDownList" />
-                                                    </ig:DropDownProvider>
 
+                                               <EditorProviders>
+                                                    <ig:DropDownProvider  ID="ddpPhaseprovider">
+                                                    <EditorControl  ID="edcphaseowner" runat="server" DisplayMode="DropDownList" />                                                   
+                                                    </ig:DropDownProvider>
+                                                     
                                                     <ig:DropDownProvider ID="ddpPhaseowner">
                                                         <EditorControl ID="edcphaseresource" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
-                                                </EditorProviders>  
+                                              </EditorProviders>  
+
                                                 <Behaviors>
                                                     <ig:EditingCore>
                                                         <Behaviors>
