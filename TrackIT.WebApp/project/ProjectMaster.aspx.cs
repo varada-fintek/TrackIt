@@ -46,7 +46,7 @@ namespace TrackIT.WebApp.project
                 iwdg_panelGrid = new WebDataGrid();
 
                 pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
-                popnl_projectGrid.Controls.Add(iwdg_panelGrid);
+              
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_panelGrid);
                 if (!IsPostBack)
@@ -118,18 +118,16 @@ namespace TrackIT.WebApp.project
         }
         #endregion
 
-        #region Panel Master Grid initilizerow event
-        private void Iwdg_panelGrid_InitializeRow(object sender, RowEventArgs e)
+        private void Iwdg_projectphases_InitializeRow(object sender, RowEventArgs e)
         {
             if (e.Row.Index == 0)
             {
                 e.Row.Items.FindItemByKey("Value").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = RollupText("projects", "gridphases");
-                
+                e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = "Phases";
+                e.Row.Items.FindItemByKey("Phases").Column.Header.Text = "Phaseowners";
+                e.Row.Items.FindItemByKey("Phaseowners").Column.Header.Text = "Phaseresource";
             }
         }
-        #endregion
-
         #region Button Clear click
         protected void btnClear_Click(object sender, EventArgs e)
         {
@@ -343,15 +341,19 @@ namespace TrackIT.WebApp.project
         {
             try
             {
+                iwdg_projectphases.InitializeRow += Iwdg_projectphases_InitializeRow;
+                TemplateDataField td = new TemplateDataField();
+                td.ItemTemplate = new CustomItemTemplateView();
+                td.Key = "Action";
+                td.Width = 30;
+               
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,'' as Phases,'' as Phaseowners FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
-                iwdg_panelGrid.InitializeRow += Iwdg_panelGrid_InitializeRow;
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,cp.parameter_key as Phases,cp.parameter_key as Phaseowners FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
+                             
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
-                    iwdg_panelGrid.DataSource = lds_Result.Tables[0];
-                    iwdg_panelGrid.DataBind();
                     iwdg_projectphases.DataSource = lds_Result.Tables[0];
-
+                    iwdg_projectphases.DataBind();
                 }
                 // Enable cell editing
                 this.iwdg_projectphases.Behaviors.CreateBehavior<EditingCore>();
@@ -370,7 +372,7 @@ namespace TrackIT.WebApp.project
                 DataSet lds_taxappliedonresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='RES' and cp.Active = 1 ORDER BY parameter_name");
                 this.iwdg_projectphases.EditorProviders.Add(ddpPhaseprovider);
                 EditingColumnSetting phaseresourcecolumn = new EditingColumnSetting();
-                phaseresourcecolumn.ColumnKey = "Phasesowneres";
+                phaseresourcecolumn.ColumnKey = "Phaseowners";
                 phaseresourcecolumn.EditorID = ddpPhaseprovider.ID;
                 ddpPhaseprovider.EditorControl.ValueField = "Value";
                 ddpPhaseprovider.EditorControl.TextField = "TextValue";
@@ -386,7 +388,9 @@ namespace TrackIT.WebApp.project
             }
         }
 
-        
+       
+
+
 
         #region EditProjectDetails
         private void EditProjectDetails(Int64? aint_ProjectID)

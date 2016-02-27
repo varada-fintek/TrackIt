@@ -180,16 +180,14 @@
                                         </div>
 
                                         <div class="col=sm-10">
-                                            <div runat="server" id="popnl_projectGrid">
-                                            </div>
                                             <ig:WebDataGrid ID="iwdg_projectphases" runat="server" Height="400px"
-                                                Width="100%" AutoGenerateColumns="false"  
+                                                Width="100%" AutoGenerateColumns="true"  
                                                 EnableAjax="true" EnableAjaxViewState="true">
                                                 <AjaxIndicator Enabled="True" />
                                                 <Columns>
                                                     <ig:UnboundCheckBoxField Key="Check" HeaderChecked="False" />
                                                 </Columns>
-                                                <EditorProviders>
+                                               <EditorProviders>
                                                     <ig:DropDownProvider ID="ddpPhaseprovider">
                                                         <EditorControl ID="edcphaseowner" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
@@ -197,7 +195,7 @@
                                                     <ig:DropDownProvider ID="ddpPhaseowner">
                                                         <EditorControl ID="edcphaseresource" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
-                                                </EditorProviders>
+                                                </EditorProviders>  
                                                 <Behaviors>
                                                     <ig:EditingCore>
                                                         <Behaviors>
@@ -210,6 +208,7 @@
                                                 </Behaviors>
                                             </ig:WebDataGrid>
                                         </div>
+
                                     </div>
 
 
@@ -225,6 +224,7 @@
                                             <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                         </div>
                                     </div>
+
 
                                 </asp:Panel>
                             </asp:Panel>
