@@ -319,40 +319,40 @@ namespace TrackIT.WebApp.Taxes {
         protected global::Infragistics.Web.UI.GridControls.WebDataGrid check_grid;
         
         /// <summary>
-        /// dppfromdate control.
+        /// dpptaxfrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dppfromdate;
+        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dpptaxfrom;
         
         /// <summary>
-        /// ddptodate control.
+        /// dpptaxto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider ddptodate;
+        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dpptaxto;
         
         /// <summary>
-        /// txtptax control.
+        /// tbptaxpercentage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider txtptax;
+        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider tbptaxpercentage;
         
         /// <summary>
-        /// ddptype control.
+        /// ddptaxestype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddptype;
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddptaxestype;
         
         /// <summary>
         /// ddpappliedon control.

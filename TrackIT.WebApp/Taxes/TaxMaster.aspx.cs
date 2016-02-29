@@ -74,63 +74,104 @@ namespace TrackIT.WebApp.Taxes
         #endregion
 
         #region button clear event
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            ClearControls();
-            mpe_taxPopup.Hide();
+            try
+            {
+                ClearControls();
+                mpe_taxPopup.Hide();
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
         }
         #endregion
 
         #region btn save click
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            InsertorUpdateTaxDetails();
-            mpe_taxPopup.Show();
+            try
+            {
+                InsertorUpdateTaxDetails();
+                mpe_taxPopup.Show();
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
         }
         #endregion
 
         #region add row 
         protected void lnkAddrow_Click(object sender, EventArgs e)
         {
-            // GetTaxinfoDetails();
+            try
+            {
+                // GetTaxinfoDetails();
 
-            DataSet lds_taxResult = (DataSet)ViewState["vsTaxdetails"];
-            DataRow toInsert = lds_taxResult.Tables[0].NewRow();
-            //toInsert["tax_from"] = DateTime.Now;
-            //toInsert["tax_to"] = DateTime.Now;
-            //toInsert["tax_percent"] = string.Empty;
-            //toInsert["tax_type"] = 0;
-            //toInsert["tax_applied_on"] = 0;
-            lds_taxResult.Tables[0].Rows.InsertAt(toInsert, lds_taxResult.Tables[0].Rows.Count+1);
-            ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
-            GetTaxinfoDetails();
-            //iwdg_TaxDetailsGrid.DataSource = lds_taxResult;
-            //iwdg_TaxDetailsGrid.DataBind();
-            mpe_taxPopup.Show();
+                DataSet lds_taxResult = (DataSet)ViewState["vsTaxdetails"];
+                DataRow toInsert = lds_taxResult.Tables[0].NewRow();
+                //toInsert["tax_from"] = DateTime.Now;
+                //toInsert["tax_to"] = DateTime.Now;
+                //toInsert["tax_percent"] = string.Empty;
+                //toInsert["tax_type"] = 0;
+                //toInsert["tax_applied_on"] = 0;
+                lds_taxResult.Tables[0].Rows.InsertAt(toInsert, lds_taxResult.Tables[0].Rows.Count + 1);
+                ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
+                GetTaxinfoDetails();
+                //iwdg_TaxDetailsGrid.DataSource = lds_taxResult;
+                //iwdg_TaxDetailsGrid.DataBind();
+                mpe_taxPopup.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
         }
         #endregion
 
         #region Intialize Row for Grids
         private void iwdg_TaxDetailsGrid_InitializeRow(object sender, RowEventArgs e)
         {
-            if (e.Row.Index == 0)
+            try
             {
-                e.Row.Items.FindItemByKey("tax_from").Column.Header.Text = RollupText("Taxes", "detailsgridtaxfrom");
-                e.Row.Items.FindItemByKey("tax_to").Column.Header.Text = RollupText("Taxes", "detailsgridtaxto");
-                e.Row.Items.FindItemByKey("tax_percent").Column.Header.Text = RollupText("Taxes", "detailsgridtaxpercent");
-                e.Row.Items.FindItemByKey("tax_type").Column.Header.Text = RollupText("Taxes", "detailsgridtaxtype");
-                e.Row.Items.FindItemByKey("tax_applied_on").Column.Header.Text = RollupText("Taxes", "detailsgridtaxappliedon");
+                if (e.Row.Index == 0)
+                {
+                    e.Row.Items.FindItemByKey("tax_from").Column.Header.Text = RollupText("Taxes", "detailsgridtaxfrom");
+                    e.Row.Items.FindItemByKey("tax_to").Column.Header.Text = RollupText("Taxes", "detailsgridtaxto");
+                    e.Row.Items.FindItemByKey("tax_percent").Column.Header.Text = RollupText("Taxes", "detailsgridtaxpercent");
+                    e.Row.Items.FindItemByKey("tax_type").Column.Header.Text = RollupText("Taxes", "detailsgridtaxtype");
+                    e.Row.Items.FindItemByKey("tax_applied_on").Column.Header.Text = RollupText("Taxes", "detailsgridtaxappliedon");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
             }
         }
 
         private void iwdg_TaxMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
-            //throw new NotImplementedException();
-            if (e.Row.Index == 0)
+            try
             {
-                e.Row.Items.FindItemByKey("tax_key").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("tax_tax_code").Column.Header.Text = RollupText("Taxes", "gridtaxcode");
-                e.Row.Items.FindItemByKey("tax_tax_name").Column.Header.Text = RollupText("Taxes", "gridtaxname");
+                //throw new NotImplementedException();
+                if (e.Row.Index == 0)
+                {
+                    e.Row.Items.FindItemByKey("tax_key").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("tax_tax_code").Column.Header.Text = RollupText("Taxes", "gridtaxcode");
+                    e.Row.Items.FindItemByKey("tax_tax_name").Column.Header.Text = RollupText("Taxes", "gridtaxname");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
             }
         }
         #endregion
@@ -142,13 +183,21 @@ namespace TrackIT.WebApp.Taxes
         #region Control Names
         private void ControlNames()
         {
-            lblCreatetaxes.Text = RollupText("Taxes", "lblCreatetaxes");
-            lbltaxname.Text = RollupText("Taxes", "lbltaxname");
-            lbltaxcode.Text = RollupText("Taxes", "lbltaxcode");
-            lnkAddrow.Text = RollupText("Taxes", "lnkAddrow");
-            reqvtaxcode.ErrorMessage = RollupText("Taxes", "reqvtaxcode");
-            reqvtxttaxname.ErrorMessage = RollupText("Taxes", "reqvtxttaxname");
-            reqvtaxcodeUNQ.ErrorMessage = RollupText("Taxes", "reqvtaxcodeUNQ");
+            try
+            {
+                lblCreatetaxes.Text = RollupText("Taxes", "lblCreatetaxes");
+                lbltaxname.Text = RollupText("Taxes", "lbltaxname");
+                lbltaxcode.Text = RollupText("Taxes", "lbltaxcode");
+                lnkAddrow.Text = RollupText("Taxes", "lnkAddrow");
+                reqvtaxcode.ErrorMessage = RollupText("Taxes", "reqvtaxcode");
+                reqvtxttaxname.ErrorMessage = RollupText("Taxes", "reqvtxttaxname");
+                reqvtaxcodeUNQ.ErrorMessage = RollupText("Taxes", "reqvtaxcodeUNQ");
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
         }
         #endregion
 
@@ -219,21 +268,24 @@ namespace TrackIT.WebApp.Taxes
                     
                     if (lds_taxResult.Tables[0].Rows.Count > 0)
                     {
-                        lds_taxResult.Tables[0].Columns[0].DataType = typeof(System.DateTime);
+                        //lds_taxResult.Tables[0].Columns[0].DataType = typeof(System.DateTime);
                        // DataTable ldt_sessiontax=(DataTable)ViewState["vsTaxdetails"];
                         if (ViewState["vsTaxdetails"]!=null)
                         {
+                            iwdg_Taxdetailsinfo.Columns.Clear();
+                            iwdg_Taxdetailsinfo.DataSource = null;
                            lds_taxResult.Tables.Remove(lds_taxResult.Tables[0]);
                            lds_taxResult = (DataSet)ViewState["vsTaxdetails"];
                            lds_taxResult.Tables[0].Columns[0].DataType = typeof(System.DateTime);
                            iwdg_Taxdetailsinfo.DataSource = lds_taxResult;
+                           iwdg_Taxdetailsinfo.DataBind();
                            ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
                         }
                         else
                         {
                             iwdg_Taxdetailsinfo.DataSource = lds_taxResult.Tables[0];
                             ViewState["vsTaxdetails"] = (DataSet)lds_taxResult;
-                            check_grid.InitializeRow += iwdg_TaxDetailsGrid_InitializeRow;
+                            check_grid.InitializeRow +=iwdg_TaxDetailsGrid_InitializeRow;
                             check_grid.DataSource = lds_taxResult;
                             check_grid.DataBind();
                         }
@@ -386,6 +438,14 @@ namespace TrackIT.WebApp.Taxes
         {
 
         }
+
+        #region Verify Control Rendereing
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
+
+        #endregion
 
       
     }

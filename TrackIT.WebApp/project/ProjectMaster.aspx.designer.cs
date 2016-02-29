@@ -337,15 +337,6 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.WebControls.CheckBox chkinactive;
         
         /// <summary>
-        /// popnl_projectGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl popnl_projectGrid;
-        
-        /// <summary>
         /// iwdg_projectphases control.
         /// </summary>
         /// <remarks>
