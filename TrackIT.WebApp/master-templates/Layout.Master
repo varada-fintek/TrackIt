@@ -65,15 +65,14 @@
     <asp:ContentPlaceHolder ID="adminhead" runat="server">
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
-       
+
         function SuccessMSG() {
             alert("Password Successfully Changed");
             window.location.href = "Login.aspx";
         }
 
-        function showmenu()
-        {
-            
+        function showmenu() {
+
             $('#border-left-proj').addClass("displayNone");
         }
         function show() {
@@ -92,18 +91,18 @@
             document.getElementById("createnew").style.display = "block";
             //document.getElementById("listform").style.display = "block";
         }
-       
-    $(window).bind('resize', function () {
-        $('#sidebarLeftToggle').addClass('nav-button', '0');
-    });
-    $(document).keydown(function (e) {
-        // ESCAPE key pressed
 
-        if (e.keyCode == 27) {
-            $find("mpe").hide();
-            location.reload();
-        }
-    });
+        $(window).bind('resize', function () {
+            $('#sidebarLeftToggle').addClass('nav-button', '0');
+        });
+        $(document).keydown(function (e) {
+            // ESCAPE key pressed
+
+            if (e.keyCode == 27) {
+                $find("mpe").hide();
+                location.reload();
+            }
+        });
         //Navigation show-hide menus
         $(document).ready(function () {
             //For Main menus
@@ -183,7 +182,7 @@
             return localStorage.getItem(key);
         }
 
-  
+
     </script>
 </head>
     
@@ -743,16 +742,17 @@
         <!-- Page Content Wrapper -->
         <aside class="content-wrapper sidebarLeft">
 
-            <!-- Page Content -->
+            <!-- Page Content --> 
+             
             <div class="content container-fluid sidebarRight animated fadeInUp">
-                <div class="main-container" id="main-container">
+              
+            </div><div class="main-container" id="main-container">
                     <script type="text/javascript">
                         try { ace.settings.check('main-container', 'fixed') } catch (e) { }
                     </script>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
-            </div>
             <!-- End Page Content -->
 
         </aside>

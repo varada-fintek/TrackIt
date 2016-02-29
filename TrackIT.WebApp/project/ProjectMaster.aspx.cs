@@ -41,17 +41,17 @@ namespace TrackIT.WebApp.project
             try
             {
                 ControlNames();
-              
+
                 iwdg_projectMasterGrid = new WebDataGrid();
                 iwdg_panelGrid = new WebDataGrid();
 
                 pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
-              
+
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_panelGrid);
                 if (!IsPostBack)
                 {
-                    DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients (NOLOCK) WHERE is_active = 1 ORDER BY client_name");
+                    DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients  WHERE is_active = 1 ORDER BY client_name");
                     if (lds_Client.Tables[0].Rows.Count > 0)
                     {
                         //Unit Testing ID - UserMaster.aspx.cs_3
@@ -64,7 +64,7 @@ namespace TrackIT.WebApp.project
                         ddlClients.DataBind();
                         ddlClients.Items.Insert(0, llstm_li);
                     }
-                    DataSet lds_projowners = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
+                    DataSet lds_projowners = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp  inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
                     if (lds_projowners.Tables[0].Rows.Count > 0)
                     {
 
@@ -104,28 +104,45 @@ namespace TrackIT.WebApp.project
         #region Project Master Grid initilizerow event
         private void iwdg_projectMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
-            //throw new NotImplementedException();
-            if (e.Row.Index == 0)
+            try
             {
-                e.Row.Items.FindItemByKey("project_key").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("projects", "gridclientname");
-                e.Row.Items.FindItemByKey("project_code").Column.Header.Text = RollupText("projects", "gridprojectcode");
-                e.Row.Items.FindItemByKey("project_name").Column.Header.Text = RollupText("projects", "gridprojectname");
-                e.Row.Items.FindItemByKey("project_kickoff_date").Column.Header.Text = RollupText("projects", "gridprojectkickoffdate");
-                e.Row.Items.FindItemByKey("project_owner").Column.Header.Text = RollupText("projects", "gridprojectowner");
-                e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("projects", "gridisactive");
+                //throw new NotImplementedException();
+                if (e.Row.Index == 0)
+                {
+                    e.Row.Items.FindItemByKey("project_key").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("projects", "gridclientname");
+                    e.Row.Items.FindItemByKey("project_code").Column.Header.Text = RollupText("projects", "gridprojectcode");
+                    e.Row.Items.FindItemByKey("project_name").Column.Header.Text = RollupText("projects", "gridprojectname");
+                    e.Row.Items.FindItemByKey("project_kickoff_date").Column.Header.Text = RollupText("projects", "gridprojectkickoffdate");
+                    e.Row.Items.FindItemByKey("project_owner").Column.Header.Text = RollupText("projects", "gridprojectowner");
+                    e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("projects", "gridisactive");
+                }
             }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
+
         }
         #endregion
 
         private void Iwdg_projectphases_InitializeRow(object sender, RowEventArgs e)
         {
-            if (e.Row.Index == 0)
+            try
             {
-                e.Row.Items.FindItemByKey("Value").Column.Hidden = true;
-                e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = "Phases";
-                e.Row.Items.FindItemByKey("Phases").Column.Header.Text = "Phaseowners";
-                e.Row.Items.FindItemByKey("Phaseowners").Column.Header.Text = "Phaseresource";
+                if (e.Row.Index == 0)
+                {
+                    e.Row.Items.FindItemByKey("Value").Column.Hidden = true;
+                    e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = "Phases";
+                    e.Row.Items.FindItemByKey("Phases").Column.Header.Text = "Phaseowners";
+                    e.Row.Items.FindItemByKey("PhaseOwners").Column.Header.Text = "Phaseresource";
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
             }
         }
         #region Button Clear click
@@ -143,7 +160,7 @@ namespace TrackIT.WebApp.project
             try
             {
                 DataSet lds_Result;
-               
+
                 if (string.IsNullOrEmpty(hdnprjID.Value))
                 {
                     lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select project_code from prj_projects where is_active=1 and project_code='" + txtprojectcode.Text + "'");
@@ -154,17 +171,17 @@ namespace TrackIT.WebApp.project
                         mpe_projectPopup.Show();
                         reqvprojectIdUNQ.Enabled = true;
                         reqvprojectIdUNQ.Visible = true;
-                     
+
                     }
                     else
                     {
-                        InsertorUpdateProjectDetails(); 
-                       
+                        InsertorUpdateProjectDetails();
+
                     }
                 }
                 else
                 {
-                    InsertorUpdateProjectDetails(); 
+                    InsertorUpdateProjectDetails();
                 }
 
             }
@@ -174,7 +191,7 @@ namespace TrackIT.WebApp.project
                 Response.Redirect("~/Error.aspx", false);
             }
 
-           
+
         }
         #endregion
 
@@ -201,7 +218,7 @@ namespace TrackIT.WebApp.project
                 reqvprojectIdUNQ.ErrorMessage = RollupText("Projects", "reqvprojectIdUNQ");
                 reqvowner.ErrorMessage = RollupText("Projects", "reqvowner");
                 reqvkickoffdate.ErrorMessage = RollupText("Projects", "reqvkickoffdate");
-               
+
             }
             catch (Exception ex)
             {
@@ -237,13 +254,12 @@ namespace TrackIT.WebApp.project
         {
             try
             {
-                string astr_project_ID = Convert.ToString(Guid.NewGuid());
                 istr_tablename = "prj_projects";
                 Boolean lbool_type = true;
                 string lstr_outMessage = string.Empty;
                 if (string.IsNullOrEmpty(hdnprjID.Value))
                 {
-                   
+
                     string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
                 {
                     {"project_code",txtprojectcode.Text.Replace("'", "''") },
@@ -262,10 +278,7 @@ namespace TrackIT.WebApp.project
                 }
                 else
                 {
-
-                   
                     lbool_type = false;
-
                     istr_tablename = "prj_projects";
                     string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                 {
@@ -293,7 +306,7 @@ namespace TrackIT.WebApp.project
                     string[] sBUID = lstr_outMessage.Split('^');
                     GetProjectDetails();
                     SaveMessage();
-                   // ClearControls();
+                    // ClearControls();
                     mpe_projectPopup.Hide();
                     return;
                 }
@@ -327,7 +340,6 @@ namespace TrackIT.WebApp.project
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select pp.project_key, pc.client_name, pp.project_code,pp.project_name,pp.project_kickoff_date,pp.project_owner,pp.is_active from prj_projects pp inner join prj_clients pc on pc.client_key=pp.client_key");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
-                    ViewState["export"] = (DataTable)lds_Result.Tables[0];
                     iwdg_projectMasterGrid.DataSource = lds_Result.Tables[0];
                     iwdg_projectMasterGrid.DataBind();
                 }
@@ -348,12 +360,16 @@ namespace TrackIT.WebApp.project
                 td.ItemTemplate = new CustomItemTemplateView();
                 td.Key = "Action";
                 td.Width = 30;
-               
+
                 DataSet lds_Result;
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,cp.parameter_key as Phases,cp.parameter_key as Phaseowners FROM com_parameters cp(NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
-                             
+                //lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,cp.parameter_key as Phases,cp.parameter_key as Phaseowners FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
+                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,'' as Phases,'' as PhaseOwners FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
+                    DataColumn[] keys = new DataColumn[1];
+                    keys[0] = lds_Result.Tables[0].Columns[0];
+                    // Then assign the array to the PrimaryKey property of the DataTable. 
+                    lds_Result.Tables[0].PrimaryKey = keys;
                     iwdg_projectphases.DataSource = lds_Result.Tables[0];
                     iwdg_projectphases.DataBind();
                 }
@@ -361,27 +377,29 @@ namespace TrackIT.WebApp.project
                 this.iwdg_projectphases.Behaviors.CreateBehavior<EditingCore>();
                 this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CreateBehavior<CellEditing>();
 
-                DataSet lds_taxtyperesult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
+                DataSet lds_phaseownerresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp  inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
                 this.iwdg_projectphases.EditorProviders.Add(ddpPhaseowner);
                 EditingColumnSetting phaseownerecolumn = new EditingColumnSetting();
                 phaseownerecolumn.ColumnKey = "Phases";
                 phaseownerecolumn.EditorID = ddpPhaseowner.ID;
                 ddpPhaseowner.EditorControl.ValueField = "Value";
                 ddpPhaseowner.EditorControl.TextField = "TextValue";
-                ddpPhaseowner.EditorControl.DataSource = lds_taxtyperesult.Tables[0];
+                ddpPhaseowner.EditorControl.DataSource = lds_phaseownerresult.Tables[0];
                 this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(phaseownerecolumn);
 
-                DataSet lds_taxappliedonresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='RES' and cp.Active = 1 ORDER BY parameter_name");
+
+
+                DataSet lds_phaseresourceresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='RES' and cp.Active = 1 ORDER BY parameter_name");
                 this.iwdg_projectphases.EditorProviders.Add(ddpPhaseprovider);
                 EditingColumnSetting phaseresourcecolumn = new EditingColumnSetting();
-                phaseresourcecolumn.ColumnKey = "Phaseowners";
+                phaseresourcecolumn.ColumnKey = "PhaseOwners";
                 phaseresourcecolumn.EditorID = ddpPhaseprovider.ID;
                 ddpPhaseprovider.EditorControl.ValueField = "Value";
                 ddpPhaseprovider.EditorControl.TextField = "TextValue";
-                ddpPhaseprovider.EditorControl.DataSource = lds_taxappliedonresult.Tables[0];
+                ddpPhaseprovider.EditorControl.DataSource = lds_phaseresourceresult.Tables[0];
                 this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(phaseresourcecolumn);
                 iwdg_projectphases.DataBind();
-                
+
             }
             catch (Exception ex)
             {
@@ -390,7 +408,7 @@ namespace TrackIT.WebApp.project
             }
         }
 
-       
+
 
 
 
@@ -400,7 +418,7 @@ namespace TrackIT.WebApp.project
             try
             {
                 Int64? lint_UserID = aint_ProjectID;
-               
+
                 //Fetch Single Record from table and assign to Edit
                 DataSet lds_projectdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_projects pp where pp.project_key='" + aint_ProjectID + "'");
 
@@ -429,12 +447,12 @@ namespace TrackIT.WebApp.project
                     ddlowner.SelectedIndex = 0;
 
                 hdnprjID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]).Trim() : string.Empty;
-                 txtprojectcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]).Trim() : string.Empty;
+                txtprojectcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]).Trim() : string.Empty;
                 txtprojectname.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_name"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_name"]).Trim() : string.Empty;
-                string lstr_kickoffdate= (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]).Trim() : string.Empty;
+                string lstr_kickoffdate = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_kickoff_date"]).Trim() : string.Empty;
                 DateTime ldt = Convert.ToDateTime(lstr_kickoffdate);
                 igwdp_kickoffdate.Value = ldt.ToString("yyyy-MM-dd");
-               
+
                 chkinactive.Checked = Convert.ToInt32(lds_projectdetail.Tables[0].Rows[0]["is_active"]) == 1 ? true : false;
                 chkinactive.Enabled = true;
 
@@ -447,54 +465,7 @@ namespace TrackIT.WebApp.project
         }
 
         #endregion
-        #region Export to Excel And PDF
-        
-        protected void btnExportExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-               
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_26 Export Excel");
 
-                DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
-                iwdg_projectMasterGrid.DataSource = ldt_ExcelExp;
-                iwdg_projectMasterGrid.DataBind();
-                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
-                WebExcelExporter.Export(iwdg_projectMasterGrid);
-                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
-                this.WebExcelExporter.Export(this.iwdg_projectMasterGrid);
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-               
-            }
-        }
-
-        
-        protected void btnExportPDF_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DataTable ldt_PdfExp = (DataTable)ViewState["export"];
-                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
-                iwdg_projectMasterGrid.DataSource = ldt_PdfExp;
-                iwdg_projectMasterGrid.DataBind();
-                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
-                WebPDFExporter.Export(iwdg_projectMasterGrid);
-                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
-                this.WebPDFExporter.Export(this.iwdg_projectMasterGrid);
-            }
-            catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                
-            }
-        }
-
-
-        #endregion
 
 
         #endregion
