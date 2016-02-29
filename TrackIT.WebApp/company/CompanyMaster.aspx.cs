@@ -429,5 +429,59 @@ namespace TrackIT.WebApp.company
         #endregion
 
         #endregion
+
+        #region Export to Excel And PDF
+        /// <summary>
+        /// Button Export Excel click Event
+        /// </summary>
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+
+                DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
+                lwdg_companyMasterGrid.DataSource = ldt_ExcelExp;
+                lwdg_companyMasterGrid.DataBind();
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebExcelExporter.Export(lwdg_companyMasterGrid);
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebExcelExporter.Export(this.lwdg_companyMasterGrid);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                //Response.Redirect("~/Error.aspx", false);
+            }
+        }
+
+        /// <summary>
+        /// Export to pdf button click Event
+        /// </summary>
+        protected void btnExportPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                DataTable ldt_PdfExp = (DataTable)ViewState["export"];
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_companyMasterGrid);
+                lwdg_companyMasterGrid.DataSource = ldt_PdfExp;
+                lwdg_companyMasterGrid.DataBind();
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebPDFExporter.Export(lwdg_companyMasterGrid);
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebPDFExporter.Export(this.lwdg_companyMasterGrid);
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                // Response.Redirect("~/Error.aspx", false);
+            }
+        }
+
+
+        #endregion
     }
+
 }
