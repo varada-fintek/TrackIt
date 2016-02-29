@@ -306,9 +306,9 @@ namespace TrackIT.WebApp.client
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_key,client_code,client_name,is_active from prj_clients");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
+                    ViewState["export"] = (DataTable)lds_Result.Tables[0];
                     lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
                     lwdg_clientMasterGrid.DataBind();
-
                     DataColumn[] keyColumns = new DataColumn[1];
                     DataTable ldt_dt = lds_Result.Tables[0];
                     lwdg_clientMasterGrid.DataKeyFields = "client_key";
@@ -431,6 +431,7 @@ namespace TrackIT.WebApp.client
         {
             try
             {
+
                 DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
                 lwdg_clientMasterGrid.DataSource = ldt_ExcelExp;
                 lwdg_clientMasterGrid.DataBind();
@@ -438,6 +439,7 @@ namespace TrackIT.WebApp.client
                 WebExcelExporter.Export(lwdg_clientMasterGrid);
                 WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
                 this.WebExcelExporter.Export(this.lwdg_clientMasterGrid);
+
 
             }
             catch (Exception ex)

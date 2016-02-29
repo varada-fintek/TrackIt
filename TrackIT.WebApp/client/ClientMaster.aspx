@@ -124,6 +124,7 @@
 
                                             </div>
                                         </div>
+
                                         <div class="form-group align-popcontent">
                                             <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
@@ -141,6 +142,7 @@
 
                                             </div>
                                         </div>
+
                                         <div class="form-group align-popcontent">
                                             <asp:Label ID="lblIsactive" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-1">
@@ -366,7 +368,6 @@
                                             </div>
                                         </div>
 
-
                                     </div>
 
                                 </asp:Panel>
@@ -393,5 +394,15 @@
             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
             <asp:HiddenField ID="hdnClientID" runat="server" ClientIDMode="Static" />
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnExportExcel" />
+            <asp:PostBackTrigger ControlID="btnExportPDF" />
+        </Triggers>
     </asp:UpdatePanel>
+     <script type="text/javascript">
+            $(document).ready(function () {
+                $(".e1").select2();
+                $(".e1").css("border", "none");
+            });
+    </script>
 </asp:Content>

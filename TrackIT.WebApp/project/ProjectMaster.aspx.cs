@@ -327,6 +327,7 @@ namespace TrackIT.WebApp.project
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select pp.project_key, pc.client_name, pp.project_code,pp.project_name,pp.project_kickoff_date,pp.project_owner,pp.is_active from prj_projects pp inner join prj_clients pc on pc.client_key=pp.client_key");
                 if (lds_Result.Tables[0].Rows.Count > 0)
                 {
+                    ViewState["export"] = (DataTable)lds_Result.Tables[0];
                     iwdg_projectMasterGrid.DataSource = lds_Result.Tables[0];
                     iwdg_projectMasterGrid.DataBind();
                 }
@@ -446,11 +447,58 @@ namespace TrackIT.WebApp.project
         }
 
         #endregion
+        #region Export to Excel And PDF
+        
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - UserMaster.aspx.cs_26 Export Excel");
+
+                DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
+                iwdg_projectMasterGrid.DataSource = ldt_ExcelExp;
+                iwdg_projectMasterGrid.DataBind();
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebExcelExporter.Export(iwdg_projectMasterGrid);
+                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebExcelExporter.Export(this.iwdg_projectMasterGrid);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+               
+            }
+        }
 
         
+        protected void btnExportPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable ldt_PdfExp = (DataTable)ViewState["export"];
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
+                iwdg_projectMasterGrid.DataSource = ldt_PdfExp;
+                iwdg_projectMasterGrid.DataBind();
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+                WebPDFExporter.Export(iwdg_projectMasterGrid);
+                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+                this.WebPDFExporter.Export(this.iwdg_projectMasterGrid);
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                
+            }
+        }
+
 
         #endregion
 
 
-        }
+        #endregion
+
+
+    }
 }

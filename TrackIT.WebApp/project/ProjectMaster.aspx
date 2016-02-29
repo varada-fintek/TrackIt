@@ -52,9 +52,9 @@
                 <div class="page-header">
 
                     <div class="floatright pull_right">
-                        <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"></asp:ImageButton>
+                        <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"  OnClick="btnExportExcel_Click"></asp:ImageButton>
                         &nbsp;&nbsp;                       
-                        <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png"></asp:ImageButton>
+                        <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>
                         &nbsp;&nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="show(); ShowModalPopup();"></a></span>
@@ -238,6 +238,16 @@
             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
             <asp:HiddenField ID="hdnprjID" runat="server" ClientIDMode="Static" />
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnExportExcel" />
+            <asp:PostBackTrigger ControlID="btnExportPDF" />
+        </Triggers>
     </asp:UpdatePanel>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $(".e1").select2();
+                $(".e1").css("border", "none");
+            });
+    </script>
 
 </asp:Content>
