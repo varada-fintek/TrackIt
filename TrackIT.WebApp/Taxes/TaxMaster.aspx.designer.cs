@@ -310,60 +310,6 @@ namespace TrackIT.WebApp.Taxes {
         protected global::Infragistics.Web.UI.GridControls.DropDownProvider TaxappliedonProvider;
         
         /// <summary>
-        /// check_grid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.WebDataGrid check_grid;
-        
-        /// <summary>
-        /// dpptaxfrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dpptaxfrom;
-        
-        /// <summary>
-        /// dpptaxto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dpptaxto;
-        
-        /// <summary>
-        /// tbptaxpercentage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider tbptaxpercentage;
-        
-        /// <summary>
-        /// ddptaxestype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddptaxestype;
-        
-        /// <summary>
-        /// ddpappliedon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpappliedon;
-        
-        /// <summary>
         /// pnlfooter control.
         /// </summary>
         /// <remarks>

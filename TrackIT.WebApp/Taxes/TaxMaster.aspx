@@ -41,7 +41,7 @@
             //alert("ID="+rowid);
             document.getElementById("hdntaxkey").value = rowid;
             document.getElementById("hdnpop").value = pop_open;
-            //$find("mpe").show();
+            $find("mpe").show();
             return true;
         }
         function removequery() {
@@ -155,23 +155,6 @@
                                                         <EditorControl ID="taxappliedEditorControl" runat="server" DisplayMode="DropDownList" />
                                                     </ig:DropDownProvider>
                                                 </EditorProviders>
-
-                                            </ig:WebDataGrid>
-
-                                            <ig:WebDataGrid ID="check_grid" runat="server" AutoGenerateColumns="true"
-                                                EnableAjax="true" OnRowAdded="check_grid_RowAdded"
-                                                OnRowAdding="check_grid_RowAdding" Width="100%">
-                                                <EditorProviders>
-                                                    <ig:DatePickerProvider ID="dpptaxfrom" />
-                                                    <ig:DatePickerProvider ID="dpptaxto" />
-                                                    <ig:TextBoxProvider ID="tbptaxpercentage" />
-                                                    <ig:DropDownProvider ID="ddptaxestype">
-                                                        <EditorControl ID="EditorControl1" runat="server" DisplayMode="DropDownList" />
-                                                    </ig:DropDownProvider>
-                                                    <ig:DropDownProvider ID="ddpappliedon" EditorControl-DropDownContainerWidth="135px">
-                                                        <EditorControl ID="EditorControl2" runat="server" DisplayMode="DropDownList" />
-                                                    </ig:DropDownProvider>
-                                                </EditorProviders>
                                                 <Columns>
                                                     <ig:BoundDataField DataFieldName="tax_from" Key="From" Width="50px">
                                                        
@@ -179,7 +162,7 @@
                                                     <ig:BoundDataField DataFieldName="tax_to" Key="To" Width="120px">
                                                        
                                                     </ig:BoundDataField>
-                                                    <ig:BoundDataField Key="tax_percentage">
+                                                    <ig:BoundDataField Key="tax_percent">
                                                       
                                                     </ig:BoundDataField>
                                                     <ig:BoundDataField DataFieldName="tax_type" Key="type">
@@ -196,11 +179,11 @@
                                                         <Behaviors>
                                                             <ig:CellEditing Enabled="true">
                                                                 <ColumnSettings>
-                                                                    <ig:EditingColumnSetting ColumnKey="tax_from" EditorID="dpptaxfrom" />
-                                                                    <ig:EditingColumnSetting ColumnKey="tax_to" EditorID="dpptaxto" />
-                                                                    <ig:EditingColumnSetting ColumnKey="tax_percentage" EditorID="tbptaxpercentage" />
-                                                                    <ig:EditingColumnSetting ColumnKey="tax_type" EditorID="ddptaxestype" />
-                                                                    <ig:EditingColumnSetting ColumnKey="tax_applied_on" EditorID="ddpappliedon" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_from" EditorID="FromdateProvider" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_to" EditorID="TodateProvider" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_percent" EditorID="Taxpercentage" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_type" EditorID="TaxtypeProvider" />
+                                                                    <ig:EditingColumnSetting ColumnKey="tax_applied_on" EditorID="TaxappliedonProvider" />
                                                                     
                                                                 </ColumnSettings>
                                                             </ig:CellEditing>
@@ -208,7 +191,10 @@
                                                     </ig:EditingCore>
                                                     <ig:Paging PageSize="20" PagerAppearance="Bottom" />
                                                 </Behaviors>
+
                                             </ig:WebDataGrid>
+
+                                            
 
                                         </div>
 
