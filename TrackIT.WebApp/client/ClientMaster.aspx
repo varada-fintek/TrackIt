@@ -147,7 +147,7 @@
                                             <asp:Label ID="lblIsactive" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-1">
                                                 <span class="input-icon">
-                                                    <asp:CheckBox ID="chkisactive" class="checkbox" runat="server" />
+                                                    <asp:CheckBox ID="chkisactive" class="checkbox" runat="server" TabIndex="3" />
                                                 </span>
                                             </div>
                                         </div>
@@ -158,7 +158,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtaddressline1" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtaddressline1" CssClass="form-control" TabIndex="4" runat="server"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="ccaddressline1_FilteredTextBoxExtender"
@@ -172,9 +172,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <asp:Label ID="lbladdressline2" class="control-label col-md-2" runat="server"></asp:Label>
+                                                <asp:Label ID="lbladdressline2" class="control-label col-md-2" runat="server" ></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtaddressline2" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtaddressline2" CssClass="form-control" runat="server"  TabIndex="5"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <cc1:FilteredTextBoxExtender ID="ccaddressline2_FilteredTextBoxExtender"
@@ -188,7 +188,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdresscity" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtaddresscity" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtaddresscity" CssClass="form-control" runat="server"  TabIndex="6"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <cc1:FilteredTextBoxExtender ID="cccity_FilteredTextBoxExtender"
@@ -202,7 +202,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdressstate" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtaddressstate" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtaddressstate" CssClass="form-control" runat="server"  TabIndex="7"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <cc1:FilteredTextBoxExtender ID="ccstate_FilteredTextBoxExtender"
@@ -216,7 +216,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdresszip" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtaddresszip" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtaddresszip" CssClass="form-control" runat="server"  TabIndex="8"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="cctxtaddresszip_FilteredTextBoxExtender"
@@ -229,7 +229,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdresscountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:DropDownList ID="ddladdresscountry" runat="server" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                    <asp:DropDownList ID="ddladdresscountry" runat="server" CssClass="form-control chzn-select"  TabIndex="9" AutoPostBack="false">
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
@@ -242,7 +242,7 @@
                                                 <asp:Label ID="lblbillinfosame" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-1">
                                                     <span class="input-icon">
-                                                        <asp:CheckBox ID="chkbillinfosame" class="checkbox" OnCheckedChanged="chkbillinfosame_CheckedChanged" runat="server" AutoPostBack="true" />
+                                                        <asp:CheckBox ID="chkbillinfosame" class="checkbox" OnCheckedChanged="chkbillinfosame_CheckedChanged" runat="server" AutoPostBack="true"  TabIndex="10" />
                                                     </span>
                                                 </div>
                                             </div>
@@ -253,7 +253,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblclientcontactname" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtclientcontactname" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtclientcontactname" CssClass="form-control" runat="server" TabIndex="11"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="ccclientcontactnam_FilteredTextBoxExtender"
@@ -269,7 +269,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblclientcontactdesignation" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtclientcontactdesignation" CssClass="form-control" runat="server" TabIndex="1" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
+                                                    <asp:TextBox ID="txtclientcontactdesignation" CssClass="form-control" runat="server" TabIndex="12" MaxLength="20" ToolTip="Maximum Character 20"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="cc_clientcontactdesignationFilteredTextBoxExtender"
@@ -289,7 +289,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblbilladdress1" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtbilladdress1" CssClass="form-control" runat="server" TabIndex="1" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
+                                                    <asp:TextBox ID="txtbilladdress1" CssClass="form-control" runat="server" TabIndex="13" MaxLength="50" ToolTip="Maximum Character 50"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none">
                                                     <cc1:FilteredTextBoxExtender ID="ccbilladdressline1_FilteredTextBoxExtender"
@@ -305,7 +305,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblbilladdress2" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtbilladdress2" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtbilladdress2" CssClass="form-control" runat="server" TabIndex="14"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="ccbilladdressline2_FilteredTextBoxExtender"
@@ -318,7 +318,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillcity" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtbillcity" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtbillcity" CssClass="form-control" runat="server" TabIndex="15"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="ccbillcity_FilteredTextBoxExtender"
@@ -331,7 +331,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillstate" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtbillstate" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtbillstate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="ccbillstate_FilteredTextBoxExtender"
@@ -344,7 +344,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillzip" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtbillzip" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtbillzip" CssClass="form-control" runat="server" TabIndex="17"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
                                                     <cc1:FilteredTextBoxExtender ID="ccbillzip_FilteredTextBoxExtender"
@@ -357,7 +357,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillcountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:DropDownList ID="ddlbillCountry" runat="server" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                    <asp:DropDownList ID="ddlbillCountry" runat="server" CssClass="form-control chzn-select" AutoPostBack="false" TabIndex="18">
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="col-md-1" style="display: none;">
@@ -378,10 +378,10 @@
                                 <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
                                     <div class="form-group">
                                         <div class="col-md-1 floatright">
-                                            <asp:Button ID="btnCancel" Text="Cancel" runat="server" CssClass=" btn btn-orange" OnClientClick="ClosePopup();" TabIndex="8" CausesValidation="false" OnClick="btnCancel_Click" />
+                                            <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" OnClientClick="ClosePopup();" TabIndex="20" CausesValidation="false" OnClick="btnClear_Click" />
                                         </div>
                                         <div class="col-md-1 floatright">
-                                            <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClick="btnSave_Click" ValidationGroup="vgrpSave" />
+                                            <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="19" OnClick="btnSave_Click" ValidationGroup="vgrpSave" />
                                         </div>
                                     </div>
                                 </asp:Panel>

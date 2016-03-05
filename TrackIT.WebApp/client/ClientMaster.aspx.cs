@@ -42,12 +42,11 @@ namespace TrackIT.WebApp.client
             //Unit Testing ID - ClientMaster.aspx.cs_1
             System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_1 PageLoad");
 
-
             ControlNames();
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
             TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
-            GetClientDetails();
+          
             if (!IsPostBack)
             {
                 //Unit Testing ID - ClientMaster.aspx.cs_2
@@ -80,6 +79,7 @@ namespace TrackIT.WebApp.client
              
                 ClearControls();
             }
+            GetClientDetails();
             if (!string.IsNullOrEmpty(hdnClientID.Value) && hdnpop.Value == "1")
             {
                 //Edit client Details
@@ -126,7 +126,7 @@ namespace TrackIT.WebApp.client
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_7 validate Page and Insert/Update Client" + Page.IsValid);
                     InsertorUpdateClientDetails();
                     //Unit Testing ID - ClientMaster.aspx.cs_8
-                    // System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_8 Pagevalidation Fails" + Page.IsValid);
+                     System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_8 Pagevalidation Fails" + Page.IsValid);
 
                 }
             }
@@ -146,6 +146,10 @@ namespace TrackIT.WebApp.client
         }
         #endregion
 
+        #region initializerow for user grid
+        /// <summary>
+        /// initialize Each row in the grid and Choose columns to display
+        /// </summary>
         private void Lwdg_clientMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
             //Unit Testing ID - ClientMaster.aspx.cs_18
@@ -153,6 +157,7 @@ namespace TrackIT.WebApp.client
             if (e.Row.Index == 0)
             {
                 //Unit Testing ID - ClientMaster.aspx.cs_19
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_19 row Index" + e.Row.Items.Count);
                 e.Row.Items.FindItemByKey("client_key").Column.Hidden = true;
                 e.Row.Items.FindItemByKey("client_code").Column.Header.Text = RollupText("client", "gridclientscode");
                 e.Row.Items.FindItemByKey("client_name").Column.Header.Text = RollupText("client", "gridclientsname");
@@ -175,16 +180,33 @@ namespace TrackIT.WebApp.client
                 }
             }
         }
+        #endregion
 
-     
-        protected void btnCancel_Click(object sender, EventArgs e)
+        #region Clear Button Click
+        /// <summary>
+        /// Clear page,Controls and popup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
         {
-            //Unit Testing ID - ClientMaster.aspx.cs_9
-            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_9 bUtton Cancel_Click");
-            ClearControls();
-            mpe_clientPopup.Hide();
+            try
+            {
+                //Unit Testing ID - ClientMaster.aspx.cs_9
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_9 bUtton Clear_Click");
+                EnableDisableControls(true);
+                ClearControls();
+                mpe_clientPopup.Hide();
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Redirect("~/Error.aspx", false);
+            }
         }
-        
+        #endregion
+
+        #region Checkbox event
         protected void chkbillinfosame_CheckedChanged(object sender, EventArgs e)
         {
             mpe_clientPopup.Show();
@@ -210,52 +232,10 @@ namespace TrackIT.WebApp.client
         }
 
         #endregion
+        #endregion
 
         #region user defined functions
-        private void ControlNames()
-        {
-            try
-            {
-                //Unit Testing ID - ClientMaster.aspx.cs_23
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_23 ControlNames");
-                lblCreateClient.Text = RollupText("Client", "lblCreateClients");
-                lblclientname.Text = RollupText("Client", "lblclientname");
-                lblIsactive.Text = RollupText("Client", "lblIsactive");
-                lblclientcode.Text = RollupText("Client", "lblclientcode");
-                lblbilladdress1.Text = RollupText("Client", "lblbilladdress1");
-                lblbilladdress2.Text = RollupText("Client", "lblbilladdress2");
-                lblbillcity.Text = RollupText("Client", "lblbillcity");
-                lblbillstate.Text = RollupText("Client", "lblbillstate");
-                lblbillzip.Text = RollupText("Client", "lblbillzip");
-                lblbillcountry.Text = RollupText("Client", "lblbillcountry");
-                lblbillinfosame.Text = RollupText("Client", "lblbillinfosame");
-                lblclientcontactname.Text = RollupText("Client", "lblclientcontactname");
-                lblclientcontactdesignation.Text = RollupText("Client", "lblclientcontactdesignation");
-                lbladdresscity.Text = RollupText("Client", "lbladdresscity");
-                lbladdresscountry.Text = RollupText("Client", "lbladdresscountry");
-                lbladdressline1.Text = RollupText("Client", "lbladdressline1");
-                lbladdressline2.Text = RollupText("Client", "lbladdressline2");
-                lbladdressstate.Text = RollupText("Client", "lbladdressstate");
-                lbladdresszip.Text = RollupText("Client", "lbladdresszip");
-
-
-                reqvclientcode.ErrorMessage = RollupText("Client", "reqvclientcode");
-                reqvclientcodeUNQ.ErrorMessage = RollupText("Client", "reqvclientcodeUNQ");
-                reqvtxtclientname.ErrorMessage = RollupText("Client", "reqvtxtclientname");
-                reqvtxtclientcontactname.ErrorMessage = RollupText("Client", "reqvtxtclientcontactname");
-                reqvtxtclientcontactdesignation.ErrorMessage = RollupText("Client", "reqvtxtclientcontactdesignation");
-                reqvtxtbilladdressline1.ErrorMessage = RollupText("Client", "reqvtxtbilladdressline1");
-                reqvtxtaddressLine1.ErrorMessage = RollupText("Client", "reqvtxtaddressLine1");
-                reqvddlbillcountry.ErrorMessage = RollupText("Client", "reqvddlbillcountry");
-                reqvcountry.ErrorMessage = RollupText("Client", "reqvcountry");
-            }
-            catch (Exception ex)
-            {
-                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
-                    throw;
-            }
-        }
-
+       
         #region InsertorUpdateUserDetails
         protected void InsertorUpdateClientDetails()
         {
@@ -361,6 +341,10 @@ namespace TrackIT.WebApp.client
         }
         #endregion
 
+        #region GetClientDetails
+        /// <summary>
+        /// Get Client Details
+        /// </summary>
         private void GetClientDetails()
         {
             try
@@ -378,17 +362,20 @@ namespace TrackIT.WebApp.client
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_key,client_code,client_name,is_active from prj_clients");
                 //Unit Testing ID - ClientMaster.aspx.cs_17
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_17 lds_Result set" + lds_Result.Tables.Count);
-                if (lds_Result.Tables[0].Rows.Count > 0)
+                if (lds_Result != null)
                 {
-                    ViewState["export"] = (DataTable)lds_Result.Tables[0];
-                    lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
-                    lwdg_clientMasterGrid.DataBind();
-                    DataColumn[] keyColumns = new DataColumn[1];
-                    DataTable ldt_dt = lds_Result.Tables[0];
-                    lwdg_clientMasterGrid.DataKeyFields = "client_key";
-                    keyColumns[0] = ldt_dt.Columns["client_key"];
-                    ldt_dt.PrimaryKey = keyColumns;
-                    lwdg_clientMasterGrid.Visible = true;
+                    if (lds_Result.Tables[0].Rows.Count > 0)
+                    {
+                        ViewState["export"] = (DataTable)lds_Result.Tables[0];
+                        lwdg_clientMasterGrid.DataSource = lds_Result.Tables[0];
+                        lwdg_clientMasterGrid.DataBind();
+                        DataColumn[] keyColumns = new DataColumn[1];
+                        DataTable ldt_dt = lds_Result.Tables[0];
+                        lwdg_clientMasterGrid.DataKeyFields = "client_key";
+                        keyColumns[0] = ldt_dt.Columns["client_key"];
+                        ldt_dt.PrimaryKey = keyColumns;
+                        lwdg_clientMasterGrid.Visible = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -397,36 +384,16 @@ namespace TrackIT.WebApp.client
                     throw;
             }
         }
-        private void ClearControls()
-        {
-            //Unit Testing ID - ClientMaster.aspx.cs_22
-            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_22 ClearControls");
-            txtaddresscity.Text = string.Empty;
-            txtaddressline1.Text = string.Empty;
-            txtaddressline2.Text = string.Empty;
-            txtaddressstate.Text = string.Empty;
-            txtaddresszip.Text = string.Empty;
-            ddladdresscountry.SelectedIndex = -1;
-            ddlbillCountry.SelectedIndex = -1;
-            txtbilladdress1.Text = string.Empty;
-            txtbilladdress2.Text = string.Empty; ;
-            txtbillcity.Text = string.Empty;
-            txtbillstate.Text = string.Empty;
-            txtbillzip.Text = string.Empty;
-            txtclientCode.Text = string.Empty;
-            txtclientcontactdesignation.Text = string.Empty;
-            txtclientcontactname.Text = string.Empty;
-            txtclientName.Text = string.Empty;
-            chkbillinfosame.Checked = false;
-            chkisactive.Checked = true;
-            chkisactive.Enabled = false;
-            hdnClientID.Value = string.Empty;
-
-        }
+        #endregion
+        
+        #region EditClientDetails on Edit
+        /// <summary>
+        /// Get Client Details on Edit
+        /// </summary>
         private void EditClientDetails(Int64? aint_ClientKey)
         {
             Int64? lint_ClientKey = aint_ClientKey;
-            
+
             try
             {
                 //Unit Testing ID - ClientMaster.aspx.cs_21
@@ -503,14 +470,115 @@ namespace TrackIT.WebApp.client
             }
         }
         #endregion
+        
+        #region EnableDisableControls
+        private void EnableDisableControls(bool bValue)
+        {
+            try
+            {
+                //Unit Testing ID - ClientMaster.aspx.cs_22
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_22 EnableDiasble Controls");
+
+
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
+        #endregion
+
+        #region ClearControls
+        /// <summary>
+        /// Clear Each Control in the Screen on PageLoad
+        /// </summary>
+        private void ClearControls()
+        {
+            //Unit Testing ID - ClientMaster.aspx.cs_23
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_23 ClearControls");
+            txtaddresscity.Text = string.Empty;
+            txtaddressline1.Text = string.Empty;
+            txtaddressline2.Text = string.Empty;
+            txtaddressstate.Text = string.Empty;
+            txtaddresszip.Text = string.Empty;
+            ddladdresscountry.SelectedIndex = -1;
+            ddlbillCountry.SelectedIndex = -1;
+            txtbilladdress1.Text = string.Empty;
+            txtbilladdress2.Text = string.Empty; ;
+            txtbillcity.Text = string.Empty;
+            txtbillstate.Text = string.Empty;
+            txtbillzip.Text = string.Empty;
+            txtclientCode.Text = string.Empty;
+            txtclientcontactdesignation.Text = string.Empty;
+            txtclientcontactname.Text = string.Empty;
+            txtclientName.Text = string.Empty;
+            chkbillinfosame.Checked = false;
+            chkisactive.Checked = true;
+            chkisactive.Enabled = false;
+            hdnClientID.Value = string.Empty;
+
+        }
+        #endregion
+
+        #region ControlNames
+        /// <summary>
+        /// ControlNames Assign Values to label and Validators
+        /// </summary>
+        private void ControlNames()
+        {
+            try
+            {
+                //Unit Testing ID - ClientMaster.aspx.cs_24
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_24 ControlNames");
+                lblCreateClient.Text = RollupText("Client", "lblCreateClients");
+                lblclientname.Text = RollupText("Client", "lblclientname");
+                lblIsactive.Text = RollupText("Client", "lblIsactive");
+                lblclientcode.Text = RollupText("Client", "lblclientcode");
+                lblbilladdress1.Text = RollupText("Client", "lblbilladdress1");
+                lblbilladdress2.Text = RollupText("Client", "lblbilladdress2");
+                lblbillcity.Text = RollupText("Client", "lblbillcity");
+                lblbillstate.Text = RollupText("Client", "lblbillstate");
+                lblbillzip.Text = RollupText("Client", "lblbillzip");
+                lblbillcountry.Text = RollupText("Client", "lblbillcountry");
+                lblbillinfosame.Text = RollupText("Client", "lblbillinfosame");
+                lblclientcontactname.Text = RollupText("Client", "lblclientcontactname");
+                lblclientcontactdesignation.Text = RollupText("Client", "lblclientcontactdesignation");
+                lbladdresscity.Text = RollupText("Client", "lbladdresscity");
+                lbladdresscountry.Text = RollupText("Client", "lbladdresscountry");
+                lbladdressline1.Text = RollupText("Client", "lbladdressline1");
+                lbladdressline2.Text = RollupText("Client", "lbladdressline2");
+                lbladdressstate.Text = RollupText("Client", "lbladdressstate");
+                lbladdresszip.Text = RollupText("Client", "lbladdresszip");
+
+
+                reqvclientcode.ErrorMessage = RollupText("Client", "reqvclientcode");
+                reqvclientcodeUNQ.ErrorMessage = RollupText("Client", "reqvclientcodeUNQ");
+                reqvtxtclientname.ErrorMessage = RollupText("Client", "reqvtxtclientname");
+                reqvtxtclientcontactname.ErrorMessage = RollupText("Client", "reqvtxtclientcontactname");
+                reqvtxtclientcontactdesignation.ErrorMessage = RollupText("Client", "reqvtxtclientcontactdesignation");
+                reqvtxtbilladdressline1.ErrorMessage = RollupText("Client", "reqvtxtbilladdressline1");
+                reqvtxtaddressLine1.ErrorMessage = RollupText("Client", "reqvtxtaddressLine1");
+                reqvddlbillcountry.ErrorMessage = RollupText("Client", "reqvddlbillcountry");
+                reqvcountry.ErrorMessage = RollupText("Client", "reqvcountry");
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
+                    throw;
+            }
+        }
+        #endregion
+
+        #endregion
 
         #region  Export to Excel And PDF
         protected void btnExportExcel_Click(object sender, ImageClickEventArgs e)
         {
             try
             {
-                //Unit Testing ID - ClientMaster.aspx.cs_24
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_24 Export Excel");
+                //Unit Testing ID - ClientMaster.aspx.cs_25
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_25 Export Excel");
 
                 DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
                 lwdg_clientMasterGrid.DataSource = ldt_ExcelExp;
@@ -519,8 +587,6 @@ namespace TrackIT.WebApp.client
                 WebExcelExporter.Export(lwdg_clientMasterGrid);
                 WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
                 this.WebExcelExporter.Export(this.lwdg_clientMasterGrid);
-
-
             }
             catch (Exception ex)
             {
@@ -528,13 +594,12 @@ namespace TrackIT.WebApp.client
                 //Response.Redirect("~/Error.aspx", false);
             }
         }
-
         protected void btnExportPDF_Click(object sender, ImageClickEventArgs e)
         {
             try
             {
-                //Unit Testing ID - ClientMaster.aspx.cs_25
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_25 ExportPdf");
+                //Unit Testing ID - ClientMaster.aspx.cs_26
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_26 ExportPdf");
                 DataTable ldt_PdfExp = (DataTable)ViewState["export"];
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
                 lwdg_clientMasterGrid.DataSource = ldt_PdfExp;
@@ -551,6 +616,14 @@ namespace TrackIT.WebApp.client
             }
 
         }
+        #endregion
+
+        #region Verify Control Rendereing
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
+
         #endregion
     }
 }
