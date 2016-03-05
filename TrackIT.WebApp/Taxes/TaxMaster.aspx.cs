@@ -112,10 +112,6 @@ namespace TrackIT.WebApp.Taxes
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_5 validate Page and Insert/Update Tax" + Page.IsValid);
                 InsertorUpdateTaxDetails();
                 mpe_taxPopup.Show();
-                reqvtaxcodeUNQ.Enabled = true;
-                reqvtaxcodeUNQ.Visible = true;
-                // Unit Testing ID - TaxMaster.aspx.cs_6
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_6 Tax code Unique check");
             }
             catch (Exception ex)
             {
@@ -130,12 +126,11 @@ namespace TrackIT.WebApp.Taxes
         {
             try
             {
-                //Unit Testing ID - TaxMaster.aspx.cs_7
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_7 lnkAddrow_Click");
+                //Unit Testing ID - TaxMaster.aspx.cs_6
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_6 lnkAddrow_Click");
   
                 // GetTaxinfoDetails();
 
-                
                 DataSet lds_taxResult = (DataSet)ViewState["vsTaxdetails"];
                 DataRow toInsert = lds_taxResult.Tables[0].NewRow();
                 //toInsert["tax_from"] = DateTime.Now;
@@ -149,8 +144,6 @@ namespace TrackIT.WebApp.Taxes
                 //iwdg_TaxDetailsGrid.DataSource = lds_taxResult;
                 //iwdg_TaxDetailsGrid.DataBind();
                 mpe_taxPopup.Show();
-                
-                
             }
             catch (Exception ex)
             {
@@ -158,7 +151,6 @@ namespace TrackIT.WebApp.Taxes
                 Response.Redirect("~/Error.aspx", false);
             }
         }
-        
         #endregion
 
         #region Intialize Row for Grids
@@ -166,8 +158,8 @@ namespace TrackIT.WebApp.Taxes
         {
             try
             {
-                //Unit Testing ID - TaxMaster.aspx.cs_8
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_8 intialize grid row " + e.Row.Index);
+                //Unit Testing ID - TaxMaster.aspx.cs_7
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_7 intialize grid row " + e.Row.Index);
 
                 if (e.Row.Index == 0)
                 {
@@ -189,8 +181,8 @@ namespace TrackIT.WebApp.Taxes
         {
             try
             {
-                //Unit Testing ID - TaxMaster.aspx.cs_9
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_9 intialize grid row " + e.Row.Index);
+                //Unit Testing ID - TaxMaster.aspx.cs_8
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_8 intialize grid row " + e.Row.Index);
 
                 //throw new NotImplementedException();
                 if (e.Row.Index == 0)
@@ -217,8 +209,8 @@ namespace TrackIT.WebApp.Taxes
         {
             try
             {
-                //Unit Testing ID - TaxMaster.aspx.cs_10
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_10 ControlNames");
+                //Unit Testing ID - TaxMaster.aspx.cs_9
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_9 ControlNames");
 
                 lblCreatetaxes.Text = RollupText("Taxes", "lblCreatetaxes");
                 lbltaxname.Text = RollupText("Taxes", "lbltaxname");
@@ -227,7 +219,6 @@ namespace TrackIT.WebApp.Taxes
                 reqvtaxcode.ErrorMessage = RollupText("Taxes", "reqvtaxcode");
                 reqvtxttaxname.ErrorMessage = RollupText("Taxes", "reqvtxttaxname");
                 reqvtaxcodeUNQ.ErrorMessage = RollupText("Taxes", "reqvtaxcodeUNQ");
-               
             }
             catch (Exception ex)
             {
@@ -596,60 +587,6 @@ namespace TrackIT.WebApp.Taxes
         {
 
         }
-        #endregion
-        #region Export to Excel And PDF
-        /// <summary>
-        /// Button Export Excel click Event
-        /// </summary>
-        protected void btnExportExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //Unit Testing ID - TaxMaster.aspx.cs_20
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_20 Export Excel");
-
-                DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
-                iwdg_TaxMasterGrid.DataSource = ldt_ExcelExp;
-                iwdg_TaxMasterGrid.DataBind();
-                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
-                WebExcelExporter.Export(iwdg_TaxMasterGrid);
-                WebExcelExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
-                this.WebExcelExporter.Export(this.iwdg_TaxMasterGrid);
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                //Response.Redirect("~/Error.aspx", false);
-            }
-        }
-
-        /// <summary>
-        /// Export to pdf button click Event
-        /// </summary>
-        protected void btnExportPDF_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //Unit Testing ID - TaxMaster.aspx.cs_21
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - TaxMaster.aspx.cs_21 ExportPdf");
-                DataTable ldt_PdfExp = (DataTable)ViewState["export"];
-                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_TaxMasterGrid);
-                iwdg_TaxMasterGrid.DataSource = ldt_PdfExp;
-                iwdg_TaxMasterGrid.DataBind();
-                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
-                WebPDFExporter.Export(iwdg_TaxMasterGrid);
-                WebPDFExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
-                this.WebPDFExporter.Export(this.iwdg_TaxMasterGrid);
-            }
-            catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                // Response.Redirect("~/Error.aspx", false);
-            }
-        }
-
-
         #endregion
 
         #region Verify Control Rendereing
