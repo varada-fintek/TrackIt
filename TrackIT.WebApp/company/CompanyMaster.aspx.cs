@@ -20,9 +20,6 @@ using System.Text;
 using TrackIT.WebApp.Common;
 using TrackIT.WebApp.TrackITEnum;
 using TrackIT.Common;
-
-
-
 namespace TrackIT.WebApp.company
 {
     public partial class CompanyMaster : BasePage
@@ -42,6 +39,7 @@ namespace TrackIT.WebApp.company
         protected void Page_Load(object sender, EventArgs e)
         {
             //Unit Testing ID - CompanyMaster.aspx.cs_1
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_1 PageLoad");
             ControlNames();
             lwdg_companyMasterGrid = new WebDataGrid();
             pnl_companyGrid.Controls.Add(lwdg_companyMasterGrid);
@@ -57,6 +55,7 @@ namespace TrackIT.WebApp.company
                 if (lds_country.Tables[0].Rows.Count > 0)
                 {
                     //Unit Testing ID - CompanyMaster.aspx.cs_3
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_3 Roles dataset count" + lds_country.Tables[0].Rows.Count);
                     ddlcountry.Items.Clear();
                     System.Web.UI.WebControls.ListItem li = new System.Web.UI.WebControls.ListItem("Select", "");
                     ddlcountry.DataSource = lds_country;
@@ -65,20 +64,23 @@ namespace TrackIT.WebApp.company
                     ddlcountry.DataBind();
                     ddlcountry.Items.Insert(0, li);
 
-
+                    //Unit Testing ID - CompanyMaster.aspx.cs_4
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_4 Roles dataset count" + lds_country.Tables[0].Rows.Count);
                     ddlbillcountry.DataSource = lds_country;
                     ddlbillcountry.DataTextField = "TextValue";
                     ddlbillcountry.DataValueField = "Value";
                     ddlbillcountry.DataBind();
                     ddlbillcountry.Items.Insert(0, li);
                 }
+                //GetUserDetails();
                 ClearControls();
             }
             GetComapnyDetails();
             if (!string.IsNullOrEmpty(hdnCompID.Value) && hdnpop.Value == "1")
             {
                 //Edit User Details
-                //Unit Testing ID - CompanyMaster.aspx.cs_7
+                //Unit Testing ID - CompanyMaster.aspx.cs_5
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_5 Edit User Details popId and Unique ID" + hdnCompID.Value + hdnpop.Value); 
                 Int64? lint_Compid = Convert.ToInt64(hdnCompID.Value.ToString());
                 btnSave.Visible = bitEdit;
                 EditCompanyDetails(lint_Compid);
@@ -91,11 +93,18 @@ namespace TrackIT.WebApp.company
         #endregion
 
         #region initialize row event 
+        /// <summary>
+        /// initialize Each row in the grid and Choose columns to display
+        /// </summary>
         private void Lwdg_companyMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
             if (e.Row.Index == 0)
+                //Unit Testing ID - CompanyMaster.aspx.cs_6
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_6 row Index" + e.Row.Items.Count);
             {
                 e.Row.Items.FindItemByKey("company_key").Column.Hidden = false;
+                //e.Row.Items.FindItemByKey("company_name").Column.Header.Text = RollupText("CompanyMaster", "gridcompanyname");
+                //e.Row.Items.FindItemByKey("company_name").Column.CssClass = "Dataalign";
                 e.Row.Items.FindItemByKey("company_name").Column.Header.Text = RollupText("Companies", "lblcompanyname");
                 e.Row.Items.FindItemByKey("company_code").Column.Header.Text = RollupText("Companies", "lblcompanycode");
                 e.Row.Items.FindItemByKey("is_active").Column.Header.Text = RollupText("Companies", "lblactive");
@@ -113,8 +122,7 @@ namespace TrackIT.WebApp.company
         protected void btnSave_Click(object sender, EventArgs e)
         {
             InsertorUpdateUserDetails();
-
-        }
+            }
         #endregion
 
         #region btn clear
@@ -125,7 +133,9 @@ namespace TrackIT.WebApp.company
         /// <param name="e"></param>
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            //GetUserDetails();
+             //Unit Testing ID - CompanyMaster.aspx.cs_7
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_7 bUtton Clear_Click");
+            //GetCompanyDetails();
             ClearControls();
             mpe_CompanyPopup.Hide();
         }
@@ -136,6 +146,8 @@ namespace TrackIT.WebApp.company
         {
             if (chksameinfo.Checked == true)
             {
+                //Unit Testing ID - CompanyMaster.aspx.cs_8
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_8 chksameinfo.Checked");
                 txtbilladdressline1.Text = txtaddressline1.Text;
                 txtbilladdressline2.Text = txtaddressline2.Text;
                 txtbillcity.Text = txtcity.Text;
@@ -165,15 +177,19 @@ namespace TrackIT.WebApp.company
         {
             try
             {
+                //Unit Testing ID - CompanyMaster.aspx.cs_9
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_9 InsertUpdateUser Details");
                 string istr_tablename, lstr_outMessage = string.Empty;
                 bool lbool_type = false;
                 // hdnUserID to check weather Insert / Update.
                 if (string.IsNullOrEmpty(hdnCompID.Value))
                 {
-
+                    //Unit Testing ID - CompanyMaster.aspx.cs_10
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_10 Insert" + hdnCompID.Value);
                     istr_tablename = "bil_companies";
                     lstr_outMessage = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                     {
+                        // {"CompID", lstr_user_id},
                         {"company_name", txtcompanyname.Text.Replace("'", "''")},
                         {"company_code", txtcompanycode.Text.Replace("'", "''")},
                         {"is_active", (chkactive.Checked ? 1 : 0).ToString()},
@@ -201,14 +217,16 @@ namespace TrackIT.WebApp.company
                       }
                            , lbool_type);
                 }
-                // Update User Login and User Details.
+                // Update Company Details.
                 else
                 {
+                    //Unit Testing ID - CompanyMaster.aspx.cs_11
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_11 Update User" + hdnCompID.Value);
                     lbool_type = false;
                     istr_tablename = "bil_companies";
                     lstr_outMessage = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                 {
-                     {"company_name", txtcompanyname.Text.Replace("'", "''")},
+                        {"company_name", txtcompanyname.Text.Replace("'", "''")},
                         {"company_code", txtcompanycode.Text.Replace("'", "''")},
                         {"is_active", (chkactive.Checked ? 1 : 0).ToString()},
                         {"company_address_1", txtaddressline1.Text.Replace("'", "''")},
@@ -237,10 +255,11 @@ namespace TrackIT.WebApp.company
                          lbool_type);
 
                 }
-
                 //Sucess Message After Insert/Update
                 if (lstr_outMessage.Contains("SUCCESS"))
                 {
+                    //Unit Testing ID - CompanyMaster.aspx.cs_12
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_12 success Measage" + lstr_outMessage);
                     SaveMessage();
                     mpe_CompanyPopup.Hide();
                     GetComapnyDetails();
@@ -249,6 +268,8 @@ namespace TrackIT.WebApp.company
                 }
                 else
                 {
+                    //Unit Testing ID - CompanyMaster.aspx.cs_13
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_13 ErrorMessage");
                     Response.Redirect("~/Setup/UserMaster.aspx", false);
                 }
             }
@@ -262,13 +283,15 @@ namespace TrackIT.WebApp.company
 
         #region Get Company details
         /// <summary>
-        /// Get User Details
+        /// Get Company Details
         /// </summary>
         private void GetComapnyDetails()
         {
             try
             {
-                //if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
+                //Unit Testing ID - CompanyMaster.aspx.cs_15
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_14 GetCompanyDetails");
+                //if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new CompanyMasterBo();
                 lwdg_companyMasterGrid.InitializeRow += Lwdg_companyMasterGrid_InitializeRow;
                 lwdg_companyMasterGrid.Columns.Clear();
                 TemplateDataField td = new TemplateDataField();
@@ -280,13 +303,22 @@ namespace TrackIT.WebApp.company
                 DataSet lds_Result;
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select company_key,company_name,company_code,is_active from bil_companies");
                 lwdg_companyMasterGrid.Visible = false;
-                if (lds_Result.Tables[0].Rows.Count > 0)
+                if (lds_Result != null)
                 {
-                    ViewState["export"] = (DataTable)lds_Result.Tables[0];
-                    lwdg_companyMasterGrid.DataSource = lds_Result.Tables[0];
-                    lwdg_companyMasterGrid.DataBind();
-                    lwdg_companyMasterGrid.Visible = true;
+                    if (lds_Result.Tables.Count > 0)
+                    {
+                        //Unit Testing ID - CompanyMaster.aspx.cs_16
+                        System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_15 lds_Result set" + lds_Result.Tables.Count);
+                        if (lds_Result.Tables[0].Rows.Count > 0)
+                        {
 
+                            ViewState["export"] = (DataTable)lds_Result.Tables[0];
+                            lwdg_companyMasterGrid.DataSource = lds_Result.Tables[0];
+                            lwdg_companyMasterGrid.DataBind();
+                            lwdg_companyMasterGrid.Visible = true;
+
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -295,20 +327,26 @@ namespace TrackIT.WebApp.company
                 if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
                     throw;
             }
+            finally
+            {
+                // if (objUserBO != null) objUserBO = null;
+            }
         }
         #endregion
 
-        #region EditUserDetails on Edit
+        #region EditCompanyDetails on Edit
         /// <summary>
-        /// Get User Details on Edit
+        /// Get Company Details on Edit
         /// </summary>
         private void EditCompanyDetails(Int64? aint_CompID)
         {
             try
             {
+                //Unit Testing ID - CompanyMaster.aspx.cs_17
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_16 GetCompany Details Edit" + aint_CompID);
+                // if (StringFunctions.IsNullOrEmpty(objUserBO)) objUserBO = new UserMasterBo();
                 Int64? lint_UserID = aint_CompID;
-               
-                //Fetch Single Record from table and assign to Edit
+               //Fetch Single Record from table and assign to Edit
                 DataSet lds_companydetails = ldbh_QueryExecutors.ExecuteDataSet("select * from bil_companies bc where bc.company_key='" + aint_CompID + "'");
                 if (lds_companydetails.Tables[0].Rows.Count > 0)
                 {
@@ -382,7 +420,9 @@ namespace TrackIT.WebApp.company
         {
             try
             {
-
+                //Unit Testing ID - CompanyMaster.aspx.cs_18
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_17 ControlNames");
+                ((Label)this.Master.FindControl("ucPageHeader").FindControl("lblPageHeaderCaption")).Text = RollupText("Companies", "lblListCaption");
                 lblCreateCompanies.Text = RollupText("Companies", "lblCreateCompanies");
                 lblcompanyname.Text = RollupText("Companies", "lblcompanyname");
                 lblcompanycode.Text = RollupText("Companies", "lblcompanycode");
@@ -431,8 +471,9 @@ namespace TrackIT.WebApp.company
         {
             try
             {
+                //Unit Testing ID - CompanyMaster.aspx.cs_19
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_18 ClearControls");
                 hdnpop.Value = string.Empty;
-
                 txtcompanycode.Text = string.Empty;
                 txtcompanyname.Text = string.Empty;
                 txtname.Text = string.Empty;
@@ -470,8 +511,8 @@ namespace TrackIT.WebApp.company
         {
             try
             {
-               
-
+                //Unit Testing ID - CompanyMaster.aspx.cs_20
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_19 Export Excel");
                 DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
                 lwdg_companyMasterGrid.DataSource = ldt_ExcelExp;
                 lwdg_companyMasterGrid.DataBind();
@@ -495,7 +536,8 @@ namespace TrackIT.WebApp.company
         {
             try
             {
-                
+                //Unit Testing ID - CompanyMaster.aspx.cs_21
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_20 ExportPdf");
                 DataTable ldt_PdfExp = (DataTable)ViewState["export"];
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_companyMasterGrid);
                 lwdg_companyMasterGrid.DataSource = ldt_PdfExp;
@@ -507,7 +549,7 @@ namespace TrackIT.WebApp.company
             }
             catch (Exception ex)
             {
-              //  ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+              // ExceptionPolicy.HandleException(ex, Log_Only_Policy);
                 // Response.Redirect("~/Error.aspx", false);
             }
         }
