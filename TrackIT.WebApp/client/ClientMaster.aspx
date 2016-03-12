@@ -152,15 +152,16 @@
                                             </div>
                                         </div>
                                         <hr />
-
-                                        <div class="col-md-4">
-                                            <h3>Address info  </h3>
-                                            <div class="form-group">
+                                     
+                                        <div class="col-sm-15 align-popcontent">
+                                     <h3 >Address info  </h3>       
+                                            <div  class="col-sm-4">
+                                            <div class="form-group " >
                                                 <asp:Label ID="lbladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
                                                     <asp:TextBox ID="txtaddressline1" CssClass="form-control" TabIndex="4" runat="server"></asp:TextBox>
                                                 </div>
-                                                <div class="col-md-1" style="display: none;">
+                                                <div class="col-md-1" style="display: none; float:left;">
                                                     <cc1:FilteredTextBoxExtender ID="ccaddressline1_FilteredTextBoxExtender"
                                                         runat="server" Enabled="True" TargetControlID="txtaddressline1"
                                                         ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
@@ -171,7 +172,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group ">
                                                 <asp:Label ID="lbladdressline2" class="control-label col-md-2" runat="server" ></asp:Label>
                                                 <div class="col-md-3">
                                                     <asp:TextBox ID="txtaddressline2" CssClass="form-control" runat="server"  TabIndex="5"></asp:TextBox>
@@ -184,7 +185,9 @@
 
                                                 </div>
                                             </div>
+                                                </div>
 
+                                            <div  class="col-sm-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdresscity" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
@@ -212,7 +215,9 @@
 
                                                 </div>
                                             </div>
+                                                      </div>
 
+                                            <div  class="col-sm-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lbladdresszip" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
@@ -238,6 +243,8 @@
                                                         ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
+                                                </div>
+                                              
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillinfosame" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-1">
@@ -246,10 +253,13 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                              
+                                            
                                         </div>
-
-                                        <div class="col-md-4">
-                                            <h3>Contact Info  </h3>
+                                           <hr/>
+                                        
+                                        <div class="col-sm-15 align-popcontent  ">
+                                        <h3>Contact Info  </h3>    
                                             <div class="form-group">
                                                 <asp:Label ID="lblclientcontactname" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
@@ -282,10 +292,11 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-4">
+   
+                                        <hr />
+                                        <div class="col-sm-15 align-popcontent">
                                             <h3>Billing Info </h3>
-
+                                             <div  class="col-sm-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lblbilladdress1" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
@@ -314,7 +325,8 @@
                                                     </cc1:FilteredTextBoxExtender>
                                                 </div>
                                             </div>
-
+                                                 </div>
+                                             <div  class="col-sm-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillcity" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
@@ -340,7 +352,9 @@
                                                     </cc1:FilteredTextBoxExtender>
                                                 </div>
                                             </div>
+                                                 </div>
 
+                                             <div  class="col-sm-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lblbillzip" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
@@ -366,6 +380,7 @@
                                                         ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
+                                                 </div>
                                         </div>
 
                                     </div>
