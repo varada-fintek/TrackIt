@@ -1,37 +1,37 @@
 ﻿using System;
-using System.Collections;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using System.Xml.Linq;
-
-
-//test
-using TrackIT.WebApp.Common;
-
-using TrackIT.WebApp.TrackITEnum;
-
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Data.SqlClient;
+using Infragistics.Web.UI.GridControls;
+using Infragistics.Web.UI;
+using Infragistics.Documents.Excel;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using System.Text;
+using TrackIT.WebApp.Common;
+using TrackIT.WebApp.TrackITEnum;
+using TrackIT.Common;
+using DevExpress.Web;
 
 namespace TrackIT.WebApp
 {
     public partial class Home : BasePage
     {
+ 
         protected void Page_Load(object sender, EventArgs e)
+        
         {
-            try
+           try
             {
-                if (!IsPostBack)
-                {
-
-                }
+                
             }
             catch (Exception ex)
             {
@@ -39,6 +39,7 @@ namespace TrackIT.WebApp
                 Response.Redirect("~/Error.aspx", false);
             }
         }
+       
 
 
     }

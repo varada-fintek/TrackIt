@@ -403,7 +403,7 @@ namespace TrackIT.WebApp.Security
                 TemplateDataField td = new TemplateDataField();
                 td.ItemTemplate = new CustomItemTemplateView();
                 td.Key = "Action";
-                td.Width = 30;
+                td.Width = 20;
                 lwdg_RoleMasterGrid.Columns.Add(td);
 
                 lwdg_RoleMasterGrid.Visible = false;

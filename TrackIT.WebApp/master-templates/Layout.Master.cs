@@ -74,15 +74,15 @@ namespace TrackIT.WebApp.master_templates
                 }
                 LoadMenuWithUL(objBasePagePL.LoggedInUserId, "0");
 
-                if (int.Parse(objBasePagePL.GetSessionValue(SessionItems.Is_First_Login).ToString()) == 1)
-                {                
-                    HtmlAnchor MyLnk = (HtmlAnchor)this.FindControl("sidebarLeftToggle");
-                    if (MyLnk != null)
-                    { 
-                        MyLnk.Visible = false;
-                        divleftMenu.Visible = false;
-                    }
-                }
+                //if (int.Parse(objBasePagePL.GetSessionValue(SessionItems.Is_First_Login).ToString()) == 1)
+                //{                
+                //    HtmlAnchor MyLnk = (HtmlAnchor)this.FindControl("sidebarLeftToggle");
+                //    if (MyLnk != null)
+                //    { 
+                //        MyLnk.Visible = false;
+                //        divleftMenu.Visible = false;
+                //    }
+                //}
             }
             catch (Exception ex)
             {

@@ -44,13 +44,18 @@ namespace TrackIT.WebApp.project
 
                 iwdg_projectMasterGrid = new WebDataGrid();
                 iwdg_panelGrid = new WebDataGrid();
-
+               
                 pnl_projectGrid.Controls.Add(iwdg_projectMasterGrid);
 
+
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_projectMasterGrid);
-                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_panelGrid);
+                TrackIT.WebApp.CommonSettings.ApplyGridSettings(iwdg_project_phases);
+                GetProjectDetails();
+              //  iwdg_project_phases.DataSource = GetDataSource();
                 if (!IsPostBack)
                 {
+                    iwdg_project_phases.DataSource = GetDataSource();
+                    iwdg_project_phases.DataBind();
                     DataSet lds_Client = ldbh_QueryExecutors.ExecuteDataSet("SELECT client_key AS [Value], client_name AS TextValue FROM prj_clients  WHERE is_active = 1 ORDER BY client_name");
                     if (lds_Client.Tables[0].Rows.Count > 0)
                     {
@@ -75,29 +80,78 @@ namespace TrackIT.WebApp.project
                         ddlowner.DataValueField = "Value";
                         ddlowner.DataBind();
                         ddlowner.Items.Insert(0, llstm_li);
-
-
+                        
                     }
-                    clearcontrols();
+                   // clearcontrols();
                 }
+                DataSet lds_phaseowner = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
+                ddpphaseowners.EditorControl.DataSource = lds_phaseowner;
+                ddpphaseowners.EditorControl.ValueField = "Value";
+                ddpphaseowners.EditorControl.TextField = "TextValue";
+                ddpphaseowners.EditorControl.DataKeyFields = "Value";
 
-                GetProjectDetails();
-                GetPanelDetails();
+                DataSet lds_phaseresource = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='RES' and cp.Active = 1 ORDER BY parameter_name");
+                ddpphaseresource.EditorControl.DataSource = lds_phaseresource;
+                ddpphaseresource.EditorControl.ValueField = "Value";
+                ddpphaseresource.EditorControl.TextField = "TextValue";
+                ddpphaseresource.EditorControl.DataKeyFields = "Value";
                 if (!string.IsNullOrEmpty(hdnprjID.Value) && hdnpop.Value == "1")
                 {
-
                     Int64? lint_projid = Convert.ToInt64(hdnprjID.Value.ToString());
                     btnSave.Visible = bitEdit;
                     EditProjectDetails(lint_projid);
-
+                    iwdg_project_phases.DataSource = GetDataSource();
+                    hdnpop.Value = string.Empty;
                     mpe_projectPopup.Show();
                 }
+                else
+                {
+                    iwdg_project_phases.DataSource = GetDataSource();
+                }
+               
             }
             catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, Log_Only_Policy);
                 Response.Redirect("~/Error.aspx", false);
             }
+        }
+        #endregion
+
+        #region Get project phasesGrid datasource
+        private DataTable GetDataSource()
+        {
+            DataTable dataSource = null;
+
+            if (Session["PrjPhasesTable"] == null)
+            {
+                //DataSet lds_set = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,'' as Phases,'' as PhaseOwners FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
+                DataSet lds_set = ldbh_QueryExecutors.ExecuteDataSet("select cast(iif(po.owner_key is not null or prs.resource_key is not null, 1, 0) as bit) CheckStatus,cp.parameter_key as Parameter_Key,cp.parameter_name Phase, po.owner_key Owner_key,pp.phase_key, prs.resource_key Resource_key from com_parameters cp left join prj_project_phases pp on cp.parameter_key=pp.project_phase_key and  pp.project_key=0 left join prj_project_phase_owners po on po.phase_key=pp.phase_key left join prj_project_phase_resources prs on prs.phase_key=pp.phase_key left join com_parameters co on co.parameter_key=po.owner_key left join com_parameters crs on crs.parameter_key=prs.resource_key where cp.parameter_type='PHA'  ");
+                //dataSource = lds_set.Tables[0];
+                dataSource = new DataTable(lds_set.Tables[0].TableName);
+                DataColumn ldc_projectPK = new DataColumn("prj_prjKEY");
+                ldc_projectPK.AutoIncrement = true;
+                ldc_projectPK.AutoIncrement = true;
+                ldc_projectPK.AutoIncrementStep = 1;
+                ldc_projectPK.AutoIncrementSeed = 1;
+                dataSource.Columns.Add(ldc_projectPK);
+                dataSource.BeginLoadData();
+                DataTableReader dtReader = new DataTableReader(lds_set.Tables[0]);
+                dataSource.Load(dtReader);
+                dataSource.EndLoadData();
+
+                DataColumn[] PK = new DataColumn[1];
+                PK[0] = dataSource.Columns["prj_prjKEY"];
+                dataSource.PrimaryKey = PK;
+               // this.Session["PrjPhasesTable"] = ldt_Prjdetails;
+                this.Session.Add("PrjPhasesTable", dataSource);
+            }
+            else
+            {
+                dataSource = (DataTable)this.Session["PrjPhasesTable"];
+               // dataSource.AcceptChanges();
+            }
+            return dataSource;
         }
         #endregion
 
@@ -127,24 +181,6 @@ namespace TrackIT.WebApp.project
         }
         #endregion
 
-        private void Iwdg_projectphases_InitializeRow(object sender, RowEventArgs e)
-        {
-            try
-            {
-                if (e.Row.Index == 0)
-                {
-                    e.Row.Items.FindItemByKey("Value").Column.Hidden = true;
-                    e.Row.Items.FindItemByKey("TextValue").Column.Header.Text = "Phases";
-                    e.Row.Items.FindItemByKey("Phases").Column.Header.Text = "Phaseowners";
-                    e.Row.Items.FindItemByKey("PhaseOwners").Column.Header.Text = "Phaseresource";
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
-                Response.Redirect("~/Error.aspx", false);
-            }
-        }
         #region Button Clear click
         protected void btnClear_Click(object sender, EventArgs e)
         {
@@ -160,9 +196,10 @@ namespace TrackIT.WebApp.project
             try
             {
                 DataSet lds_Result;
-
+            
                 if (string.IsNullOrEmpty(hdnprjID.Value))
                 {
+                   
                     lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select project_code from prj_projects where is_active=1 and project_code='" + txtprojectcode.Text + "'");
                     if (lds_Result.Tables[0].Rows.Count > 0)
                     {
@@ -175,12 +212,14 @@ namespace TrackIT.WebApp.project
                     }
                     else
                     {
+                        
                         InsertorUpdateProjectDetails();
 
                     }
                 }
                 else
                 {
+                    
                     InsertorUpdateProjectDetails();
                 }
 
@@ -240,6 +279,8 @@ namespace TrackIT.WebApp.project
                 igwdp_kickoffdate.Value = string.Empty;
                 chkinactive.Checked = true;
                 chkinactive.Enabled = false;
+                this.Session["PrjPhasesTable"] = null;
+               // iwdg_project_phases.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -257,11 +298,12 @@ namespace TrackIT.WebApp.project
                 istr_tablename = "prj_projects";
                 Boolean lbool_type = true;
                 string lstr_outMessage = string.Empty;
+                
                 if (string.IsNullOrEmpty(hdnprjID.Value))
                 {
-
+                 
                     string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
-                {
+                        {
                     {"project_code",txtprojectcode.Text.Replace("'", "''") },
                     {"project_name",txtprojectname.Text.Replace("'", "''") },
                     {"client_key",ddlClients.SelectedValue },
@@ -272,15 +314,65 @@ namespace TrackIT.WebApp.project
                     {"Created_Date", DateTime.Now},
                     {"last_modified_By", this.LoggedInUserId },
                     {"last_modified_date", DateTime.Now}
-                }, lbool_type
+                     }, lbool_type
                     );
+                    DataTable ldt_projectphase_info = (DataTable)this.Session["PrjPhasesTable"];
+                    ldt_projectphase_info.AcceptChanges();
+                     istr_tablename = "prj_project_phases";
+                    foreach (DataRow lrow in ldt_projectphase_info.Rows)
+                    {
+                        if(Convert.ToBoolean(lrow["CheckStatus"])==true)
+                        {
+                            
+                            istr_tablename = "prj_project_phases";
+                             string lstr_phases_tableID = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
+                            {
+                               {"project_key",Convert.ToInt64(lstr_id)},
+                               {"project_phase_key",Convert.ToInt64(lrow["Parameter_Key"])},
+                               {"is_active",(chkinactive.Checked? 1:0).ToString()},
+                               {"created_by",this.LoggedInUserId },
+                               {"Created_Date", DateTime.Now},
+                               {"last_modified_By", this.LoggedInUserId },
+                               {"last_modified_date", DateTime.Now}
+                            }, lbool_type);
 
+                             istr_tablename = "prj_project_phase_owners";
+                             if (!string.IsNullOrEmpty(lrow["Owner_key"].ToString()))
+                             {
+                                 string lstr_phaseownerID = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
+                                        {
+                                            {"owner_key",Convert.ToInt64(lrow["Owner_key"])},
+                                            {"phase_key",Convert.ToInt64(lstr_phases_tableID)},
+                                            {"is_active",(chkinactive.Checked? 1:0).ToString()},
+                                            {"created_by",this.LoggedInUserId },
+                                            {"Created_Date", DateTime.Now},
+                                            {"last_modified_By", this.LoggedInUserId },
+                                            {"last_modified_date", DateTime.Now}
+                                        }, lbool_type);
+                             }
+                             if (!string.IsNullOrEmpty(lrow["Resource_key"].ToString()))
+                             {
+                                 istr_tablename = "prj_project_phase_resources";
+                                 string lstr_phaseresourceID = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
+                                        {
+                                            {"resource_key",Convert.ToInt64(lrow["Resource_key"])},
+                                            {"phase_key",Convert.ToInt64(lstr_phases_tableID)},
+                                            {"is_active",(chkinactive.Checked? 1:0).ToString()},
+                                            {"created_by",this.LoggedInUserId },
+                                            {"Created_Date", DateTime.Now},
+                                            {"last_modified_By", this.LoggedInUserId },
+                                            {"last_modified_date", DateTime.Now}
+                                        }, lbool_type);
+                             }
+                        }
+                    }
+                    lstr_outMessage = "SUCCESS";
                 }
                 else
                 {
                     lbool_type = false;
                     istr_tablename = "prj_projects";
-                    string id = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
+                   lstr_outMessage = ldbh_QueryExecutors.SqlUpdate(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                 {
                     {"project_code",txtprojectcode.Text.Replace("'", "''") },
                     {"project_name",txtprojectname.Text.Replace("'", "''") },
@@ -297,16 +389,76 @@ namespace TrackIT.WebApp.project
                      },
                 lbool_type
                    );
-
-                    lstr_outMessage = "SUCCESS";
+                    DataSet lds_del_phases_resource_owneres= ldbh_QueryExecutors.ExecuteDataSet("select pp.phase_key from prj_project_phases pp inner join prj_project_phase_owners po on po.phase_key=pp.phase_key inner join prj_project_phase_resources pr on pr.phase_key=pp.phase_key where pp.project_key=" + Convert.ToInt64(hdnprjID.Value));
+                    foreach(DataRow ldrow_delete in lds_del_phases_resource_owneres.Tables[0].Rows)
+                    {
+                        ldbh_QueryExecutors.ExecuteNonQuery("Delete from prj_project_phase_owners where phase_key=" + ldrow_delete["phase_key"]);
+                        ldbh_QueryExecutors.ExecuteNonQuery("Delete from prj_project_phase_resources where phase_key=" + ldrow_delete["phase_key"]);
+                        ldbh_QueryExecutors.ExecuteNonQuery("Delete from prj_project_phases where phase_key=" + ldrow_delete["phase_key"]);
+                    }
+                    ldbh_QueryExecutors.ExecuteNonQuery("Delete from prj_project_phases where project_key=" + hdnprjID.Value);
+                    DataTable ldt_projectphaseinfo = (DataTable)this.Session["PrjPhasesTable"];
+                    ldt_projectphaseinfo.AcceptChanges();
+                    istr_tablename = "prj_project_phases";
+                    foreach (DataRow lrow in ldt_projectphaseinfo.Rows)
+                    {
+                        if (Convert.ToBoolean(lrow["CheckStatus"]) == true)
+                        {
+                           // if(string.IsNullOrEmpty(lrow["phase_key"].ToString()))
+                            lbool_type = true;
+                                istr_tablename = "prj_project_phases";
+                                string lstr_phasesID = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
+                            {
+                               {"project_key",Convert.ToInt64(hdnprjID.Value)},
+                               {"project_phase_key",Convert.ToInt64(lrow["Parameter_Key"])},
+                               {"is_active",(chkinactive.Checked? 1:0).ToString()},
+                               {"created_by",this.LoggedInUserId },
+                               {"Created_Date", DateTime.Now},
+                               {"last_modified_By", this.LoggedInUserId },
+                               {"last_modified_date", DateTime.Now}
+                            }, lbool_type);
+                                lstr_outMessage = "SUCCESS";
+                                lbool_type = false;
+                                if (!string.IsNullOrEmpty(lrow["Owner_key"].ToString()))
+                                {
+                                    istr_tablename = "prj_project_phase_owners";
+                                    lstr_outMessage = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
+                                        {
+                                            {"owner_key",Convert.ToInt64(lrow["Owner_key"])},
+                                            {"phase_key",Convert.ToInt64(lstr_phasesID)},
+                                            {"is_active",(chkinactive.Checked? 1:0).ToString()},
+                                            {"created_by",this.LoggedInUserId },
+                                            {"Created_Date", DateTime.Now},
+                                            {"last_modified_By", this.LoggedInUserId },
+                                            {"last_modified_date", DateTime.Now}
+                                        }, lbool_type);
+                                }
+                                lbool_type = false;
+                                if (!string.IsNullOrEmpty(lrow["Resource_key"].ToString()))
+                                {
+                                    istr_tablename = "prj_project_phase_resources";
+                                     lstr_outMessage = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>
+                                        {
+                                            {"resource_key",Convert.ToInt64(lrow["Resource_key"])},
+                                            {"phase_key",Convert.ToInt64(lstr_phasesID)},
+                                            {"is_active",(chkinactive.Checked? 1:0).ToString()},
+                                            {"created_by",this.LoggedInUserId },
+                                            {"Created_Date", DateTime.Now},
+                                            {"last_modified_By", this.LoggedInUserId },
+                                            {"last_modified_date", DateTime.Now}
+                                        }, lbool_type);
+                                }
+                        }
+                    }
+                   
+                   
                 }
                 if (lstr_outMessage.Contains("SUCCESS"))
                 {
 
-                    string[] sBUID = lstr_outMessage.Split('^');
                     GetProjectDetails();
                     SaveMessage();
-                    // ClearControls();
+                    clearcontrols();
                     mpe_projectPopup.Hide();
                     return;
                 }
@@ -333,7 +485,7 @@ namespace TrackIT.WebApp.project
                 TemplateDataField td = new TemplateDataField();
                 td.ItemTemplate = new CustomItemTemplateView();
                 td.Key = "Action";
-                td.Width = 30;
+                td.Width = 20;
                 iwdg_projectMasterGrid.Columns.Add(td);
 
                 DataSet lds_Result;
@@ -351,66 +503,6 @@ namespace TrackIT.WebApp.project
             }
         }
         #endregion
-        private void GetPanelDetails()
-        {
-            try
-            {
-                iwdg_projectphases.InitializeRow += Iwdg_projectphases_InitializeRow;
-                TemplateDataField td = new TemplateDataField();
-                td.ItemTemplate = new CustomItemTemplateView();
-                td.Key = "Action";
-                td.Width = 30;
-
-                DataSet lds_Result;
-                //lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,cp.parameter_key as Phases,cp.parameter_key as Phaseowners FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
-                lds_Result = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS[Value], cp.parameter_name AS TextValue,'' as Phases,'' as PhaseOwners FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code = cp.parameter_type WHERE cpt.parameter_type_code = 'PHA' and cp.Active = 1 ORDER BY parameter_name");
-                if (lds_Result.Tables[0].Rows.Count > 0)
-                {
-                    DataColumn[] keys = new DataColumn[1];
-                    keys[0] = lds_Result.Tables[0].Columns[0];
-                    // Then assign the array to the PrimaryKey property of the DataTable. 
-                    lds_Result.Tables[0].PrimaryKey = keys;
-                    iwdg_projectphases.DataSource = lds_Result.Tables[0];
-                    iwdg_projectphases.DataBind();
-                }
-                // Enable cell editing
-                this.iwdg_projectphases.Behaviors.CreateBehavior<EditingCore>();
-                this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CreateBehavior<CellEditing>();
-
-                DataSet lds_phaseownerresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp  inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='OWN' and cp.Active = 1 ORDER BY parameter_name");
-                this.iwdg_projectphases.EditorProviders.Add(ddpPhaseowner);
-                EditingColumnSetting phaseownerecolumn = new EditingColumnSetting();
-                phaseownerecolumn.ColumnKey = "Phases";
-                phaseownerecolumn.EditorID = ddpPhaseowner.ID;
-                ddpPhaseowner.EditorControl.ValueField = "Value";
-                ddpPhaseowner.EditorControl.TextField = "TextValue";
-                ddpPhaseowner.EditorControl.DataSource = lds_phaseownerresult.Tables[0];
-                this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(phaseownerecolumn);
-
-
-
-                DataSet lds_phaseresourceresult = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='RES' and cp.Active = 1 ORDER BY parameter_name");
-                this.iwdg_projectphases.EditorProviders.Add(ddpPhaseprovider);
-                EditingColumnSetting phaseresourcecolumn = new EditingColumnSetting();
-                phaseresourcecolumn.ColumnKey = "PhaseOwners";
-                phaseresourcecolumn.EditorID = ddpPhaseprovider.ID;
-                ddpPhaseprovider.EditorControl.ValueField = "Value";
-                ddpPhaseprovider.EditorControl.TextField = "TextValue";
-                ddpPhaseprovider.EditorControl.DataSource = lds_phaseresourceresult.Tables[0];
-                this.iwdg_projectphases.Behaviors.EditingCore.Behaviors.CellEditing.ColumnSettings.Add(phaseresourcecolumn);
-                iwdg_projectphases.DataBind();
-
-            }
-            catch (Exception ex)
-            {
-                if (ExceptionPolicy.HandleException(ex, Rethrow_Policy))
-                    throw;
-            }
-        }
-
-
-
-
 
         #region EditProjectDetails
         private void EditProjectDetails(Int64? aint_ProjectID)
@@ -421,6 +513,27 @@ namespace TrackIT.WebApp.project
 
                 //Fetch Single Record from table and assign to Edit
                 DataSet lds_projectdetail = ldbh_QueryExecutors.ExecuteDataSet("select * from prj_projects pp where pp.project_key='" + aint_ProjectID + "'");
+                DataSet lds_projectphases = ldbh_QueryExecutors.ExecuteDataSet("select cast(iif(po.owner_key is not null or prs.resource_key is not null, 1, 0)as bit )CheckStatus,cp.parameter_key as Parameter_Key,cp.parameter_name Phase, po.owner_key Owner_key,pp.phase_key,   prs.resource_key Resource_key from com_parameters cp left join prj_project_phases pp on cp.parameter_key=pp.project_phase_key and  pp.project_key='" + aint_ProjectID + "' left join prj_project_phase_owners po on po.phase_key=pp.phase_key left join prj_project_phase_resources prs on prs.phase_key=pp.phase_key left join com_parameters co on co.parameter_key=po.owner_key left join com_parameters crs on crs.parameter_key=prs.resource_key where cp.parameter_type='PHA'  ");
+                
+                DataTable ldt_prjdetails = new DataTable(lds_projectphases.Tables[0].TableName);
+
+                DataColumn ldc_prjoectdetailskey = new DataColumn("prj_prjKEY");
+                ldc_prjoectdetailskey.AutoIncrement = true;
+                ldc_prjoectdetailskey.AutoIncrement = true;
+                ldc_prjoectdetailskey.AutoIncrementStep = 1;
+                ldc_prjoectdetailskey.AutoIncrementSeed = 1;
+                ldt_prjdetails.Columns.Add(ldc_prjoectdetailskey);
+                ldt_prjdetails.BeginLoadData();
+                DataTableReader dtReader = new DataTableReader(lds_projectphases.Tables[0]);
+                ldt_prjdetails.Load(dtReader);
+                ldt_prjdetails.EndLoadData();
+
+                DataColumn[] PK = new DataColumn[1];
+                PK[0] = ldt_prjdetails.Columns["prj_prjKEY"];
+                ldt_prjdetails.PrimaryKey = PK;
+                this.Session["PrjPhasesTable"] = ldt_prjdetails;
+                
+                
 
                 if (lds_projectdetail.Tables[0].Rows[0]["client_key"] != null)
                 {
@@ -445,6 +558,7 @@ namespace TrackIT.WebApp.project
                 }
                 else
                     ddlowner.SelectedIndex = 0;
+               
 
                 hdnprjID.Value = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_key"]).Trim() : string.Empty;
                 txtprojectcode.Text = (!string.IsNullOrEmpty(Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]))) ? Convert.ToString(lds_projectdetail.Tables[0].Rows[0]["project_code"]).Trim() : string.Empty;
@@ -455,7 +569,6 @@ namespace TrackIT.WebApp.project
 
                 chkinactive.Checked = Convert.ToInt32(lds_projectdetail.Tables[0].Rows[0]["is_active"]) == 1 ? true : false;
                 chkinactive.Enabled = true;
-
             }
             catch (Exception ex)
             {
@@ -465,8 +578,6 @@ namespace TrackIT.WebApp.project
         }
 
         #endregion
-
-
 
         #endregion
 

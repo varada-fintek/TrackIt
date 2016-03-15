@@ -262,7 +262,7 @@
                                 <div class="form-horizontal">
 
                                     <asp:ValidationSummary ID="valSumRoles" runat="server" ShowMessageBox="false" ShowSummary="true" DisplayMode="List" ValidationGroup="vgrpSave" />
-                                    <div class="form-group">
+                                    <div class="form-group align-popcontent">
                                         <asp:Label ID="lblRoleCode" class="control-label col-md-2" runat="server"></asp:Label>
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtRoleCode" CssClass="form-control" runat="server" TabIndex="3" MaxLength="10"></asp:TextBox>
@@ -277,7 +277,7 @@
                                                 ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group align-popcontent">
                                         <asp:Label ID="lblRoleName" class="control-label col-md-2" runat="server"></asp:Label>
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtRoleName" CssClass="form-control" runat="server" TabIndex="4" MaxLength="50"></asp:TextBox>
@@ -293,7 +293,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group align-popcontent">
                                         <asp:Label ID="lblInactive" class="control-label col-md-2" Text="Inactive" runat="server"></asp:Label>
                                         <div class="col-md-3">
                                             <span class="input-icon">
@@ -304,7 +304,7 @@
 
                                     <%--        edit grid/create new grid        --%>
                        <%--             style="border: 1px solid #ede3e3; padding: 10px; margin-left: 50px; margin-bottom: 10px;"--%>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-10" style="margin-left:7%">
                                         <asp:GridView ID="gvRoleAccess" runat="server" Width="100%" AutoGenerateColumns="false" TabIndex="6"
                                             CssClass="table table-bordered"  AllowSorting="True" OnRowDataBound="gvRoleAccess_RowDataBound">
                                             <Columns>

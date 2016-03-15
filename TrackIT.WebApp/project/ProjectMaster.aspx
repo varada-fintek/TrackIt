@@ -29,7 +29,7 @@
             return false;
         }
         function editRow(obj) {
-            var grid = $find("lwdg_FundMasterGrid");
+            //var grid = $find("lwdg_FundMasterGrid");
             var row = $(obj).parents("tr[type='row']").get(0);
             var rowid = row.cells[1].innerHTML;
             var pop_open = '1';
@@ -43,8 +43,71 @@
         }
 
 
-    </script>
+        function fnGetSelectID() {
+            var grid = $find("ctl00_ContentPlaceHolder1_iwdg_projectphases");
+            var rows = grid.get_rows();
+            var ids = "";
+            var drp_owner = "";
+            var drp_resource = "";
+            for (var i = 0; i < rows.get_length() ; i++)
+                if (rows.get_row(i).get_cell(1).get_value()) {
+                    ids += rows.get_row(i).get_cell(1).get_value();
+                    if (rows.get_row(i).get_cell(1).get_value()) {
+                        ids += ',';
+                    }
+                    drp_owner += rows.get_row(i).get_cell(3).get_value() + ',';
+                    drp_resource += rows.get_row(i).get_cell(4).get_value() + ',';
+                }
+            document.getElementById("hdnphasesID").value = ids;
+            document.getElementById("hdnphaseowner").value = drp_owner;
+            document.getElementById("hdnphaseresource").value = drp_resource;
 
+            return true;
+        }
+
+        function headerCheckedChangedHandler(checkbox) {
+            var grid = $find("ctl00_ContentPlaceHolder1_iwdg_project_phases");
+            var checkBoxState = checkbox.checked;
+            var columnKey = checkbox.parentElement.getAttribute("key");
+            var rows = grid.get_rows();
+            // iterate through the rows and set the checkBox states and cell values
+            for (i = 0; i < rows.get_length() ; i++) {
+                var cell = rows.get_row(i).get_cellByColumnKey(columnKey);
+                cell._setCheckState(checkBoxState);
+                cell.set_value(checkBoxState);
+            }
+        }
+        function OnExitedEditMode(sender, e) {
+            var row = e.getCell(1).get_row();
+            var owner = row.get_cellByColumnKey("phaseowner").get_value();
+            var resource = row.get_cellByColumnKey("phaseresource").get_value();
+            if (owner == "" && resource == "")
+            {
+                row.get_cellByColumnKey("check").set_value(false);
+            }
+           
+        }
+        function OnEnteredEditMode(sender, e) {
+            var row = e.getCell(1).get_row();
+            var text = row.get_cellByColumnKey("check").get_value();
+            var grid = $find("ctl00_ContentPlaceHolder1_iwdg_project_phases");
+            var rowsCount = grid.get_rows().get_length();
+            if (text == false) {
+                row.get_cellByColumnKey("check").set_value(true);
+            }
+            
+        }
+
+    </script>
+    <style type="text/css">
+        .igdd_DropDownListContainer {
+            width: 420px !important;
+        }
+
+        .igdd_ValueDisplay {
+            width: 100% !important;
+        }
+    </style>
     <asp:UpdatePanel ID="uplState" runat="server">
         <ContentTemplate>
             <div class="main-container" id="main-container">
@@ -69,6 +132,7 @@
                         <asp:Label ID="lblCreateProjects" runat="server"></asp:Label>
                     </h1>
                 </div>
+
                 <div runat="server" id="pnl_projectGrid">
                 </div>
             </div>
@@ -179,35 +243,65 @@
                                         </div>
 
                                         <div class="col=sm-10">
-                                            <ig:WebDataGrid ID="iwdg_projectphases" runat="server" Width="100%"
-                                               AutoGenerateColumns="true"  
-                                                EnableAjax="true" EnableAjaxViewState="true">
-                                                <AjaxIndicator Enabled="True" />
+                                        
+
+                                           <ig:WebDataGrid ID="iwdg_project_phases" runat="server"  AutoGenerateColumns="False" DataKeyFields="prj_prjKEY" Width="100%">
                                                 <Columns>
-                                                    <ig:UnboundCheckBoxField Key="Check" HeaderChecked="False" />
+                                                  
+                                                  <%-- <ig:TemplateDataField Key="DeleteItem" Width="20px" Header-Text="<input type='checkbox' onchange='headerCheckedChangedHandler(this);'">
+                                                        <ItemTemplate>
+                                                     <asp:CheckBox ID="lcbrowselect" runat="server" onchange="checkedChangedHandler();" />
+                                                        </ItemTemplate>
+                                                    </ig:TemplateDataField>--%>
+                                                    <ig:BoundCheckBoxField DataFieldName="CheckStatus" Key="check" DataType="System.Boolean" Width="22px">
+                                                        <Header Text="<input type='checkbox' onchange='headerCheckedChangedHandler(this);'"></Header>
+                                                    </ig:BoundCheckBoxField>
+                                                <ig:BoundDataField DataFieldName="Phase" DataType="System.string" Key="prjphases" >
+                                                    <header text="Phases">
+                                                        </header>
+                                                </ig:BoundDataField>
+                                                  <%--      --%>
+                                                <ig:BoundDataField DataFieldName="Owner_key" Key="phaseowner" >
+                                                    <header text="Phase Owner">
+                                                        </header>
+                                                </ig:BoundDataField>
+
+                                                <ig:BoundDataField DataFieldName="Resource_key" Key="phaseresource" >
+                                                    <header text="Phase Resource">
+                                                        </header>
+                                                </ig:BoundDataField>
                                                 </Columns>
-
-                                               <EditorProviders>
-                                                    <ig:DropDownProvider  ID="ddpPhaseprovider">
-                                                    <EditorControl  ID="edcphaseowner" runat="server" DisplayMode="DropDownList" />                                                   
+                                                <EditorProviders>
+                                                    <ig:TextBoxProvider ID="tbpphases"></ig:TextBoxProvider>
+                                                    <ig:DropDownProvider ID="ddpphaseowners">
+                                                        <EditorControl runat="server" ClientIDMode="Predictable" DropDownContainerMaxHeight="200px" DropDownContainerWidth="100%" EnableAnimations="False" EnableDropDownAsChild="False">
+                                                        </EditorControl>
                                                     </ig:DropDownProvider>
-                                                     
-                                                    <ig:DropDownProvider ID="ddpPhaseowner">
-                                                        <EditorControl ID="edcphaseresource" runat="server" DisplayMode="DropDownList" />
+                                                    <ig:DropDownProvider ID="ddpphaseresource">
+                                                        <EditorControl runat="server" ClientIDMode="Predictable" DropDownContainerMaxHeight="200px" EnableAnimations="False" EnableDropDownAsChild="False">
+                                                        </EditorControl>
                                                     </ig:DropDownProvider>
-                                              </EditorProviders>  
-
+                                                </EditorProviders>
                                                 <Behaviors>
+                                                    <ig:Activation />
+                                                     <ig:Selection RowSelectType="Multiple" CellClickAction="Row" />
                                                     <ig:EditingCore>
                                                         <Behaviors>
-                                                            <ig:CellEditing>
+                                                            <ig:CellEditing EditModeActions-MouseClick="Single">
                                                                 <ColumnSettings>
+                                                                    <ig:EditingColumnSetting ColumnKey="prjphases" EditorID="tbpphases" ReadOnly="true"  />
+                                                                    <ig:EditingColumnSetting ColumnKey="Check" ReadOnly="true" />
+                                                                    <ig:EditingColumnSetting ColumnKey="phaseowner" EditorID="ddpphaseowners" />
+                                                                    <ig:EditingColumnSetting ColumnKey="phaseresource" EditorID="ddpphaseresource" />
                                                                 </ColumnSettings>
+                                                                      <CellEditingClientEvents EnteredEditMode="OnEnteredEditMode" ExitedEditMode="OnExitedEditMode" />
                                                             </ig:CellEditing>
                                                         </Behaviors>
+
                                                     </ig:EditingCore>
                                                 </Behaviors>
                                             </ig:WebDataGrid>
+
                                         </div>
 
                                     </div>
@@ -236,7 +330,14 @@
             </div>
             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
             <asp:HiddenField ID="hdnprjID" runat="server" ClientIDMode="Static" />
+            <asp:HiddenField ID="hdnphasesID" runat="server" ClientIDMode="Static" />
+            <asp:HiddenField ID="hdnphaseowner" runat="server" ClientIDMode="Static" />
+            <asp:HiddenField ID="hdnphaseresource" runat="server" ClientIDMode="Static" />
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnSave" />
+            <%-- <asp:PostBackTrigger ControlID="iwdg_projectphases" />--%>
+        </Triggers>
     </asp:UpdatePanel>
 
 </asp:Content>

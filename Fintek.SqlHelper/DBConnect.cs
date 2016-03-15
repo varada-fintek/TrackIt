@@ -61,7 +61,7 @@ namespace DBHelper
                 {
                     lsqlcmd_command.CommandType = CommandType.Text;
                     lsqlcmd_command.ExecuteNonQuery();
-                    lstr_id = "SUCCESS^";
+                    lstr_id = "SUCCESS";
                 }
                 isqltrans_Tr.Commit();
                 lsqlcon_connection.Close();
@@ -148,7 +148,7 @@ namespace DBHelper
                 else
                 {
                     lsqlcmd_command.ExecuteNonQuery();
-                    id = "SUCCESS^";
+                    id = "SUCCESS";
                 }
                 isqltrans_Tr.Commit();
                 isqlcon_connection.Close();

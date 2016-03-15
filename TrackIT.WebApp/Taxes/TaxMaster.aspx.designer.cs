@@ -247,103 +247,31 @@ namespace TrackIT.WebApp.Taxes {
         protected global::System.Web.UI.WebControls.LinkButton lnkAddrow;
         
         /// <summary>
-        /// pnl_taxdetailsGrid control.
+        /// iwdg_taxdetails_grid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_taxdetailsGrid;
+        protected global::Infragistics.Web.UI.GridControls.WebDataGrid iwdg_taxdetails_grid;
         
         /// <summary>
-        /// iwdg_Taxdetailsinfo control.
+        /// WebDataGrid1_DatePickerProvider1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.WebDataGrid iwdg_Taxdetailsinfo;
+        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider WebDataGrid1_DatePickerProvider1;
         
         /// <summary>
-        /// FromdateProvider control.
+        /// WebDataGrid1_DatePickerProvider2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider FromdateProvider;
-        
-        /// <summary>
-        /// TodateProvider control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider TodateProvider;
-        
-        /// <summary>
-        /// Taxpercentage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider Taxpercentage;
-        
-        /// <summary>
-        /// TaxtypeProvider control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider TaxtypeProvider;
-        
-        /// <summary>
-        /// TaxappliedonProvider control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider TaxappliedonProvider;
-        
-        /// <summary>
-        /// check_grid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.WebDataGrid check_grid;
-        
-        /// <summary>
-        /// dpptaxfrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dpptaxfrom;
-        
-        /// <summary>
-        /// dpptaxto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider dpptaxto;
-        
-        /// <summary>
-        /// tbptaxpercentage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider tbptaxpercentage;
+        protected global::Infragistics.Web.UI.GridControls.DatePickerProvider WebDataGrid1_DatePickerProvider2;
         
         /// <summary>
         /// ddptaxestype control.
@@ -362,6 +290,15 @@ namespace TrackIT.WebApp.Taxes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpappliedon;
+        
+        /// <summary>
+        /// pnl_taxdetailsGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_taxdetailsGrid;
         
         /// <summary>
         /// pnlfooter control.
@@ -407,5 +344,59 @@ namespace TrackIT.WebApp.Taxes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdntaxkey;
+        
+        /// <summary>
+        /// hdntaxdetailskey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdntaxdetailskey;
+        
+        /// <summary>
+        /// hdnto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnto;
+        
+        /// <summary>
+        /// hdnfrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnfrom;
+        
+        /// <summary>
+        /// hdntaxpercent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdntaxpercent;
+        
+        /// <summary>
+        /// hdntaxtype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdntaxtype;
+        
+        /// <summary>
+        /// hdntaxappliedon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdntaxappliedon;
     }
 }

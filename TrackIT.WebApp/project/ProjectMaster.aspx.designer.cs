@@ -337,31 +337,40 @@ namespace TrackIT.WebApp.project {
         protected global::System.Web.UI.WebControls.CheckBox chkinactive;
         
         /// <summary>
-        /// iwdg_projectphases control.
+        /// iwdg_project_phases control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.WebDataGrid iwdg_projectphases;
+        protected global::Infragistics.Web.UI.GridControls.WebDataGrid iwdg_project_phases;
         
         /// <summary>
-        /// ddpPhaseprovider control.
+        /// tbpphases control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpPhaseprovider;
+        protected global::Infragistics.Web.UI.GridControls.TextBoxProvider tbpphases;
         
         /// <summary>
-        /// ddpPhaseowner control.
+        /// ddpphaseowners control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpPhaseowner;
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpphaseowners;
+        
+        /// <summary>
+        /// ddpphaseresource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpphaseresource;
         
         /// <summary>
         /// pnlfooter control.
@@ -407,5 +416,32 @@ namespace TrackIT.WebApp.project {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnprjID;
+        
+        /// <summary>
+        /// hdnphasesID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnphasesID;
+        
+        /// <summary>
+        /// hdnphaseowner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnphaseowner;
+        
+        /// <summary>
+        /// hdnphaseresource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnphaseresource;
     }
 }
