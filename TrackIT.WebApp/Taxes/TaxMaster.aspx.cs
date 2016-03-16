@@ -19,7 +19,6 @@ using System.Text;
 using TrackIT.WebApp.Common;
 using TrackIT.WebApp.TrackITEnum;
 using TrackIT.Common;
-using DevExpress.Web;
 
 namespace TrackIT.WebApp.Taxes
 {
@@ -438,12 +437,10 @@ namespace TrackIT.WebApp.Taxes
                     GetTaxDetails();
                     SaveMessage();
                     ClearControls();
-                    
                     return;
                 }
                 else
                 {
-                    
                     Response.Redirect("~/Taxes/TaxMaster.aspx", false);
                 }
             
