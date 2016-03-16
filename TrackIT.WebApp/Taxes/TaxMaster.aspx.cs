@@ -434,10 +434,11 @@ namespace TrackIT.WebApp.Taxes
                 
                 if (lstr_outMessage. Contains("SUCCESS"))
                 {
+                    mpe_taxPopup.Hide();
                     GetTaxDetails();
                     SaveMessage();
                     ClearControls();
-                    mpe_taxPopup.Hide();
+                    
                     return;
                 }
                 else
@@ -463,8 +464,13 @@ namespace TrackIT.WebApp.Taxes
             {
                 txttaxcode.Text = string.Empty;
                 txttaxname.Text = string.Empty;
+                txttaxcode.Enabled = true;
                 btnSave.Visible = bitAdd;
-                this.Session["GridTable"] = null;
+                hdnpop.Value = string.Empty;
+                iwdg_taxdetails_grid.DataSource = null;
+                DataTable ldt_clear=(DataTable) this.Session["GridTable"];
+                ldt_clear.Clear();
+                this.Session["GridTable"] = (DataTable)ldt_clear;               
             }
             catch (Exception ex)
             {
