@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/master-templates/Layout.Master" UICulture="en-US" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="TrackIT.WebApp.Home" %>
+<%@ Page Language="C#" MasterPageFile="~/master-templates/Layout.Master" UICulture="en-US" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Home.aspx.cs" Inherits="TrackIT.WebApp.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <style type="text/css">

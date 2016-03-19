@@ -61,6 +61,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string gvGridActive {
+            get {
+                return ResourceManager.GetString("gvGridActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Code.
+        /// </summary>
+        internal static string gvGridComapanyCode {
+            get {
+                return ResourceManager.GetString("gvGridComapanyCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Name.
+        /// </summary>
+        internal static string gvGridComapanyName {
+            get {
+                return ResourceManager.GetString("gvGridComapanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active*.
         /// </summary>
         internal static string lblactive {

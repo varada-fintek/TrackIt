@@ -292,15 +292,6 @@ namespace TrackIT.WebApp.Taxes {
         protected global::Infragistics.Web.UI.GridControls.DropDownProvider ddpappliedon;
         
         /// <summary>
-        /// pnl_taxdetailsGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_taxdetailsGrid;
-        
-        /// <summary>
         /// pnlfooter control.
         /// </summary>
         /// <remarks>

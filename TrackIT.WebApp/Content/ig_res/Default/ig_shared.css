@@ -1,10 +1,13 @@
 @font-face{font-family:common_font;src:url(../../fonts/Montserrat-Light.otf)}
 @font-face{font-family:common_font_regular;src:url(../../fonts/Montserrat-Regular.otf)}
+
+
+
 .ig_Control
 {
 	/*background-color:White;*/
 	font-size:xx-small;
-	font-family: common_font;
+	font-family: common_font !important;
 	color: #444444;
 }
 

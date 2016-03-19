@@ -61,9 +61,9 @@
 
                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png" OnClick="btnExportExcel_Click"></asp:ImageButton>
-                        &nbsp;&nbsp;                       
+                                        
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>
-                        &nbsp;&nbsp;
+                     &nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="show(); ShowModalPopup();"></a></span>
                     </div>
@@ -116,211 +116,315 @@
                                     <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
                                         <asp:ValidationSummary ID="valSumUser" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                                         <div class="form-horizontal">
+                                            
+                                         <div class="col-md-4" style="padding-left:0px;">
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblUserID" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtUserID" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                            <!--begin div-->
+                                            <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; margin-right:4px; border:1px solid #e3e3e3;">
+										        <div class="widget-box transparent">
+											        <div class="widget-header widget-header-flat">
+												        <h4 class="widget-title lighter">
+													       User info
+												        </h4>
+
+												        <div class="widget-toolbar">
+													        <a href="#" data-action="collapse">
+														        <i class="ace-icon fa fa-thumb-tack"></i>
+													        </a>
+												        </div>
+											        </div>
+
+											        <div class="widget-body" style="display: block;">
+												        <div class="widget-main no-padding">
+                                                            
+                                                                <!--begin control-->
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblUserID" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtUserID" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                                    </div>
+
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
+                                                                            runat="server" Enabled="True" TargetControlID="txtUserID"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator ID="reqvtxtUserId" runat="server"
+                                                                            ControlToValidate="txtUserID" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                                        <asp:RequiredFieldValidator ID="reqvuserIdUNQ" runat="server"
+                                                                            ControlToValidate="txtUserID" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblmailID" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-5">
+                                                                        <asp:TextBox ID="txtmailID" runat="server" CssClass="form-control" TabIndex="2" MaxLength="50"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-3" style="display: none">
+                                                                        <cc1:FilteredTextBoxExtender ID="txtmailID_FilteredTextBoxExtender"
+                                                                            runat="server" Enabled="True" TargetControlID="txtmailID"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <%-- <asp:RegularExpressionValidator ID="txtmailID_RegularExpressionValidator" runat="server" ErrorMessage="Not a valid email format" ForeColor="#FF3300" SetFocusOnError="True" ControlToValidate="txtmailID" ValidationGroup="vgrpSave" ValidationExpression="^(?('')(''.+?''@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$"></asp:RegularExpressionValidator>--%>
+                                                                        <asp:RequiredFieldValidator ID="reqvEmailId" runat="server"
+                                                                            ControlToValidate="txtmailID" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblPassword" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-5">
+                                                                        <asp:TextBox ID="txtPassword" runat="server" TabIndex="3" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-3" style="display: none">
+                                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender2"
+                                                                            runat="server" Enabled="True" TargetControlID="txtPassword"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
+                                                                        </cc1:FilteredTextBoxExtender>
+
+                                                                        <asp:RequiredFieldValidator ID="reqvPassword" runat="server"
+                                                                            ControlToValidate="txtPassword" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblConfirmPassword" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-5">
+                                                                        <asp:TextBox ID="txtConfrimPass" runat="server" TabIndex="4" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-3" style="display: none">
+                                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender3"
+                                                                            runat="server" Enabled="True" TargetControlID="txtConfrimPass"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:CompareValidator ID="CmprPassword" runat="server" ControlToValidate="txtConfrimPass" ValidationGroup="vgrpSave" Operator="Equal" ControlToCompare="txtPassword"></asp:CompareValidator>
+                                                                        <asp:RequiredFieldValidator ID="reqvConfirmPassword" runat="server"
+                                                                            ControlToValidate="txtConfrimPass" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end control-->
+                                                            </div>
+                                                            <!-- /.widget-main -->
+                                                        </div>
+                                                        <!-- /.widget-body -->
                                                     </div>
-
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
-                                                            runat="server" Enabled="True" TargetControlID="txtUserID"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvtxtUserId" runat="server"
-                                                            ControlToValidate="txtUserID" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-                                                        <asp:RequiredFieldValidator ID="reqvuserIdUNQ" runat="server"
-                                                            ControlToValidate="txtUserID" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-                                                    </div>
+                                                    <!-- /.widget-box -->
                                                 </div>
+                                                <!--end div-->
 
-
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblusername" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtuserfirstname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="ccfirstname_FilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtuserfirstname"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvUsername" runat="server"
-                                                            ControlToValidate="txtuserfirstname" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblmiddlename" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtusersmidlename" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-1">
-                                                        <cc1:FilteredTextBoxExtender ID="ccmiddlename_FilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtusersmidlename"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <asp:Label ID="lbllastname" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtuserlastname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="cclastname_FilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtuserlastname"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvtxtlastname" runat="server"
-                                                            ControlToValidate="txtuserlastname" Display="Dynamic" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblphone" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-3">
-                                                        <asp:TextBox ID="txtphone" CssClass="form-control" TextMode="Phone" runat="server" TabIndex="4" MaxLength="50"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1"
-                                                            runat="server" Enabled="True" TargetControlID="txtphone"
-                                                            ValidChars="1234567890">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:RequiredFieldValidator ID="reqvphone" runat="server"
-                                                            ControlToValidate="txtphone" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblRole" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-6">
-                                                        <asp:DropDownList ID="ddlRole" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <asp:RequiredFieldValidator ID="reqvRole" runat="server"
-                                                            ControlToValidate="ddlRole" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            
+                                            
+                                              <div class="col-md-4" style="padding-left:0px; padding-right:0px;">
 
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblPassword" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-5">
-                                                        <asp:TextBox ID="txtPassword" runat="server" TabIndex="5" CssClass="form-control" MaxLength="50"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-3" style="display: none">
-                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender2"
-                                                            runat="server" Enabled="True" TargetControlID="txtPassword"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
-                                                        </cc1:FilteredTextBoxExtender>
+                                            <!--begin div-->
+                                            <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; border:1px solid #e3e3e3;">
+										        <div class="widget-box transparent">
+											        <div class="widget-header widget-header-flat">
+												        <h4 class="widget-title lighter">
+													        Personal info
+												        </h4>
 
-                                                        <asp:RequiredFieldValidator ID="reqvPassword" runat="server"
-                                                            ControlToValidate="txtPassword" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
+												        <div class="widget-toolbar">
+													        <a href="#" data-action="collapse">
+														        <i class="ace-icon fa fa-thumb-tack"></i>
+													        </a>
+												        </div>
+											        </div>
 
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblConfirmPassword" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-5">
-                                                        <asp:TextBox ID="txtConfrimPass" runat="server" TabIndex="6" CssClass="form-control" MaxLength="50"></asp:TextBox>
+											        <div class="widget-body" style="display: block;">
+												        <div class="widget-main no-padding">
+                                                            <!--begin control-->
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblusername" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtuserfirstname" CssClass="form-control" runat="server" TabIndex="5" MaxLength="100"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <cc1:FilteredTextBoxExtender ID="ccfirstname_FilteredTextBoxExtender"
+                                                                            runat="server" Enabled="True" TargetControlID="txtuserfirstname"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator ID="reqvUsername" runat="server"
+                                                                            ControlToValidate="txtuserfirstname" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblmiddlename" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtusersmidlename" CssClass="form-control" runat="server" TabIndex="6" MaxLength="100"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <cc1:FilteredTextBoxExtender ID="ccmiddlename_FilteredTextBoxExtender"
+                                                                            runat="server" Enabled="True" TargetControlID="txtusersmidlename"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lbllastname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtuserlastname" CssClass="form-control" runat="server" TabIndex="7" MaxLength="100"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <cc1:FilteredTextBoxExtender ID="cclastname_FilteredTextBoxExtender"
+                                                                            runat="server" Enabled="True" TargetControlID="txtuserlastname"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator ID="reqvtxtlastname" runat="server"
+                                                                            ControlToValidate="txtuserlastname" Display="Dynamic" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblphone" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtphone" CssClass="form-control" TextMode="Phone" runat="server" TabIndex="8" MaxLength="50"></asp:TextBox>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1"
+                                                                            runat="server" Enabled="True" TargetControlID="txtphone"
+                                                                            ValidChars="1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator ID="reqvphone" runat="server"
+                                                                            ControlToValidate="txtphone" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="form-group" style="padding-bottom: 10px;">
+                                                                    <asp:Label ID="lblLocation" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-6">
+                                                                        <asp:DropDownList ID="ddlUserLocation" runat="server" TabIndex="9" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvtxtLocation" runat="server"
+                                                                            ControlToValidate="ddlUserLocation" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end control-->
+                                                            </div>
+                                                            <!-- /.widget-main -->
+                                                        </div>
+                                                        <!-- /.widget-body -->
                                                     </div>
-                                                    <div class="col-md-3" style="display: none">
-                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender3"
-                                                            runat="server" Enabled="True" TargetControlID="txtConfrimPass"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <asp:CompareValidator ID="CmprPassword" runat="server" ControlToValidate="txtConfrimPass" ValidationGroup="vgrpSave" Operator="Equal" ControlToCompare="txtPassword"></asp:CompareValidator>
-                                                        <asp:RequiredFieldValidator ID="reqvConfirmPassword" runat="server"
-                                                            ControlToValidate="txtConfrimPass" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
+                                                    <!-- /.widget-box -->
                                                 </div>
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblmailID" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-5">
-                                                        <asp:TextBox ID="txtmailID" runat="server" CssClass="form-control" TabIndex="7" MaxLength="50"></asp:TextBox>
-                                                    </div>
-                                                    <div class="col-md-3" style="display: none">
-                                                        <cc1:FilteredTextBoxExtender ID="txtmailID_FilteredTextBoxExtender"
-                                                            runat="server" Enabled="True" TargetControlID="txtmailID"
-                                                            ValidChars="abcdefghijklmnopqrstuvwxyz 1234567890 _@.">
-                                                        </cc1:FilteredTextBoxExtender>
-                                                        <%-- <asp:RegularExpressionValidator ID="txtmailID_RegularExpressionValidator" runat="server" ErrorMessage="Not a valid email format" ForeColor="#FF3300" SetFocusOnError="True" ControlToValidate="txtmailID" ValidationGroup="vgrpSave" ValidationExpression="^(?('')(''.+?''@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$"></asp:RegularExpressionValidator>--%>
-                                                        <asp:RequiredFieldValidator ID="reqvEmailId" runat="server"
-                                                            ControlToValidate="txtmailID" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group" style="padding-bottom: 10px;">
-                                                    <asp:Label ID="lblusertitle" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-6">
-                                                        <asp:DropDownList ID="ddlUserTitle" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <asp:RequiredFieldValidator ID="reqvUserTitle" runat="server"
-                                                            ControlToValidate="ddlUserTitle" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group" style="padding-bottom: 10px;">
-                                                    <asp:Label ID="lblusertimezoneid" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-6">
-                                                        <asp:DropDownList ID="ddlUserTimeZone" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <asp:RequiredFieldValidator ID="reqvTimeZoneID" runat="server"
-                                                            ControlToValidate="ddlUserTimeZone" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group" style="padding-bottom: 10px;">
-                                                    <asp:Label ID="lblLocation" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-6">
-                                                        <asp:DropDownList ID="ddlUserLocation" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                    <div class="col-md-1" style="display: none;">
-                                                        <asp:RequiredFieldValidator ID="reqvtxtLocation" runat="server"
-                                                            ControlToValidate="ddlUserLocation" Display="Static" SetFocusOnError="True"
-                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Label ID="lblInactive" class="control-label col-md-2" runat="server"></asp:Label>
-                                                    <div class="col-md-1">
-                                                        <span class="input-icon">
-                                                            <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="11" />
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                <!--end div-->
+
                                             </div>
+                                            
+                                            
+                                         <div class="col-md-4" style="padding-right:0px;">
+
+                                                <!--begin div-->
+                                                <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; border:1px solid #e3e3e3;">
+										            <div class="widget-box transparent">
+											            <div class="widget-header widget-header-flat">
+												            <h4 class="widget-title lighter">
+													            Contact info
+												            </h4>
+
+												            <div class="widget-toolbar">
+													            <a href="#" data-action="collapse">
+														            <i class="ace-icon fa fa-thumb-tack"></i>
+													            </a>
+												            </div>
+											            </div>
+
+											            <div class="widget-body" style="display: block;">
+												            <div class="widget-main no-padding">
+                                                                <!--begin control-->
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblRole" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-6">
+                                                                        <asp:DropDownList ID="ddlRole" runat="server" TabIndex="10" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvRole" runat="server"
+                                                                            ControlToValidate="ddlRole" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblusertitle" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-6">
+                                                                        <asp:DropDownList ID="ddlUserTitle" runat="server" TabIndex="11" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvUserTitle" runat="server"
+                                                                            ControlToValidate="ddlUserTitle" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblusertimezoneid" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-6">
+                                                                        <asp:DropDownList ID="ddlUserTimeZone" runat="server" TabIndex="12" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvTimeZoneID" runat="server"
+                                                                            ControlToValidate="ddlUserTimeZone" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="lblInactive" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-1">
+                                                                        <span class="input-icon">
+                                                                            <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="13" />
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end control-->
+                                                            </div>
+                                                            <!-- /.widget-main -->
+                                                        </div>
+                                                        <!-- /.widget-body -->
+                                                    </div>
+                                                    <!-- /.widget-box -->
+                                                </div>
+                                                <!--end div-->
+
+                                            </div>
+                                        
+
+
                                         </div>
                                     </asp:Panel>
 
                                     <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
                                         <div class="form-group">
-                                            <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClick="btnClear_Click" CausesValidation="false" />
+                                            <div class="col-md-1 floatright customfooter-btn-cancel">
+                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="15" OnClientClick="reloadpage();" OnClick="btnClear_Click" CausesValidation="false" />
                                             </div>
-                                            <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
+                                            <div class="col-md-1 floatright cust-footer-btn-save">
+                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="14" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                             </div>
                                         </div>
                                     </asp:Panel>
@@ -345,9 +449,12 @@
     </asp:UpdatePanel>
 
     <script type="text/javascript">
-            $(document).ready(function () {
-                $(".e1").select2();
-                $(".e1").css("border", "none");
-            });
+        $(document).ready(function () {
+            $(".e1").select2();
+            $(".e1").css("border", "none");
+        });
+        $(".fa-thumb-tack").click(function () {
+            $(this).toggleClass("fa-rotate-90");
+        });
     </script>
 </asp:Content>

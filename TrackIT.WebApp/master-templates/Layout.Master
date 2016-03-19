@@ -4,7 +4,7 @@
 <%@ Register Src="~/UserControls/HeaderMenu.ascx" TagName="HeaderMenu" TagPrefix="uc1" %>
 <%--<%@ Register Src="~/UserControls/FooterMenu.ascx" TagName="FooterMenu" TagPrefix="uc2" %>--%>
 <%@ Register Src="~/UserControls/PageHeader.ascx" TagName="PageHeader" TagPrefix="uc5" %>
-
+  
 
 
 
@@ -33,7 +33,7 @@
     <script src="../Content/wizard/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../Content/css/chosen/chosen.min.css" />
     <script src="../Content/css/chosen/chosen.jquery.min.js"></script>
-
+    
     <%-- --------------------------------------Aravind JS------------------------------------------- --%>
     <link href="../Content/highcharts/css/jquery-ui.css" rel="stylesheet" />
     <script src="../Content/css/chosen/chosen.jquery.min.js"></script>
@@ -86,12 +86,15 @@
             }
 
         }
+        function reloadpage() {
+            location.reload();
+        }
         function hide() {
             document.getElementById("insideform").style.display = "none";
             document.getElementById("createnew").style.display = "block";
             //document.getElementById("listform").style.display = "block";
         }
-
+     
         $(window).bind('resize', function () {
             $('#sidebarLeftToggle').addClass('nav-button', '0');
         });
@@ -181,8 +184,7 @@
         function getCookie(key) {
             return localStorage.getItem(key);
         }
-
-
+      
     </script>
 </head>
     
@@ -217,7 +219,7 @@
         </asp:ScriptManager>
         <style type="text/css">
 
-
+          
             .borderred {
                 border: 2px solid #ff0000;
             }
@@ -235,7 +237,7 @@
                 min-height: 20px;
             }
             .form-control {
-       width: 200px;
+       width: 250px;
     }
             .drop{
             width: 198px !important;
@@ -265,9 +267,9 @@
 
                     <li class="item">
                         <!-- Left Sidebar Toggle Button -->
-                        <a id="sidebarLeftToggle" class="nav-button" data-toggle="collapse" data-target=".sidebarLeft" runat="server" style="color:#312424; padding:20px 20px;" >
+                        <a id="sidebarLeftToggle" class="nav-button" data-toggle="collapse" data-target=".sidebarLeft" runat="server" style="color:#312424; padding:12px 10px;" >
                             <span class="sr-only">Toggle navigation</span>
-                            <span class="fa fa-bars"></span>
+                            <span class="fa fa-bars" style="font-size:24px;"></span>
                         </a>
                     </li>
 
@@ -282,7 +284,7 @@
                        
                                 <img runat="server" id="imgUserPhoto" src="~/images/user_icon.png" class="img-thumbnail avatar bg-light-green" alt="user profile image"/>
                             
-                            	<span class="user-info">
+                            	<span class="user-info" style="top:0px;">
                                
                                <small>Hi !  &nbsp;
                                     <asp:Label ID="lblLoginUserName" runat="server"></asp:Label></small>
@@ -299,17 +301,17 @@
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
 									
-                                <asp:LinkButton ID="lnkProfile" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> My Profile"  CausesValidation="false"></asp:LinkButton>
+                                <asp:LinkButton ID="lnkProfile" runat="server" Text="<i class='fa fa-user fa-fw icon'></i>&nbsp; My Profile"  CausesValidation="false"></asp:LinkButton>
 								</li>
 
 								<li>
-									<asp:LinkButton ID="lnkManageIDs" Visible="false" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> Manage IDs"  CausesValidation="false"></asp:LinkButton>
+									<asp:LinkButton ID="lnkManageIDs" Visible="false" runat="server" Text="<i class='fa fa-user fa-fw icon'></i>&nbsp; Manage IDs"  CausesValidation="false"></asp:LinkButton>
 								</li>
 
 								    
 
 								<li>
-									<asp:LinkButton ID="lnkLogout" runat="server" Text="<i class='ace-icon fa fa-power-off'></i> Sign Out" OnClick="lnkLogout_Click" CausesValidation="false"></asp:LinkButton>
+									<asp:LinkButton ID="lnkLogout" runat="server" Text="<i class='ace-icon fa fa-power-off'></i>&nbsp; Sign Out" OnClick="lnkLogout_Click" CausesValidation="false"></asp:LinkButton>
 								</li>
 							</ul>
 						</li>
@@ -333,10 +335,10 @@
                        
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								 <li id="itemrole" runat="server">
-                                <asp:LinkButton ID="lnkroles" runat="server" Text="<i class='fa fa-gears fa-fw icon'></i> Roles" OnClick="lnkroles_Click" CausesValidation="false"></asp:LinkButton></li>
+                                <asp:LinkButton ID="lnkroles" runat="server" Text="<i class='fa fa-gears fa-fw icon'></i>&nbsp; Roles" OnClick="lnkroles_Click" CausesValidation="false"></asp:LinkButton></li>
                            
                             <li id="itemuser" runat="server">
-                                <asp:LinkButton ID="lnk_Users" runat="server" Text="<i class='fa fa-user fa-fw icon'></i> Users" OnClick="lnk_Users_Click" CausesValidation="false"></asp:LinkButton></li>
+                                <asp:LinkButton ID="lnk_Users" runat="server" Text="<i class='fa fa-user fa-fw icon'></i>&nbsp; Users" OnClick="lnk_Users_Click" CausesValidation="false"></asp:LinkButton></li>
 								
 
 							</ul>
@@ -450,7 +452,7 @@
                 </ul>
                
             
-                 
+              
                          <!-- Page Title -->
                     <h3 class="page-title" style="display:none;">
                         <uc5:PageHeader ID="ucPageHeader" runat="server" />
@@ -506,237 +508,7 @@
         <!-- End Left Sidebar -->
 
         <!-- Right Sidebar -->
-        <aside class="sidebar sidebar-right collapse navbar-collapse in sidebarRight">
-
-            <!-- Sidebar Wrapper -->
-            <div class="sidebar-wrapper">
-
-                <!-- Chat list Wrapper -->
-                <ul class="chat-list-wrapper">
-
-                    <!-- Online Section -->
-                    <li class="mg-btm-20">
-
-                        <!-- Heading -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#chat-online-list">
-                            <h3 class="heading"><i class="fa fa-circle text-success"></i>Online (3)</h3>
-                        </a>
-                        <!-- End Heading -->
-
-                        <!-- User List -->
-                        <ul id="chat-online-list" class="collapse in user-list">
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/7.jpg" class="img-thumbnail avatar bg-light-green" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Kevin Mckoy</h4>
-                                        <span class="text-muted extra">online</span>
-                                    </div>
-                                    <i class="fa fa-mobile fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/6.jpg" class="img-thumbnail avatar bg-light-green" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Barbara Dunkleman</h4>
-                                        <span class="text-muted extra">last seen 1 minute ago</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/7.jpg" class="img-thumbnail avatar bg-light-orange" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Gus Sorola</h4>
-                                        <span class="text-muted extra">last seen 5 minute ago</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                        </ul>
-                        <!-- End User List -->
-
-                    </li>
-                    <!-- End Online Section -->
-
-                    <!-- Offline Section -->
-                    <li>
-
-                        <!-- Heading -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#chat-offline-list">
-                            <h3 class="heading"><i class="fa fa-circle text-danger"></i>Offline (21)</h3>
-                        </a>
-                        <!-- End Heading -->
-
-                        <!-- User List -->
-                        <ul id="chat-offline-list" class="collapse user-list">
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/1.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Michael Jones</h4>
-                                        <span class="text-muted extra">last seen yesterday</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/2.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Gavin Free</h4>
-                                        <span class="text-muted extra">last seen yesterday</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/3.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Linsay Tuggeey</h4>
-                                        <span class="text-muted extra">last seen 3 days ago</span>
-                                    </div>
-                                    <i class="fa fa-mobile fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/4.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Ryan Haywood</h4>
-                                        <span class="text-muted extra">last seen today at 8:33 AM</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/5.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Geoff Ramsey</h4>
-                                        <span class="text-muted extra">last seen Jun 19</span>
-                                    </div>
-                                    <i class="fa fa-mobile fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/6.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Kara Mendly</h4>
-                                        <span class="text-muted extra">last seen Jun 10</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/7.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Jack Patillo</h4>
-                                        <span class="text-muted extra">last seen May 1</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/3.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Yanique Robinson</h4>
-                                        <span class="text-muted extra">last seen yesterday</span>
-                                    </div>
-                                    <i class="fa fa-mobile fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                            <!-- User Item -->
-                            <li class="media">
-                                <a href="javascript:void(0);">
-                                    <div class="pull-left image">
-                                        <img src="../Content/img/people/2.jpg" class="img-thumbnail avatar" alt="user profile image">
-                                    </div>
-                                    <div class="pull-left info">
-                                        <h4 class="name">Leon Thomson</h4>
-                                        <span class="text-muted extra">last seen 7 hours ago</span>
-                                    </div>
-                                    <i class="fa fa-laptop fa-fw pull-right"></i>
-                                </a>
-                            </li>
-                            <!-- End User Item -->
-
-                        </ul>
-                        <!-- End User List -->
-
-                    </li>
-                    <!-- End Offline Section -->
-
-                </ul>
-                <!-- End Chatlist Wrapper -->
-
-            </div>
-            <!-- End Sidebar Wrapper -->
-
-        </aside>
+      
         <!-- End Right Sidebar -->
 
         <!-- Page Content Wrapper -->
@@ -746,7 +518,7 @@
              
             <div class="content container-fluid sidebarRight animated fadeInUp">
               
-            </div><div class="main-container" id="main-container">
+            </div><div class="main-container animated" id="main-container">
                     <script type="text/javascript">
                         try { ace.settings.check('main-container', 'fixed') } catch (e) { }
                     </script>
@@ -757,7 +529,7 @@
 
         </aside>
         <!-- End Page Content Wrapper -->
-
+        <pages validateRequest="false" enableEventValidation="false" />
 
         <!-- page specific plugin scripts -->
         <script src="../Content/wizard/fuelux.wizard.min.js"></script>
@@ -855,6 +627,7 @@
                 return true;
             }
         </script>
+         
     </form>
 </body>
 </html>

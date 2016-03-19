@@ -60,13 +60,11 @@ namespace TrackIT.WebApp.master_templates
                 if (!IsPostBack)
                 {
                     iTitle.Text = (objBasePagePL.GetSessionValue(SessionItems.Module_Name) != null) ? sTitleCaption + " :: " + objBasePagePL.GetSessionValue(SessionItems.Module_Name).ToString() : sTitleCaption;
-                    //iTitle.Text = (objBasePagePL.GetSessionValue(SessionItems.Module_Name) != null) ? sTitleCaption + " :: " + objBasePagePL.GetSessionValue(SessionItems.Module_Name).ToString() : sTitleCaption;
                     objBasePagePL.SetSessionValue(SessionItems.Top_Menu, null);
                     objBasePagePL.SetSessionValue(SessionItems.Left_Menu, null);
-                    objBasePagePL.GetTopandLeftMenuItems();
+                //    objBasePagePL.GetTopandLeftMenuItems();
                     lbl_currentDate.Text = Convert.ToString(DateTime.Now);
                     ((HtmlImage)imgUserPhoto).Src = objBasePagePL.RollupText("Common", "NoimagePath");
-
                     lblLoginUserName.Text = objBasePagePL.LoggedInUserDisplayName;
                     lblLoginUserRoleName.Text = objBasePagePL.LoggedInUserRoleName;
 
@@ -74,20 +72,10 @@ namespace TrackIT.WebApp.master_templates
                 }
                 LoadMenuWithUL(objBasePagePL.LoggedInUserId, "0");
 
-                //if (int.Parse(objBasePagePL.GetSessionValue(SessionItems.Is_First_Login).ToString()) == 1)
-                //{                
-                //    HtmlAnchor MyLnk = (HtmlAnchor)this.FindControl("sidebarLeftToggle");
-                //    if (MyLnk != null)
-                //    { 
-                //        MyLnk.Visible = false;
-                //        divleftMenu.Visible = false;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
                 ExceptionPolicy.HandleException(ex, BasePage.Log_Only_Policy);
-                //Response.Redirect("~/Error.aspx", false);
                 Response.Write(ex.Message.ToString());
 
             }

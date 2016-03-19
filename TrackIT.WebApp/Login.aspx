@@ -3,37 +3,54 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="up" runat="server">
         <ContentTemplate>
             <asp:ValidationSummary ID="Loginvalid" runat="server" ShowMessageBox="True" ShowSummary="False" DisplayMode="List" />
-            <div class="container-login">
-                <div class="form-centering-wrapper">
-                    <div class="form-window-login ">
-                        <div class="form-window-login-logo">
-                            <div class="login-logo">
-                                <img src="../images/logo_fin.png" alt="Fintek Solutions">
-                            </div>
-                            <h2 class="login-title">Welcome to Fintek!</h2>
-                            <asp:Panel ID="loginpanel" runat="server">
-                            <div class="login-input-area">
-                                <span class="help-block">Login With Your Account</span>
-                                <asp:TextBox ID="txtUsername" runat="server" placeholder="User Name" autocomplete="off" />
-                                <cc1:FilteredTextBoxExtender ID="txtUsername_FilteredTextBoxExtender"
+
+            <!--begin logo-->
+            <div class="login_logo">
+                <img src="../images/logo_fin.png" alt="Fintek Solutions">
+            </div>
+            <!--end logo-->
+
+            <!--begin container-->
+            <div class="login_container">
+                <div class="login_top_header">
+                    <span class="login_top_header">LOGIN NOW</span>
+                </div>
+                <div class="login_body">
+                    <asp:TextBox ID="txtUsername" runat="server" CssClass="login_text_box" placeholder="User Name" autocomplete="off" />
+                    <cc1:FilteredTextBoxExtender ID="txtUsername_FilteredTextBoxExtender"
                                     runat="server" Enabled="True" TargetControlID="txtUsername"
                                     ValidChars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@._/-">
-                                </cc1:FilteredTextBoxExtender>
-                              <%--  <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="txtUsername" ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{10,}$" runat="server" ErrorMessage="Minimum 10 characters required."></asp:RegularExpressionValidator>--%>
+                    </cc1:FilteredTextBoxExtender>
 
-                                <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" />
-                                <asp:LinkButton ID="btnuserlogin" AlternateText="Login" Style="" class="btn btn-success" BorderStyle="None" runat="server" OnClick="btnLogin_Click">Login</asp:LinkButton>
-                                <%--OnClientClick="Login_validation();"--%>
-                                <br />
-                                <div>
-                                    <a href="#" class="forgot-pass" data-toggle="modal" data-target="#reassign">Forgot Username/Password 
-                                    </a>
+                    <asp:TextBox ID="txtPassword" runat="server" CssClass="login_text_box" placeholder="Password" TextMode="Password" />
 
-                                </div>
+                    <a href="#" class="forgot_password" data-toggle="modal" data-target="#reassign">Forgot Username/Password</a>
+                                        
+                    <asp:Button ID="btnlogin" CssClass="login_btn" Text="LOGIN" runat="server" OnClick="btnuserlogin_Click" />
+
+                    <%--<asp:LinkButton ID="btnuserlogin" AlternateText="Login" CssClass="login_btn" runat="server" OnClick="btnLogin_Click">Login</asp:LinkButton>--%>
+                    
+                    <div style="clear:both; height:40px;"></div>
+                </div>
+            </div>
+            <!--end container-->
+            
+            <!--begin footer-->
+            <div class="login_footer">
+                &copy 2016, copyrights <a href="http://stradegi.com/" target="_blank">stradegi</a>
+            </div>
+            <!--end footer-->           
+
+            <div  style="margin-top:20px;">
+                
+                <asp:Panel ID="loginpanel" runat="server">
+                            <div class="login-input-area">
+                           
 
                                 <div class="modal fade" id="reassign" role="dialog">
                                     <div class="modal-dialogsmall">
@@ -81,11 +98,7 @@
 
 
                             </div>
-                                </asp:Panel>
-
-                        </div>
-                    </div>
-                </div>
+                            </asp:Panel>
 
                 <script type="text/javascript">
                     function sentmail() {
@@ -102,6 +115,7 @@
 
                 </script>
             </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

@@ -81,11 +81,10 @@
             var row = e.getCell(1).get_row();
             var owner = row.get_cellByColumnKey("phaseowner").get_value();
             var resource = row.get_cellByColumnKey("phaseresource").get_value();
-            if (owner == "" && resource == "")
-            {
+            if (owner == "" && resource == "") {
                 row.get_cellByColumnKey("check").set_value(false);
             }
-           
+
         }
         function OnEnteredEditMode(sender, e) {
             var row = e.getCell(1).get_row();
@@ -95,7 +94,7 @@
             if (text == false) {
                 row.get_cellByColumnKey("check").set_value(true);
             }
-            
+
         }
 
     </script>
@@ -115,9 +114,9 @@
 
                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"></asp:ImageButton>
-                        &nbsp;&nbsp;                       
+
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png"></asp:ImageButton>
-                        &nbsp;&nbsp;
+                        &nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="show(); ShowModalPopup();"></a></span>
 
@@ -151,104 +150,126 @@
                         <asp:Panel ID="pnlPopup" runat="server" CssClass="modal-dialog" Style="display: none;">
                             <asp:Panel ID="pnlcontent" runat="server" CssClass="modal-content">
                                 <asp:Panel ID="pnlheader" runat="server" CssClass="modal-header-green">
-                                    <h4 class="modal-title">project</h4>
+                                    <h4 class="modal-title">Projects</h4>
                                 </asp:Panel>
 
                                 <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
 
                                     <asp:ValidationSummary ID="ValProjects" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
                                     <div class="form-horizontal">
+                                     <%--   <div class="col-md-4" style="padding-right: 0px;">--%>
 
-                                        <div class="form-group align-popcontent">
-                                            <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlClients" runat="server" TabIndex="1" CssClass="form-control chzn-select" AutoPostBack="false">
-                                                </asp:DropDownList>
-                                            </div>
-                                            <div class="col-md-1" style="display: none;">
-                                                <asp:RequiredFieldValidator ID="reqvClient" runat="server"
-                                                    ControlToValidate="ddlClients" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="form-group align-popcontent">
-                                            <asp:Label ID="lblprojectcode" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-3">
-                                                <asp:TextBox ID="txtprojectcode" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                            </div>
-
-                                            <div class="col-md-1" style="display: none;">
-                                                <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
-                                                    runat="server" Enabled="True" TargetControlID="txtprojectcode"
-                                                    ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                </cc1:FilteredTextBoxExtender>
-                                                <asp:RequiredFieldValidator ID="reqvcode" runat="server"
-                                                    ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                                <asp:RequiredFieldValidator ID="reqvprojectIdUNQ" runat="server"
-                                                    ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="form-group align-popcontent">
-                                            <asp:Label ID="lblprojectname" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-3">
-                                                <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
-                                            </div>
-
-                                            <div class="col-md-1" style="display: none;">
-                                                <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1"
-                                                    runat="server" Enabled="True" TargetControlID="txtprojectname"
-                                                    ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
-                                                </cc1:FilteredTextBoxExtender>
-                                                <asp:RequiredFieldValidator ID="reqvpname" runat="server"
-                                                    ControlToValidate="txtprojectname" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-
-
-
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group align-popcontent">
-                                            <asp:Label ID="lblkickdate" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-3">
-                                                <input type="date" id="igwdp_kickoffdate" runat="server"></input>
-                                            </div>
-                                            <div class="col-md-1" style="display: none;">
-                                                <asp:RequiredFieldValidator ID="reqvkickoffdate" runat="server"
-                                                    ControlToValidate="igwdp_kickoffdate" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="form-group align-popcontent">
-                                            <asp:Label ID="lblprojectowner" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlowner" runat="server" TabIndex="4" CssClass="form-control chzn-select" AutoPostBack="false">
-                                                </asp:DropDownList>
-                                            </div>
-                                            <div class="col-md-1" style="display: none;">
-                                                <asp:RequiredFieldValidator ID="reqvowner" runat="server"
-                                                    ControlToValidate="ddlowner" Display="Static" SetFocusOnError="True"
-                                                    ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="form-group align-popcontent">
-                                            <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
-                                            <div class="col-md-1">
-                                                <span class="input-icon">
-                                                    <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="5" />
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col=sm-10">
-                                        
-
-                                           <ig:WebDataGrid ID="iwdg_project_phases" runat="server"  AutoGenerateColumns="False" DataKeyFields="prj_prjKEY" Width="100%">
-                                                <Columns>
+                                            <!--begin div-->
+                                            <div class="col-sm-12" style="padding-left: 0px; padding-right: 0px; margin-top: 10px; padding-top:15px; border: 1px solid #e3e3e3;">
+                                                <div class="widget-box transparent">
                                                   
-                                                  <%-- <ig:TemplateDataField Key="DeleteItem" Width="20px" Header-Text="<input type='checkbox' onchange='headerCheckedChangedHandler(this);'">
+                                                    <div class="widget-body" style="display: block;">
+                                                        <div class="widget-main no-padding">
+                                                            <!--begin control-->
+                                                            <div class="col-md-6">
+                                                                <div class="form-group align-popcontent">
+                                                                    <asp:Label ID="lblclientname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-6">
+                                                                        <asp:DropDownList ID="ddlClients" runat="server" TabIndex="1" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvClient" runat="server"
+                                                                            ControlToValidate="ddlClients" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group align-popcontent">
+                                                                    <asp:Label ID="lblprojectcode" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtprojectcode" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                                    </div>
+
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender4"
+                                                                            runat="server" Enabled="True" TargetControlID="txtprojectcode"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator ID="reqvcode" runat="server"
+                                                                            ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                        <asp:RequiredFieldValidator ID="reqvprojectIdUNQ" runat="server"
+                                                                            ControlToValidate="txtprojectcode" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group align-popcontent">
+                                                                    <asp:Label ID="lblprojectname" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <asp:TextBox ID="txtprojectname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                                    </div>
+
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1"
+                                                                            runat="server" Enabled="True" TargetControlID="txtprojectname"
+                                                                            ValidChars="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890">
+                                                                        </cc1:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator ID="reqvpname" runat="server"
+                                                                            ControlToValidate="txtprojectname" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+
+
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group align-popcontent">
+                                                                    <asp:Label ID="lblkickdate" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-3">
+                                                                        <input type="date" id="igwdp_kickoffdate" runat="server"></input>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvkickoffdate" runat="server"
+                                                                            ControlToValidate="igwdp_kickoffdate" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group align-popcontent">
+                                                                    <asp:Label ID="lblprojectowner" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-6">
+                                                                        <asp:DropDownList ID="ddlowner" runat="server" TabIndex="4" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="display: none;">
+                                                                        <asp:RequiredFieldValidator ID="reqvowner" runat="server"
+                                                                            ControlToValidate="ddlowner" Display="Static" SetFocusOnError="True"
+                                                                            ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group align-popcontent">
+                                                                    <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
+                                                                    <div class="col-md-1">
+                                                                        <span class="input-icon">
+                                                                            <asp:CheckBox ID="chkinactive" class="checkbox" runat="server" TabIndex="5" />
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end control-->
+                                                    </div>
+                                                    <!-- /.widget-main -->
+                                                </div>
+                                                <!-- /.widget-body -->
+                                            </div>
+                                            <!-- /.widget-box -->
+                                      <%--  </div>--%>
+                                        <!--end div-->
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="col=sm-10">
+
+
+                                            <ig:WebDataGrid ID="iwdg_project_phases" runat="server" AutoGenerateColumns="False" DataKeyFields="prj_prjKEY" Width="100%">
+                                                <Columns>
+
+                                                    <%-- <ig:TemplateDataField Key="DeleteItem" Width="20px" Header-Text="<input type='checkbox' onchange='headerCheckedChangedHandler(this);'">
                                                         <ItemTemplate>
                                                      <asp:CheckBox ID="lcbrowselect" runat="server" onchange="checkedChangedHandler();" />
                                                         </ItemTemplate>
@@ -256,20 +277,20 @@
                                                     <ig:BoundCheckBoxField DataFieldName="CheckStatus" Key="check" DataType="System.Boolean" Width="22px">
                                                         <Header Text="<input type='checkbox' onchange='headerCheckedChangedHandler(this);'"></Header>
                                                     </ig:BoundCheckBoxField>
-                                                <ig:BoundDataField DataFieldName="Phase" DataType="System.string" Key="prjphases" >
-                                                    <header text="Phases">
-                                                        </header>
-                                                </ig:BoundDataField>
-                                                  <%--      --%>
-                                                <ig:BoundDataField DataFieldName="Owner_key" Key="phaseowner" >
-                                                    <header text="Phase Owner">
-                                                        </header>
-                                                </ig:BoundDataField>
+                                                    <ig:BoundDataField DataFieldName="Phase" DataType="System.string" Key="prjphases">
+                                                        <Header Text="Phases">
+                                                        </Header>
+                                                    </ig:BoundDataField>
+                                                    <%--      --%>
+                                                    <ig:BoundDataField DataFieldName="Owner_key" Key="phaseowner">
+                                                        <Header Text="Phase Owner">
+                                                        </Header>
+                                                    </ig:BoundDataField>
 
-                                                <ig:BoundDataField DataFieldName="Resource_key" Key="phaseresource" >
-                                                    <header text="Phase Resource">
-                                                        </header>
-                                                </ig:BoundDataField>
+                                                    <ig:BoundDataField DataFieldName="Resource_key" Key="phaseresource">
+                                                        <Header Text="Phase Resource">
+                                                        </Header>
+                                                    </ig:BoundDataField>
                                                 </Columns>
                                                 <EditorProviders>
                                                     <ig:TextBoxProvider ID="tbpphases"></ig:TextBoxProvider>
@@ -284,17 +305,17 @@
                                                 </EditorProviders>
                                                 <Behaviors>
                                                     <ig:Activation />
-                                                     <ig:Selection RowSelectType="Multiple" CellClickAction="Row" />
+                                                    <ig:Selection RowSelectType="Multiple" CellClickAction="Row" />
                                                     <ig:EditingCore>
                                                         <Behaviors>
                                                             <ig:CellEditing EditModeActions-MouseClick="Single">
                                                                 <ColumnSettings>
-                                                                    <ig:EditingColumnSetting ColumnKey="prjphases" EditorID="tbpphases" ReadOnly="true"  />
+                                                                    <ig:EditingColumnSetting ColumnKey="prjphases" EditorID="tbpphases" ReadOnly="true" />
                                                                     <ig:EditingColumnSetting ColumnKey="Check" ReadOnly="true" />
                                                                     <ig:EditingColumnSetting ColumnKey="phaseowner" EditorID="ddpphaseowners" />
                                                                     <ig:EditingColumnSetting ColumnKey="phaseresource" EditorID="ddpphaseresource" />
                                                                 </ColumnSettings>
-                                                                      <CellEditingClientEvents EnteredEditMode="OnEnteredEditMode" ExitedEditMode="OnExitedEditMode" />
+                                                                <CellEditingClientEvents EnteredEditMode="OnEnteredEditMode" ExitedEditMode="OnExitedEditMode" />
                                                             </ig:CellEditing>
                                                         </Behaviors>
 
@@ -312,10 +333,10 @@
                                 <asp:Panel ID="pnlfooter" CssClass="modal-footer" runat="server">
 
                                     <div class="form-group">
-                                        <div class="col-md-1 floatright">
+                                        <div class="col-md-1 floatright customfooter-btn-cancel">
                                             <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClick="btnClear_Click" CausesValidation="false" />
                                         </div>
-                                        <div class="col-md-1 floatright">
+                                        <div class="col-md-1 floatright cust-footer-btn-save">
                                             <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                         </div>
                                     </div>

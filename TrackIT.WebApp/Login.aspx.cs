@@ -113,7 +113,7 @@ namespace TrackIT.WebApp
             try
             {
                 ControlNames();
-                loginpanel.DefaultButton = "btnuserlogin";
+                loginpanel.DefaultButton = "btnlogin";
                 if (!IsPostBack)
                 {
                     //Unit Testing ID - Login_CS_3
@@ -175,7 +175,7 @@ namespace TrackIT.WebApp
                 System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_16 - " + txtUsername.Text);
 
               //  objResult = UserBLL.GetLoginDetails(objUser);
-
+            
                 SqlParameter[] objParams = {
                         new SqlParameter ("@UserName",   objUser.UserName),
                         new SqlParameter ("@Password",   objUser.Password)
@@ -183,30 +183,30 @@ namespace TrackIT.WebApp
               
                
                 DataSet  lds_Result = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, GET_LOGIN_DETAILS, objParams);
-                if(lds_Result.Tables[1].Rows.Count>0)
+                if(lds_Result.Tables[0].Rows.Count>0)
                 { 
-                    if (!string.IsNullOrEmpty(lds_Result.Tables[1].Rows[0]["UsersID"].ToString()))
-                        objUser.UsersID = Convert.ToInt64(lds_Result.Tables[1].Rows[0]["UsersID"]);
+                    if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["UsersID"].ToString()))
+                        objUser.UsersID = Convert.ToInt64(lds_Result.Tables[0].Rows[0]["UsersID"]);
                     else
                         objUser.UsersID = null;
                   
 
-                    objUser.UserName = lds_Result.Tables[1].Rows[0]["USER_NAME"].ToString();
-                    objUser.LoginUserName = lds_Result.Tables[1].Rows[0]["DISPLAY_NAME"].ToString();
+                    objUser.UserName = lds_Result.Tables[0].Rows[0]["USER_NAME"].ToString();
+                    objUser.LoginUserName = lds_Result.Tables[0].Rows[0]["DISPLAY_NAME"].ToString();
 
-                    if (!string.IsNullOrEmpty(lds_Result.Tables[1].Rows[0]["user_role_key"].ToString()))
-                        objUser.RoleID =Convert.ToInt64(lds_Result.Tables[1].Rows[0]["user_role_key"]);
+                    if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["user_role_key"].ToString()))
+                        objUser.RoleID =Convert.ToInt64(lds_Result.Tables[0].Rows[0]["user_role_key"]);
                     else
                         objUser.RoleID = null;
 
 
-                    if (!string.IsNullOrEmpty(lds_Result.Tables[1].Rows[0]["Email_ID"].ToString()))
-                        objUser.EmailID = lds_Result.Tables[1].Rows[0]["Email_ID"].ToString();
+                    if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Email_ID"].ToString()))
+                        objUser.EmailID = lds_Result.Tables[0].Rows[0]["Email_ID"].ToString();
                     else
                         objUser.EmailID = string.Empty;
 
-                    objUser.RoleName = lds_Result.Tables[1].Rows[0]["Role_Name"].ToString();
-                    objUser.RoleType = lds_Result.Tables[1].Rows[0]["Role_Type"].ToString();
+                    objUser.RoleName = lds_Result.Tables[0].Rows[0]["Role_Name"].ToString();
+                    objUser.RoleType = lds_Result.Tables[0].Rows[0]["Role_Type"].ToString();
                     objUser.IsFirstLogin = 0; //Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Is_First_Login"].ToString()) == true ? 1 : 0;
               
 
@@ -219,7 +219,7 @@ namespace TrackIT.WebApp
                 {
                     //Unit Testing ID - Login_CS_5
                     System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_5 - " + objUser.UsersID);
-                        string lstr_Pwd = Fintek.EncryptorDecryptor.Decrypt(lds_Result.Tables[1].Rows[0]["user_password"].ToString(), istr_EncryptionKey);
+                        string lstr_Pwd = Fintek.EncryptorDecryptor.Decrypt(lds_Result.Tables[0].Rows[0]["user_password"].ToString(), istr_EncryptionKey);
 
                     //if (Crypto.CompareHash(Encoding.UTF8.GetBytes(txtPassword.Text), objUser.Password))
                     if(lstr_Pwd==txtPassword.Text)
@@ -400,6 +400,144 @@ namespace TrackIT.WebApp
 
         }
         #endregion
+
+        protected void btnuserlogin_Click(object sender, EventArgs e)
+        {
+            //Unit Testing ID - Login_CS_4
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_4 - Login Method Execution");
+            try
+            {
+                if (objUser == null) objUser = new UserBO(this.ConnectionString);
+                objResult = new UserBO(this.ConnectionString);
+
+                objUser.UserName = string.Empty;
+                objUser.Password = null;
+
+                if (!string.IsNullOrEmpty(txtUsername.Text))
+                    objUser.UserName = txtUsername.Text.ToString().Trim();
+                //FS_ID 4.2.1.4
+
+                //Unit Testing ID - Login_CS_16
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_16 - " + txtUsername.Text);
+
+                //  objResult = UserBLL.GetLoginDetails(objUser);
+
+                SqlParameter[] objParams = {
+                        new SqlParameter ("@UserName",   objUser.UserName),
+                        new SqlParameter ("@Password",   objUser.Password)
+                    };
+
+
+                DataSet lds_Result = SqlHelper.ExecuteDataset(ldbh_QueryExecutors.isqlcon_connection, GET_LOGIN_DETAILS, objParams);
+                if (lds_Result.Tables[0].Rows.Count > 0)
+                {
+                    if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["UsersID"].ToString()))
+                        objUser.UsersID = Convert.ToInt64(lds_Result.Tables[0].Rows[0]["UsersID"]);
+                    else
+                        objUser.UsersID = null;
+
+
+                    objUser.UserName = lds_Result.Tables[0].Rows[0]["USER_NAME"].ToString();
+                    objUser.LoginUserName = lds_Result.Tables[0].Rows[0]["DISPLAY_NAME"].ToString();
+
+                    if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["user_role_key"].ToString()))
+                        objUser.RoleID = Convert.ToInt64(lds_Result.Tables[0].Rows[0]["user_role_key"]);
+                    else
+                        objUser.RoleID = null;
+
+
+                    if (!string.IsNullOrEmpty(lds_Result.Tables[0].Rows[0]["Email_ID"].ToString()))
+                        objUser.EmailID = lds_Result.Tables[0].Rows[0]["Email_ID"].ToString();
+                    else
+                        objUser.EmailID = string.Empty;
+
+                    objUser.RoleName = lds_Result.Tables[0].Rows[0]["Role_Name"].ToString();
+                    objUser.RoleType = lds_Result.Tables[0].Rows[0]["Role_Type"].ToString();
+                    objUser.IsFirstLogin = 0; //Convert.ToBoolean(lds_Result.Tables[0].Rows[0]["Is_First_Login"].ToString()) == true ? 1 : 0;
+
+
+                    Session.Clear();
+                    //FS_ID 4.2.1.5
+
+                    //Unit Testing ID - Login_CS_17
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_17 - " + txtPassword.Text);
+                    if (objUser.UsersID != null)
+                    {
+                        //Unit Testing ID - Login_CS_5
+                        System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_5 - " + objUser.UsersID);
+                        string lstr_Pwd = Fintek.EncryptorDecryptor.Decrypt(lds_Result.Tables[0].Rows[0]["user_password"].ToString(), istr_EncryptionKey);
+
+                        //if (Crypto.CompareHash(Encoding.UTF8.GetBytes(txtPassword.Text), objUser.Password))
+                        if (lstr_Pwd == txtPassword.Text)
+                        {
+                            //Unit Testing ID - Login_CS_6
+                            System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_6 - Crypto of Password");
+                            SetSessionValue(SessionItems.User_ID, objUser.UsersID);
+                            SetSessionValue(SessionItems.Login_Name, txtUsername.Text.ToString().Trim());
+                            SetSessionValue(SessionItems.User_Name, objUser.LoginUserName);
+                            SetSessionValue(SessionItems.User_Type, objUser.UserType);
+                            SetSessionValue(SessionItems.Super_User, objUser.IsSuperUser);
+                            SetSessionValue(SessionItems.loggedin_User_ID, objResult.logged_in_UserID);
+                            SetSessionValue(SessionItems.Role_ID, objUser.RoleID);
+                            SetSessionValue(SessionItems.User_Display_Name, objUser.DisplayName);
+                            SetSessionValue(SessionItems.Role_Name, objUser.RoleName);
+                            SetSessionValue(SessionItems.Role_Type, objUser.RoleType);
+                            SetSessionValue(SessionItems.Is_First_Login, objUser.IsFirstLogin);
+
+
+                            /*Insert the Login in User Details*/
+                            objResult.LoginSessionID = Session.SessionID.ToString();
+                            //Unit Testing ID - Login_CS_7
+                            System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_7 - " + objUser.LoginSessionID);
+
+                            objUser.LoginType = "L";
+
+
+                            if (objUser.IsFirstLogin == 1)
+                                Response.Redirect("~/My_Profile.aspx?New=1", false);
+                            else
+                                Response.Redirect("~/Home.aspx", false);
+                        }
+                        else
+                        {
+                            //Unit Testing ID - Login_CS_15  
+                            System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_15 - " + objResult.LoginType);
+
+                            ScriptManager.RegisterClientScriptBlock(this.Page, GetType(), "key", "<script>alert('" + RollupText("Login", "errormsg") + "')</script>", false);
+                            txtUsername.Text = string.Empty;
+                            txtPassword.Text = string.Empty;
+                        }
+                    }
+                    else
+                    {
+                        //Unit Testing ID - Login_CS_9  
+                        System.Diagnostics.Debug.WriteLine("Unit testing ID - Login_CS_9 - " + objUser.UsersID);
+
+                        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "EnterError();", true);
+                        txtUsername.Text = string.Empty;
+                        txtPassword.Text = string.Empty;
+                    }
+                }
+                else
+                {
+
+                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(), "Script", "EnterError();", true);
+                    txtUsername.Text = string.Empty;
+                    txtPassword.Text = string.Empty;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex, Log_Only_Policy);
+                Response.Write(ex.Message.ToString());
+            }
+            finally
+            {
+                if (objUser != null) objUser = null;
+                if (objResult != null) objResult = null;
+            }
+        }
 
         #endregion
     }

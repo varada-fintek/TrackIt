@@ -10,6 +10,7 @@
     <link id="lkFavIcon" runat="server" rel="icon" href="~/images/logo.ico" type="image/ico" />
     <link href="../Content//css/photon-min-part2.css" rel="stylesheet" />
     <link href="../Content//css/photon-min.css" rel="stylesheet" />
+    <link href="../Content/css/login.css" rel="stylesheet" />
     <style type="text/css">
         .text-danger {
             color: red;

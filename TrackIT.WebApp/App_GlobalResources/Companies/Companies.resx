@@ -192,4 +192,13 @@
   <data name="reqvtxtname" xml:space="preserve">
     <value>Please Enter Name</value>
   </data>
+  <data name="gvGridActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="gvGridComapanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="gvGridComapanyCode" xml:space="preserve">
+    <value>Company Code</value>
+  </data>
 </root>

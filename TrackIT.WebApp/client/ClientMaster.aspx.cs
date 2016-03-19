@@ -34,6 +34,8 @@ namespace TrackIT.WebApp.client
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_1
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_1 Page Load");
             ControlNames();
             lwdg_clientMasterGrid = new WebDataGrid();
             pnl_clientGrid.Controls.Add(lwdg_clientMasterGrid);
@@ -41,6 +43,8 @@ namespace TrackIT.WebApp.client
             GetClientDetails();
             if (!IsPostBack)
             {
+                //Unit Testing ID - ClientMaster.aspx.cs_2
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_2 Post Back");
                 //Assign all dropdown data User Location Drop Down
                 DataSet lds_ClientLocation = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='CON' and cp.Active = 1 ORDER BY parameter_name");
                 if (lds_ClientLocation.Tables[0].Rows.Count > 0)
@@ -63,6 +67,8 @@ namespace TrackIT.WebApp.client
             }
             if (!string.IsNullOrEmpty(hdnClientID.Value) && hdnpop.Value == "1")
             {
+                //Unit Testing ID - ClientMaster.aspx.cs_3
+                System.Diagnostics.Debug.WriteLine("Unit tsting ID - ClientMaster.aspx.cs_3 Edit popup");
                 Int64? lint_Clientid = Convert.ToInt64(hdnClientID.Value.ToString());
                 btnSave.Visible = bitEdit;
                 EditClientDetails(lint_Clientid);
@@ -76,6 +82,8 @@ namespace TrackIT.WebApp.client
         #region Post Back Events
         private void Lwdg_clientMasterGrid_InitializeRow(object sender, RowEventArgs e)
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_4
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_4 Lwdg_clientMasterGrid_InitializeRow"+e.ToString());
             if (e.Row.Index == 0)
             {
                 e.Row.Items.FindItemByKey("client_key").Column.Hidden = true;
@@ -101,6 +109,8 @@ namespace TrackIT.WebApp.client
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_5
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_5 button save click");
             DataSet lds_Result;
             if (string.IsNullOrEmpty(hdnClientID.Value))
             {
@@ -124,12 +134,16 @@ namespace TrackIT.WebApp.client
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_6
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_6 Button Clear Click event");
             ClearControls();
             mpe_clientPopup.Hide();
         }
         
         protected void chkbillinfosame_CheckedChanged(object sender, EventArgs e)
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_7
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_7 checked change event");
             mpe_clientPopup.Show();
             if (chkbillinfosame.Checked == true)
             {
@@ -157,6 +171,8 @@ namespace TrackIT.WebApp.client
         #region user defined functions
         private void ControlNames()
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_8
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_8 Names to controls");    
             try
             {
                 lblCreateClient.Text = RollupText("Client", "lblCreateClients");
@@ -200,12 +216,15 @@ namespace TrackIT.WebApp.client
         {
             try
             {
+                //Unit Testing ID - ClientMaster.aspx.cs_9
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_9 Insert or Update Event");
                 string lstr_outMessage = string.Empty;
                  string istr_tablename = "prj_clients";
                  bool lbool_type = false;
                 if (string.IsNullOrEmpty(hdnClientID.Value))
-                {                   
-                   
+                {
+                    //Unit Testing ID - ClientMaster.aspx.cs_10
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_10 Insert new data");
                     string lstr_id = ldbh_QueryExecutors.SqlInsert(istr_tablename, new System.Collections.Generic.Dictionary<string, object>()
                     {                    
                         {"client_name", txtclientName.Text.Replace("'", "''")},
@@ -236,6 +255,8 @@ namespace TrackIT.WebApp.client
                 }
                 else
                 {
+                    //Unit Testing ID - ClientMaster.aspx.cs_11
+                    System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_11 update existing record");
                     lbool_type=false;
                     istr_tablename = "prj_clients";
                      string id=ldbh_QueryExecutors.SqlUpdate(istr_tablename,new System.Collections.Generic.Dictionary<string,object>()
@@ -295,12 +316,14 @@ namespace TrackIT.WebApp.client
         {
             try
             {
+                //Unit Testing ID - ClientMaster.aspx.cs_12
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_12 get Landing page grid data");
                 lwdg_clientMasterGrid.InitializeRow += Lwdg_clientMasterGrid_InitializeRow;
                 lwdg_clientMasterGrid.Columns.Clear();
                 TemplateDataField td = new TemplateDataField();
                 td.ItemTemplate = new CustomItemTemplateView();
                 td.Key = "Edit";
-                td.Width = 30;
+                td.Width = 15;
                 lwdg_clientMasterGrid.Columns.Add(td);
                 DataSet lds_Result;
                 lds_Result = ldbh_QueryExecutors.ExecuteDataSet("select client_key,client_code,client_name,is_active from prj_clients");
@@ -325,6 +348,8 @@ namespace TrackIT.WebApp.client
         }
         private void ClearControls()
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_13
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_13 Clear controls");
             txtaddresscity.Text = string.Empty;
             txtaddressline1.Text = string.Empty;
             txtaddressline2.Text = string.Empty;
@@ -349,6 +374,8 @@ namespace TrackIT.WebApp.client
         }
         private void EditClientDetails(Int64? aint_ClientKey)
         {
+            //Unit Testing ID - ClientMaster.aspx.cs_13
+            System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_13 edit client data on popup");
             Int64? lint_ClientKey = aint_ClientKey;
             
             try
@@ -431,7 +458,8 @@ namespace TrackIT.WebApp.client
         {
             try
             {
-
+                //Unit Testing ID - ClientMaster.aspx.cs_14
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_14 Export to pdf");
                 DataTable ldt_ExcelExp = (DataTable)ViewState["export"];
                 lwdg_clientMasterGrid.DataSource = ldt_ExcelExp;
                 lwdg_clientMasterGrid.DataBind();
@@ -453,6 +481,8 @@ namespace TrackIT.WebApp.client
         {
             try
             {
+                //Unit Testing ID - ClientMaster.aspx.cs_15
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - ClientMaster.aspx.cs_15 Export to Excel");
                 DataTable ldt_PdfExp = (DataTable)ViewState["export"];
                 TrackIT.WebApp.CommonSettings.ApplyGridSettings(lwdg_clientMasterGrid);
                 lwdg_clientMasterGrid.DataSource = ldt_PdfExp;

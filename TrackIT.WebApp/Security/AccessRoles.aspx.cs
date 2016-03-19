@@ -139,12 +139,14 @@ namespace TrackIT.WebApp.Security
         {
             try
             {
-                txtRoleName.Text = string.Empty;
+                
                 EnableDiableControls(true);
-                ClearControls();
-                PropertyValueControls();
-                GetRoleDetails();
+                //ClearControls();
+                //PropertyValueControls();
                 ModalPopupExtender1.Hide();
+               // GetRoleDetails();
+                
+                
             }
             catch (Exception ex)
             {

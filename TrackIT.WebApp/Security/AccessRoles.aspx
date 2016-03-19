@@ -53,6 +53,7 @@
             var pop_open = '0';
             document.getElementById("hdnpop").value = pop_open;
         }
+       
 
         function MinimumOneCheckboxSelected(objView, objAdd, objEdit, objDelete) {
             var objChkView = document.getElementById(objView);
@@ -222,9 +223,9 @@
                 <div class="page-header">
                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png" OnClick="btnExportExcel_Click"></asp:ImageButton>
-                        &nbsp;&nbsp;
                         
-                              <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>&nbsp;&nbsp;
+                        
+                              <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>&nbsp;
 
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="show();"></a></span>
@@ -259,10 +260,12 @@
 
 
                             <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
-                                <div class="form-horizontal">
+                                <div class="form-horizontal" style="border:1px solid #e3e3e3; padding-top:10px;">
 
                                     <asp:ValidationSummary ID="valSumRoles" runat="server" ShowMessageBox="false" ShowSummary="true" DisplayMode="List" ValidationGroup="vgrpSave" />
-                                    <div class="form-group align-popcontent">
+                                   
+                                        
+                                     <div class="form-group align-popcontent">
                                         <asp:Label ID="lblRoleCode" class="control-label col-md-2" runat="server"></asp:Label>
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtRoleCode" CssClass="form-control" runat="server" TabIndex="3" MaxLength="10"></asp:TextBox>
@@ -301,16 +304,32 @@
                                             </span>
                                         </div>
                                     </div>
+                                                                 
+                               
+                                            <!--begin div-->
+                                            <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; margin-right:4px; border:1px solid #e3e3e3;">
+										        <div class="widget-box transparent">
+											        <div class="widget-header widget-header-flat">
+												        <h4 class="widget-title lighter">
+                                                           Access Roles
+												        </h4>
 
-                                    <%--        edit grid/create new grid        --%>
-                       <%--             style="border: 1px solid #ede3e3; padding: 10px; margin-left: 50px; margin-bottom: 10px;"--%>
+												        <div class="widget-toolbar">
+													        <a href="#" data-action="collapse">
+														        <i class="ace-icon fa fa-thumb-tack"></i>
+													        </a>
+												        </div>
+											        </div>
+
+											        <div class="widget-body" style="display: block;">
+												        <div class="widget-main no-padding">
                                     <div class="col-sm-10" style="margin-left:7%">
                                         <asp:GridView ID="gvRoleAccess" runat="server" Width="100%" AutoGenerateColumns="false" TabIndex="6"
                                             CssClass="table table-bordered"  AllowSorting="True" OnRowDataBound="gvRoleAccess_RowDataBound">
                                             <Columns>
                                                 <asp:TemplateField>
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="Left" Width="15%" />
+                                                    <ItemStyle HorizontalAlign="Left" Width="10%" />
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblScreenName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem , "Screen_Name") %>' />
                                                         <asp:Label ID="lblScreenID" runat="server" Visible="false" Text='<%# DataBinder.Eval(Container.DataItem , "Screen_ID") %>' />
@@ -318,7 +337,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="Left" Width="15%" />
+                                                    <ItemStyle HorizontalAlign="Left" Width="10%" />
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblCategory" runat="server" Text='<%# DataBinder.Eval(Container.DataItem , "Category") %>' />
                                                     </ItemTemplate>
@@ -369,21 +388,28 @@
                                                         <asp:CheckBox ID="chkDelete" runat="server" Checked='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem,"Delete")) == true ? true : false %>'
                                                             Visible='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem,"Delete_Screen")) == true ? true : false %>' />
                                                         <asp:Label ID="lblDelete_Screen" runat="server" Visible="false" Text='<%# DataBinder.Eval(Container.DataItem , "Delete_Screen") %>' />
-                                                        <asp:Label ID="lblSAMenu" runat="server" Visible="false" Text='<%# DataBinder.Eval(Container.DataItem , "SA_Menu") %>' />
+                                                    <%--    <asp:Label ID="lblSAMenu" runat="server" Visible="false" Text='<%# DataBinder.Eval(Container.DataItem , "SA_Menu") %>' />--%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                     </div>
+                                                            <!--end control-->
+												        </div><!-- /.widget-main -->
+											        </div><!-- /.widget-body -->
+										        </div><!-- /.widget-box -->
+									        </div>
+                                            <!--end div-->
+                               
                                 </div>
                             </asp:Panel>
 
                             <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
                                 <div class="form-group">
-                                    <div class="col-md-1 floatright">
-                                        <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass="btn btn-orange" TabIndex="8" OnClick="btnClear_Click" CausesValidation="false" />
+                                    <div class="col-md-1 floatright customfooter-btn-cancel">
+                                        <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass="btn btn-orange" OnClientClick="reloadpage();" TabIndex="8" OnClick="btnClear_Click" CausesValidation="false" />
                                     </div>
-                                    <div class="col-md-1 floatright">
+                                    <div class="col-md-1 floatright cust-footer-btn-save">
                                         <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" ValidationGroup="grpSave" OnClientClick="removequery();" OnClick="btnSave_Click" />
                                     </div>
                                 </div>
@@ -415,9 +441,14 @@
         </Triggers>
     </asp:UpdatePanel>
     <script type="text/javascript">
+        $(".fa-thumb-tack").click(function () {
+            $(this).toggleClass("fa-rotate-90");
+        });
+
         $(document).ready(function () {
             $(".e1").select2();
             $(".e1").css("border", "none");
         });
+       
     </script>
 </asp:Content>

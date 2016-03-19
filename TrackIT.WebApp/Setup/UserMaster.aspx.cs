@@ -72,7 +72,7 @@ namespace TrackIT.WebApp.Setup
                     }
 
                     //Assign all dropdown data User Location Drop Down
-                    DataSet lds_userLocation = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='LOC' and cp.Active = 1 ORDER BY parameter_name");
+                    DataSet lds_userLocation = ldbh_QueryExecutors.ExecuteDataSet("SELECT cp.parameter_key AS [Value],cp.parameter_name AS TextValue FROM com_parameters cp (NOLOCK) inner join com_parameter_type cpt on cpt.parameter_type_code=cp.parameter_type WHERE cpt.parameter_type_code='CON' and cp.Active = 1 ORDER BY parameter_name");
                     if (lds_userLocation.Tables[0].Rows.Count > 0)
                     { 
                         //Unit Testing ID - UserMaster.aspx.cs_4
@@ -357,7 +357,7 @@ namespace TrackIT.WebApp.Setup
                 TemplateDataField td = new TemplateDataField();
                 td.ItemTemplate = new CustomItemTemplateView();
                 td.Key = "Action";
-                td.Width = 30;
+                td.Width = 20;
                 lwdg_UserMasterGrid.Columns.Add(td);
                 //Query to Get Landing Page Grid Details
                 DataSet lds_Result;

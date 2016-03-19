@@ -31,15 +31,6 @@ namespace TrackIT.WebApp {
         protected global::System.Web.UI.WebControls.ValidationSummary Loginvalid;
         
         /// <summary>
-        /// loginpanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel loginpanel;
-        
-        /// <summary>
         /// txtUsername control.
         /// </summary>
         /// <remarks>
@@ -67,13 +58,22 @@ namespace TrackIT.WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
-        /// btnuserlogin control.
+        /// btnlogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnuserlogin;
+        protected global::System.Web.UI.WebControls.Button btnlogin;
+        
+        /// <summary>
+        /// loginpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel loginpanel;
         
         /// <summary>
         /// lblForgetPasswordCaption control.

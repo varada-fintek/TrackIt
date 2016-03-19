@@ -22,7 +22,6 @@ body {
     max-width: inherit;
     bottom: 0;
     top: 0;
-    background-color: #f5f5f5;
 }
 
 .main-container.container, .rtl .main-container.container {
@@ -60,7 +59,7 @@ body {
     position: relative;
     margin: 0;
     padding: 0px 10px 0px;
-    min-height: 570px;
+    /*min-height: 570px;*/
 }
 
 .page-header {
@@ -73,7 +72,7 @@ body {
     .page-header h1 {
         padding: 0;
         margin: 0 0px;
-        font-size: 20px;
+        font-size: 14px;
         font-weight: lighter;
         color: #666;
     }
@@ -1163,9 +1162,9 @@ pre.prettyprint {
 }
 
     .ace-nav > li {
-        line-height: 30px;
-        height: 60px;
-        border-left: 1px solid #E1E1E1;
+      line-height: 30px;
+        height: 49px;
+        border-left: 1px solid #f3f3f3;
         padding: 0;
         position: relative;
         float: left;
@@ -1562,6 +1561,7 @@ pre.prettyprint {
     line-height: 15px;
     position: relative;
     top: 6px;
+    font-size:16px;
 }
 
     .user-info small {
@@ -5066,7 +5066,7 @@ button.btn:active {
 }*/
 
 .btn-default:active, .btn-default:hover, .btn:active, .btn:hover, .open .btn-default.dropdown-toggle, .open .btn.dropdown-toggle {
-    background-color: #8b9aa3 !important;
+    background-color: #8b9aa3;
     border-color: #abbac3;
 }
 
@@ -6982,7 +6982,7 @@ button.btn:active {
 }
 
     .dropdown-menu > li > a {
-        font-size: 13px;
+        font-size: 11px;
         padding-left: 11px;
         padding-right: 11px;
         margin-bottom: 1px;
@@ -7097,7 +7097,7 @@ button.btn:active {
 }
 
 .dropdown-menu.dropdown-close {
-    top: 109%;
+    top: 100%;
     left: -5px;
 }
 
@@ -7670,13 +7670,13 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
     background-color: #fff;
     border: 1px solid #d5d5d5;
     padding: 5px 4px 6px;
-    font-size: 14px;
-    font-family: inherit;
+    font-size: 11px;
+    font-family: common_font;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     -webkit-transition-duration: .1s;
     transition-duration: .1s;
-    width: 200px;
+    width: 250px;
 }
 
     input[type=color]:hover, input[type=date]:hover, input[type=datetime-local]:hover, input[type=datetime]:hover, input[type=email]:hover, input[type=month]:hover, input[type=number]:hover, input[type=password]:hover, input[type=search]:hover, input[type=tel]:hover, input[type=text]:hover, input[type=time]:hover, input[type=url]:hover, input[type=week]:hover, textarea:hover {
@@ -9655,6 +9655,8 @@ td .lbl, th .lbl {
     box-shadow: none;
     margin: 3px 0;
     border: 1px solid #CCC;
+    padding-left:6px;
+    padding-right:6px;
 }
 
 @media only screen and (max-width:767px) {
@@ -9740,7 +9742,7 @@ td .lbl, th .lbl {
 
 .widget-toolbar {
     display: inline-block;
-    padding: 0 10px;
+    padding: 10px 10px;
     line-height: 37px;
     float: right;
     position: relative;
@@ -9769,8 +9771,8 @@ td .lbl, th .lbl {
     top: 3px;
     bottom: 3px;
     left: -1px;
-    border: 1px solid #D9D9D9;
-    border-width: 0 1px 0 0;
+    border: 0px solid #D9D9D9;
+    border-width: 0 0px 0 0;
 }
 
 .widget-header-large > .widget-toolbar:before {
@@ -10157,9 +10159,9 @@ td .lbl, th .lbl {
         background: 0 0;
         filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
         border-width: 0;
-        border-bottom: 1px solid #DCE8F1;
-        color: #4383B4;
+        color: #333;
         padding-left: 3px;
+        margin-bottom:4px;
     }
 
     .widget-box.transparent > .widget-header-large {

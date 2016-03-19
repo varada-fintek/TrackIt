@@ -54,9 +54,9 @@
 
                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png" OnClick="btnExportExcel_Click"></asp:ImageButton>
-                        &nbsp;&nbsp;                       
+                                  
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png" OnClick="btnExportPDF_Click"></asp:ImageButton>
-                        &nbsp;&nbsp;
+                        &nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="ShowModalPopup();"></a></span>
                     </div>
@@ -70,7 +70,9 @@
                     </h1>
                 </div>
                 <%-- Landing Page Grid begins --%>
+         
                 <div runat="server" id="pnl_companyGrid"></div>
+                    
                 <%-- Landing Page Grid End --%>
                 <script type="text/javascript">
                     try { ace.settings.check('main-container', 'fixed') } catch (e) { }
@@ -106,7 +108,7 @@
 
                                     <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
                                         <asp:ValidationSummary ID="valSumUser" runat="server" ShowMessageBox="true" ShowSummary="false" ValidationGroup="vgrpSave" />
-                                        <div class="form-horizontal">
+                                        <div class="form-horizontal" style="border:1px solid #e3e3e3; padding-top:10px;">
 
                                             <div class="form-group align-popcontent">
                                                 <asp:Label ID="lblcompanycode" class="control-label col-md-2" runat="server"></asp:Label>
@@ -132,7 +134,7 @@
                                             <div class="form-group align-popcontent">
                                                 <asp:Label ID="lblcompanyname" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-3">
-                                                    <asp:TextBox ID="txtcompanyname" CssClass="form-control" runat="server" TabIndex="1" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
+                                                    <asp:TextBox ID="txtcompanyname" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100" ToolTip="Maximum Character 10"></asp:TextBox>
                                                 </div>
 
                                                 <div class="col-md-1" style="display: none;">
@@ -155,20 +157,38 @@
                                                 <asp:Label ID="lblactive" class="control-label col-md-2" runat="server"></asp:Label>
                                                 <div class="col-md-1">
                                                     <span class="input-icon">
-                                                        <asp:CheckBox ID="chkactive" class="checkbox" runat="server" TabIndex="11" />
+                                                        <asp:CheckBox ID="chkactive" class="checkbox" runat="server" TabIndex="3" />
                                                     </span>
                                                 </div>
                                             </div>
 
-                                            <hr />
+                                         
                                             
+                                               <div class="col-md-4" style="padding-left:0px;">
 
-                                            <div class="col-md-4">
-                                                <h3>Address info  </h3>
+                                            <!--begin div-->
+                                            <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; margin-right:4px; border:1px solid #e3e3e3;">
+										        <div class="widget-box transparent">
+											        <div class="widget-header widget-header-flat">
+												        <h4 class="widget-title lighter">
+													        Address info
+												        </h4>
+
+												        <div class="widget-toolbar">
+													        <a href="#" data-action="collapse">
+														        <i class="ace-icon fa fa-thumb-tack"></i>
+													        </a>
+												        </div>
+											        </div>
+
+											        <div class="widget-body" style="display: block;">
+												        <div class="widget-main no-padding">
+                                                            <!--begin control-->
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lbladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtaddressline1" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtaddressline1" CssClass="form-control" runat="server" TabIndex="4" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1" style="display: none;">
                                                         <cc1:FilteredTextBoxExtender ID="ccaddressline1_FilteredTextBoxExtender"
@@ -180,10 +200,11 @@
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <asp:Label ID="lbladdressline2" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtaddressline2" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtaddressline2" CssClass="form-control" runat="server" TabIndex="5" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="ccaddressline2_FilteredTextBoxExtender"
@@ -193,10 +214,11 @@
 
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lblcity" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtcity" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtcity" CssClass="form-control" runat="server" TabIndex="6" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="cccity_FilteredTextBoxExtender"
@@ -210,7 +232,7 @@
                                                 <div class="form-group">
                                                     <asp:Label ID="lblstate" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtstate" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtstate" CssClass="form-control" runat="server" TabIndex="7" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="ccstate_FilteredTextBoxExtender"
@@ -220,11 +242,11 @@
 
                                                     </div>
                                                 </div>
-
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lblzip" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtzip" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtzip" CssClass="form-control" runat="server" TabIndex="8" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="cczip_FilteredTextBoxExtender"
@@ -234,11 +256,11 @@
 
                                                     </div>
                                                 </div>
-
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lblcountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-6">
-                                                        <asp:DropDownList ID="ddlcountry" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                        <asp:DropDownList ID="ddlcountry" runat="server" TabIndex="9" CssClass="form-control chzn-select" AutoPostBack="false">
                                                         </asp:DropDownList>
                                                     </div>
                                                     <div class="col-md-1" style="display: none;">
@@ -247,24 +269,49 @@
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
-
+                                               
                                                 <div class="form-group">
                                                     <asp:Label ID="lblsameinfo" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-1">
                                                         <span class="input-icon">
-                                                            <asp:CheckBox ID="chksameinfo" class="checkbox" runat="server" AutoPostBack="true" TabIndex="11" OnCheckedChanged="chksameinfo_CheckedChanged" />
+                                                            <asp:CheckBox ID="chksameinfo" class="checkbox" runat="server" TabIndex="10" AutoPostBack="true" OnCheckedChanged="chksameinfo_CheckedChanged" />
                                                         </span>
                                                     </div>
                                                 </div>
+                                               <!--end control-->
+												        </div><!-- /.widget-main -->
+											        </div><!-- /.widget-body -->
+										        </div><!-- /.widget-box -->
+									        </div>
+                                            <!--end div-->
+                                            
+                                        </div>
 
-                                            </div>
+                                             <div class="col-md-4" style="padding-left:0px; padding-right:0px;">
 
-                                            <div class="col-md-4">
-                                                <h3>Contact Info  </h3>
+                                            <!--begin div-->
+                                            <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; border:1px solid #e3e3e3;">
+										        <div class="widget-box transparent">
+											        <div class="widget-header widget-header-flat">
+												        <h4 class="widget-title lighter">
+													        Contact info
+												        </h4>
+
+												        <div class="widget-toolbar">
+													        <a href="#" data-action="collapse">
+														        <i class="ace-icon fa fa-thumb-tack"></i>
+													        </a>
+												        </div>
+											        </div>
+
+											        <div class="widget-body" style="display: block;">
+												        <div class="widget-main no-padding">
+                                                            <!--begin control-->
+
                                                 <div class="form-group">
                                                     <asp:Label ID="lblname" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtname" CssClass="form-control" runat="server" TabIndex="11" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1" style="display: none;">
                                                         <cc1:FilteredTextBoxExtender ID="ccname_FilteredTextBoxExtender"
@@ -276,10 +323,11 @@
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <asp:Label ID="lbldesigination" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtdesigination" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtdesigination" CssClass="form-control" runat="server" TabIndex="12" MaxLength="100"></asp:TextBox>
                                                     </div>
 
                                                     <div class="col-md-1" style="display: none;">
@@ -292,14 +340,41 @@
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            
+                                                             <!--end control-->
+												        </div><!-- /.widget-main -->
+											        </div><!-- /.widget-body -->
+										        </div><!-- /.widget-box -->
+									        </div>
+                                            <!--end div-->
 
-                                            <div class="col-md-4">
-                                                <h3>Billing Info </h3>
+                                        </div>
+                                            
+                                            <div class="col-md-4" style="padding-right:0px;">
+
+                                                <!--begin div-->
+                                                <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; border:1px solid #e3e3e3;">
+										            <div class="widget-box transparent">
+											            <div class="widget-header widget-header-flat">
+												            <h4 class="widget-title lighter">
+													            Billing info
+												            </h4>
+
+												            <div class="widget-toolbar">
+													            <a href="#" data-action="collapse">
+														            <i class="ace-icon fa fa-thumb-tack"></i>
+													            </a>
+												            </div>
+											            </div>
+
+											            <div class="widget-body" style="display: block;">
+												            <div class="widget-main no-padding">
+                                                                <!--begin control-->
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbilladdressline1" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtbilladdressline1" CssClass="form-control" runat="server" TabIndex="3" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbilladdressline1" CssClass="form-control" runat="server" TabIndex="13" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1" style="display: none;">
                                                         <cc1:FilteredTextBoxExtender ID="ccbilladdressline1_FilteredTextBoxExtender"
@@ -315,7 +390,7 @@
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbilladdressline2" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtbilladdressline2" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbilladdressline2" CssClass="form-control" runat="server" TabIndex="14" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="ccbilladdressline2_FilteredTextBoxExtender"
@@ -325,11 +400,11 @@
 
                                                     </div>
                                                 </div>
-
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbillcity" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtbillcity" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbillcity" CssClass="form-control" runat="server" TabIndex="15" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="ccbillcity_FilteredTextBoxExtender"
@@ -342,7 +417,7 @@
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbillstate" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtbillstate" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbillstate" CssClass="form-control" runat="server" TabIndex="16" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="ccbillstate_FilteredTextBoxExtender"
@@ -351,11 +426,11 @@
                                                         </cc1:FilteredTextBoxExtender>
                                                     </div>
                                                 </div>
-
+                                                
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbillzip" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtbillzip" CssClass="form-control" runat="server" TabIndex="2" MaxLength="100"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbillzip" CssClass="form-control" runat="server" TabIndex="17" MaxLength="100"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <cc1:FilteredTextBoxExtender ID="ccbillzip_FilteredTextBoxExtender"
@@ -368,7 +443,7 @@
                                                 <div class="form-group">
                                                     <asp:Label ID="lblbillcountry" class="control-label col-md-2" runat="server"></asp:Label>
                                                     <div class="col-md-6">
-                                                        <asp:DropDownList ID="ddlbillcountry" runat="server" TabIndex="2" CssClass="form-control chzn-select" AutoPostBack="false">
+                                                        <asp:DropDownList ID="ddlbillcountry" runat="server" TabIndex="18" CssClass="form-control chzn-select" AutoPostBack="false">
                                                         </asp:DropDownList>
                                                     </div>
                                                     <div class="col-md-1" style="display: none;">
@@ -377,19 +452,26 @@
                                                             ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
-
-                                            </div>
-
+                                                         
+                                                            <!--end control-->
+												        </div><!-- /.widget-main -->
+											        </div><!-- /.widget-body -->
+										        </div><!-- /.widget-box -->
+									        </div>
+                                            <!--end div-->
+                                        
+                                    </div>
+                                            
                                         </div>
                                     </asp:Panel>
 
                                     <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
                                         <div class="form-group">
-                                            <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClick="btnClear_Click" CausesValidation="false" />
+                                            <div class="col-md-1 floatright customfooter-btn-cancel">
+                                                <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="20" OnClientClick="reloadpage();" OnClick="btnClear_Click" CausesValidation="false" />
                                             </div>
-                                            <div class="col-md-1 floatright">
-                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClick="btnSave_Click" OnClientClick="removequery();" ValidationGroup="vgrpSave" />
+                                            <div class="col-md-1 floatright cust-footer-btn-save">
+                                                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="19" OnClick="btnSave_Click" OnClientClick="removequery();" ValidationGroup="vgrpSave" />
                                             </div>
                                         </div>
                                     </asp:Panel>
@@ -418,6 +500,9 @@
         $(document).ready(function () {
             $(".e1").select2();
             $(".e1").css("border", "none");
+        });
+        $(".fa-thumb-tack").click(function () {
+            $(this).toggleClass("fa-rotate-90");
         });
     </script>
 </asp:Content>

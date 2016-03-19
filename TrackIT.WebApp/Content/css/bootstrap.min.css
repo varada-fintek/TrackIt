@@ -1245,7 +1245,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
-    font-size: 24px;
+    font-size: 18px;
 }
 
 h4, .h4 {
@@ -1410,7 +1410,7 @@ a.bg-danger:hover {
 .page-header {
     padding-bottom: 0px;
     margin: 0px 0 10px;
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid #eee;
     height: 40px;
 }
 
@@ -2707,9 +2707,9 @@ output {
 .form-control {
     /*display: block;*/
     width: 100%;
-    height: 34px;
+    height: 25px;
     /*padding: 6px 12px;*/
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
@@ -2771,7 +2771,7 @@ input[type=date], input[type=time], input[type=datetime-local], input[type=month
     }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .align-popcontent{
@@ -3198,9 +3198,10 @@ background-color: #fff;
 .custom-createnew {
  background-color: transparent;
  border:0px;
- width:24px;
- height:24px; 
- background-image:url(../../images/add_icon_24.png);
+ width:16px;
+ height:16px;
+ margin-top:5px; 
+ background-image:url(../../images/add_icon.png);
  background-repeat:no-repeat;
 }
 
@@ -3510,8 +3511,7 @@ tbody.collapse.in {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid #e3e3e3;
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
@@ -3965,7 +3965,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
         .nav > li > a {
             position: relative;
             display: block;
-            padding: 15px 15px;
+            padding: 11px 15px;
         }
 
             .nav > li > a:hover, .nav > li > a:CtrlA {
@@ -5945,7 +5945,7 @@ button.close {
     margin: 10px;
     top: 50px;
     vertical-align:middle;
-    min-height:450px;
+    /*min-height:450px;*/
      overflow:scroll;
     
 }
@@ -5955,8 +5955,7 @@ button.close {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #999;
-    border: 1px solid rgba(0,0,0,.2);
+    border: 2px solid #39b7ac;
     border-radius: 6px;
     outline: 0;
     -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
@@ -6024,9 +6023,9 @@ button.close {
     position: relative;
     padding: 15px;
     width:100%;
-    min-height:450px;
+    min-height:100%;
     overflow:auto;
-       max-height: 450px !important;
+       max-height: 500px !important;
                 top:0;
 }
 
@@ -6041,7 +6040,7 @@ button.close {
 .modal-footer {
     padding: 15px;
     text-align: right;
-    border-top: 2px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 
     .modal-footer .btn + .btn {
@@ -6075,7 +6074,7 @@ button.close {
         margin-top:0;
         /*padding-left:50px;*/
         overflow:auto;
-        min-height : 450px;
+        /*min-height : 500px;*/
         border: 0px solid #fff; 
          left: 40px !important;
     }

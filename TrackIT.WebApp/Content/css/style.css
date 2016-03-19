@@ -3,7 +3,7 @@
 Theme: Curo - Admin Template
 Created: 2014
 Creator: Kevin Mckoy
-Support: https://wrapbootstrap.com/user/realmckoy01
+Support: https://wrapbootstrap.com/user/realmckoy
 
 
 Structure of CSS
@@ -16,14 +16,34 @@ Structure of CSS
 /********************************************************************/
 /********************************************************************/
 /* General */
+
+@font-face{font-family:common_font;src:url(../fonts/Montserrat-Light.otf)}
+@font-face{font-family:common_font_regular;src:url(../fonts/Montserrat-Regular.otf)}
+@font-face{font-family:common_font_ie;src:url(../fonts/montserrat-regular-webfont.eot)}
+@font-face{font-family:common_font_regular_ie;src:url(../fonts/montserrat-regular-webfont.eot)}
+
 body {
-    font-size: 13px;
+    font-size: 11px;
     color: #454545;
     background: #fafafa;
     position: relative;
     overflow-x: hidden;
-    font-family: 'Source Sans Pro', 'Oxygen', sans-serif;
+    font-family: common_font;
 }
+
+/*custom style*/
+
+.main-container
+{
+    margin:0px 10px 0 10px !important;
+    background-color:#fff !important;
+}
+
+.mandatory_red{
+    color:#ed8a8b;
+}
+
+/*end custom style*/
 
 h1,
 .h1,
@@ -37,7 +57,7 @@ h5,
 .h5,
 h6,
 .h6 {
-    font-family: 'Oxygen', sans-serif;
+    font-family: common_font;
     font-weight: 400;
     background: none;
     padding: 0;
@@ -57,7 +77,9 @@ h6,
 
 h4,
 .h4 {
-    font-size: 18px;
+    font-size: 16px;
+    padding-left:10px;
+    padding-top:5px;
 }
 
 a {
@@ -80,7 +102,7 @@ p {
     margin: 0 0 10px;
     text-align: inherit;
     border: none;
-    font-family: inherit;
+    font-family: common_font;
 }
 
 input,
@@ -2308,7 +2330,7 @@ modal-danger .modal-content {
 .modal-header-green,
 .modal-header-success {
         height: 29px;
-    background-color: #FFA31A;
+    background-color: #39b7ac;
     color: white;
     padding-top: 0%;
 }
@@ -3254,38 +3276,41 @@ button {
 }
 
 .btn-blue {
-    background-color: #3498db;
-    border-color: #3498db;
+    background-color: #61ca8e;
+    border-color: #3fa068;
     color: white;
 }
 
     .btn-blue:hover,
     .btn-blue:visited {
-        background-color: #2980b9;
+        background-color: #2fbc6b;
+        border-color: #69d898;
         color: white;
     }
 
 .btn-green {
-    background-color: #2ecc71;
-    border-color: #27ae60;
+    background-color: #69d898;
+    border-color: #2ecc71;
     color: white;
 }
 
     .btn-green:hover,
     .btn-green:visited {
-        background-color: #27ae60;
+        background-color: #2fbc6b;
+        border-color: #69d898;
         color: white;
     }
 
 .btn-orange {
-    background-color: #ff530d;
-    border-color: #e82c0c;
+    background-color: #ed8a8b;
+    border-color: #d86061;
     color: white;
 }
 
     .btn-orange:hover,
     .btn-orange:visited {
-        background-color: #e82c0c;
+        background-color: #d86061 !important;
+        border-color: #ed8a8b;
         color: white;
     }
 
@@ -5296,12 +5321,12 @@ header {
 
     header .logo {
         padding: 0px 20px;
-        max-width: 240px;
+        max-width: 241px;
         display: block;
         color: #555555;
         width: 100%;
         font-size: 20px;
-        line-height: 60px;
+        line-height: 49px;
         border-right: 1px solid #dddddd;
         float: left;
     }
@@ -5322,8 +5347,8 @@ header {
 
     header .navbar-main {
         display: block;
-        height: 60px;
-        font-size: 24px;
+        /*height: 60px;*/
+        font-size: 16px;
         text-align: center;
     }
 
@@ -5667,7 +5692,7 @@ header {
 
     .sidebar.sidebar-left {
         left: 0;
-        border-right: 1px solid #dddddd;
+        border-right: 0px solid #dddddd;
         border-bottom: 1px solid #dddddd;
     }
 
@@ -5768,9 +5793,9 @@ header {
         }
 
             .sidebar .sidebar-wrapper .sidebar-nav li a {
-                padding: 14px 20px;
+                padding: 10px 20px;
                 display: block;
-                font-size: 14px;
+                font-size: 11px;
                 line-height: 20px;
                 color: #8d919a;
                 -webkit-transition: all 0.2s ease-in-out;
@@ -5782,13 +5807,14 @@ header {
 
             .sidebar .sidebar-wrapper .sidebar-nav li:hover > a {
                 background-color: #0cb9b9;
-                border-left: 4px solid #92cd18;
+                border-left: 4px solid #7ba444;
                 color: white;
+                border-right:0px !important;
             }
 
             .sidebar .sidebar-wrapper .sidebar-nav li.active > a {
                 background-color: #15aaaa;
-                border-left: 4px solid #92cd18;
+                border-left: 4px solid #a9d96c;
                 color: white;
             }
 
@@ -5940,7 +5966,7 @@ header {
         }
 
 .header-fixed .sidebar {
-    margin-top: 60px;
+    margin-top: 50px;
     position: fixed;
     height: 100% !important;
 }
@@ -5954,8 +5980,8 @@ header {
     }
 
 .skin-blue .sidebar .sidebar-wrapper .sidebar-nav li:hover > a {
-    background-color: #212329;
-    color: white;
+    background-color: #a9d96c;
+    color: #fff;
 }
 
 .skin-blue .sidebar .sidebar-wrapper .sidebar-nav li.active > a {
@@ -6169,7 +6195,7 @@ header {
         }
 
 .header-fixed .content-wrapper > .content {
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
 @media (max-width: 991px) {
@@ -6509,3 +6535,12 @@ header {
 
     }
 
+.customfooter-btn-cancel{
+    padding-right:0px;
+    padding-left:6px;
+    width:auto;
+}
+.cust-footer-btn-save{
+    padding-left:0px; 
+    padding-right:0px;
+}

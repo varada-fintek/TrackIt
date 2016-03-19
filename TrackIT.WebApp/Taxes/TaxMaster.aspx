@@ -15,8 +15,6 @@
 <%@ Register Assembly="Infragistics4.Web.v14.1, Version=14.1.20141.2328, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
 
 
-<%@ Register Assembly="DevExpress.Web.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="adminhead" runat="server">
 </asp:Content>
 <asp:Content ID="tax" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
@@ -129,13 +127,13 @@
 
         <ContentTemplate>
             <div class="main-container" id="main-container">
- 
+                
                 <div class="page-header">
                     <div class="floatright pull_right">
                         <asp:ImageButton ID="btnExportExcel" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/excel_icon.png"></asp:ImageButton>
-                        &nbsp;&nbsp;                       
+                                 
                         <asp:ImageButton ID="btnExportPDF" runat="server" CausesValidation="False" ImageAlign="Middle" ImageUrl="~/images/pdf_icon.png"></asp:ImageButton>
-                        &nbsp;&nbsp;
+                        &nbsp;
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="ShowModalPopup();"></a></span>
                     </div>
@@ -148,9 +146,8 @@
                         <asp:Label ID="lblCreatetaxes" runat="server"></asp:Label>
                     </h1>
                 </div>
-
-                <div runat="server" id="pnl_taxGrid">
-                </div>
+               
+                <div runat="server" id="pnl_taxGrid"></div>
             </div>
             <div class="main-content">
 
@@ -170,6 +167,23 @@
                                 <asp:Panel ID="pnlbody" runat="server" CssClass="modal-body text-center">
                                     <asp:ValidationSummary ID="valSumproject" runat="server" ShowMessageBox="true" ShowSummary="false" DisplayMode="BulletList" ValidationGroup="vgrpSave" />
                                     <div class="form-horizontal">
+                                          <div class="col-sm-12" style="padding-left:0px; padding-right:0px; margin-top:10px; margin-right:4px; border:1px solid #e3e3e3;">
+										        <div class="widget-box transparent">
+											        <div class="widget-header widget-header-flat">
+												        <h4 class="widget-title lighter">
+													        Address info
+												        </h4>
+
+												        <div class="widget-toolbar">
+													        <a href="#" data-action="collapse">
+														        <i class="ace-icon fa fa-thumb-tack"></i>
+													        </a>
+												        </div>
+											        </div>
+
+                                         <div class="widget-body" style="display: block;">
+												        <div class="widget-main no-padding">
+                                                            <!--begin control-->
                                         <div class="form-group align-popcontent">
                                             <asp:Label ID="lbltaxcode" class="control-label col-md-2" runat="server"></asp:Label>
                                             <div class="col-md-3">
@@ -204,6 +218,11 @@
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
+                                                            </div>
+                                             </div>
+                                                    </div>
+                                              </div>
+
                                         <div class="col-md-3">
                                             <asp:LinkButton ID="lnkAddrow" runat="server" ValidationGroup="valgrid" OnClientClick="return fnGetSelectID();" OnClick="lnkAddrow_Click1" Text="+Add" />
                                         </div>
@@ -287,51 +306,15 @@
                                                 </Behaviors>
                                             </ig:WebDataGrid>
                                         </div>
-                                        <div class="col-sm-12 align-popcontent">
-                                            <div runat="server" id="pnl_taxdetailsGrid">
-                                            </div>
-                                        </div>
-
-                                        <%--   <dx:ASPxGridView ID="dve_taxdetails" runat="server" Width="100%"
-                                            AutoGenerateColumns="false" EnableRowsCache="false" Theme="Youthful" Visible="false">
-                                  
-                                            <Columns>
-                                                
-                                              <dx:GridViewCommandColumn ShowNewButtonInHeader="true" ShowEditButton="True" />
-                                                <dx:GridViewDataDateColumn FieldName="tax_from" Caption="From Date">
-                                                    <EditItemTemplate>
-                                                        <dx:ASPxDateEdit ID="dx_txtfromdate" runat="server"></dx:ASPxDateEdit>
-                                                    </EditItemTemplate>
-                                                </dx:GridViewDataDateColumn>
-
-                                                <dx:GridViewDataDateColumn FieldName="tax_to" Caption="To Date">
-                                                    <EditItemTemplate>
-                                                        <dx:ASPxDateEdit ID="dx_txttodate" runat="server"></dx:ASPxDateEdit>
-                                                    </EditItemTemplate>
-                                                </dx:GridViewDataDateColumn>
-
-                                                 <dx:GridViewDataTextColumn FieldName="tax_percent" Caption="Percentage">
-                                                     <EditItemTemplate>
-                                                        <dx:ASPxTextBox ID="dx_txtpercent" runat="server" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </EditItemTemplate>
-                                                </dx:GridViewDataTextColumn>
-                                               
-                                             
-                                            </Columns>
-                                            <SettingsEditing Mode="Inline" />
-                                              <ClientSideEvents BatchEditStartEditing="Grid_BatchEditStartEditing" BatchEditEndEditing="Grid_BatchEditEndEditing" />
-                                               
-                                        </dx:ASPxGridView>--%>
                                     </div>
                                 </asp:Panel>
 
                                 <asp:Panel ID="pnlfooter" CssClass="modal-footer" runat="server">
                                     <div class="form-group">
-                                        <div class="col-md-1 floatright">
-                                            <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClientClick="removequery();" OnClick="btnClear_Click" CausesValidation="false" />
+                                        <div class="col-md-1 floatright customfooter-btn-cancel">
+                                            <asp:Button ID="btnClear" Text="Cancel" runat="server" CssClass=" btn btn-orange" TabIndex="8" OnClientClick="removequery();reloadpage();" OnClick="btnClear_Click" CausesValidation="false" />
                                         </div>
-                                        <div class="col-md-1 floatright">
+                                        <div class="col-md-1 floatright cust-footer-btn-save">
                                             <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClientClick="fnGetSelectID();removequery();" ValidationGroup="vgrpSave" OnClick="btnSave_Click" />
                                         </div>
                                     </div>
@@ -342,6 +325,7 @@
                     </div>
                 </div>
             </div>
+
             <asp:HiddenField ID="hdnpop" runat="server" ClientIDMode="Static" />
             <asp:HiddenField ID="hdntaxkey" runat="server" ClientIDMode="Static" />
             <asp:HiddenField ID="hdntaxdetailskey" runat="server" ClientIDMode="Static" />

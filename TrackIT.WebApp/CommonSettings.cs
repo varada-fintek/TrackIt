@@ -136,7 +136,7 @@ public class CustomItemTemplateView : ITemplate
         LinkButton edit = new LinkButton();
         edit.CssClass = "fa fa-pencil";
       //  edit.CssClass = "LinkButton eye-icon";
-        edit.Width = 20;
+        //edit.Width = 20;
         //edit.Text = "View";// +container.ID;
         //edit.ImageUrl = "";
         edit.ID = container.ID;

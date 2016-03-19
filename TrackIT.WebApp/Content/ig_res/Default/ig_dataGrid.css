@@ -12,20 +12,20 @@
 
 .igg_Header
 {
-	background-color:#ffa31a;
-    background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffa31a), color-stop(100%, #ffa31a));
+	background-color:#41cac0;
+    /*background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffa31a), color-stop(100%, #ffa31a));*/
 	color:White;
 }
 
 .igg_HeaderCaption
 {
-	font-size: 11px;
+	font-size: 10px;
 	/*padding:5px 0px 5px 8px;*/
 	overflow: hidden;
 	text-align:left;
-	height: 25px;
-	font-weight:bold;
-	border-right:1px solid #fcb344;   
+	height: 30px;
+	font-weight:normal !important;
+	border-right:0px solid #41cac0;   
     color: #fff;
     padding: 6px;
     text-transform:none;
@@ -67,7 +67,7 @@ tbody.igg_Item>tr>td
 	
 	/*height: 17px;
 	line-height: 17px;*/
-	padding:5px;
+	padding:2px;
 	overflow: hidden;
 	text-align:left;
 	vertical-align:middle;

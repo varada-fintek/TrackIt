@@ -148,7 +148,7 @@
     <value>Edit</value>
   </data>
   <data name="AlreadyExistMsg" xml:space="preserve">
-    <value>Record Already Exists !!!</value>
+    <value>Record Already Exists </value>
   </data>
   <data name="sEditAlert" xml:space="preserve">
     <value>You are not allowed to edit the Predefined Data</value>
@@ -163,7 +163,7 @@
     <value>Are you sure want to delete the record ?</value>
   </data>
   <data name="DeleteMsg" xml:space="preserve">
-    <value>Record Deleted Successfully !!!</value>
+    <value>Record Deleted Successfully </value>
   </data>
   <data name="NoRecordMsg" xml:space="preserve">
     <value>No Records Found !!!</value>
@@ -178,7 +178,7 @@
     <value>View</value>
   </data>
   <data name="SaveMsg" xml:space="preserve">
-    <value>Record Saved Successfully !!!</value>
+    <value>Record Saved Successfully</value>
   </data>
   <data name="btnSearchClear" xml:space="preserve">
     <value>Clear</value>

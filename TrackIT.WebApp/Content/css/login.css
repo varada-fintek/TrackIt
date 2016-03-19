@@ -1,0 +1,107 @@
+﻿
+@font-face{font-family:common_font;src:url(../fonts/Montserrat-Light.otf)}
+@font-face{font-family:common_font_regular;src:url(../fonts/Montserrat-Regular.otf)}
+@font-face{font-family:common_font_ie;src:url(../fonts/montserrat-regular-webfont.eot)}
+@font-face{font-family:common_font_regular_ie;src:url(../fonts/montserrat-regular-webfont.eot)}
+
+
+.login_logo{
+    width:100%;
+    margin:0px auto;
+    padding-bottom:50px;
+    padding-top:100px;
+}
+
+.login_container{
+    width:370px;
+    margin:0px auto;
+    height:auto;
+    border:0px solid #fff;
+    border-radius:6px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.login_top_header{
+    width:370px;
+    height:60px;
+    background-color:#41cac0;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:0px;
+    border-bottom-right-radius:0px;
+}
+
+.login_top_header{
+    line-height:60px;
+    font-size:22px;
+    color:#fff;
+    font-weight:lighter;
+    font-family:common_font;
+}
+
+.login_body{
+    width:370px;
+    height:100%;
+    background-color:#fff;
+    border-top-left-radius:0px;
+    border-top-right-radius:0px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+}
+
+.login_text_box{
+    border:1px solid #e3e3e3 !important;
+    border-radius:4px !important;
+    width:90% !important;
+    height:40px !important;
+    margin:0px auto !important;
+    font-family:common_font;
+    margin-top:20px !important;
+    font-size:12px !important;
+    color:#666 !important;
+}
+
+.forgot_password{
+    font-family:common_font;
+    font-size:11px;
+    color:#41cac0 !important;
+    line-height:40px;
+}
+
+.login_btn{
+    font-family:common_font;
+    font-size:16px;
+    font-weight:normal !important;
+    width:90% !important;
+    line-height:50px !important;
+    color:#fff;
+    background-color:#4b5766;
+    border-radius:4px;
+    box-shadow: 0 4px 0px 0 rgba(42, 53, 66, 1);
+}
+
+.login_btn:hover
+{
+    background-color:#2a3542;
+    box-shadow: 0 4px 0px 0 rgba(75, 87, 102, 1);    
+}
+
+.login_footer{
+    width:370px;
+    font-family:common_font;
+    font-size:12px;
+    color:#999;
+    margin:0px auto;
+    margin-top:30px;
+}
+
+.login_footer a{
+    color:#7490b0;
+    text-decoration:none;
+}
+
+.login_footer a:hover
+{
+    text-decoration:underline;
+    color:#193757;
+}

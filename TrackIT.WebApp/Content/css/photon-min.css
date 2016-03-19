@@ -199,7 +199,7 @@ body {
     font-size: 14px;
     line-height: 20px;
     color: #333;
-    background-color: #fff;
+    background-color: #f1f2f7;
 }
 
 a {
@@ -1021,13 +1021,13 @@ textarea {
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
     background-color: #fff;
     border: 1px solid #d1d7df;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     -webkit-transition: border linear .2s,box-shadow linear .2s;
     -moz-transition: border linear .2s,box-shadow linear .2s;
     -o-transition: border linear .2s,box-shadow linear .2s;
-    transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;*/
 }
 
     textarea:CtrlA, input[type="text"]:CtrlA, input[type="password"]:CtrlA, input[type="datetime"]:CtrlA, input[type="datetime-local"]:CtrlA, input[type="date"]:CtrlA, input[type="month"]:CtrlA, input[type="time"]:CtrlA, input[type="week"]:CtrlA, input[type="number"]:CtrlA, input[type="email"]:CtrlA, input[type="url"]:CtrlA, input[type="search"]:CtrlA, input[type="tel"]:CtrlA, input[type="color"]:CtrlA, .uneditable-input:CtrlA {
@@ -8581,9 +8581,9 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    -webkit-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px white;
+    /*-webkit-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px white;
     -moz-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px white;
-    box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px white;
+    box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px white;*/
     vertical-align: middle;
 }
 
@@ -8602,13 +8602,13 @@ textarea {
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
     background-color: #fff;
     border: 1px solid #d1d7df;
-    -webkit-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.3);
+    /*-webkit-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.3);
     -moz-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.3);
     box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.3);
     -webkit-transition: background-color linear .2s,box-shadow linear .2s;
     -moz-transition: background-color linear .2s,box-shadow linear .2s;
     -o-transition: background-color linear .2s,box-shadow linear .2s;
-    transition: background-color linear .2s,box-shadow linear .2s;
+    transition: background-color linear .2s,box-shadow linear .2s;*/
 }
 
     textarea.error, input[type="text"].error, input[type="password"].error, input[type="datetime"].error, input[type="datetime-local"].error, input[type="date"].error, input[type="month"].error, input[type="time"].error, input[type="week"].error, input[type="number"].error, input[type="email"].error, input[type="url"].error, input[type="search"].error, input[type="tel"].error, input[type="color"].error, .uneditable-input.error {
@@ -8620,9 +8620,9 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
         border-color: #d1d7df;
         outline: 0;
         outline: thin dotted \9;
-        -webkit-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.5);
+        /*-webkit-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.5);
         -moz-box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.5);
-        box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.5);
+        box-shadow: inset 2px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.5);*/
     }
 
 input[type="radio"], input[type="checkbox"] {
