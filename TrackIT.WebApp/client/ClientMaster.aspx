@@ -143,7 +143,6 @@
                                                     ControlToValidate="txtclientName" Display="Static" SetFocusOnError="True"
                                                     ValidationGroup="vgrpSave" InitialValue=""></asp:RequiredFieldValidator>
 
-
                                             </div>
                                         </div>
 
@@ -449,13 +448,11 @@
 
                                 </asp:Panel>
 
-
-
-
                                 <asp:Panel ID="pnlfooter" runat="server" CssClass="modal-footer">
                                     <div class="form-group">
                                         <div class="col-md-1 floatright" style="padding-right:0px; padding-left:6px; width:auto;">
-                                            <asp:Button ID="btnCancel" Text="Cancel" runat="server" CssClass=" btn btn-orange" OnClientClick="reloadpage();"TabIndex="8" CausesValidation="false" OnClick="btnCancel_Click" />
+                                            
+                                            <asp:Button ID="btnCancel" Text="Cancel" runat="server" CssClass="btn btn-orange" OnClientClick="reloadpage();" TabIndex="8" CausesValidation="false" OnClick="btnCancel_Click" />
                                         </div>
                                         <div class="col-md-1 floatright" style="padding-left:0px; padding-right:0px;">
                                             <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-blue" TabIndex="7" OnClick="btnSave_Click" ValidationGroup="vgrpSave" />
