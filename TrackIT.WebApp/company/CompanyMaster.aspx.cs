@@ -80,7 +80,8 @@ namespace TrackIT.WebApp.company
             {
                 //Edit User Details
                 //Unit Testing ID - CompanyMaster.aspx.cs_5
-                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_5 Edit User Details popId and Unique ID" + hdnCompID.Value + hdnpop.Value); 
+                System.Diagnostics.Debug.WriteLine("Unit testing ID - CompanyMaster.aspx.cs_5 Edit User Details popId and Unique ID" + hdnCompID.Value + hdnpop.Value);
+                txtcompanycode.Enabled = false;
                 Int64? lint_Compid = Convert.ToInt64(hdnCompID.Value.ToString());
                 btnSave.Visible = bitEdit;
                 EditCompanyDetails(lint_Compid);
