@@ -74,7 +74,7 @@ namespace TrackIT.WebApp.client
                 EditClientDetails(lint_Clientid);
                 hdnpop.Value = string.Empty;
                 mpe_clientPopup.Show();
-                
+                txtclientCode.Enabled = false;
             }
         }
         #endregion
@@ -370,6 +370,7 @@ namespace TrackIT.WebApp.client
             chkisactive.Checked = true;
             chkisactive.Enabled = false;
             hdnClientID.Value = string.Empty;
+            txtclientCode.Enabled = true;
 
         }
         private void EditClientDetails(Int64? aint_ClientKey)
