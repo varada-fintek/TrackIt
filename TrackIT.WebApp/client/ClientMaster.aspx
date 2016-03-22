@@ -62,8 +62,8 @@
                              <span class="custom-createnew" style="float: right;" id="createnew" clientidmode="Static" runat="server">
                                  <a href="#" onclick="ShowModalPopup();"></a></span>
                     </div>
-                    <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterPDF" DataExportMode="AllDataInDataSource" Format="PDF" />
-                    <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false" ExportMode="Download" DownloadName="UserMasterExcel" DataExportMode="AllDataInDataSource" />
+                    <ig:WebDocumentExporter ID="WebPDFExporter" runat="server" EnableStylesExport="false" ExportMode="Download" DownloadName="ClientMasterPDF" DataExportMode="AllDataInDataSource" Format="PDF" />
+                    <ig:WebExcelExporter runat="server" ID="WebExcelExporter" EnableStylesExport="false" ExportMode="Download" DownloadName="ClientMasterExcel" DataExportMode="AllDataInDataSource" />
                     <h1>
                         <i class="menu-icon fa fa-lg fa-fw fa-user"></i>
                         <i class="icon-angle-right"></i>
